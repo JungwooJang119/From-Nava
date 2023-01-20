@@ -53,7 +53,7 @@ public class TestLineRenderer : MonoBehaviour
         var pointlist = new List<Vector2>(LineRenderer.Points);
         pointlist.Add(point);
         LineRenderer.Points = pointlist.ToArray();
-        logicManager.increaseLines(1);
+        logicManager.setCurrLines(1);
     }
 
     public void RemoveNewPoint() {
@@ -63,7 +63,7 @@ public class TestLineRenderer : MonoBehaviour
         while (totalLines > 0) {
             pointlist.RemoveAt(totalLines);
             totalLines--;
-            logicManager.setCurrLines(1);
+            logicManager.setCurrLines(-1);
         }
         LineRenderer.Points = pointlist.ToArray();
         //LineRenderer.Points.Remove(0);

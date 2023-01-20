@@ -47,8 +47,6 @@ public class Spell : MonoBehaviour
             } else {
                 transform.Translate(Vector2.right * SpellCast.speed * Time.deltaTime);
             }
-
-            //transform.Translate(Vector2.down * SpellToCast.speed * Time.deltaTime);
         }
     }
 

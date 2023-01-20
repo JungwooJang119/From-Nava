@@ -9,8 +9,6 @@ public class LogicScript : MonoBehaviour
     public Text healthText;
     public string patternActive = "";
     public string prevNode = "";
-    //private List<string> nodesList = new List<string>();
-    private List<LineRenderer> nodesList = new List<LineRenderer>();
     public int currLines;
     public Spell _spell;
     public Transform castPoint;
@@ -22,7 +20,6 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private float refillRateDelay = 1f; //1 second
     private float currMagicRefillTimer;
     [SerializeField] private float magicCastInterval = 0.25f;
-    //[SerializeField] private Transform castPoint;
 
     [SerializeField] private float currCastTimer;
 
@@ -44,19 +41,6 @@ public class LogicScript : MonoBehaviour
         playerHealth += 1;
         healthText.text = "Health: " + playerHealth.ToString();
     }
-/*
-    public void setString(string newNode, LineRenderer lineIn) {
-        patternActive += newNode;
-        Debug.Log(patternActive);
-        prevNode = newNode;
-        nodesList.Add(lineIn);
-        if (newNode == "9") {
-            CastSpell();
-            patternActive = "";
-            prevNode = "";
-        }
-    }
-    */
 
     public void setString(string newNode) {
         patternActive += newNode;
@@ -103,15 +87,9 @@ public class LogicScript : MonoBehaviour
 
     public string getPrevNode() {
         if (prevNode == "") {
-            Debug.Log("New Pattern Started");
             return "1";
         }
-        Debug.Log(prevNode + " - Continuing Pattern");
         return prevNode;
-    }
-
-    public List<LineRenderer> getList() {
-        return nodesList;
     }
 
     public int getCurrLines() {
@@ -119,20 +97,11 @@ public class LogicScript : MonoBehaviour
     }
 
     public void setCurrLines(int amt) {
-        currLines-= amt;
+        currLines += amt;
     }
 
     public string getCurrString() {
         return patternActive;
-    }
-
-    public void increaseLines(int amt) {
-        currLines+= amt;
-    }
-    
-    public void destroyLine(int num) {
-        Destroy(nodesList[num].gameObject);
-        nodesList.RemoveAt(num);
     }
 
     public void CastSpell() {

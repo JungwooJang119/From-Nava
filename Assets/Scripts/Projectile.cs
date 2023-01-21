@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+    [SerializeField] private float speed;
 
-    private Vector3 targetPosition;
-    public float speed;
-    public GameObject player;
+    private Vector3 playerPos;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        targetPosition = player.transform.position;
+        playerPos = player.transform.position;
     }
 
     // Update is called once per frame
+    // Use Collider not position
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-        if (transform.position == targetPosition) { //USE A COLLIDER TRIGGER, not this
+        transform.position = Vector2.MoveTowards(transform.position, playerPos, speed * Time.deltaTime);
+        if (transform.position == playerPos) {
             Destroy(gameObject);
         }
     }

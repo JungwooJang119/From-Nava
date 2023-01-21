@@ -6,7 +6,7 @@ public class FireGoombaController : MonoBehaviour
 {
 
     public float speed;
-    public Transform target;
+    public Transform player;
     public float minDistance;
 
     public GameObject fireball;
@@ -17,25 +17,15 @@ public class FireGoombaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Time.time > currFireballTime) {
+        if (currFireballTime >= fireballInterval) {
             Instantiate(fireball, transform.position, Quaternion.identity);
-            currFireballTime = Time.time + fireballInterval;
+            currFireballTime = 0;
+        } else {
+            currFireballTime += Time.deltaTime;
         }
 
-
-        if(Vector2.Distance(transform.position, target.position) > minDistance) {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        } /*else {
-            if (hasFired) {
-                currFireballTime += Time.deltaTime;
-                if (currFireballTime >= fireballInterval) {
-                    hasFired = false;
-                }
-            } else {
-                Instantiate(fireball, transform.position, Quaternion.identity);
-                hasFired = true;
-                currFireballTime =
-            } */
+        if(Vector2.Distance(transform.position, player.position) > minDistance) {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        }
     }
 }

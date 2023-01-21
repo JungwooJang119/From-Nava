@@ -7,12 +7,14 @@ public class TestLineRenderer : MonoBehaviour
 {
     public UnityEngine.UI.Extensions.UILineRenderer LineRenderer; // Assign Line Renderer in editor
     [SerializeField] private LogicScript logicManager;
-    //public UnityEngine.UI.Text XValue; // Test Input field to supply new X Value
-    //public UnityEngine.UI.Text YValue; // Test Input field to supply new Y Value
 
     // Use this for initialization
+    /*
+    @desc When UI button clicked, adds to currently building string holding spell pattern
+    @params 
+    @return 
+    */
     public void AddNewPoint () {
-        //var point = new Vector2() { x = float.Parse(XValue.text), y = float.Parse(YValue.text) };
         var name = EventSystem.current.currentSelectedGameObject.name;
         var point = new Vector2();
         if (name == "1") {
@@ -56,6 +58,11 @@ public class TestLineRenderer : MonoBehaviour
         logicManager.setCurrLines(1);
     }
 
+    /*
+    @desc When UI button clicked, clears spell pattern string and clears UI of lines
+    @params 
+    @return 
+    */
     public void RemoveNewPoint() {
         //StartCoroutine(ExampleCoroutine());
         var totalLines = logicManager.getCurrLines();

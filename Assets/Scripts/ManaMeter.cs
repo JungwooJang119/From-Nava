@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ManaMeter : MonoBehaviour
 {
-    public Slider manaSlider;
+    [SerializeField] private Slider manaSlider;
 
     public void SetMaxMana(float mana) {
         manaSlider.maxValue = mana;

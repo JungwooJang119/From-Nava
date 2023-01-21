@@ -2,32 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
-
 public class Spell : MonoBehaviour
 {
-    public SpellScriptableObject SpellCast;
-    public LogicScript ls;
+    public SpellScriptObj spell;
+    [SerializeField] private LogicScript logicScript;
+    [SerializeField] private CircleCollider2D circleCollider;
+    [SerializeField] private Rigidbody2D rb;
 
-    private CircleCollider2D myCollider;
-    private Rigidbody2D myRigidbody;
-    public string valueDir;
+    private string valueDir;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     private void Awake()
     {
-        myCollider = GetComponent<CircleCollider2D>();
-        myCollider.isTrigger = true;
-        myCollider.radius = SpellCast.spellRadius;
+        circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider.isTrigger = true;
 
-        myRigidbody = GetComponent<Rigidbody2D>();
-        myRigidbody.isKinematic = true;
+        rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
 
-        Destroy(this.gameObject, SpellCast.spellLifetime);
-        ls = GameObject.FindGameObjectWithTag("GameController").GetComponent<LogicScript>();
+        Destroy(this.gameObject, spell.lifetime); 
+        logicScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<LogicScript>();
     }
 
     /// <summary>
@@ -35,17 +31,16 @@ public class Spell : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        valueDir = ls.facingDir;
-        if (SpellCast.speed > 0) {
-            //Switch
+        valueDir = logicScript.facingDir;
+        if (spell.speed > 0) {
             if (valueDir == "S") {
-                transform.Translate(Vector2.down * SpellCast.speed * Time.deltaTime);
+                transform.Translate(Vector2.down * spell.speed * Time.deltaTime);
             } else if (valueDir == "N") {
-                transform.Translate(Vector2.up * SpellCast.speed * Time.deltaTime);
+                transform.Translate(Vector2.up * spell.speed * Time.deltaTime);
             } else if (valueDir == "W") {
-                transform.Translate(Vector2.left * SpellCast.speed * Time.deltaTime);
+                transform.Translate(Vector2.left * spell.speed * Time.deltaTime);
             } else {
-                transform.Translate(Vector2.right * SpellCast.speed * Time.deltaTime);
+                transform.Translate(Vector2.right * spell.speed * Time.deltaTime);
             }
         }
     }
@@ -58,8 +53,8 @@ public class Spell : MonoBehaviour
     {
         //Apply hit particle effects, sfx, spell effects\
         if(other.gameObject.CompareTag("Enemy")) {
-            HealthComponent enemyHealth = other.GetComponent<HealthComponent>();
-            enemyHealth.TakeDamage(SpellCast.damageAmt);
+            Enemy enemyHealth = other.GetComponent<Enemy>();
+            enemyHealth.TakeDamage(spell.damageAmt);
         }
         //Destroy(this.gameObject);
     }

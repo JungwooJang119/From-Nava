@@ -5,91 +5,91 @@ using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
-    public int playerHealth;
-    public Text healthText;
-    public string patternActive = "";
-    public string prevNode = "";
-    public int currLines;
-    public Spell _spell;
-    public Transform castPoint;
-    public IceTowerAI ita;
+    [SerializeField] private int playerHealth;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private Text healthText;
+
+    [SerializeField] private Spell _spell;
+    [SerializeField] private Transform castPoint;
+    [SerializeField] private IceTowerController iceTower;
 
     [SerializeField] private float maxMagic = 100f;
     [SerializeField] private float currMagic;
-    [SerializeField] private float magicRefillRate = 2f;
-    [SerializeField] private float refillRateDelay = 1f; //1 second
-    private float currMagicRefillTimer;
-    [SerializeField] private float magicCastInterval = 0.25f;
-
+    [SerializeField] private float refillRate = 2f;
+    [SerializeField] private float refillLag = 1f; //1 second
+    [SerializeField] private float currMagicRefillTimer;
+    [SerializeField] private float castInterval = 0.25f;
     [SerializeField] private float currCastTimer;
 
     private bool castingMagic = false;
 
+    [SerializeField] private string patternActive = "";
+    private int currLines;
 
     public string facingDir;
-    public PlayerController pc;
-    public ManaMeter mm;
+    private PlayerController playerController;
+    [SerializeField] private ManaMeter manaMeter;
 
     void Awake() {
-        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerHealth = maxHealth;
         currMagic = maxMagic;
-        mm.SetMaxMana(maxMagic);
+        manaMeter.SetMaxMana(maxMagic);
     }
-
-    [ContextMenu("Increase Health")]
-    public void addHealth() {
-        playerHealth += 1;
-        healthText.text = "Health: " + playerHealth.ToString();
-    }
-
+    
+    /*
+    @desc Builds string holding pattern of spell currently drawn and Casts spell when pattern matches
+    @params string newNode The string name of the button / node clicked on in UI
+    @return 
+    */
     public void setString(string newNode) {
         patternActive += newNode;
         if (newNode == "9") {
-            if (patternActive == "59") {
-                bool hasReqMagic = ((currMagic - _spell.SpellCast.magicCost) >= 0f);
-                if (!castingMagic && hasReqMagic) {
+            if (patternActive == "59") { //Fireball Spell
+                bool hasEnoughMana = ((currMagic - _spell.spell.manaCost) >= 0f);
+                if (!castingMagic && hasEnoughMana) {
                     castingMagic = true;
-                    currMagic -= _spell.SpellCast.magicCost;
+                    currMagic -= _spell.spell.manaCost;
                     currCastTimer = 0;
                     currMagicRefillTimer = 0;
                     CastSpell();
                 }    
             }
             if (patternActive == "269") {
-                //trigger death if on trigger of tower ice
-                ita.disableTower = true; 
+                //demonstrate disabling ice tower
+                iceTower.disableTower = true; 
             }
-            //CastSpell();
             patternActive = "";
-            prevNode = "";
         }
     }
 
     private void Update() {
-        mm.SetManaMeter(currMagic);
+        manaMeter.SetManaMeter(currMagic);
         if (castingMagic) {
                 currCastTimer += Time.deltaTime;
-                if (currCastTimer > magicCastInterval) {
+                if (currCastTimer > castInterval) {
                     castingMagic = false;
                 }
             }
 
             if (currMagic < maxMagic && (!castingMagic)) {
                 currMagicRefillTimer += Time.deltaTime;
-                if (currMagicRefillTimer > refillRateDelay) {
-                    currMagic += magicRefillRate * Time.deltaTime;            
+                if (currMagicRefillTimer > refillLag) {
+                    currMagic += refillRate * Time.deltaTime;            
                     if (currMagic > maxMagic) {
                         currMagic = maxMagic;
                     }
                 }
             }   
     }
-
-    public string getPrevNode() {
-        if (prevNode == "") {
-            return "1";
-        }
-        return prevNode;
+/*
+    @desc Sets facing direction of player correctly and casts spell at current facing direction
+    @params 
+    @return 
+    */
+    private void CastSpell() {
+        facingDir = playerController.facingDir;
+        Instantiate(_spell, castPoint.position, Quaternion.identity);
     }
 
     public int getCurrLines() {
@@ -98,14 +98,5 @@ public class LogicScript : MonoBehaviour
 
     public void setCurrLines(int amt) {
         currLines += amt;
-    }
-
-    public string getCurrString() {
-        return patternActive;
-    }
-
-    public void CastSpell() {
-        facingDir = pc.facingDir;
-        Instantiate(_spell, castPoint.position, Quaternion.identity);
     }
 }

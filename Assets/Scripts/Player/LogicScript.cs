@@ -26,7 +26,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private string patternActive = "";
     private int currLines;
 
-    public string facingDir;
+    public float facingDir;
     private PlayerController playerController;
     [SerializeField] private ManaMeter manaMeter;
 

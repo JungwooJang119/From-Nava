@@ -11258,10 +11258,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.18911916
-    y: 0.1889401
-    width: 0.6217616
-    height: 0.62211984
+    x: 0.028459273
+    y: 0.027923211
+    width: 0.9421001
+    height: 0.9424084
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -13043,7 +13043,7 @@ MonoBehaviour:
   castInterval: 0.25
   currCastTimer: 0
   patternActive: 
-  facingDir: 
+  facingDir: 0
   manaMeter: {fileID: 57962640}
 --- !u!4 &1353138757
 Transform:
@@ -14427,17 +14427,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceTower
       objectReference: {fileID: 0}
+    - target: {fileID: 3570325442150851928, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 639690686}
+    - target: {fileID: 3570325442150851928, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
+      propertyPath: iceball
+      value: 
+      objectReference: {fileID: 5536333251357887935, guid: 363dac1b39fb0bf4b9df3e4a04aa424c, type: 3}
+    - target: {fileID: 3570325442150851928, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
+      propertyPath: disableTower
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570325442150851928, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
+      propertyPath: iceballInterval
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3570325442150851929, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3570325442150851929, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.67
+      value: -27.24
       objectReference: {fileID: 0}
     - target: {fileID: 3570325442150851929, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.54
+      value: 10.11
       objectReference: {fileID: 0}
     - target: {fileID: 3570325442150851929, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
       propertyPath: m_LocalPosition.z

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
  
     public float collisionOffset = 0.05f;
 
-    public string facingDir;
+    public float facingDir;
 
     private Animator animator;
 
@@ -36,21 +36,21 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isWalking", true);
             if (movement.x > movement.y) {
                 if (movement.x > 0) {
-                    facingDir = "E";
+                    facingDir = 0;
                 } else {
-                    facingDir = "S";
+                    facingDir = 270;
                 }
             } else if (movement.y > movement.x) {
                 if (movement.y > 0 && movement.x == 0) {
-                    facingDir = "N";
+                    facingDir = 90;
                 } else {
-                    facingDir = "W";
+                    facingDir = 180;
                 }
             } else {
                 if (movement.x > 0) {
-                    facingDir = "E";
+                    facingDir = 0;
                 } else {
-                    facingDir = "W";
+                    facingDir = 180;
                 }
             }
         } else {

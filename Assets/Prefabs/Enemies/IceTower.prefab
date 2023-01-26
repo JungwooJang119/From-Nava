@@ -178,8 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3ea5494e065e94c959c585e4fe9a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell: {fileID: 8916631681253868026, guid: 7f8bc1551ccff794fa26c98cc515245a, type: 3}
-  castPoint: {fileID: 3570325441346370061}
-  currCastTimer: 0
-  castInterval: 1
+  player: {fileID: 0}
+  iceball: {fileID: 6866387084450533419, guid: 7f8bc1551ccff794fa26c98cc515245a, type: 3}
+  iceballInterval: 0
+  currIceballTime: 0
+  hasFired: 0
   disableTower: 0

@@ -11258,10 +11258,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.18911916
-    y: 0.1889401
-    width: 0.6217616
-    height: 0.62211984
+    x: 0.21945526
+    y: 0.18457943
+    width: 0.56031126
+    height: 0.6308411
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -11372,7 +11372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &551475690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13043,7 +13043,7 @@ MonoBehaviour:
   castInterval: 0.25
   currCastTimer: 0
   patternActive: 
-  facingDir: 
+  facingDir: 0
   manaMeter: {fileID: 57962640}
 --- !u!4 &1353138757
 Transform:
@@ -14426,6 +14426,14 @@ PrefabInstance:
     - target: {fileID: 3570325442150851925, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
       propertyPath: m_Name
       value: IceTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570325442150851928, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
+      propertyPath: iceball
+      value: 
+      objectReference: {fileID: 6866387084450533419, guid: 7f8bc1551ccff794fa26c98cc515245a, type: 3}
+    - target: {fileID: 3570325442150851928, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
+      propertyPath: iceballInterval
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3570325442150851929, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
       propertyPath: m_RootOrder

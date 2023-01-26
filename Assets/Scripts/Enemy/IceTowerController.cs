@@ -26,7 +26,7 @@ public class IceTowerController : MonoBehaviour
         }
 
         if (currIceballTime >= iceballInterval) {
-            Instantiate(iceball, transform.position, Quaternion.identity);
+            Instantiate(iceball, transform.position, Quaternion.identity, gameObject.transform);
             currIceballTime = 0;
         } else {
             currIceballTime += Time.deltaTime;

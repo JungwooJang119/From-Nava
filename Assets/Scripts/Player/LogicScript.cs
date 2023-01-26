@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
-    [SerializeField] private int playerHealth;
+    [SerializeField] public int playerHealth;
     [SerializeField] private int maxHealth;
     [SerializeField] private Text healthText;
 

@@ -25,8 +25,7 @@ public class IceTowerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        detected = range.GetComponent<TrackPlayer>();
-        yes = detected.GetPlayerIn();
+        detected = range.GetComponent<TrackPlayer>().GetPlayerIn;
         if (disableTower) {
             Destroy(this.gameObject);
         }

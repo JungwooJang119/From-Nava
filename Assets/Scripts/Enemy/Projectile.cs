@@ -5,8 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject deathParticles;
     [SerializeField] private float speed;
     [SerializeField] private int damage;
+
+    [SerializeField] private bool hasParticles;
+
 
     private Vector3 playerPos;
     private LogicScript logic;
@@ -33,7 +37,16 @@ public class Projectile : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player")) {
             logic.TakeDamage(damage);
-            Destroy(this.gameObject);            
+            if(hasParticles) {
+                Destroy(this.gameObject.GetComponent<Rigidbody2D>());
+    			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                Destroy(this.gameObject, 0.5f);
+                Instantiate(deathParticles, transform);
+            }
+            else {
+                Destroy(this.gameObject);
+
+            }
         }
     }
 }

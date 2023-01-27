@@ -57,4 +57,9 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
     }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        Debug.Log("OnCollisionEnter2D");
+        
+    }
 }

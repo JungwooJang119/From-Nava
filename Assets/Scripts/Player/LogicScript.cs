@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
-    [SerializeField] public int playerHealth;
+    [SerializeField] private int playerHealth;
     [SerializeField] private int maxHealth;
     [SerializeField] private Text healthText;
 
@@ -36,7 +36,18 @@ public class LogicScript : MonoBehaviour
         currMagic = maxMagic;
         manaMeter.SetMaxMana(maxMagic);
     }
-    
+
+    /*
+        have the player take damage
+        TODO: maybe separate health into another script?
+    */
+    public void TakeDamage(int damage) {
+        playerHealth -= damage;
+    }
+
+    public int GetHealth() {
+        return playerHealth;
+    }
     /*
     @desc Builds string holding pattern of spell currently drawn and Casts spell when pattern matches
     @params string newNode The string name of the button / node clicked on in UI

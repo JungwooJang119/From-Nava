@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//This script controls the text display of health in the UI.
+
 public class DisplayHealth : MonoBehaviour
 {
     private Text healthText;
@@ -19,7 +21,7 @@ public class DisplayHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = logic.playerHealth;
+        health = logic.GetHealth();
         healthText.text = "Health: " + health;
     }
 }

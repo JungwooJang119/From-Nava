@@ -11,8 +11,7 @@ public class IceTowerController : MonoBehaviour
     [SerializeField] private bool hasFired;
 
     private GameObject range;
-    private TrackPlayer detected;
-    private bool yes;
+    private bool detected;
     public bool disableTower = false;
     
     // Start is called before the first frame update
@@ -25,7 +24,7 @@ public class IceTowerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        detected = range.GetComponent<TrackPlayer>().GetPlayerIn;
+        detected = range.GetComponent<TrackPlayer>().GetPlayerIn();
         if (disableTower) {
             Destroy(this.gameObject);
         }

@@ -38,7 +38,6 @@ public class Projectile : MonoBehaviour
         if(col.gameObject.CompareTag("Player")) {
             logic.TakeDamage(damage);
             if(hasParticles) {
-                Destroy(this.gameObject.GetComponent<Rigidbody2D>());
     			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Destroy(this.gameObject, 0.5f);
                 Instantiate(deathParticles, transform);

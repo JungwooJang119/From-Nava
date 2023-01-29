@@ -25,17 +25,19 @@ public class PlayerItemInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // checks if player is near the object
             playerPosition = player.GetComponent<Transform>().position;
             currentDistance = (playerPosition - (Vector2)transform.position).magnitude;
             if (currentDistance < range)
             {
                 // display UI text
-                // if floatingTextPrefab has something assigned to it and text hasn't been spawned yet
+                // if floatingTextPrefab has something assigned to it and text hasn't been spawned yet (makes only one clone spawn at a time);
                 if (floatingTextPrefab && isTextInstantiated != true)
                 {
                     isTextInstantiated = true;
                     GameObject prefab = Instantiate(floatingTextPrefab, textPopUpLocation.transform.position, Quaternion.identity);
                     Destroy(prefab, secondsToDestroy);
+                    isTextInstantiated = false;
                 }
             }
         }

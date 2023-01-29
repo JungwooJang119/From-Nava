@@ -6,13 +6,14 @@ using TMPro;
 
 public class PlayerItemInteraction : MonoBehaviour
 {
+    [SerializeField] GameObject floatingTextPrefab;
+    [SerializeField] GameObject textPopUpLocation;
+    [SerializeField] float secondsToDestroy;
     [SerializeField] float range;
     float currentDistance;
     Vector2 playerPosition;
     GameObject player;
-
-    /*UI element*/
-    [SerializeField] TMP_Text text;
+    bool isTextInstantiated = false;
 
 
     void Start()
@@ -22,13 +23,20 @@ public class PlayerItemInteraction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             playerPosition = player.GetComponent<Transform>().position;
             currentDistance = (playerPosition - (Vector2)transform.position).magnitude;
             if (currentDistance < range)
             {
                 // display UI text
+                // if floatingTextPrefab has something assigned to it and text hasn't been spawned yet
+                if (floatingTextPrefab && isTextInstantiated != true)
+                {
+                    isTextInstantiated = true;
+                    GameObject prefab = Instantiate(floatingTextPrefab, textPopUpLocation.transform.position, Quaternion.identity);
+                    Destroy(prefab, secondsToDestroy);
+                }
             }
         }
     }

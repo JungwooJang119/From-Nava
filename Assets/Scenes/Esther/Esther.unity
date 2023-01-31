@@ -11887,7 +11887,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725437966
 GameObject:
@@ -12148,7 +12148,7 @@ RectTransform:
   - {fileID: 725437967}
   - {fileID: 57962642}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12409,7 +12409,7 @@ Transform:
   - {fileID: 197680538}
   - {fileID: 1349063432}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1296275657 stripped
 MonoBehaviour:
@@ -13058,7 +13058,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1445092358
 GameObject:
@@ -14364,7 +14364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 797491692293421797, guid: 769b84a5e95c1774499201fc04e679de, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 797491692293421797, guid: 769b84a5e95c1774499201fc04e679de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14445,7 +14445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3570325442150851929, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3570325442150851929, guid: 2c76072cced243b4290b83b7a0d48105, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14502,7 +14502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7257062049370043968, guid: 2c846db8616a7644287af38547484ea6, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7257062049370043968, guid: 2c846db8616a7644287af38547484ea6, type: 3}
       propertyPath: m_LocalPosition.x

@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class NotepadNodeInput : NotepadInput
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int nodeNum;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void OnClickButton() {
+        print("Clicked node " + nodeNum);
+        base.InvokeInputPress(this, nodeNum);
     }
 }

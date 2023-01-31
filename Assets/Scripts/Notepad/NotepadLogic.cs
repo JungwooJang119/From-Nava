@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotepadLogic : MonoBehaviour
+public class NotepadLogic : Singleton<NotepadLogic>
 {
     //Responsible for handling all logic related to casting spells
 
@@ -11,8 +11,12 @@ public class NotepadLogic : MonoBehaviour
 
     [SerializeField] private List<Spell> spells = new List<Spell>();
 
-    private string patternString = "";
+    private List<int> pattern = new List<int>();
     private bool activePattern = false;
+
+    private void Awake() {
+        InitializeSingleton();
+    }
 
     private void OnEnable() {
         NotepadInput.OnInputPress += OnInputPress;
@@ -29,42 +33,50 @@ public class NotepadLogic : MonoBehaviour
         else if(activePattern && inputNum == endNode)
             EndPattern();
 
-        else if(activePattern && !patternString.Contains((char)(inputNum - '0')))
+        else if(activePattern && !pattern.Contains(inputNum))
             AddToPattern(inputNum);
+        else {
+            //invalid input: active node, non-start node on inactive pattern, etc
+            //handle at will
+            print("Inavlid node Clicked");
+        }
 
     }
 
     private void StartPattern() {
         activePattern = true;
-        patternString = startNode.ToString();
-
+        pattern = new List<int>();
+        pattern.Add(startNode);
         print("started pattern");
         //sfx, vfx, etc
     }
 
     private void AddToPattern(int num) {
-        patternString += num.ToString();
+        pattern.Add(num);
 
-        print($"Pattern: {patternString}");
+        PrintPattern();
     }
 
     private void EndPattern() {
         activePattern = false;
-        patternString += endNode.ToString();
+        pattern.Add(endNode);
 
         //try to cast spell
+        CompareSpellCast();
 
-        print($"Pattern: {patternString}");
+        PrintPattern();
+        ResetPattern();
+        print("ended pattern");
         //sfx, vfx, etc
     }
 
     private void ResetPattern() {
-        patternString = "";
+        pattern = new List<int>();
     }
 
-    private void compareSpellCast()
+    private void CompareSpellCast()
     {
-
+        //Check against all spells in list to see if a pattern matches a castable spell
     }
 
     private void CastSpell(Spell spell)
@@ -77,4 +89,11 @@ public class NotepadLogic : MonoBehaviour
 
     }
 
+
+    private void PrintPattern() {
+        string patternString = "";
+        foreach (int num in pattern)
+            patternString += num + ", ";
+        print(patternString);
+    }
 }

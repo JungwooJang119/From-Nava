@@ -5,6 +5,10 @@ using UnityEngine;
 public class NotepadLogic : Singleton<NotepadLogic>
 {
     //Responsible for handling all logic related to casting spells
+    public static event System.EventHandler<int> OnNodeSelected;
+
+    //If spell is null, this is an invalid cast. If spell is not null, then this is a valid spell cast (of the param spell)
+    public static event System.EventHandler<Spell> OnSpellCast;
 
     [SerializeField] private int startNode;
     [SerializeField] private int endNode;
@@ -46,25 +50,23 @@ public class NotepadLogic : Singleton<NotepadLogic>
     private void StartPattern() {
         activePattern = true;
         pattern = new List<int>();
-        pattern.Add(startNode);
         print("started pattern");
+        AddToPattern(startNode);
         //sfx, vfx, etc
     }
 
     private void AddToPattern(int num) {
         pattern.Add(num);
-
+        OnNodeSelected.Invoke(this, num);
         PrintPattern();
     }
 
     private void EndPattern() {
-        activePattern = false;
-        pattern.Add(endNode);
+        AddToPattern(endNode);
 
+        activePattern = false;
         //try to cast spell
         CompareSpellCast();
-
-        PrintPattern();
         ResetPattern();
         print("ended pattern");
         //sfx, vfx, etc

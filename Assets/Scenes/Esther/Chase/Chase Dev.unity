@@ -11306,6 +11306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7d53c8315e69148b3a5d6ac2c4ff4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeNum: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -11387,9 +11388,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.12085308
+    x: 0.102649
     y: 0.13114753
-    width: 0.75829387
+    width: 0.794702
     height: 0.7377049
   near clip plane: 0.3
   far clip plane: 1000
@@ -11921,6 +11922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7d53c8315e69148b3a5d6ac2c4ff4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeNum: 1
 --- !u!1 &670392485
 GameObject:
   m_ObjectHideFlags: 0
@@ -14518,6 +14520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7d53c8315e69148b3a5d6ac2c4ff4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeNum: 3
 --- !u!1 &2036039306
 GameObject:
   m_ObjectHideFlags: 0

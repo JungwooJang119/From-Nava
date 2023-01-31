@@ -4,13 +4,36 @@ using UnityEngine;
 
 public class NotepadNodeVisuals : MonoBehaviour
 {
-    //Handles all visual aspects of a notepad node
+    //Handles all visual aspects of an individual notepad node
 
-    public void SelectNode() {
-        print("Node Selected");
+    public int nodeNum;
+
+    private void OnEnable() {
+        NotepadLogic.OnNodeSelected += OnNodeSelected;
+        NotepadLogic.OnSpellCast += OnSpellCast;
     }
 
-    public void DeselectNode() {
-        print("Node deselected");
+    private void OnDisable() {
+        NotepadLogic.OnNodeSelected -= OnNodeSelected;
+        NotepadLogic.OnSpellCast -= OnSpellCast;
+    }
+
+    private void OnNodeSelected(object sender, int num)
+    {
+        if(num != nodeNum) return;
+        SelectNode();
+    }
+
+    private void SelectNode() {
+        print($"Node {nodeNum} Selected");
+    }
+
+    private void OnSpellCast(object sender, Spell spell)
+    {
+        DeselectNode();
+    }
+
+    private void DeselectNode() {
+        print($"Node {nodeNum} Deselected");
     }
 }

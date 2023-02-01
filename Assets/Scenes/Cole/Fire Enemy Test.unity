@@ -12216,34 +12216,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &969857162 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 797491692293421795, guid: 769b84a5e95c1774499201fc04e679de, type: 3}
-  m_PrefabInstance: {fileID: 797491692708316985}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &969857168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969857162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d58705b1c2c944698c94d3aac205fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  player: {fileID: 639690686}
-  minDistance: 4
-  maxDistance: 8
-  fireball: {fileID: 5536333251357887935, guid: 0a7760efa4ab4114183100633603ad5e, type: 3}
-  fireballInterval: 2
-  currFireballTime: 0
-  hasFired: 0
-  idle: 0
-  idleSpeed: 1
-  changeTime: 3
 --- !u!1 &1233173521
 GameObject:
   m_ObjectHideFlags: 0
@@ -14433,7 +14405,15 @@ PrefabInstance:
       objectReference: {fileID: 639690686}
     - target: {fileID: 797491692293421798, guid: 769b84a5e95c1774499201fc04e679de, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 797491692293421798, guid: 769b84a5e95c1774499201fc04e679de, type: 3}
+      propertyPath: changeTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 797491692293421798, guid: 769b84a5e95c1774499201fc04e679de, type: 3}
+      propertyPath: maxDistance
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 769b84a5e95c1774499201fc04e679de, type: 3}

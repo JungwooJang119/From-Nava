@@ -14,12 +14,15 @@ public class NotepadLineRenderer : MonoBehaviour
         int numChildren = NodeParent.transform.childCount;
         for(int i=0; i < numChildren; i++){
             Transform child = NodeParent.transform.GetChild(i);
+            if(!child.gameObject.activeSelf) break;
             int nodeNum = child.GetComponentInChildren<NotepadNodeVisuals>().nodeNum;
             Vector2 pos = child.GetComponent<RectTransform>().localPosition;
             pos += offset;
             nodeToPos[nodeNum] = pos;
             print($"Node {nodeNum} X:{pos.x} Y:{pos.y}");
         }
+
+        ResetLR();
     }
 
 
@@ -35,11 +38,22 @@ public class NotepadLineRenderer : MonoBehaviour
 
     private void OnNodeSelected(object sender, int num)
     {
-        //Set next LR point 
+        AddLRPoint(num);
+    }
+
+    private void AddLRPoint(int nodeNum)
+    {
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, nodeToPos[nodeNum]);
     }
 
     private void OnSpellCast(object sender, SpellType spellType)
     {
-        //reset LR
+        ResetLR();
+    }
+
+    private void ResetLR()
+    {
+        lineRenderer.positionCount = 0;
     }
 }

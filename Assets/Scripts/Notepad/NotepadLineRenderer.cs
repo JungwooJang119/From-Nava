@@ -8,6 +8,7 @@ public class NotepadLineRenderer : MonoBehaviour
     [SerializeField] private GameObject NodeParent;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Vector2 offset;
+    [SerializeField] private float scale;
     private Dictionary<int, Vector2> nodeToPos = new Dictionary<int, Vector2>();
 
     private void Awake() {
@@ -18,6 +19,7 @@ public class NotepadLineRenderer : MonoBehaviour
             int nodeNum = child.GetComponentInChildren<NotepadNodeVisuals>().nodeNum;
             Vector2 pos = child.GetComponent<RectTransform>().localPosition;
             pos += offset;
+            pos /= scale;
             nodeToPos[nodeNum] = pos;
             print($"Node {nodeNum} X:{pos.x} Y:{pos.y}");
         }

@@ -100,6 +100,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
     private void OnInvalidPattern()
     {
         print("Invalid Pattern");
+        OnSpellCast?.Invoke(this, SpellType.NONE);
     }
 
     public void UnlockSpell(SpellType spellType)

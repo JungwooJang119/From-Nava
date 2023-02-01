@@ -9,7 +9,7 @@ public class Spell : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private Rigidbody2D rb;
 
-    private float valueDir;
+    private Vector2 valueDir;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -32,17 +32,7 @@ public class Spell : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (spell.speed > 0) {
-            if (valueDir == 270) {
-                transform.Translate(Vector2.down * spell.speed * Time.deltaTime);
-            } else if (valueDir == 90) {
-                transform.Translate(Vector2.up * spell.speed * Time.deltaTime);
-            } else if (valueDir == 180) {
-                transform.Translate(Vector2.left * spell.speed * Time.deltaTime);
-            } else {
-                transform.Translate(Vector2.right * spell.speed * Time.deltaTime);
-            }
-        }
+        transform.Translate(valueDir * spell.speed * Time.deltaTime);
     }
 
     /// <summary>

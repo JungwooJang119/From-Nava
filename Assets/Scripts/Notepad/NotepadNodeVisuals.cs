@@ -28,7 +28,7 @@ public class NotepadNodeVisuals : MonoBehaviour
         print($"Node {nodeNum} Selected");
     }
 
-    private void OnSpellCast(object sender, Spell spell)
+    private void OnSpellCast(object sender, SpellType spellType)
     {
         DeselectNode();
     }

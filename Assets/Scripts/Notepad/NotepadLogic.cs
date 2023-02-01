@@ -1,22 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class NotepadLogic : Singleton<NotepadLogic>
 {
     //Responsible for handling all logic related to casting spells
     public static event System.EventHandler<int> OnNodeSelected;
 
-    //If spell is null, this is an invalid cast. If spell is not null, then this is a valid spell cast (of the param spell)
-    public static event System.EventHandler<Spell> OnSpellCast;
+    //Fired when there is a valid spell cast
+    public static event System.EventHandler<SpellType> OnSpellCast;
 
     [SerializeField] private int startNode;
     [SerializeField] private int endNode;
 
-    [SerializeField] private List<Spell> spells = new List<Spell>();
+    [Serializable]
+    public struct SpellData
+    {
+        public SpellType spellType;
+        public string pattern; //C: only a string here because it makes the editor cleaner
+        public bool unlocked;
+    }
+
+    [SerializeField] private List<SpellData> spellData;
+
 
     private List<int> pattern = new List<int>();
     private bool activePattern = false;
+
 
     private void Awake() {
         InitializeSingleton();
@@ -42,9 +53,8 @@ public class NotepadLogic : Singleton<NotepadLogic>
         else {
             //invalid input: active node, non-start node on inactive pattern, etc
             //handle at will
-            print("Inavlid node Clicked");
+            print("Invalid node Clicked");
         }
-
     }
 
     private void StartPattern() {
@@ -63,9 +73,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
 
     private void EndPattern() {
         AddToPattern(endNode);
-
         activePattern = false;
-        //try to cast spell
         CompareSpellCast();
         ResetPattern();
         print("ended pattern");
@@ -78,17 +86,32 @@ public class NotepadLogic : Singleton<NotepadLogic>
 
     private void CompareSpellCast()
     {
-        //Check against all spells in list to see if a pattern matches a castable spell
-    }
-
-    private void CastSpell(Spell spell)
-    {
-
+        string patternString = GetPatternString();
+        foreach (SpellData sd in spellData) {
+            if(sd.unlocked && patternString.Equals(sd.pattern)) 
+            {
+                OnSpellCast?.Invoke(this, sd.spellType);
+                return;
+            }
+        }
+        OnInvalidPattern();
     }
 
     private void OnInvalidPattern()
     {
+        print("Invalid Pattern");
+    }
 
+    public void UnlockSpell(SpellType spellType)
+    {
+        for(int i = 0; i < spellData.Count; i++) {
+            SpellData sd = spellData[i];
+            if(spellType == sd.spellType) 
+            {
+                sd.unlocked = true;
+                return;
+            }
+        }
     }
 
 
@@ -97,5 +120,13 @@ public class NotepadLogic : Singleton<NotepadLogic>
         foreach (int num in pattern)
             patternString += num + ", ";
         print(patternString);
+    }
+
+    private string GetPatternString()
+    {
+        string result = "";
+        foreach(int num in pattern)
+            result += pattern.ToString();
+        return result;
     }
 }

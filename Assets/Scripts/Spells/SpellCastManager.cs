@@ -36,6 +36,11 @@ public class SpellCastManager : MonoBehaviour
 
     private void OnSpellCast(object sender, SpellType spellType)
     {
+        if(spellType == SpellType.NONE)
+        {
+            print("invalid spell sent to spell cast manager");
+            return;
+        }
         Spell spell = spellDict[spellType];
 
         //set stuff

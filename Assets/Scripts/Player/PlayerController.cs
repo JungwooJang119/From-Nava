@@ -5,20 +5,29 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 //Handle input and movement on Player
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField] private float speed = 7f;
     private Vector2 movement;
     private Rigidbody2D rb;
  
     public float collisionOffset = 0.05f;
+    public Transform castPoint;
 
-    public float facingDir;
+    public Vector2 facingDir;
+
+    public Vector2 FacingDir
+    {
+        get => facingDir;
+    }
 
     private Animator animator;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake() {
+        InitializeSingleton();
+    }
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -28,34 +37,38 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
-    void OnMove(InputValue movementValue) {
+    private void OnMove(InputValue movementValue) {
         movement = movementValue.Get<Vector2>();
-        if (movement.x != 0 || movement.y != 0) {
+        ChooseFacingDir();
+    }
+
+    private void ChooseFacingDir ()
+    {
+        if (movement.magnitude > 0) {
             animator.SetFloat("X", movement.x);
             animator.SetFloat("Y", movement.y);
             animator.SetBool("isWalking", true);
+
+            //C: There might be a better way to do this but i could not think of/find one
             if (movement.x > movement.y) {
-                if (movement.x > 0) {
-                    facingDir = 0;
-                } else {
-                    facingDir = 270;
-                }
+                if (movement.x > 0) 
+                    facingDir = Vector2.right;
+                else 
+                    facingDir = Vector2.down;
             } else if (movement.y > movement.x) {
-                if (movement.y > 0 && movement.x == 0) {
-                    facingDir = 90;
-                } else {
-                    facingDir = 180;
-                }
+                if (movement.y > 0 && movement.x == 0) 
+                    facingDir = Vector2.up;
+                else 
+                    facingDir = Vector2.left;
             } else {
-                if (movement.x > 0) {
-                    facingDir = 0;
-                } else {
-                    facingDir = 180;
-                }
+                if (movement.x > 0) 
+                    facingDir = Vector2.right;
+                else 
+                    facingDir = Vector2.left;
             }
-        } else {
+        } 
+        else 
             animator.SetBool("isWalking", false);
-        }
     }
 
     void OnCollisionEnter2D(Collision2D col) {
@@ -63,3 +76,5 @@ public class PlayerController : MonoBehaviour
         
     }
 }
+
+

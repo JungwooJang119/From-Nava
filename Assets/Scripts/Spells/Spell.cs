@@ -9,11 +9,9 @@ public class Spell : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private Rigidbody2D rb;
 
-    private float valueDir;
+    [SerializeField]private Vector2 direction;
+    [SerializeField]private bool spellActive = false;
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
     private void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
@@ -23,26 +21,22 @@ public class Spell : MonoBehaviour
         rb.isKinematic = true;
 
         Destroy(this.gameObject, spell.lifetime); 
-        logicScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<LogicScript>();
-        valueDir = logicScript.facingDir;
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    private void Update()
+    protected virtual void Update()
     {
-        if (spell.speed > 0) {
-            if (valueDir == 270) {
-                transform.Translate(Vector2.down * spell.speed * Time.deltaTime);
-            } else if (valueDir == 90) {
-                transform.Translate(Vector2.up * spell.speed * Time.deltaTime);
-            } else if (valueDir == 180) {
-                transform.Translate(Vector2.left * spell.speed * Time.deltaTime);
-            } else {
-                transform.Translate(Vector2.right * spell.speed * Time.deltaTime);
-            }
-        }
+        if(spellActive)
+            MoveSpell();
+    }
+
+    private void MoveSpell()
+    {
+        transform.Translate(direction * spell.speed * Time.deltaTime);
+    }
+
+    public virtual void CastSpell(Vector2 dir) {
+        direction = dir;
+        spellActive = true;
     }
 
     /// <summary>

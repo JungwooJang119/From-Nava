@@ -26,7 +26,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private string patternActive = "";
     private int currLines;
 
-    public float facingDir;
+    public Vector2 facingDir;
     private PlayerController playerController;
     [SerializeField] private ManaMeter manaMeter;
 
@@ -99,7 +99,7 @@ public class LogicScript : MonoBehaviour
     @return 
     */
     private void CastSpell() {
-        facingDir = playerController.facingDir;
+        facingDir = PlayerController.Instance.FacingDir;
         Instantiate(_spell, castPoint.position, Quaternion.identity);
     }
 

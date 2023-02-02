@@ -87,7 +87,9 @@ public class NotepadLogic : Singleton<NotepadLogic>
     private void CompareSpellCast()
     {
         string patternString = GetPatternString();
+        print(patternString.ToString());
         foreach (SpellData sd in spellData) {
+            print(sd.pattern);
             if(sd.unlocked && patternString.Equals(sd.pattern)) 
             {
                 OnSpellCast?.Invoke(this, sd.spellType);
@@ -127,7 +129,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
     {
         string result = "";
         foreach(int num in pattern)
-            result += pattern.ToString();
+            result += num.ToString().ToCharArray()[0]; //C: C# really hates type conversion lol
         return result;
     }
 }

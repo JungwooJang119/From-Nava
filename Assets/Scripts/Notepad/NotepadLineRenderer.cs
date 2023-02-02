@@ -9,6 +9,7 @@ public class NotepadLineRenderer : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Vector2 offset;
     [SerializeField] private float scale;
+    [SerializeField] private float waitTime;
     private Dictionary<int, Vector2> nodeToPos = new Dictionary<int, Vector2>();
 
     private void Awake() {
@@ -21,7 +22,7 @@ public class NotepadLineRenderer : MonoBehaviour
             pos += offset;
             pos /= scale;
             nodeToPos[nodeNum] = pos;
-            print($"Node {nodeNum} X:{pos.x} Y:{pos.y}");
+            //print($"Node {nodeNum} X:{pos.x} Y:{pos.y}");
         }
 
         ResetLR();
@@ -51,6 +52,12 @@ public class NotepadLineRenderer : MonoBehaviour
 
     private void OnSpellCast(object sender, SpellType spellType)
     {
+        StartCoroutine(DelayLRReset());
+    }
+
+    private IEnumerator DelayLRReset()
+    {
+        yield return new WaitForSeconds(waitTime);
         ResetLR();
     }
 

@@ -7,6 +7,16 @@ public class NotepadNodeVisuals : MonoBehaviour
     //Handles all visual aspects of an individual notepad node
 
     public int nodeNum;
+    [SerializeField] private float nodeHighlightTime;
+
+    [SerializeField] private GameObject unselected;
+    [SerializeField] private GameObject selected;
+    [SerializeField] private GameObject goodOutline;
+    [SerializeField] private GameObject badOutline;
+
+    private void Awake() {
+        DeselectNode();
+    }
 
     private void OnEnable() {
         NotepadLogic.OnNodeSelected += OnNodeSelected;
@@ -25,15 +35,37 @@ public class NotepadNodeVisuals : MonoBehaviour
     }
 
     private void SelectNode() {
+        selected?.SetActive(true);
+        unselected?.SetActive(false);
         print($"Node {nodeNum} Selected");
     }
 
     private void OnSpellCast(object sender, SpellType spellType)
     {
+        if(spellType == SpellType.NONE)
+            StartCoroutine(OnFail());
+        else
+            StartCoroutine(OnSuccess());
+    }
+
+    private IEnumerator OnSuccess() {
+        goodOutline?.SetActive(true);
+        yield return new WaitForSeconds(nodeHighlightTime);
+        goodOutline?.SetActive(false);
+        DeselectNode();
+    }
+
+    private IEnumerator OnFail() {
+        badOutline?.SetActive(true);
+        yield return new WaitForSeconds(nodeHighlightTime);
+        badOutline?.SetActive(false);
         DeselectNode();
     }
 
     private void DeselectNode() {
-        print($"Node {nodeNum} Deselected");
+        selected?.SetActive(false);
+        unselected?.SetActive(true);
+        badOutline?.SetActive(false);
+        badOutline?.SetActive(false);
     }
 }

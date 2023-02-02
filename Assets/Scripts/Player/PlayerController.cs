@@ -64,6 +64,11 @@ public class PlayerController : Singleton<PlayerController>
         else 
             animator.SetBool("isWalking", false);
     }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        Debug.Log("OnCollisionEnter2D");
+        
+    }
 }
 
 

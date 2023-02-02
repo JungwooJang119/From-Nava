@@ -34,18 +34,17 @@ public class SpellCastManager : MonoBehaviour
     }
 
 
-    private void OnSpellCast(object sender, SpellType spellType)
+    private void OnSpellCast(object sender, NotepadLogic.OnSpellCastArgs e)
     {
-        if(spellType == SpellType.NONE)
+        if(e.spellType == SpellType.NONE)
         {
             print("invalid spell sent to spell cast manager");
             return;
         }
-        Spell spell = spellDict[spellType];
 
-        //set stuff
+        Spell spell = spellDict[e.spellType];
+//cast spell
 
-        //cast spell
     }
 
 }

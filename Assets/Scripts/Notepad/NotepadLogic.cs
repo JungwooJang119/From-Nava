@@ -8,8 +8,20 @@ public class NotepadLogic : Singleton<NotepadLogic>
     //Responsible for handling all logic related to casting spells
     public static event System.EventHandler<int> OnNodeSelected;
 
+    [Serializable]
+    public struct OnSpellCastArgs
+    {
+        public SpellType spellType;
+        public List<int> pattern;
+
+        public OnSpellCastArgs(SpellType st, List<int> p)
+        {
+            spellType = st;
+            pattern = p;
+        }
+    }
     //Fired when there is a valid spell cast
-    public static event System.EventHandler<SpellType> OnSpellCast;
+    public static event System.EventHandler<OnSpellCastArgs> OnSpellCast;
 
     [SerializeField] private int startNode;
     [SerializeField] private int endNode;
@@ -92,7 +104,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
             print(sd.pattern);
             if(sd.unlocked && patternString.Equals(sd.pattern)) 
             {
-                OnSpellCast?.Invoke(this, sd.spellType);
+                OnSpellCast?.Invoke(this, new OnSpellCastArgs(sd.spellType, pattern));
                 return;
             }
         }
@@ -102,7 +114,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
     private void OnInvalidPattern()
     {
         print("Invalid Pattern");
-        OnSpellCast?.Invoke(this, SpellType.NONE);
+        OnSpellCast?.Invoke(this, new OnSpellCastArgs(SpellType.NONE, pattern));
     }
 
     public void UnlockSpell(SpellType spellType)

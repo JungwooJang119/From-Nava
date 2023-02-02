@@ -40,9 +40,9 @@ public class NotepadNodeVisuals : MonoBehaviour
         print($"Node {nodeNum} Selected");
     }
 
-    private void OnSpellCast(object sender, SpellType spellType)
+    private void OnSpellCast(object sender, NotepadLogic.OnSpellCastArgs e)
     {
-        if(spellType == SpellType.NONE)
+        if(e.spellType == SpellType.NONE)
             StartCoroutine(OnFail());
         else
             StartCoroutine(OnSuccess());

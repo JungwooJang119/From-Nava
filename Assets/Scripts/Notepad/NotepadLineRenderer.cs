@@ -50,7 +50,7 @@ public class NotepadLineRenderer : MonoBehaviour
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, nodeToPos[nodeNum]);
     }
 
-    private void OnSpellCast(object sender, SpellType spellType)
+    private void OnSpellCast(object sender, NotepadLogic.OnSpellCastArgs e)
     {
         StartCoroutine(DelayLRReset());
     }

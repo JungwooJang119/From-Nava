@@ -12,9 +12,14 @@ public class PlayerController : Singleton<PlayerController>
     private Rigidbody2D rb;
  
     public float collisionOffset = 0.05f;
+    public Transform castPoint;
 
-    private Vector2 facingDir;
-    public Vector2 FacingDir => facingDir;
+    public Vector2 facingDir;
+
+    public Vector2 FacingDir
+    {
+        get => facingDir;
+    }
 
     private Animator animator;
 
@@ -34,9 +39,10 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnMove(InputValue movementValue) {
         movement = movementValue.Get<Vector2>();
+        ChooseFacingDir();
     }
 
-    private void ChooseFacingDir (Vector2 movement)
+    private void ChooseFacingDir ()
     {
         if (movement.magnitude > 0) {
             animator.SetFloat("X", movement.x);
@@ -53,12 +59,12 @@ public class PlayerController : Singleton<PlayerController>
                 if (movement.y > 0 && movement.x == 0) 
                     facingDir = Vector2.up;
                 else 
-                    facingDir = Vector2.down;
+                    facingDir = Vector2.left;
             } else {
                 if (movement.x > 0) 
                     facingDir = Vector2.right;
                 else 
-                    facingDir = Vector2.down;
+                    facingDir = Vector2.left;
             }
         } 
         else 

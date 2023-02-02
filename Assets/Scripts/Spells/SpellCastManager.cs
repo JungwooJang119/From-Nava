@@ -43,8 +43,10 @@ public class SpellCastManager : MonoBehaviour
         }
 
         Spell spell = spellDict[e.spellType];
-//cast spell
 
+        Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
+        print($"Facing Dir: {PlayerController.Instance.FacingDir}");
+        spell.CastSpell(PlayerController.Instance.FacingDir);
     }
 
 }

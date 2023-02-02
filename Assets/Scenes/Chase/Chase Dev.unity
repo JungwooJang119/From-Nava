@@ -10928,6 +10928,10 @@ PrefabInstance:
       propertyPath: spellData.Array.data[0].pattern
       value: 1259
       objectReference: {fileID: 0}
+    - target: {fileID: 2463856277162178069, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
+      propertyPath: enumToSpell.Array.data[0].spell
+      value: 
+      objectReference: {fileID: 8916631681253868026, guid: 0ac82b8b3a613aa498401c42f2846bc2, type: 3}
     - target: {fileID: 2463856277162178070, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: m_Name
       value: Logic
@@ -11030,10 +11034,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7257062049063242861, guid: 2c846db8616a7644287af38547484ea6, type: 3}
-      propertyPath: facingDir
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7257062049063242862, guid: 2c846db8616a7644287af38547484ea6, type: 3}
       propertyPath: m_Name
       value: Player

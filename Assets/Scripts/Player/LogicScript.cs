@@ -99,7 +99,7 @@ public class LogicScript : MonoBehaviour
     @return 
     */
     private void CastSpell() {
-        facingDir = playerController.FacingDir;
+        facingDir = PlayerController.Instance.FacingDir;
         Instantiate(_spell, castPoint.position, Quaternion.identity);
     }
 

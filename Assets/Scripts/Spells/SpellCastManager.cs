@@ -38,14 +38,12 @@ public class SpellCastManager : MonoBehaviour
     {
         if(e.spellType == SpellType.NONE)
         {
-            print("invalid spell sent to spell cast manager");
             return;
         }
 
         Spell spell = spellDict[e.spellType];
 
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
-        print($"Facing Dir: {PlayerController.Instance.FacingDir}");
         spell.CastSpell(PlayerController.Instance.FacingDir);
     }
 

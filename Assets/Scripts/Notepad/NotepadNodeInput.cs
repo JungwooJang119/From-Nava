@@ -7,7 +7,6 @@ public class NotepadNodeInput : NotepadInput
     public int nodeNum;
 
     public void OnClickButton() {
-        print("Clicked node " + nodeNum);
         base.InvokeInputPress(this, nodeNum);
     }
 }

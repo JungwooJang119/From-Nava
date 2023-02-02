@@ -35,7 +35,6 @@ public class Spell : MonoBehaviour
     }
 
     public virtual void CastSpell(Vector2 dir) {
-        print("cast spell");
         direction = dir;
         spellActive = true;
     }

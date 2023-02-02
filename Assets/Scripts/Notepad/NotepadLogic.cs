@@ -72,7 +72,6 @@ public class NotepadLogic : Singleton<NotepadLogic>
     private void StartPattern() {
         activePattern = true;
         pattern = new List<int>();
-        print("started pattern");
         AddToPattern(startNode);
         //sfx, vfx, etc
     }
@@ -88,7 +87,6 @@ public class NotepadLogic : Singleton<NotepadLogic>
         activePattern = false;
         CompareSpellCast();
         ResetPattern();
-        print("ended pattern");
         //sfx, vfx, etc
     }
 
@@ -99,9 +97,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
     private void CompareSpellCast()
     {
         string patternString = GetPatternString();
-        print(patternString.ToString());
         foreach (SpellData sd in spellData) {
-            print(sd.pattern);
             if(sd.unlocked && patternString.Equals(sd.pattern)) 
             {
                 OnSpellCast?.Invoke(this, new OnSpellCastArgs(sd.spellType, pattern));

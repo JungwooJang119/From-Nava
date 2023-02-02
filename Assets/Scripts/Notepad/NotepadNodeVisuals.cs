@@ -37,7 +37,6 @@ public class NotepadNodeVisuals : MonoBehaviour
     private void SelectNode() {
         selected?.SetActive(true);
         unselected?.SetActive(false);
-        print($"Node {nodeNum} Selected");
     }
 
     private void OnSpellCast(object sender, NotepadLogic.OnSpellCastArgs e)

@@ -22,7 +22,6 @@ public class NotepadLineRenderer : MonoBehaviour
             pos += offset;
             pos /= scale;
             nodeToPos[nodeNum] = pos;
-            //print($"Node {nodeNum} X:{pos.x} Y:{pos.y}");
         }
 
         ResetLR();

@@ -137,4 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  deathParticles: {fileID: 8109171731749151844, guid: 7b5795b01d6b31e4d917ee152ed90b3d, type: 3}
   speed: 5
+  damage: 1
+  hasParticles: 1

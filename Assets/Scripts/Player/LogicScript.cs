@@ -26,7 +26,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private string patternActive = "";
     private int currLines;
 
-    public float facingDir;
+    public Vector2 facingDir;
     private PlayerController playerController;
     [SerializeField] private ManaMeter manaMeter;
 
@@ -36,7 +36,18 @@ public class LogicScript : MonoBehaviour
         currMagic = maxMagic;
         manaMeter.SetMaxMana(maxMagic);
     }
-    
+
+    /*
+        have the player take damage
+        TODO: maybe separate health into another script?
+    */
+    public void TakeDamage(int damage) {
+        playerHealth -= damage;
+    }
+
+    public int GetHealth() {
+        return playerHealth;
+    }
     /*
     @desc Builds string holding pattern of spell currently drawn and Casts spell when pattern matches
     @params string newNode The string name of the button / node clicked on in UI
@@ -88,7 +99,7 @@ public class LogicScript : MonoBehaviour
     @return 
     */
     private void CastSpell() {
-        facingDir = playerController.facingDir;
+        facingDir = PlayerController.Instance.FacingDir;
         Instantiate(_spell, castPoint.position, Quaternion.identity);
     }
 

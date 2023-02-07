@@ -10,26 +10,31 @@ public class IceTowerController : MonoBehaviour
     [SerializeField] private float currIceballTime;
     [SerializeField] private bool hasFired;
 
+    private GameObject range;
+    private bool detected;
     public bool disableTower = false;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        range = this.gameObject.transform.GetChild(1).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+        detected = range.GetComponent<TrackPlayer>().GetPlayerIn();
         if (disableTower) {
             Destroy(this.gameObject);
         }
-
-        if (currIceballTime >= iceballInterval) {
-            Instantiate(iceball, transform.position, Quaternion.identity);
-            currIceballTime = 0;
-        } else {
-            currIceballTime += Time.deltaTime;
+        if (detected) {
+            if (currIceballTime >= iceballInterval) {
+                Instantiate(iceball, transform.position, Quaternion.identity, gameObject.transform);
+                currIceballTime = 0;
+            } else {
+                currIceballTime += Time.deltaTime;
+            }
         }
     }
 }

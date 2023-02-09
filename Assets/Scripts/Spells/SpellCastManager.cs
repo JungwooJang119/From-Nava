@@ -42,7 +42,7 @@ public class SpellCastManager : MonoBehaviour
         }
 
         Spell spell = spellDict[e.spellType];
-
+        
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
         spell.CastSpell(PlayerController.Instance.FacingDir);
     }
@@ -52,5 +52,6 @@ public class SpellCastManager : MonoBehaviour
 
 public enum SpellType {
     FIREBALL,
+    CHAIR,
     NONE
 }

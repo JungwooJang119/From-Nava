@@ -15,7 +15,7 @@ public class Spell : MonoBehaviour
     private void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
-        circleCollider.isTrigger = true;
+        // circleCollider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;

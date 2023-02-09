@@ -11258,10 +11258,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.028459273
-    y: 0.027923211
-    width: 0.9421001
-    height: 0.9424084
+    x: 0.096618354
+    y: 0.22556391
+    width: 0.5797101
+    height: 0.5800215
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -13043,7 +13043,7 @@ MonoBehaviour:
   castInterval: 0.25
   currCastTimer: 0
   patternActive: 
-  facingDir: 0
+  facingDir: {x: 0, y: 0}
   manaMeter: {fileID: 57962640}
 --- !u!4 &1353138757
 Transform:

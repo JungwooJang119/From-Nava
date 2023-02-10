@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class Firewood_Script : MonoBehaviour
 {
-    private Sprite unlitSprite, litSprite;
+    [SerializeField] private Sprite unlitSprite, litSprite;
     private bool isLit = false;
     private SpriteRenderer render;
 
-    //loads everything during startup bc apparently it can't do it beforehand. you need to add this to the resources folder
-    //resources.load to work.
+    //gets the sprite
     void Start() {
         render = GetComponent<SpriteRenderer>();
-        unlitSprite = Resources.Load<Sprite>("firewood");
-        litSprite = Resources.Load<Sprite>("lit firewood");
     }
 
     /*unfortunately i was unable to get the trigger colliders of fireball to work with a regular collider, so i've added another 

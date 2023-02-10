@@ -10894,6 +10894,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119f0d9181c631d4898f413bb33cfff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlitSprite: {fileID: 21300000, guid: 01b2252a2aa27fd45ae83ccb48014c4c, type: 3}
+  litSprite: {fileID: 21300000, guid: 37813cbf0f544244791735b42ba43c2a, type: 3}
 --- !u!58 &1558883657
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10951,7 +10953,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: edd21de47fc08cd4da67ded18de57e54, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01b2252a2aa27fd45ae83ccb48014c4c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11080,7 +11082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2463856277162178068, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: spellData.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2463856277162178068, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: spellData.Array.data[0].pattern
@@ -11091,16 +11093,28 @@ PrefabInstance:
       value: 1269
       objectReference: {fileID: 0}
     - target: {fileID: 2463856277162178068, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
+      propertyPath: spellData.Array.data[2].pattern
+      value: 149
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463856277162178068, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: spellData.Array.data[1].unlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463856277162178068, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
+      propertyPath: spellData.Array.data[2].unlocked
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2463856277162178068, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: spellData.Array.data[1].spellType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2463856277162178068, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
+      propertyPath: spellData.Array.data[2].spellType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2463856277162178069, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: enumToSpell.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2463856277162178069, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: enumToSpell.Array.data[0].spell
@@ -11111,8 +11125,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6389482856583591886, guid: 3ac2add376d46f84f972d5291edc289d, type: 3}
     - target: {fileID: 2463856277162178069, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
+      propertyPath: enumToSpell.Array.data[2].spell
+      value: 
+      objectReference: {fileID: 8916631681253868026, guid: 7f8bc1551ccff794fa26c98cc515245a, type: 3}
+    - target: {fileID: 2463856277162178069, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: enumToSpell.Array.data[1].spellType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2463856277162178069, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
+      propertyPath: enumToSpell.Array.data[2].spellType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2463856277162178070, guid: a9aaa55dc6db5254ba98de1f0956a4c0, type: 3}
       propertyPath: m_Name

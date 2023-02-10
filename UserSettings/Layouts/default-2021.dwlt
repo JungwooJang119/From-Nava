@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 820.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 14028
+  controlID: 51
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 14029
+  controlID: 52
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 14030
+  controlID: 114
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -400,9 +400,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 1881ffff6285ffff8eadffff0cfbffffaaad0000b6ad0000
+      m_SelectedIDs: 6a730000
+      m_LastClickedID: 29546
+      m_ExpandedIDs: 0cfbffff4a73000056730000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -664,7 +664,7 @@ MonoBehaviour:
       index: 10
       layout: 4
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
@@ -673,9 +673,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -4.014336, y: 2.1055124, z: -0.0022814695}
+    m_Target: {x: -7.7582417, y: 2.1083465, z: -0.021904323}
     speed: 2
-    m_Value: {x: -4.014336, y: 2.1055124, z: -0.0022814695}
+    m_Value: {x: -7.7582417, y: 2.1083465, z: -0.021904323}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -726,9 +726,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1.9578304
+    m_Target: 5.721025
     speed: 2
-    m_Value: 1.9578304
+    m_Value: 5.721025
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -794,22 +794,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Art
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 37
   m_LastFolders:
-  - Assets
+  - Assets/Art
   m_LastFoldersGridSize: 37
   m_LastProjectPath: C:\Users\josep\Documents\GitHub\From-Nava
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 64780000
-    m_LastClickedID: 30820
-    m_ExpandedIDs: 000000006478000000ca9a3b
+    scrollPos: {x: 0, y: 51}
+    m_SelectedIDs: 2c7a0000
+    m_LastClickedID: 31276
+    m_ExpandedIDs: 00000000367800002c7a0000347a0000387a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -837,7 +837,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006478000000ca9a3b
+    m_ExpandedIDs: 0000000036780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -865,7 +865,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300004a1b0100d2710000e0730000269000002aa40000e0940000f8ab0000f4760000f8940000ee910000047b00006c7d0000d6780000d2780000
+    m_ExpandedInstanceIDs: c62300004a1b0100d2710000e0730000269000002aa40000e0940000f8ab0000f4760000f8940000ee910000047b00006c7d0000d6780000d2780000909c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

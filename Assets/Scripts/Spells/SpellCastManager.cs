@@ -53,5 +53,6 @@ public class SpellCastManager : MonoBehaviour
 public enum SpellType {
     FIREBALL,
     CHAIR,
+    ICEBALL,
     NONE
 }

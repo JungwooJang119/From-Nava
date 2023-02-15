@@ -29,6 +29,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Start()
     {
+        facingDir = Vector2.down;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -44,28 +45,22 @@ public class PlayerController : Singleton<PlayerController>
 
     private void ChooseFacingDir ()
     {
+        if(movement.x > 0)
+            facingDir = Vector2.right;
+        if(movement.x < 0)
+            facingDir = Vector2.left;
+        if(movement.y > 0)
+            facingDir = Vector2.up;
+        if(movement.y < 0)
+            facingDir = Vector2.down;
+
         if (movement.magnitude > 0) {
             animator.SetFloat("X", movement.x);
             animator.SetFloat("Y", movement.y);
             animator.SetBool("isWalking", true);
 
             //C: There might be a better way to do this but i could not think of/find one
-            if (movement.x > movement.y) {
-                if (movement.x > 0) 
-                    facingDir = Vector2.right;
-                else 
-                    facingDir = Vector2.down;
-            } else if (movement.y > movement.x) {
-                if (movement.y > 0 && movement.x == 0) 
-                    facingDir = Vector2.up;
-                else 
-                    facingDir = Vector2.left;
-            } else {
-                if (movement.x > 0) 
-                    facingDir = Vector2.right;
-                else 
-                    facingDir = Vector2.left;
-            }
+
         } 
         else 
             animator.SetBool("isWalking", false);

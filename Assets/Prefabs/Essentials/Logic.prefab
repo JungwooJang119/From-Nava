@@ -51,6 +51,9 @@ MonoBehaviour:
   - spellType: 0
     pattern: 456
     unlocked: 1
+  - spellType: 3
+    pattern: 1469
+    unlocked: 1
 --- !u!114 &2463856277162178069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,4 +68,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enumToSpell:
   - spellType: 0
+    spell: {fileID: 0}
+  - spellType: 3
     spell: {fileID: 0}

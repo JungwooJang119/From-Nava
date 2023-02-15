@@ -6,15 +6,21 @@ public class Spell : MonoBehaviour
 {
     public SpellScriptObj spell;
     [SerializeField] private LogicScript logicScript;
-    [SerializeField] private CircleCollider2D circleCollider;
+    [SerializeField] private Collider2D collider;
     [SerializeField] private Rigidbody2D rb;
 
-    [SerializeField]private Vector2 direction;
+    [SerializeField]private Vector3 rotate;
     [SerializeField]private bool spellActive = false;
+
+    public Vector2 direction;
+
 
     private void Awake()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
+
+        transform.Rotate(rotate);
+
+        collider = GetComponent<Collider2D>();
         // circleCollider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();
@@ -31,11 +37,20 @@ public class Spell : MonoBehaviour
 
     private void MoveSpell()
     {
-        transform.Translate(direction * spell.speed * Time.deltaTime);
+        transform.Translate(Vector3.up * spell.speed * Time.deltaTime);
     }
 
     public virtual void CastSpell(Vector2 dir) {
         direction = dir;
+        if(dir.x < 0)
+            rotate = new Vector3(0, 0, 90);
+        if (dir.x > 0)
+            rotate = new Vector3(0, 0, -90);
+        if (dir.y > 0)
+            rotate = new Vector3(0, 0, 0);
+        if (dir.y < 0)
+            rotate = new Vector3(0, 0, 180);
+
         spellActive = true;
     }
 

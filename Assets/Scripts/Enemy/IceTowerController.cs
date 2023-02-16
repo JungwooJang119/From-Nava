@@ -18,7 +18,8 @@ public class IceTowerController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        range = this.gameObject.transform.GetChild(1).gameObject;
+        //range = this.gameObject.transform.GetChild(1).gameObject;
+        range = this.gameObject;
     }
 
     // Update is called once per frame

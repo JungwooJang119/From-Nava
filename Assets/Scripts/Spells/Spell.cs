@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     public SpellScriptObj spell;
-    [SerializeField] private LogicScript logicScript;
+    //[SerializeField] private LogicScript logicScript;
     [SerializeField] private Collider2D collider;
     [SerializeField] private Rigidbody2D rb;
 
@@ -21,7 +21,7 @@ public class Spell : MonoBehaviour
         transform.Rotate(rotate);
 
         collider = GetComponent<Collider2D>();
-        // circleCollider.isTrigger = true;
+        collider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
@@ -62,8 +62,10 @@ public class Spell : MonoBehaviour
     {
         //Apply hit particle effects, sfx, spell effects\
         if(other.gameObject.CompareTag("Enemy")) {
+            print("YESSSSSSSSSSSSSSSSSSSS Hit");
             Enemy enemyHealth = other.GetComponent<Enemy>();
             enemyHealth.TakeDamage(spell.damageAmt);
+            Destroy(this.gameObject);
         }
 
 

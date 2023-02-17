@@ -25,8 +25,10 @@ public class FireGoombaController : MonoBehaviour
 
     private Enemy enemy;
 
+
     private void Start()
     {
+        GetComponent<Rigidbody2D>().gravityScale = 0;
         enemy = GetComponent<Enemy>();
         lastChangeTime = 0f;
         NewDirection();
@@ -70,5 +72,10 @@ public class FireGoombaController : MonoBehaviour
         } else {
             enemy.PushTranslate();
         }
+    }
+
+    private void OnCollisionStay2D(UnityEngine.Collision2D collision)
+    {
+        NewDirection();
     }
 }

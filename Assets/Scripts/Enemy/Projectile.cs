@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerPos = player.transform.position;
-        logic = GameObject.Find("Logic Manager").GetComponent<LogicScript>();
+        //logic = GameObject.Find("Logic Manager").GetComponent<LogicScript>();
         dir = (new Vector2(playerPos.x - transform.position.x, playerPos.y - transform.position.y)).normalized;
     }
 
@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.CompareTag("Player")) {
-            logic.TakeDamage(damage);
+            //logic.TakeDamage(damage);
             if(hasParticles) {
     			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Destroy(this.gameObject, 0.5f);

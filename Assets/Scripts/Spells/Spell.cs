@@ -5,44 +5,53 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     public SpellScriptObj spell;
-    [SerializeField] private LogicScript logicScript;
-    [SerializeField] private CircleCollider2D circleCollider;
+    //[SerializeField] private LogicScript logicScript;
+    [SerializeField] private Collider2D collider;
     [SerializeField] private Rigidbody2D rb;
 
-    private float valueDir;
+    [SerializeField]private Vector3 rotate;
+    [SerializeField]private bool spellActive = false;
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
+    public Vector2 direction;
+
+
     private void Awake()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
-        circleCollider.isTrigger = true;
+
+        transform.Rotate(rotate);
+
+        collider = GetComponent<Collider2D>();
+        collider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
 
         Destroy(this.gameObject, spell.lifetime); 
-        logicScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<LogicScript>();
-        valueDir = logicScript.facingDir;
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    private void Update()
+    protected virtual void Update()
     {
-        if (spell.speed > 0) {
-            if (valueDir == 270) {
-                transform.Translate(Vector2.down * spell.speed * Time.deltaTime);
-            } else if (valueDir == 90) {
-                transform.Translate(Vector2.up * spell.speed * Time.deltaTime);
-            } else if (valueDir == 180) {
-                transform.Translate(Vector2.left * spell.speed * Time.deltaTime);
-            } else {
-                transform.Translate(Vector2.right * spell.speed * Time.deltaTime);
-            }
-        }
+        if(spellActive)
+            MoveSpell();
+    }
+
+    private void MoveSpell()
+    {
+        transform.Translate(Vector3.up * spell.speed * Time.deltaTime);
+    }
+
+    public virtual void CastSpell(Vector2 dir) {
+        direction = dir;
+        if(dir.x < 0)
+            rotate = new Vector3(0, 0, 90);
+        if (dir.x > 0)
+            rotate = new Vector3(0, 0, -90);
+        if (dir.y > 0)
+            rotate = new Vector3(0, 0, 0);
+        if (dir.y < 0)
+            rotate = new Vector3(0, 0, 180);
+
+        spellActive = true;
     }
 
     /// <summary>
@@ -53,8 +62,10 @@ public class Spell : MonoBehaviour
     {
         //Apply hit particle effects, sfx, spell effects\
         if(other.gameObject.CompareTag("Enemy")) {
+            print("YESSSSSSSSSSSSSSSSSSSS Hit");
             Enemy enemyHealth = other.GetComponent<Enemy>();
             enemyHealth.TakeDamage(spell.damageAmt);
+            Destroy(this.gameObject);
         }
 
 

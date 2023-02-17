@@ -10,6 +10,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private Text healthText;
 
     [SerializeField] private Spell _spell;
+    [SerializeField] private Spell _chairSpell;
     [SerializeField] private Transform castPoint;
     [SerializeField] private IceTowerController iceTower;
 
@@ -26,7 +27,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private string patternActive = "";
     private int currLines;
 
-    public float facingDir;
+    public Vector2 facingDir;
     private PlayerController playerController;
     [SerializeField] private ManaMeter manaMeter;
 
@@ -70,6 +71,9 @@ public class LogicScript : MonoBehaviour
                 //demonstrate disabling ice tower
                 iceTower.disableTower = true; 
             }
+            // if (patternActive == "259") {
+            //     CastChairSpell();
+            // }
             patternActive = "";
         }
     }
@@ -99,9 +103,18 @@ public class LogicScript : MonoBehaviour
     @return 
     */
     private void CastSpell() {
-        facingDir = playerController.facingDir;
+        facingDir = PlayerController.Instance.FacingDir;
         Instantiate(_spell, castPoint.position, Quaternion.identity);
     }
+
+// /*
+//     @desc Sets facing direction of player correctly and creates a chair at current facing direction.
+//     */
+//     private void CastChairSpell() {
+//         facingDir = playerController.facingDir;
+//         Vector3 newVector = new Vector3(2 * Mathf.Cos(Mathf.PI * facingDir / 180), 2 * Mathf.Sin(Mathf.PI * facingDir / 180), 0);
+//         Instantiate(_chairSpell, castPoint.position + newVector, Quaternion.identity);
+//     }
 
     public int getCurrLines() {
         return currLines;

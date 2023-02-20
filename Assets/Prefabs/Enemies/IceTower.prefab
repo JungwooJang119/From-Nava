@@ -182,8 +182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   iceball: {fileID: 5536333251357887935, guid: 363dac1b39fb0bf4b9df3e4a04aa424c, type: 3}
-  iceballInterval: 4
-  currIceballTime: 3
+  iceballInterval: 0.5
+  currIceballTime: 0
   hasFired: 0
   disableTower: 0
 --- !u!114 &7573938738326685184

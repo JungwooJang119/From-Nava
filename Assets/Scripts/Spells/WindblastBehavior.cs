@@ -24,6 +24,9 @@ public class WindblastBehavior : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy")) {
             other.gameObject.GetComponent<Enemy>().Push(spell.direction, pushDist, pushSpd);
         }
+        if(other.gameObject.CompareTag("Fan")) {
+            other.gameObject.GetComponent<Fan>().Blow();
+        }
     }
 
 

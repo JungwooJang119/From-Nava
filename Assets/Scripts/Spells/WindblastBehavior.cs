@@ -26,5 +26,8 @@ public class WindblastBehavior : MonoBehaviour
         } else if (other.gameObject.CompareTag("Mirror")) {                                     //Mirror push adition, by Carlos.
             other.gameObject.GetComponent<Mirror>().Push(spell.direction, pushDist, pushSpd);   //Mirror script will mitigate push values.
         }
+        if(other.gameObject.CompareTag("Fan")) {
+            other.gameObject.GetComponent<Fan>().Blow();
+        }
     }
 }

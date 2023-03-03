@@ -8,6 +8,7 @@ TagManager:
   - Walls
   - Mirror
   - Receiver
+  - Fan
   layers:
   - Default
   - TransparentFX

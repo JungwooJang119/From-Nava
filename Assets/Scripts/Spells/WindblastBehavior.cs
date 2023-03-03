@@ -21,10 +21,10 @@ public class WindblastBehavior : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Enemy")) {
+        if (other.gameObject.CompareTag("Enemy")) {
             other.gameObject.GetComponent<Enemy>().Push(spell.direction, pushDist, pushSpd);
+        } else if (other.gameObject.CompareTag("Mirror")) {                                     //Mirror push adition, by Carlos.
+            other.gameObject.GetComponent<Mirror>().Push(spell.direction, pushDist, pushSpd);   //Mirror script will mitigate push values.
         }
     }
-
-
 }

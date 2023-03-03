@@ -25,7 +25,7 @@ public class AudioControl : MonoBehaviour {
     public Sound[] musicSounds, sfxSounds;
 
 	void Start() {
-        PlayMusic("Theme Sample");
+        //PlayMusic("Theme Sample");
     }
 
 	// Method to play MUSIC TRACKS. Call syntax: AudioControl.Instance.PlayMusic(name);
@@ -45,14 +45,16 @@ public class AudioControl : MonoBehaviour {
 	// Method to play SOUND EFFECTS. Call syntax: AudioControl.Instance.PlaySFX(name);
 	// Takes a string 'name', which corresponds to the name of a sound in sfxSounds[];
 	// Plays the sound requested if found. May be used several times to call multiple sounds;
-	public void PlaySFX(string name) {
+	public float PlaySFX(string name) {
 		Sound sn = Array.Find(sfxSounds, item => item.name == name);
 
 		if (sn != null) {
 			_sfxSource.PlayOneShot(sn.clip);
+			return sn.clip.length;
 		}
 		else {
 			Debug.Log("Clip string is wrong");
+			return -1;
 		}
 	}
 

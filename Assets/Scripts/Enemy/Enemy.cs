@@ -44,7 +44,6 @@ public class Enemy : MonoBehaviour
             transform.Translate(pushDir * pushSpd * Time.deltaTime);
             pushDist -= (pushDir *  pushSpd * Time.deltaTime).magnitude;
         }
-       
     }
 
     public bool GetPushed() {

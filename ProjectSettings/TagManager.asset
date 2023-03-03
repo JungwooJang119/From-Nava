@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Walls
+  - Mirror
+  - Receiver
+  - Fan
   layers:
   - Default
   - TransparentFX

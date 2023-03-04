@@ -140,10 +140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  player: {fileID: 7257062049370043968, guid: 2c846db8616a7644287af38547484ea6, type: 3}
+  player: {fileID: 0}
   minDistance: 4
   maxDistance: 8
-  fireball: {fileID: 5536333251357887935, guid: 0a7760efa4ab4114183100633603ad5e, type: 3}
+  fireball: {fileID: 5536333251357887935, guid: 35fc593afbb361645b7f2b23f3daec1f, type: 3}
   fireballInterval: 2
   currFireballTime: 0
   hasFired: 0

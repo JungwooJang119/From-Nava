@@ -47,5 +47,13 @@ public class Projectile : MonoBehaviour
 
             }
         }
+        if (col.gameObject.CompareTag("Walls")) {
+            Destroy(this.gameObject);
+        } 
+        if (col.gameObject.CompareTag("Enemy")) {
+            return;
+        } else {
+            Destroy(this.gameObject);
+        }
     }
 }

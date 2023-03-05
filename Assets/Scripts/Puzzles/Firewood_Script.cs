@@ -7,10 +7,17 @@ public class Firewood_Script : MonoBehaviour
     [SerializeField] private Sprite unlitSprite, litSprite;
     private bool isLit = false;
     private SpriteRenderer render;
+    private GameObject light;
 
     //gets the sprite
     void Start() {
         render = GetComponent<SpriteRenderer>();
+        light = this.transform.GetChild(0).gameObject;
+    }
+
+    //activate firelight effect if the firewood is lit
+    void Update() {
+        light.SetActive(isLit);
     }
 
     /*unfortunately i was unable to get the trigger colliders of fireball to work with a regular collider, so i've added another 

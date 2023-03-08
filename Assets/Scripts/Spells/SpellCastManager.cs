@@ -56,5 +56,6 @@ public enum SpellType {
     CHAIR,
     ICEBALL,
     WINDBLAST,
+    PIPLUP,
     NONE
 }

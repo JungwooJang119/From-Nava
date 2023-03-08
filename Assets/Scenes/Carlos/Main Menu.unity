@@ -260,6 +260,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &95683622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8403224658909475884, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
+  m_PrefabInstance: {fileID: 8403224659415574359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &156315427
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +749,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 576623486}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
           m_MethodName: PlaySFX
           m_Mode: 5
@@ -760,7 +765,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 576623486}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
           m_MethodName: PlaySFX
           m_Mode: 5
@@ -1026,7 +1031,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 576623486}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
           m_MethodName: PlaySFX
           m_Mode: 5
@@ -1042,7 +1047,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 576623486}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
           m_MethodName: PlaySFX
           m_Mode: 5
@@ -1227,17 +1232,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &576623486 stripped
+--- !u!114 &576623488
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8403224658909475881, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
-  m_PrefabInstance: {fileID: 8403224659415574359}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 95683622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8180eed5b0dc9da46909a3ba89216c04, type: 3}
+  m_Script: {fileID: 11500000, guid: 25391c71e33a8514ea6a148d3db315e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _musicSource: {fileID: 819959313}
+  _sfxSource: {fileID: 1342331585}
+  musicSounds: []
+  sfxSounds: []
 --- !u!1 &692266163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1628,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 576623486}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
           m_MethodName: PlaySFX
           m_Mode: 5
@@ -1634,7 +1644,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 576623486}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
           m_MethodName: PlaySFX
           m_Mode: 5
@@ -1646,6 +1656,11 @@ MonoBehaviour:
             m_StringArgument: Button
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!82 &819959313 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8403224658944174719, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
+  m_PrefabInstance: {fileID: 8403224659415574359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &949527861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,7 +2020,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 576623486}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
           m_MethodName: PlaySFX
           m_Mode: 5
@@ -2021,7 +2036,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 576623486}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
           m_MethodName: PlaySFX
           m_Mode: 5
@@ -2128,8 +2143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5e9d0857746e94eb8659be014b41d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpTargetUp: {fileID: 979040103}
-  OpTargetDown: {fileID: 2134361478}
 --- !u!61 &1184886234
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2168,9 +2181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285fd56cc06cf734da4d8c3dffabc1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _masterSlider: {fileID: 22551287}
-  _musicSlider: {fileID: 156315429}
-  _sfxSlider: {fileID: 484375598}
 --- !u!1 &1189070003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +2370,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342204510}
   m_CullTransparentMesh: 1
+--- !u!82 &1342331585 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8403224659635729808, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
+  m_PrefabInstance: {fileID: 8403224659415574359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1390002714
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,5 +3159,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8403224658944174719, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f083c239cc49bdc4dbd55612a8024154, type: 3}
+    m_RemovedComponents:
+    - {fileID: 8403224658909475881, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PressurePlate_Script : MonoBehaviour
 {
     [SerializeField] private Sprite unpressed, pressed;
-    private bool isPressed = false;
+    public bool isPressed = false;
     [SerializeField] private SpriteRenderer render;
     [SerializeField] private float setTime;
     private bool isChair = false;
@@ -47,5 +47,9 @@ public class PressurePlate_Script : MonoBehaviour
             isPressed = false;
             render.sprite = unpressed;
         }
+    }
+
+    public bool getIsPressed() {
+        return isPressed;
     }
 }

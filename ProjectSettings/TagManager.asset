@@ -9,6 +9,7 @@ TagManager:
   - Mirror
   - Receiver
   - Fan
+  - Chair
   layers:
   - Default
   - TransparentFX

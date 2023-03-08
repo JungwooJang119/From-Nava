@@ -11,14 +11,17 @@ public class Spell : MonoBehaviour
 
     [SerializeField]private Vector3 rotate;
     [SerializeField]private bool spellActive = false;
+    [SerializeField] private bool isChair = false;
+    [SerializeField] private bool isPiplup = false;
 
     public Vector2 direction;
 
 
     private void Awake()
     {
-
-        transform.Rotate(rotate);
+        if (!isChair || !isPiplup) {
+            transform.Rotate(rotate);
+        }
 
         collider = GetComponent<Collider2D>();
         collider.isTrigger = true;

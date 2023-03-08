@@ -15,4 +15,4 @@ MonoBehaviour:
   manaCost: 5
   speed: 0
   damageAmt: 10
-  lifetime: 1000000
+  lifetime: 30

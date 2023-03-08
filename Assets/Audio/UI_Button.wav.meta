@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Art/Audio/UI_Button.wav.meta
 guid: 6cfa9fa6a57b2e74fa1ca08c8735fe6f
+=======
+guid: 299938c5f3379464c9c116c2db5ad113
+>>>>>>> 802cb72f91ce3b9c2d703afcb603ddfde752dacf:Assets/Audio/UI_Button.wav.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

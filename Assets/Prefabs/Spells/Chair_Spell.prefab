@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3702030663533370546}
   m_Layer: 0
   m_Name: Chair_Spell
-  m_TagString: Untagged
+  m_TagString: Chair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,9 +140,11 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: 0b831836399b0754d9f5861a550b1331, type: 2}
   collider: {fileID: 0}
   rb: {fileID: 1026724369791607120}
-  rotate: {x: 0, y: 0, z: 0}
+  rotate: {x: 0, y: 0, z: 180}
   spellActive: 1
-  direction: {x: 1, y: 0}
+  isChair: 1
+  isPiplup: 1
+  direction: {x: 0, y: -1}
 --- !u!61 &3702030663533370546
 BoxCollider2D:
   m_ObjectHideFlags: 0

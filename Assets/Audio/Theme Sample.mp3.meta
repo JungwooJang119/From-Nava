@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Art/Audio/Theme Sample.mp3.meta
-guid: 77326ac3b546c0346bc7be1a6381d2a8
-=======
 guid: f083c239cc49bdc4dbd55612a8024154
->>>>>>> 802cb72f91ce3b9c2d703afcb603ddfde752dacf:Assets/Audio/Theme Sample.mp3.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

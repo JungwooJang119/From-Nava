@@ -95,6 +95,7 @@ public class Melee : MonoBehaviour
 
     public void activateMelee() {
         //get look direction and activate correct hitbox
+        /*
         switch (facingDir)
         {
             case 0:
@@ -111,6 +112,7 @@ public class Melee : MonoBehaviour
                 break;
         }
         timeSinceLast = duration; //start the countdown!
+        */
     }
 
     private void deactivateMelee() {

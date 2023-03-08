@@ -317,6 +317,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
       value: Firewood
@@ -373,6 +377,10 @@ PrefabInstance:
     - target: {fileID: 7500840900014958929, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
@@ -7973,6 +7981,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
       value: Firewood (10)
@@ -8091,6 +8103,10 @@ PrefabInstance:
     - target: {fileID: 7500840900014958929, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
@@ -8241,6 +8257,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958929, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
@@ -8535,6 +8555,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
       value: Firewood (15)
@@ -8592,6 +8616,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
       value: Firewood (19)
@@ -8648,6 +8676,10 @@ PrefabInstance:
     - target: {fileID: 7500840900014958929, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
@@ -8773,6 +8805,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
       value: Firewood (18)
@@ -8891,6 +8927,10 @@ PrefabInstance:
     - target: {fileID: 7500840900014958929, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
@@ -10066,6 +10106,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
       value: Firewood (9)
@@ -10143,6 +10187,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
       value: Firewood (20)
@@ -10200,6 +10248,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
       value: Firewood (14)
@@ -10256,6 +10308,10 @@ PrefabInstance:
     - target: {fileID: 7500840900014958929, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500840900014958930, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
+      propertyPath: isLit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7500840900014958941, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
       propertyPath: m_Name
@@ -10466,19 +10522,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726914, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.28533095
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726914, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.24528302
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726914, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.4293381
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726914, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.509434
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726915, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_Cameras.Array.data[0]

@@ -17546,6 +17546,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   _spell: {fileID: 8916631681253868026, guid: 0ac82b8b3a613aa498401c42f2846bc2, type: 3}
   _chairSpell: {fileID: 0}
+  _melee: {fileID: 0}
   castPoint: {fileID: 1807977532}
   iceTower: {fileID: 0}
   maxMagic: 20

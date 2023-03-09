@@ -21,8 +21,8 @@ public class Projectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerPos = player.transform.position;
-        //logic = GameObject.Find("Logic Manager").GetComponent<LogicScript>();
         dir = (new Vector2(playerPos.x - transform.position.x, playerPos.y - transform.position.y)).normalized;
+        Destroy(this.gameObject, 4f); 
     }
 
     // Update is called once per frame
@@ -33,27 +33,21 @@ public class Projectile : MonoBehaviour
     }
     
     //destroy the gameobject on collision with the player, make them take appropriate damage
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Player")) {
-            //logic.TakeDamage(damage);
-            if(hasParticles) {
+        if (col.gameObject.CompareTag("Enemy")) {
+            return;
+        }
+        if (col.gameObject.CompareTag("Player")) {
+            if (hasParticles) {
     			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Destroy(this.gameObject, 0.5f);
                 Instantiate(deathParticles, transform);
             }
             else {
                 Destroy(this.gameObject);
-
             }
         }
-        if (col.gameObject.CompareTag("Walls")) {
-            Destroy(this.gameObject);
-        } 
-        if (col.gameObject.CompareTag("Enemy")) {
-            return;
-        } else {
-            Destroy(this.gameObject);
-        }
+        Destroy(this.gameObject);
     }
 }

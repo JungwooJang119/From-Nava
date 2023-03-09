@@ -154,11 +154,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 11400000, guid: cb799c27f5fb04949a73f3d9c4bbd993, type: 2}
-  logicScript: {fileID: 0}
   collider: {fileID: 0}
   rb: {fileID: 7410404838220746693}
   rotate: {x: 0, y: 0, z: -90}
   spellActive: 1
+  isChair: 0
+  isWind: 1
+  isPiplup: 0
   direction: {x: 1, y: 0}
 --- !u!61 &9097417068368567135
 BoxCollider2D:

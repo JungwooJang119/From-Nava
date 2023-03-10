@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomControlA1 : MonoBehaviour
+public class RoomControlA3 : MonoBehaviour
 {
     public GameObject plate1;
     public GameObject plate2;
@@ -18,7 +18,7 @@ public class RoomControlA1 : MonoBehaviour
     public PressurePlate_Script p5;
     public PressurePlate_Script p6;
 
-    public GameObject A1Chest;
+    public GameObject A3Chest;
 
     public bool check1;
     public bool check2;
@@ -28,7 +28,7 @@ public class RoomControlA1 : MonoBehaviour
     public bool check6;
 
     [SerializeField] private bool isClear = false;
-    [SerializeField] private GameObject spellNotif;
+    // [SerializeField] private GameObject spellNotif;
 
     void Start() {
         p1 = plate1.GetComponent<PressurePlate_Script>();
@@ -43,17 +43,17 @@ public class RoomControlA1 : MonoBehaviour
         checkPlates();
         if (!isClear) {
             if (check1 && check2 && check3 && check4 && check5 && check6) {
-                A1Chest.SetActive(true);
-                spellNotif.SetActive(true);
+                A3Chest.SetActive(true);
                 StartCoroutine(DurationTime());
-                isClear = true;
+                    isClear = true;
+                    Destroy(this.gameObject);
             }
         }
     }
 
     IEnumerator DurationTime() {
-		yield return new WaitForSeconds(3f);
-        spellNotif.SetActive(false);
+		yield return new WaitForSeconds(5f);
+        //spellNotif.SetActive(false);
 	}
 
     void checkPlates() {

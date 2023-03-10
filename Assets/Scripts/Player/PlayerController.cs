@@ -82,6 +82,7 @@ public class PlayerController : Singleton<PlayerController>
         if (other.gameObject.CompareTag("Enemy")) {
             TakeDamage(1);
             if (playerHealth <= 0) {
+                playerHealth = 0;
                 StartCoroutine(Die());
             }
         }

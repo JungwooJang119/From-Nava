@@ -11,6 +11,7 @@ public class Chest : MonoBehaviour
     void Start()
     {
         pcam = GameObject.FindGameObjectWithTag("PanCamera").GetComponent<PanCamera>();
+        pcam.startPan();
     }
 
     // Update is called once per frame

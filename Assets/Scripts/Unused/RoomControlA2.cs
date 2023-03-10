@@ -26,7 +26,7 @@ public class RoomControlA2 : MonoBehaviour
     private Firewood_Script p21, p22, p23, p24, p25;
 
     [SerializeField] private bool isClear = false;
-    [SerializeField] private GameObject spellNotif;
+    //[SerializeField] private GameObject spellNotif;
     public GameObject A2Chest;
     public bool cheat = false;
     
@@ -69,7 +69,7 @@ public class RoomControlA2 : MonoBehaviour
             if (p10.isLit && p11.isLit && p12.isLit && p13.isLit && p14.isLit && p15.isLit && p16.isLit && p17.isLit) {
                 if (p18.isLit && p19.isLit && p20.isLit && p21.isLit && p22.isLit && p23.isLit && p24.isLit && p25.isLit) {
                     A2Chest.SetActive(true);
-                    spellNotif.SetActive(true);
+                    //spellNotif.SetActive(true);
                     StartCoroutine(DurationTime());
                     isClear = true;
                     Destroy(this.gameObject);
@@ -79,8 +79,8 @@ public class RoomControlA2 : MonoBehaviour
         }
         if (cheat) {
             A2Chest.SetActive(true);
-                    spellNotif.SetActive(true);
-                    StartCoroutine(DurationTime());
+                    //spellNotif.SetActive(true);
+                    //StartCoroutine(DurationTime());
                     isClear = true;
                     Destroy(this.gameObject);
         }
@@ -88,6 +88,6 @@ public class RoomControlA2 : MonoBehaviour
 
     IEnumerator DurationTime() {
 		yield return new WaitForSeconds(5f);
-        spellNotif.SetActive(false);
+        //spellNotif.SetActive(false);
 	}
 }

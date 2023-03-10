@@ -68,8 +68,16 @@ public class Spell : MonoBehaviour
             return;
         }
 
-        if (isChair || isPiplup || isWind) {
+        if (isChair || isPiplup) {
             return;
+        }
+
+        if (isWind) {
+            if (other.gameObject.CompareTag("Walls")) {
+                Destroy(this.gameObject);
+            } else {
+                return;
+            }
         }
 
         //Apply hit particle effects, sfx, spell effects\

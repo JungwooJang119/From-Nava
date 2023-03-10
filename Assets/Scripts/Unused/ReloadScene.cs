@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
+    [SerializeField] private GameObject spellNotif;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +23,12 @@ public class ReloadScene : MonoBehaviour
             return;
         }
         print("Reset");
+        StartCoroutine(TextPopUp());
+    }
+
+    IEnumerator TextPopUp() {
+        spellNotif.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        spellNotif.SetActive(false);
     }
 }

@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadC3 : MonoBehaviour
+public class PreLit : MonoBehaviour
 {
+    public Firewood_Script f;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        f.isLit = true;
     }
 }

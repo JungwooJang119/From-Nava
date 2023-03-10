@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7995059032508458879}
   m_Layer: 0
   m_Name: Windblast_Spell
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadB1South : MonoBehaviour
+public class ReloadScene : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,8 +18,9 @@ public class LoadB1South : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Player")) {
-            SceneManager.LoadScene(2);
+        if (other.tag == "Spell") {
+            return;
         }
+        print("Reset");
     }
 }

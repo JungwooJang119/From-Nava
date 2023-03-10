@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class LoadB3West : MonoBehaviour
+public class LoadNextRoom : MonoBehaviour
 {
+    [SerializeField] private Transform spawn;
+
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            SceneManager.LoadScene(5);
+            other.transform.position = spawn.transform.position;
         }
     }
 }

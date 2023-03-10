@@ -12,6 +12,7 @@ TagManager:
   - Chair
   - PanCamera
   - Firewood
+  - Spell
   layers:
   - Default
   - TransparentFX

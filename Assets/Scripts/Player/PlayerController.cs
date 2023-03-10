@@ -18,6 +18,7 @@ public class PlayerController : Singleton<PlayerController>
  
     public float collisionOffset = 0.05f;
     public Transform castPoint;
+    [SerializeField] private Transform spawn;
 
     public Vector2 facingDir;
 
@@ -27,6 +28,8 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private Animator animator;
+
+    private bool canMove = true;
 
     private void Awake() {
         InitializeSingleton();
@@ -41,7 +44,9 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private void FixedUpdate() {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        if (canMove) {
+            rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        }
         healthText.text = "Health: " + playerHealth;
     }
 
@@ -73,13 +78,26 @@ public class PlayerController : Singleton<PlayerController>
             animator.SetBool("isWalking", false);
     }
 
-    void OnCollisionEnter2D(Collision2D col) {
-        Debug.Log("OnCollisionEnter2D");
-        
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Enemy")) {
+            TakeDamage(1);
+            if (playerHealth <= 0) {
+                StartCoroutine(Die());
+            }
+        }
     }
 
     public void TakeDamage(int damage) {
         playerHealth -= damage;
+        print(playerHealth);
+    }
+
+    IEnumerator Die() {
+        canMove = false;
+        yield return new WaitForSeconds(1f);
+        canMove = true;
+        transform.position = spawn.transform.position;
+        playerHealth = maxHealth;
     }
 }
 

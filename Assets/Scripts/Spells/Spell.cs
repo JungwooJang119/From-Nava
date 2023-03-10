@@ -64,13 +64,6 @@ public class Spell : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Apply hit particle effects, sfx, spell effects\
-        if(other.gameObject.CompareTag("Enemy")) {
-            print("YESSSSSSSSSSSSSSSSSSSS Hit");
-            Enemy enemyHealth = other.GetComponent<Enemy>();
-            enemyHealth.TakeDamage(spell.damageAmt);
-            Destroy(this.gameObject);
-        }
         if (other.gameObject.CompareTag("Player")) {
             return;
         }
@@ -79,8 +72,11 @@ public class Spell : MonoBehaviour
             return;
         }
 
-        if (other.gameObject.CompareTag("Firewood")) {
-            return;
+        //Apply hit particle effects, sfx, spell effects\
+        if(other.gameObject.CompareTag("Enemy")) {
+            Enemy enemyHealth = other.GetComponent<Enemy>();
+            enemyHealth.TakeDamage(spell.damageAmt);
+            Destroy(this.gameObject);
         }
         Destroy(this.gameObject);
     }

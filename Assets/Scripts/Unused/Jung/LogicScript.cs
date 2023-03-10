@@ -11,6 +11,7 @@ public class LogicScript : MonoBehaviour
 
     [SerializeField] private Spell _spell;
     [SerializeField] private Spell _chairSpell;
+    [SerializeField] private Melee _melee;
     [SerializeField] private Transform castPoint;
     [SerializeField] private IceTowerController iceTower;
 
@@ -74,6 +75,9 @@ public class LogicScript : MonoBehaviour
             // if (patternActive == "259") {
             //     CastChairSpell();
             // }
+            if (patternActive == "9") {
+                CastMelee();
+            }
             patternActive = "";
         }
     }
@@ -105,6 +109,12 @@ public class LogicScript : MonoBehaviour
     private void CastSpell() {
         facingDir = PlayerController.Instance.FacingDir;
         Instantiate(_spell, castPoint.position, Quaternion.identity);
+    }
+    /*
+
+    */
+    private void CastMelee() {
+        _melee.activateMelee();
     }
 
 // /*

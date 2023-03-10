@@ -28,6 +28,7 @@ public class RoomControlA1 : MonoBehaviour
     public bool check6;
 
     [SerializeField] private bool isClear = false;
+    [SerializeField] private GameObject spellNotif;
 
     void Start() {
         p1 = plate1.GetComponent<PressurePlate_Script>();
@@ -40,10 +41,20 @@ public class RoomControlA1 : MonoBehaviour
 
     void Update() {
         checkPlates();
-        if (check1 && check2 && check3 && check4 && check5 && check6) {
-            A1Chest.SetActive(true);
+        if (!isClear) {
+            if (check1 && check2 && check3 && check4 && check5 && check6) {
+                A1Chest.SetActive(true);
+                spellNotif.SetActive(true);
+                StartCoroutine(DurationTime());
+                isClear = true;
+            }
         }
     }
+
+    IEnumerator DurationTime() {
+		yield return new WaitForSeconds(3f);
+        spellNotif.SetActive(false);
+	}
 
     void checkPlates() {
         if (p1.getIsPressed()) {

@@ -12,6 +12,7 @@ public class Spell : MonoBehaviour
     [SerializeField]private Vector3 rotate;
     [SerializeField]private bool spellActive = false;
     [SerializeField] private bool isChair = false;
+    [SerializeField] private bool isWind = false;
     [SerializeField] private bool isPiplup = false;
 
     public Vector2 direction;
@@ -70,8 +71,17 @@ public class Spell : MonoBehaviour
             enemyHealth.TakeDamage(spell.damageAmt);
             Destroy(this.gameObject);
         }
+        if (other.gameObject.CompareTag("Player")) {
+            return;
+        }
 
+        if (isChair || isPiplup || isWind) {
+            return;
+        }
 
-        //Destroy(this.gameObject);
+        if (other.gameObject.CompareTag("Firewood")) {
+            return;
+        }
+        Destroy(this.gameObject);
     }
 }

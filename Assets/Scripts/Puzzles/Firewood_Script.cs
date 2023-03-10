@@ -5,12 +5,15 @@ using UnityEngine;
 public class Firewood_Script : MonoBehaviour
 {
     [SerializeField] private Sprite unlitSprite, litSprite;
-    private bool isLit = false;
+    public bool isLit = false;
     private SpriteRenderer render;
 
     //gets the sprite
     void Start() {
         render = GetComponent<SpriteRenderer>();
+        if (isLit) {
+            render.sprite = litSprite;
+        }
     }
 
     /*unfortunately i was unable to get the trigger colliders of fireball to work with a regular collider, so i've added another 

@@ -42,7 +42,7 @@ public class MirrorController : MonoBehaviour
 		}
 		// REMOVE WHEN THE PRESSURE PLATE IS IMPLEMENTED;
 		if (Input.GetKeyDown("space")) {
-			pressPlate();
+			//pressPlate();
 		}
 		// REMOVE WHEN THE PRESSURE PLATE IS IMPLEMENTED;
 	}

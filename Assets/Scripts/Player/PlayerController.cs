@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 //Handle input and movement on Player
 public class PlayerController : Singleton<PlayerController>
 {
+    [SerializeField] private int playerHealth;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private Text healthText;
     [SerializeField] private float speed = 7f;
     private Vector2 movement;
     private Rigidbody2D rb;
@@ -32,10 +37,12 @@ public class PlayerController : Singleton<PlayerController>
         facingDir = Vector2.down;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerHealth = maxHealth;
     }
 
     private void FixedUpdate() {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        healthText.text = "Health: " + playerHealth;
     }
 
     private void OnMove(InputValue movementValue) {
@@ -69,6 +76,10 @@ public class PlayerController : Singleton<PlayerController>
     void OnCollisionEnter2D(Collision2D col) {
         Debug.Log("OnCollisionEnter2D");
         
+    }
+
+    public void TakeDamage(int damage) {
+        playerHealth -= damage;
     }
 }
 

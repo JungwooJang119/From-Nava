@@ -5,7 +5,8 @@ using UnityEngine;
 public class TriggerSpellText : MonoBehaviour
 {
     [SerializeField] private GameObject spellNotif;
-    private bool isActive = false;
+    public bool isDeadSci = false;
+    public bool isDirections = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +21,7 @@ public class TriggerSpellText : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            spellNotif.SetActive(true);
-            StartCoroutine(DurationTime());
+            StartCoroutine(TextPopUp());
         }
     }
 
@@ -29,4 +29,17 @@ public class TriggerSpellText : MonoBehaviour
 		yield return new WaitForSeconds(3f);
         spellNotif.SetActive(false);
 	}
+
+    IEnumerator TextPopUp() {
+        spellNotif.SetActive(true);
+        if (!isDeadSci) {
+            yield return new WaitForSeconds(4.0f);
+        } else {
+            yield return new WaitForSeconds(0.5f);
+        }
+        spellNotif.SetActive(false);
+        if (isDirections) {
+            Destroy(this.gameObject);
+        }
+    }
 }

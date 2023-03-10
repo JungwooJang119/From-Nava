@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3702030663533370546}
   m_Layer: 0
   m_Name: Piplup
-  m_TagString: Chair
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   rotate: {x: 0, y: 0, z: -90}
   spellActive: 1
   isChair: 1
+  isWind: 0
   isPiplup: 1
   direction: {x: 1, y: 0}
 --- !u!61 &3702030663533370546

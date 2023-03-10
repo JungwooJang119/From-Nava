@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
+    [SerializeField] private GameObject spellNotif;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,16 @@ public class ReloadScene : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        SceneManager.LoadScene(4);
+        if (other.tag == "Spell") {
+            return;
+        }
+        print("Reset");
+        StartCoroutine(TextPopUp());
+    }
+
+    IEnumerator TextPopUp() {
+        spellNotif.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        spellNotif.SetActive(false);
     }
 }

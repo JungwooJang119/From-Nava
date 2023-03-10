@@ -4913,7 +4913,7 @@ GameObject:
   - component: {fileID: -5366328541601197726}
   m_Layer: 0
   m_Name: Fireball_Spell
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4989,6 +4989,7 @@ MonoBehaviour:
   rotate: {x: 0, y: 0, z: 0}
   spellActive: 1
   isChair: 0
+  isWind: 0
   isPiplup: 0
   direction: {x: 0, y: 1}
 --- !u!212 &4974338871379012986

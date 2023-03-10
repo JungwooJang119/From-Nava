@@ -8,7 +8,7 @@ public class RoomControlB1 : MonoBehaviour
     [SerializeField] private GameObject enemy2;
 
     [SerializeField] private GameObject chest;
-    [SerializeField] private GameObject spellNotif;
+    //[SerializeField] private GameObject spellNotif;
 
     private bool isActive = true;
 
@@ -20,20 +20,17 @@ public class RoomControlB1 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (isActive = true) {
             if (enemy1 == null && enemy2 == null) {
                 chest.SetActive(true);
-                spellNotif.SetActive(true);
-                StartCoroutine(DurationTime());
+                // spellNotif.SetActive(true);
+                // StartCoroutine(DurationTime());
                 isActive = false;
+                Destroy(this.gameObject);
             }
         }
     }
 
-    IEnumerator DurationTime() {
-		yield return new WaitForSeconds(3f);
-        spellNotif.SetActive(false);
-	}
 }

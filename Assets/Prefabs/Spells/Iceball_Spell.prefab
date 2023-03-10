@@ -4912,7 +4912,7 @@ GameObject:
   - component: {fileID: -2210433279254611879}
   m_Layer: 0
   m_Name: Iceball_Spell
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4985,10 +4985,12 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: bd51ffc9071f17a4eaf37dd650d2ecfb, type: 2}
   collider: {fileID: 0}
   rb: {fileID: 7410404838220746693}
-  rotate: {x: 0, y: 0, z: 0}
-  spellActive: 0
+  rotate: {x: 0, y: 0, z: -90}
+  spellActive: 1
   isChair: 0
-  direction: {x: 0, y: 0}
+  isWind: 0
+  isPiplup: 0
+  direction: {x: 1, y: 0}
 --- !u!212 &-2210433279254611879
 SpriteRenderer:
   m_ObjectHideFlags: 0

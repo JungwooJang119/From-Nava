@@ -119,6 +119,12 @@ MonoBehaviour:
   unlitSprite: {fileID: 21300000, guid: 01b2252a2aa27fd45ae83ccb48014c4c, type: 3}
   litSprite: {fileID: 21300000, guid: 37813cbf0f544244791735b42ba43c2a, type: 3}
   isLit: 0
+  prevLitStatus: 0
+  currLitStatus: 0
+  adjFirewood1: {fileID: 0}
+  adjFirewood2: {fileID: 0}
+  adjFirewood3: {fileID: 0}
+  adjFirewood4: {fileID: 0}
 --- !u!50 &7500840900014958934
 Rigidbody2D:
   serializedVersion: 4

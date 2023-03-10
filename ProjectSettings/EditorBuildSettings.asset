@@ -9,22 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/M1/M2/M2 Final/Main Menu Final.unity
     guid: 8e4ca210fc908cd43ba638e1a889add3
   - enabled: 1
-    path: Assets/Scenes/M1/M2/M2 Final/B2 - Start.unity
-    guid: e4c7daef1a43d35408ca3f8e59b4a226
-  - enabled: 1
     path: Assets/Scenes/M1/M2/M2 Final/B1 - M1.unity
     guid: b452b91f1e20e2e4f93f6ffe3bc82480
-  - enabled: 0
-    path: Assets/Scenes/M1/M2/M2 Final/A1 Ice Tower.unity
-    guid: 7451a8cecc64b74459308e2deae59448
-  - enabled: 1
-    path: Assets/Scenes/M1/M2/M2 Final/A3 - M1 - PressurePlates.unity
-    guid: 302cca5ce972e464bb60fbe795fac948
-  - enabled: 1
-    path: Assets/Scenes/M1/M2/M2 Final/A2 - M2 - LightsOut Final.unity
-    guid: f77417805a3573641b8f0acea020f79a
-  - enabled: 1
-    path: Assets/Scenes/M1/M2/M2 Final/B3 - M2 Final.unity
-    guid: ae0cff3813a5ec34a9d328c03944b2ed
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f7d90a78b7f26184b8a11e6c4a0587b8, type: 2}

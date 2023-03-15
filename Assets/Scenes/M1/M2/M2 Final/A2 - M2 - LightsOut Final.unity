@@ -8037,11 +8037,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7500840900014958929, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
   m_PrefabInstance: {fileID: 178202867}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &264248553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 543008964858751868, guid: 3ba7b3da9927c6f469379e34f813f2e6, type: 3}
-  m_PrefabInstance: {fileID: 73342921}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &312077066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8471,34 +8466,27 @@ MonoBehaviour:
   firewood5: {fileID: 813652981}
   firewood6: {fileID: 886750456}
   firewood7: {fileID: 2061764659}
-  p1: {fileID: 0}
-  p2: {fileID: 0}
-  p3: {fileID: 0}
-  p4: {fileID: 0}
-  p5: {fileID: 0}
-  p6: {fileID: 0}
-  p7: {fileID: 0}
+  firewood8: {fileID: 0}
+  firewood9: {fileID: 0}
+  firewood10: {fileID: 0}
+  firewood11: {fileID: 0}
+  firewood12: {fileID: 0}
+  firewood13: {fileID: 0}
+  firewood14: {fileID: 0}
+  firewood15: {fileID: 0}
+  firewood16: {fileID: 0}
+  firewood17: {fileID: 0}
+  firewood18: {fileID: 0}
+  firewood19: {fileID: 0}
+  firewood20: {fileID: 0}
+  firewood21: {fileID: 0}
+  firewood22: {fileID: 0}
+  firewood23: {fileID: 0}
+  firewood24: {fileID: 0}
+  firewood25: {fileID: 0}
   isClear: 0
-  spellNotif: {fileID: 264248553}
-  A1Chest: {fileID: 570948630}
---- !u!1 &570948630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 689624138417884023, guid: 750f5800dfc35234e8ccf0802c15d379, type: 3}
-  m_PrefabInstance: {fileID: 1673363065}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &570948631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570948630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae85cc0193315d4c82084d289e44d06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pcam: {fileID: 0}
+  A2Chest: {fileID: 0}
+  cheat: 0
 --- !u!1001 &593438783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9385,6 +9373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64aa57bddfd7464996c76ecc4c38e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellNotif: {fileID: 0}
 --- !u!4 &1290357904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7500840900014958929, guid: 099c097fede69114f8d053b7c5a318f5, type: 3}
@@ -10275,7 +10264,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9089299886024138787, guid: 385c4049e920eff4892496ee4a847a92, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9089299886024138787, guid: 385c4049e920eff4892496ee4a847a92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10457,6 +10446,10 @@ PrefabInstance:
     - target: {fileID: 689624138417884023, guid: 750f5800dfc35234e8ccf0802c15d379, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2432986819536123709, guid: 750f5800dfc35234e8ccf0802c15d379, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 750f5800dfc35234e8ccf0802c15d379, type: 3}

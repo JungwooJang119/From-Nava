@@ -4911,9 +4911,10 @@ GameObject:
   - component: {fileID: 7410404838220746693}
   - component: {fileID: 8916631681253868026}
   - component: {fileID: 4974338871379012986}
+  - component: {fileID: -5366328541601197726}
   m_Layer: 0
   m_Name: Fireball_Spell
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4989,6 +4990,7 @@ MonoBehaviour:
   rotate: {x: 0, y: 0, z: 0}
   spellActive: 1
   isChair: 0
+  isWind: 0
   isPiplup: 0
   direction: {x: 0, y: 1}
 --- !u!212 &4974338871379012986
@@ -5105,3 +5107,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4812598531523419039, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
   m_PrefabInstance: {fileID: 2684854819490734227}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &-5366328541601197726
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866387084450533419}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b01b6d442c1f6134f979d50eec43f288, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -26,6 +26,9 @@ public class PressurePlate_Script : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Spell") {
+            return;
+        }
         numObject++;
         if (other.attachedRigidbody.mass > 1){
             render.sprite = pressed;

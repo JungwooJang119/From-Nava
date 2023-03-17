@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8403224658909475882}
-  - component: {fileID: 8403224658909475881}
+  - component: {fileID: 4581913442954246178}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8403224658909475881
+--- !u!114 &4581913442954246178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,17 +43,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8403224658909475884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8180eed5b0dc9da46909a3ba89216c04, type: 3}
+  m_Script: {fileID: 11500000, guid: 25391c71e33a8514ea6a148d3db315e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 8403224658944174719}
   _sfxSource: {fileID: 8403224659635729808}
   musicSounds:
   - name: Theme Sample
-    clip: {fileID: 8300000, guid: 293b884bb9304e6439b6636193f3de79, type: 3}
+    clip: {fileID: 8300000, guid: f083c239cc49bdc4dbd55612a8024154, type: 3}
   sfxSounds:
   - name: Button
-    clip: {fileID: 8300000, guid: 2dfed741839d4fc498706cb666614cca, type: 3}
+    clip: {fileID: 8300000, guid: 299938c5f3379464c9c116c2db5ad113, type: 3}
   - name: Computer On
     clip: {fileID: 8300000, guid: 03be708f473301d4f9cec8864f00ad69, type: 3}
   - name: Computer Wrong
@@ -65,7 +65,7 @@ MonoBehaviour:
   - name: Final Shot
     clip: {fileID: 8300000, guid: 0d7cf8d22c88a80499b4fa7bef6074cd, type: 3}
   - name: Receiver Triggered
-    clip: {fileID: 8300000, guid: 08700a9119dc324459ad52acdcf4a0cd, type: 3}
+    clip: {fileID: 8300000, guid: 73100d6b60c546341bb6097eeff548bc, type: 3}
 --- !u!1 &8403224658944174706
 GameObject:
   m_ObjectHideFlags: 0

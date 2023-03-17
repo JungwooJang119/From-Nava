@@ -9,6 +9,7 @@ using TMPro;
 //Handle input and movement on Player
 public class PlayerController : Singleton<PlayerController>
 {
+    [SerializeField] bool isDark;
     [SerializeField] private int playerHealth;
     [SerializeField] private int maxHealth;
     [SerializeField] private Text healthText;
@@ -21,6 +22,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private Transform spawn;
 
     public Vector2 facingDir;
+    private GameObject light;
 
     public Vector2 FacingDir
     {
@@ -33,13 +35,16 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Awake() {
         InitializeSingleton();
+
     }
 
     private void Start()
     {
+        light = this.transform.GetChild(1).gameObject;
         facingDir = Vector2.down;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        light.SetActive(isDark);
         playerHealth = maxHealth;
     }
 
@@ -47,7 +52,7 @@ public class PlayerController : Singleton<PlayerController>
         if (canMove) {
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }
-        healthText.text = "Health: " + playerHealth;
+        //healthText.text = "Health: " + playerHealth;
     }
 
     private void OnMove(InputValue movementValue) {

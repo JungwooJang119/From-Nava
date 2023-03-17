@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 //Handle input and movement on Player
 public class PlayerController : Singleton<PlayerController>
 {
+    [SerializeField] bool isDark;
     [SerializeField] private float speed = 7f;
     private Vector2 movement;
     private Rigidbody2D rb;
@@ -15,6 +16,7 @@ public class PlayerController : Singleton<PlayerController>
     public Transform castPoint;
 
     public Vector2 facingDir;
+    private GameObject light;
 
     public Vector2 FacingDir
     {
@@ -25,13 +27,16 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Awake() {
         InitializeSingleton();
+
     }
 
     private void Start()
     {
+        light = this.transform.GetChild(1).gameObject;
         facingDir = Vector2.down;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        light.SetActive(isDark);
     }
 
     private void FixedUpdate() {

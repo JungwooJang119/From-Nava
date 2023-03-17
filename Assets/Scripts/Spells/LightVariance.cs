@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LightVariance : MonoBehaviour
 {
+    [SerializeField] float baseLight;
     private UnityEngine.Rendering.Universal.Light2D light;
     private float offset;
     // Start is called before the first frame update
@@ -19,6 +20,6 @@ public class LightVariance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        light.intensity = Mathf.PingPong(offset + Time.time / 4, 0.1f) + 0.35f;
+        light.intensity = Mathf.PingPong(offset + Time.time / 4, 0.1f) + baseLight;
     }
 }

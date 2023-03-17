@@ -11676,6 +11676,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7257062049063242861, guid: 2c846db8616a7644287af38547484ea6, type: 3}
+      propertyPath: isDark
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7257062049063242862, guid: 2c846db8616a7644287af38547484ea6, type: 3}
       propertyPath: m_Name
       value: Player

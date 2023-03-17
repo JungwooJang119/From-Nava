@@ -5,23 +5,17 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     public SpellScriptObj spell;
-    //[SerializeField] private LogicScript logicScript;
-    [SerializeField] private Collider2D collider;
+    [SerializeField] private LogicScript logicScript;
+    [SerializeField] private CircleCollider2D circleCollider;
     [SerializeField] private Rigidbody2D rb;
 
-    [SerializeField]private Vector3 rotate;
+    [SerializeField]private Vector2 direction;
     [SerializeField]private bool spellActive = false;
-
-    public Vector2 direction;
-
 
     private void Awake()
     {
-
-        transform.Rotate(rotate);
-
-        collider = GetComponent<Collider2D>();
-        collider.isTrigger = true;
+        circleCollider = GetComponent<CircleCollider2D>();
+        // circleCollider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
@@ -37,20 +31,11 @@ public class Spell : MonoBehaviour
 
     private void MoveSpell()
     {
-        transform.Translate(Vector3.up * spell.speed * Time.deltaTime);
+        transform.Translate(direction * spell.speed * Time.deltaTime);
     }
 
     public virtual void CastSpell(Vector2 dir) {
         direction = dir;
-        if(dir.x < 0)
-            rotate = new Vector3(0, 0, 90);
-        if (dir.x > 0)
-            rotate = new Vector3(0, 0, -90);
-        if (dir.y > 0)
-            rotate = new Vector3(0, 0, 0);
-        if (dir.y < 0)
-            rotate = new Vector3(0, 0, 180);
-
         spellActive = true;
     }
 
@@ -62,10 +47,8 @@ public class Spell : MonoBehaviour
     {
         //Apply hit particle effects, sfx, spell effects\
         if(other.gameObject.CompareTag("Enemy")) {
-            print("YESSSSSSSSSSSSSSSSSSSS Hit");
             Enemy enemyHealth = other.GetComponent<Enemy>();
             enemyHealth.TakeDamage(spell.damageAmt);
-            Destroy(this.gameObject);
         }
 
 

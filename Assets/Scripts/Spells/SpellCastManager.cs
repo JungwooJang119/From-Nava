@@ -36,16 +36,15 @@ public class SpellCastManager : MonoBehaviour
 
     private void OnSpellCast(object sender, NotepadLogic.OnSpellCastArgs e)
     {
-        
         if(e.spellType == SpellType.NONE)
         {
             return;
         }
-        Vector2 face = new Vector2(PlayerController.Instance.FacingDir.x, PlayerController.Instance.FacingDir.y);
+
         Spell spell = spellDict[e.spellType];
         
-        spell.CastSpell(face);
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
+        spell.CastSpell(PlayerController.Instance.FacingDir);
     }
 
 }
@@ -54,7 +53,5 @@ public class SpellCastManager : MonoBehaviour
 public enum SpellType {
     FIREBALL,
     CHAIR,
-    ICEBALL,
-    WINDBLAST,
     NONE
 }

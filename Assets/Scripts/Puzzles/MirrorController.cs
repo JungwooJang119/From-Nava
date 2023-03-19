@@ -40,10 +40,5 @@ public class MirrorController : MonoBehaviour
 				_transition.FadeIn();
 			}
 		}
-		// REMOVE WHEN THE PRESSURE PLATE IS IMPLEMENTED;
-		if (Input.GetKeyDown("space")) {
-			pressPlate();
-		}
-		// REMOVE WHEN THE PRESSURE PLATE IS IMPLEMENTED;
 	}
 }

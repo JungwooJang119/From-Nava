@@ -6,7 +6,7 @@ using UnityEngine;
 // of two dummy target objects: OpTargetUp & OpTargetDown, which are set manually on the scene.
 // The sheet changes state when the Options button and the Back button on the sheet are pressed;
 
-public class optionsSheet : MonoBehaviour {
+public class OptionsSheet : MonoBehaviour {
 	int move = 0; // State variable. 1 == Moving Up | -1 == Moving Down | 0 == Not Moving;
 	float speed = 400; // Self-explanatory. Adjustable;
 	public GameObject OpTargetUp; // Fetches a reference to a child

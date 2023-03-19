@@ -12,7 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Carlos/Main Menu.unity
     guid: 1e384e8b0cca00b42a52e8c49ee7b7ad
   - enabled: 1
-    path: Assets/Scenes/Esther/Esther.unity
-    guid: 6e6a4c3053b889e4eb548a72e59a96eb
+    path: Assets/Scenes/Carlos/MirrorTesting.unity
+    guid: d228a4f66f3793c459847472021e44ce
+  - enabled: 1
+    path: Assets/Scenes/Elizabeth/wind blast testing.unity
+    guid: 97a58456d0f5599468b103204f7cc1d0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f7d90a78b7f26184b8a11e6c4a0587b8, type: 2}

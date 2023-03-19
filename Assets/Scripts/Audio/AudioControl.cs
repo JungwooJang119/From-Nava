@@ -1,22 +1,15 @@
 using UnityEngine;
 using System;
 
-// Simple Audio Manager based on Rehope Games' AudioManager and Brackey's AudioManager;
+// Simple Audio Manager inspired by Rehope Games' AudioManager and Brackey's AudioManager;
 
-public class AudioControl : MonoBehaviour {
-    
-    // Instantiates Audio Controller as a singleton;
-    public static AudioControl Instance;
-    
-    // Making the controller persistent;                                    
+public class AudioControl : Singleton<AudioControl> {
+
+    // Employs Travis and Chase's method;                                    
     void Awake() {
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
-    }
+		DontDestroyOnLoad(gameObject);
+		InitializeSingleton(gameObject);
+	}
 
 	// Declaring Audio Sources for music and sfx;
 	public AudioSource _musicSource, _sfxSource;
@@ -45,6 +38,7 @@ public class AudioControl : MonoBehaviour {
 	// Method to play SOUND EFFECTS. Call syntax: AudioControl.Instance.PlaySFX(name);
 	// Takes a string 'name', which corresponds to the name of a sound in sfxSounds[];
 	// Plays the sound requested if found. May be used several times to call multiple sounds;
+	// This version returns the length of the sound played;
 	public float PlaySFX(string name) {
 		Sound sn = Array.Find(sfxSounds, item => item.name == name);
 
@@ -56,6 +50,13 @@ public class AudioControl : MonoBehaviour {
 			Debug.Log("Clip string is wrong");
 			return -1;
 		}
+	}
+
+	// Method to play SOUND EFFECTS. Call syntax: AudioControl.Instance.PlaySFX(name);
+	// Takes a string 'name', which corresponds to the name of a sound in sfxSounds[];
+	// This version returns null, for use in UI elements that only support void methods;
+	public void PlayVoidSFX(string name) {
+		PlaySFX(name);
 	}
 
 	// Method to adjust the music volume. Called from VolumeSliders.cs;

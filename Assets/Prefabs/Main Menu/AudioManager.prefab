@@ -65,7 +65,7 @@ MonoBehaviour:
   - name: Final Shot
     clip: {fileID: 8300000, guid: 0d7cf8d22c88a80499b4fa7bef6074cd, type: 3}
   - name: Receiver Triggered
-    clip: {fileID: 8300000, guid: 08700a9119dc324459ad52acdcf4a0cd, type: 3}
+    clip: {fileID: 8300000, guid: 73100d6b60c546341bb6097eeff548bc, type: 3}
 --- !u!1 &8403224658944174706
 GameObject:
   m_ObjectHideFlags: 0

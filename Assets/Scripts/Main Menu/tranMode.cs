@@ -13,10 +13,11 @@ public class TranMode : MonoBehaviour {
 	// Adjust to length of transition;
 	public float transitionTime = 1f;
 
-	// Method that advances to the next level. Called on Start button. Needs tweaking!
-	public void LoadNext() {
-		AudioControl.Instance._musicSource.Stop(); // Stops music from playing;
-		StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+	// Method that advances to the requested level.
+	// Takes in the index of the level one may want to call.
+	// I reccommend setting up a String reference somewhere once more levels are added.
+	public void LoadNext(int targetLevel) {
+		StartCoroutine(LoadLevel(targetLevel));
 		// Retrieves index of next scene and loads it using LoadLevel() [see below];
 	}
 
@@ -29,6 +30,15 @@ public class TranMode : MonoBehaviour {
 	// Method to fade the screen to black;
 	public float FadeOut() {
 		transition.SetTrigger("FadeOut");
+		return transitionTime;
+	}
+
+	public float DarkenIn() {
+		transition.SetTrigger("DarkenIn");
+		return transitionTime;
+	}
+	public float DarkenOut() {
+		transition.SetTrigger("DarkenOut");
 		return transitionTime;
 	}
 

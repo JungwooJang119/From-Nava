@@ -746,7 +746,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 576623486}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
-          m_MethodName: PlaySFX
+          m_MethodName: PlayVoidSFX
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -762,7 +762,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 576623486}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
-          m_MethodName: PlaySFX
+          m_MethodName: PlayVoidSFX
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -960,13 +960,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 286652541}
-        m_TargetAssemblyTypeName: tranMode, Assembly-CSharp
+        m_TargetAssemblyTypeName: TranMode, Assembly-CSharp
         m_MethodName: LoadNext
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1028,7 +1028,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 576623486}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
-          m_MethodName: PlaySFX
+          m_MethodName: PlayVoidSFX
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1044,7 +1044,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 576623486}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
-          m_MethodName: PlaySFX
+          m_MethodName: PlayVoidSFX
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1620,7 +1620,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 576623486}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
-          m_MethodName: PlaySFX
+          m_MethodName: PlayVoidSFX
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1636,7 +1636,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 576623486}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
-          m_MethodName: PlaySFX
+          m_MethodName: PlayVoidSFX
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1939,7 +1939,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1184886233}
-        m_TargetAssemblyTypeName: optionsSheet, Assembly-CSharp
+        m_TargetAssemblyTypeName: OptionsSheet, Assembly-CSharp
         m_MethodName: PullOptions
         m_Mode: 1
         m_Arguments:
@@ -2007,7 +2007,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 576623486}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
-          m_MethodName: PlaySFX
+          m_MethodName: PlayVoidSFX
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2023,7 +2023,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 576623486}
           m_TargetAssemblyTypeName: AudioControl, Assembly-CSharp
-          m_MethodName: PlaySFX
+          m_MethodName: PlayVoidSFX
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

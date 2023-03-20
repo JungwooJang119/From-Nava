@@ -23,10 +23,20 @@ public class FireGoombaController : MonoBehaviour
     public float changeTime;
     private float lastChangeTime;
 
+    private Enemy enemy;
+
+    
+    Transform t;
+    public float fixedRotation = 0;
+
+
     private void Start()
     {
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        enemy = GetComponent<Enemy>();
         lastChangeTime = 0f;
         NewDirection();
+        t = transform;
     }
 
     private void NewDirection()
@@ -38,40 +48,40 @@ public class FireGoombaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) < maxDistance)
-        {
-            if (idle)
-            {
-                idle = false;
-            }
-            if (currFireballTime >= fireballInterval)
-            {
-                Instantiate(fireball, transform.position, Quaternion.identity);
-                currFireballTime = 0;
-            }
-            else
-            {
-                currFireballTime += Time.deltaTime;
-            }
+        t.eulerAngles = new Vector3 (t.eulerAngles.x, fixedRotation, t.eulerAngles.z);
+        if(!enemy.GetPushed()){
+            if (Vector2.Distance(transform.position, player.position) < maxDistance) {
+                if (idle) {
+                    idle = false;
+                }
+                if (currFireballTime >= fireballInterval) {
+                    Instantiate(fireball, transform.position, Quaternion.identity);
+                    currFireballTime = 0;
+                } else {
+                    currFireballTime += Time.deltaTime;
+                }
 
-            if (Vector2.Distance(transform.position, player.position) > minDistance)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, player.position) > minDistance) {
+                    transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+                }
+            } else {
+                if (!idle) {
+                    idle = true;
+                    NewDirection();
+                }
+                if (Time.time - lastChangeTime > changeTime) {
+                    lastChangeTime = Time.time;
+                    NewDirection();
+                }
+                transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
             }
+        } else {
+            enemy.PushTranslate();
         }
-        else
-        {
-            if (!idle)
-            {
-                idle = true;
-                NewDirection();
-            }
-            if (Time.time - lastChangeTime > changeTime)
-            {
-                lastChangeTime = Time.time;
-                NewDirection();
-            }
-            transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
-        }
+    }
+
+    private void OnCollisionStay2D(UnityEngine.Collision2D collision)
+    {
+        NewDirection();
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 797491692293421796}
   - component: {fileID: 797491692293421799}
   - component: {fileID: 797491692293421798}
+  - component: {fileID: 7816608974960025993}
   m_Layer: 0
   m_Name: FireballGoomba
   m_TagString: Enemy
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: b9259c453a319ff418a523188dee4e16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009731986, y: 0.02742374}
+  m_Offset: {x: 0.006932467, y: 0.035822272}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31097513, y: 0.3460505}
+  m_Size: {x: 0.2493859, y: 0.25646615}
   m_EdgeRadius: 0
 --- !u!114 &797491692293421799
 MonoBehaviour:
@@ -139,9 +140,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  target: {fileID: 0}
+  player: {fileID: 0}
   minDistance: 4
-  fireball: {fileID: 5536333251357887935, guid: 0a7760efa4ab4114183100633603ad5e, type: 3}
+  maxDistance: 8
+  fireball: {fileID: 5536333251357887935, guid: 35fc593afbb361645b7f2b23f3daec1f, type: 3}
   fireballInterval: 2
   currFireballTime: 0
   hasFired: 0
+  idle: 0
+  changeTime: 3
+  fixedRotation: 5
+--- !u!50 &7816608974960025993
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797491692293421795}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDrag: 100
+  m_AngularDrag: 100
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

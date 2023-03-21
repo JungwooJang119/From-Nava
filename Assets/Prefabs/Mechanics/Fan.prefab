@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4843958692206039546}
   - component: {fileID: 2960176134901193444}
   - component: {fileID: 6627747348528755485}
-  - component: {fileID: 3335794467682412722}
   - component: {fileID: 3397630120327917184}
+  - component: {fileID: 3739586797226066425}
   m_Layer: 0
   m_Name: Fan
   m_TagString: Fan
@@ -113,20 +113,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3335794467682412722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802109401563386896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14b1a554318cafb48b023207ae7b2db1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windIncrement: 10
-  animator: {fileID: 0}
 --- !u!95 &3397630120327917184
 Animator:
   serializedVersion: 4
@@ -147,3 +133,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3739586797226066425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802109401563386896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e68c8f41e722944bb30667187018e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windIncrement: 5
+  animator: {fileID: 3397630120327917184}

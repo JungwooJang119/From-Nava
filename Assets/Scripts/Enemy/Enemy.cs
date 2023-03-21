@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 50f;
+    [SerializeField] private bool isIceTower;
     private float currHealth;
 
     private bool isPushed;
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
     {
         currHealth = maxHealth;
         isPushed = false;
+        isIceTower = false;
     }
 
     public void TakeDamage(float damage) {
@@ -48,5 +50,12 @@ public class Enemy : MonoBehaviour
 
     public bool GetPushed() {
         return isPushed;
+    }
+
+    void OnMeleeHit(float meleeDamage) {
+        if (isIceTower) {
+            return;
+        }
+        TakeDamage(meleeDamage);
     }
 }

@@ -32,6 +32,7 @@ public class PlayerController : Singleton<PlayerController>
     private Animator animator;
 
     private bool canMove = true;
+    private bool canChangeDir = true;
 
     private void Awake() {
         InitializeSingleton();
@@ -46,6 +47,8 @@ public class PlayerController : Singleton<PlayerController>
         animator = GetComponent<Animator>();
         light.SetActive(isDark);
         playerHealth = maxHealth;
+        canMove = true;
+        canChangeDir = true;
     }
 
     private void FixedUpdate() {
@@ -62,6 +65,9 @@ public class PlayerController : Singleton<PlayerController>
 
     private void ChooseFacingDir ()
     {
+        if (canChangeDir == false) {
+            return;
+        }
         if(movement.x > 0)
             facingDir = Vector2.right;
         if(movement.x < 0)
@@ -95,15 +101,33 @@ public class PlayerController : Singleton<PlayerController>
 
     public void TakeDamage(int damage) {
         playerHealth -= damage;
-        print(playerHealth);
     }
 
     IEnumerator Die() {
         canMove = false;
+        canChangeDir = false;
         yield return new WaitForSeconds(1f);
         canMove = true;
+        canChangeDir = true;
         transform.position = spawn.transform.position;
         playerHealth = maxHealth;
+    }
+
+    void OnMelee() {
+        canMove = false;
+        canChangeDir = false;
+        animator.SetTrigger("doMelee");
+    }
+
+    void ActivateMovement() {
+        canMove = true;
+        canChangeDir = true;
+        ChooseFacingDir();
+    }
+
+    void DeactivateMovement() {
+        canMove = false;
+        canChangeDir = false;
     }
 }
 

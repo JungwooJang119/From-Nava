@@ -22,7 +22,6 @@ public class NotepadNumpadInput : NotepadInput
             {7, KeyCode.Keypad1},
             {8, KeyCode.Keypad2},
             {9, KeyCode.Keypad3},
-            {0, KeyCode.Keypad0},
         };
         KeyCode key = keyMap[nodeNum];
         if (Input.GetKeyDown(key))

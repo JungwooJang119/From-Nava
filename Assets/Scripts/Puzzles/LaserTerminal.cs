@@ -20,6 +20,7 @@ public class LaserTerminal : MonoBehaviour
 	public Sprite sprComputerOn;
 	public Sprite sprComputerRight;
 	public Sprite sprComputerWrong;
+	public GameObject buttonTutorial;
 
 	// Variables for camera transition
 	public string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
@@ -27,9 +28,12 @@ public class LaserTerminal : MonoBehaviour
 	public GameObject _cameraTarget;				// The target the camera will move towards.
 	private Transform _returnToPlayer;				// Stores the original follow that the camera shall return to.
 
-	// Variables to calculate whether the player is in range, following Grace's script;
+	// Variables to react to the player in range;
 	private Transform _player;
-	private float _currentDistance;
+	private GameObject _tutInstance;
+	private ButtonTutorial _tutScript;
+
+	private string _intKey = "space";				// Keycode of the key used for interactions;
 
 	void Start() {
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -37,18 +41,28 @@ public class LaserTerminal : MonoBehaviour
 		_returnToPlayer = _virtualCamera.Follow;
 	}
 
-	// Utilizes Grace's Text Pop Script to check if the player is in range for interaction;
+	// Checks if the player is in range to interact, inspired by Grace's script;
 	void Update() {
-		if ((Input.GetKeyDown(KeyCode.Space)) && canTrigger) {
-			// Checks if player is near the object
-			_currentDistance = ((Vector2)_player.position - (Vector2)transform.position).magnitude;
-			// If the player is in range of the object
-			if (_currentDistance < range) {
+		if (((Vector2)_player.position - (Vector2)transform.position).magnitude < range && canTrigger) {
+			if (_tutInstance == null) {
+				_tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
+				_tutScript = _tutInstance.GetComponent<ButtonTutorial>();
+				_tutScript.keyToPress = _intKey;
+				_tutScript.parent = gameObject;
+			} else {
+				_tutScript.CancelFade();
+			}
+			if (Input.GetKeyDown(_intKey)) {
+				if (_tutInstance != null) {
+					_tutScript.Fade();
+				}
 				spriteRenderer.sprite = sprComputerOn;
 				AudioControl.Instance.PlaySFX("Computer On");
 				canTrigger = false;
 				StartCoroutine(CameraTransitionIn());
 			}
+		} else if (_tutInstance) {
+			_tutScript.Fade();
 		}
 	}
 

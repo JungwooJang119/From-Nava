@@ -6,17 +6,18 @@ using UnityEngine.SceneManagement;
 // Basic transition manager. For use in Main Menu buttons and scene transitions later on.
 // Started from a Brackey's tutorial, but has been heavily modified since;
 
-public class TranMode : MonoBehaviour {
+public class tranMode : MonoBehaviour {
 	// Declaring animator object;
 	public Animator transition;
 
 	// Adjust to length of transition;
 	public float transitionTime = 1f;
 
-	// Method that advances to the next level. Called on Start button. Needs tweaking!
-	public void LoadNext() {
-		AudioControl.Instance._musicSource.Stop(); // Stops music from playing;
-		StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+	// Method that advances to the requested level.
+	// Takes in the index of the level one may want to call.
+	// I reccommend setting up a String reference somewhere once more levels are added.
+	public void LoadNext(int targetLevel) {
+		StartCoroutine(LoadLevel(targetLevel));
 		// Retrieves index of next scene and loads it using LoadLevel() [see below];
 	}
 
@@ -29,6 +30,15 @@ public class TranMode : MonoBehaviour {
 	// Method to fade the screen to black;
 	public float FadeOut() {
 		transition.SetTrigger("FadeOut");
+		return transitionTime;
+	}
+
+	public float DarkenIn() {
+		transition.SetTrigger("DarkenIn");
+		return transitionTime;
+	}
+	public float DarkenOut() {
+		transition.SetTrigger("DarkenOut");
 		return transitionTime;
 	}
 
@@ -46,11 +56,11 @@ public class TranMode : MonoBehaviour {
 
 	// Method to quit the game. Called on Quit button. Exits play mode if testing;
 	public void Quit() {
-		#if UNITY_STANDALONE
+#if UNITY_STANDALONE
 						Application.Quit();
-		#endif
-		#if UNITY_EDITOR
+#endif
+#if UNITY_EDITOR
 						UnityEditor.EditorApplication.isPlaying = false;
-		#endif
+#endif
 	}
 }

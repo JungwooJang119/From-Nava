@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 7505808742388658240}
   - component: {fileID: 7505808742388658243}
   - component: {fileID: 7505808742388658246}
+  - component: {fileID: 5521939385717775060}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -375,6 +376,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5521939385717775060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505808742388658253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7505808742388658243}
+          m_TargetAssemblyTypeName: NotepadNodeInput, Assembly-CSharp
+          m_MethodName: OnHoverButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7505808742539845046
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7505808743007511668}
   - component: {fileID: 7505808743007511669}
+  - component: {fileID: 671610269773706038}
   m_Layer: 5
   m_Name: Node
   m_TagString: Untagged
@@ -511,3 +542,16 @@ MonoBehaviour:
   selected: {fileID: 1477536260259177056}
   goodOutline: {fileID: 1477536258996332246}
   badOutline: {fileID: 1477536259667455670}
+--- !u!114 &671610269773706038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505808743007511671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c74289192b6db47bd4afd58dba0418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeNum: 0

@@ -55,14 +55,15 @@ public class NotepadLogic : Singleton<NotepadLogic>
     }
 
     private void OnInputPress(object sender, int inputNum) {
-        if(!activePattern && inputNum == startNode && !activeLineAnimation) 
+        if(!activePattern && inputNum == startNode && !activeLineAnimation) {
             StartPattern();
-        
-        else if(activePattern && inputNum == endNode)
+        }
+        else if(activePattern && inputNum == endNode) {
             EndPattern();
-
-        else if(activePattern && !pattern.Contains(inputNum))
+        }
+        else if(activePattern && !pattern.Contains(inputNum)) {
             AddToPattern(inputNum);
+        }
         else {
             //invalid input: active node, non-start node on inactive pattern, etc
             //handle at will

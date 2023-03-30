@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5536333251357887921}
   - component: {fileID: 2504988577467306665}
   - component: {fileID: 2205599073910431893}
+  - component: {fileID: 3540743393763083534}
   m_Layer: 0
   m_Name: FireCirclePrefab
   m_TagString: Enemy
@@ -141,3 +142,23 @@ MonoBehaviour:
   speed: 5
   damage: 1
   hasParticles: 0
+--- !u!95 &3540743393763083534
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536333251357887935}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b01b6d442c1f6134f979d50eec43f288, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

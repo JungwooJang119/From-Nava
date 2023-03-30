@@ -55,7 +55,7 @@ public class PlayerController : Singleton<PlayerController>
         if (canMove) {
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }
-        //healthText.text = "Health: " + playerHealth;
+        healthText.text = "Health: " + playerHealth;
     }
 
     private void OnMove(InputValue movementValue) {

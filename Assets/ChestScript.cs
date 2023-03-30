@@ -60,6 +60,6 @@ public class ChestScript : MonoBehaviour
         yield return new WaitForSeconds(4.0f);
         spellNotif.SetActive(false);
         animator.SetBool("OpeningChest", false);
-        Destroy(door);
+        door.GetComponent<Door>().OpenDoor();
     }
 }

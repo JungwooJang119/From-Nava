@@ -23,16 +23,18 @@ public class RoomControlA2 : MonoBehaviour
         if (!isClear) {
             foreach (Firewood_Script _firewood in _firewoods) {
                 if (!_firewood.isLit) { _canClear = false; break; }
-                if (_canClear) {
-                    A2Chest.SetActive(true);
-                    //spellNotif.SetActive(true);
-                    StartCoroutine(DurationTime());
-                    isClear = true;
-                    Destroy(this.gameObject);
-                }
-                _canClear = true;
             }
-            if (cheat) {
+
+			if (_canClear) {
+				A2Chest.SetActive(true);
+				//spellNotif.SetActive(true);
+				StartCoroutine(DurationTime());
+				isClear = true;
+				Destroy(this.gameObject);
+			}
+			_canClear = true;
+
+			if (cheat) {
                 A2Chest.SetActive(true);
                 //spellNotif.SetActive(true);
                 //StartCoroutine(DurationTime());

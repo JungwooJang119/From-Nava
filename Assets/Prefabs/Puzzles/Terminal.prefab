@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b08da3c9e3045f4ebb9d47e591da054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1500
+  speed: 2500
   laserBeam: {fileID: 6035789586068013446, guid: f7a98a35270fdef4b9a29377d2c50dd5, type: 3}
   laserWave: {fileID: 4136213416314475750, guid: d0ba8aeb5b373bf499b5dfcab14dff58, type: 3}
   laserParticles: {fileID: 5019274892667672986, guid: bad25e54763ed454cbec0116e9ce8ed9, type: 3}

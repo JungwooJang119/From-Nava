@@ -10,6 +10,9 @@ TagManager:
   - Receiver
   - Fan
   - Chair
+  - PanCamera
+  - Firewood
+  - Spell
   layers:
   - Default
   - TransparentFX

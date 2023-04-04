@@ -12,6 +12,7 @@ public class Spell : MonoBehaviour
     [SerializeField]private Vector3 rotate;
     [SerializeField]private bool spellActive = false;
     [SerializeField] private bool isChair = false;
+    [SerializeField] private bool isWind = false;
     [SerializeField] private bool isPiplup = false;
 
     public Vector2 direction;
@@ -63,15 +64,28 @@ public class Spell : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Player")) {
+            return;
+        }
+
+        if (isChair || isPiplup) {
+            return;
+        }
+
+        if (isWind) {
+            if (other.gameObject.CompareTag("Walls")) {
+                Destroy(this.gameObject);
+            } else {
+                return;
+            }
+        }
+
         //Apply hit particle effects, sfx, spell effects\
         if(other.gameObject.CompareTag("Enemy")) {
-            print("YESSSSSSSSSSSSSSSSSSSS Hit");
             Enemy enemyHealth = other.GetComponent<Enemy>();
             enemyHealth.TakeDamage(spell.damageAmt);
             Destroy(this.gameObject);
         }
-
-
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }

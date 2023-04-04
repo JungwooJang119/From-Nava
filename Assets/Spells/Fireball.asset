@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaCost: 5
   speed: 15
-  damageAmt: 10
+  damageAmt: 5
   lifetime: 2

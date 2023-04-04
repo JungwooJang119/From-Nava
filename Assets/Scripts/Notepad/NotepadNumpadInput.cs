@@ -12,6 +12,7 @@ public class NotepadNumpadInput : NotepadInput
     {
         // we need to remap the keycodes because the numpad starts from the top left
         // of the keypad while the numbers start from the bottom left.
+        
         Dictionary<int, KeyCode> keyMap = new Dictionary<int, KeyCode>() {
             {1, KeyCode.Keypad7},
             {2, KeyCode.Keypad8},

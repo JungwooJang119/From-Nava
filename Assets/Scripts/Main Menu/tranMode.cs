@@ -16,9 +16,8 @@ public class tranMode : MonoBehaviour {
 	// Method that advances to the requested level.
 	// Takes in the index of the level one may want to call.
 	// I reccommend setting up a String reference somewhere once more levels are added.
-	public void LoadNext(int targetLevel) {
-		StartCoroutine(LoadLevel(targetLevel));
-		// Retrieves index of next scene and loads it using LoadLevel() [see below];
+	public void StartGame() {
+		StartCoroutine(LoadLevel());
 	}
 
 	// Method to fade the screen back in;
@@ -43,7 +42,7 @@ public class tranMode : MonoBehaviour {
 	}
 
 	// Coroutine for scene loading;
-	IEnumerator LoadLevel(int levelIndex) {
+	IEnumerator LoadLevel() {
 		//Play animation;
 		transition.SetTrigger("FadeOut");
 
@@ -51,7 +50,7 @@ public class tranMode : MonoBehaviour {
 		yield return new WaitForSeconds(transitionTime);
 
 		//Load Scene;
-		SceneManager.LoadScene(levelIndex);
+		SceneManager.LoadScene(1);
 	}
 
 	// Method to quit the game. Called on Quit button. Exits play mode if testing;

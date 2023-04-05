@@ -5,30 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
-    [SerializeField] private GameObject spellNotif;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private GameObject[] _firewoodControllers;
+    [SerializeField] private GameObject[] _mirrorControllers;
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Spell") {
             return;
         }
-        print("Reset");
-        StartCoroutine(TextPopUp());
-    }
-
-    IEnumerator TextPopUp() {
-        spellNotif.SetActive(true);
-        yield return new WaitForSeconds(4.0f);
-        spellNotif.SetActive(false);
-    }
+        foreach (GameObject firewoodPar in _firewoodControllers) {
+            if (firewoodPar != null) {
+                firewoodPar.GetComponent<FirewoodController>().PressPlate();
+            }
+		}
+		foreach (GameObject mirrorPar in _mirrorControllers) {
+			if (mirrorPar != null) {
+				mirrorPar.GetComponent<MirrorController>().PressPlate();
+			}
+		}
+	}
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Enemy : MonoBehaviour
     private float pushDist;
     private float pushSpd;
     private Vector3 pushDir;
+
+    public UnityEvent onMeleeHit;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -57,5 +60,6 @@ public class Enemy : MonoBehaviour
             return;
         }
         TakeDamage(meleeDamage);
+        onMeleeHit?.Invoke();
     }
 }

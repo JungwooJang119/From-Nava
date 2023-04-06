@@ -16090,7 +16090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64aa57bddfd7464996c76ecc4c38e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellNotif: {fileID: 1036337953}
+  _firewoodControllers: []
+  _mirrorControllers: []
 --- !u!1 &308414373 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6088861161274278674, guid: 5b1664d7eadcaab489372d905d56f02e, type: 3}
@@ -81808,31 +81809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5791d00c58aeb6141a5ed566ee1a5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firewood1: {fileID: 1715369005}
-  firewood2: {fileID: 1505350890}
-  firewood3: {fileID: 1179744983}
-  firewood4: {fileID: 1086181084}
-  firewood5: {fileID: 1438078458}
-  firewood6: {fileID: 1119798562}
-  firewood7: {fileID: 259295328}
-  firewood8: {fileID: 563178620}
-  firewood9: {fileID: 1315370289}
-  firewood10: {fileID: 2051386890}
-  firewood11: {fileID: 1373183658}
-  firewood12: {fileID: 2072083041}
-  firewood13: {fileID: 45598557}
-  firewood14: {fileID: 1440029951}
-  firewood15: {fileID: 1289774241}
-  firewood16: {fileID: 1019370798}
-  firewood17: {fileID: 7596228}
-  firewood18: {fileID: 2101096145}
-  firewood19: {fileID: 842438843}
-  firewood20: {fileID: 481532158}
-  firewood21: {fileID: 60388964}
-  firewood22: {fileID: 533695072}
-  firewood23: {fileID: 431630946}
-  firewood24: {fileID: 432944579}
-  firewood25: {fileID: 1370245832}
+  firewoodController: {fileID: 0}
   isClear: 0
   A2Chest: {fileID: 63654252}
   cheat: 0

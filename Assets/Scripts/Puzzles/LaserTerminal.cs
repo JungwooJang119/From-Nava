@@ -13,29 +13,30 @@ using Cinemachine;
 
 public class LaserTerminal : MonoBehaviour
 {
-	public float range;						// How far can the player be from the terminal to trigger it;
-	public GameObject laserCaster;          // Laser Caster that with which this terminal communicates. Must be set on the inspector;
-	public bool canTrigger = true;			// Whether the terminal is interactable;
-	public SpriteRenderer spriteRenderer;	// Sprite rendering variables (to change the look of the terminal);
-	public Sprite sprComputerOn;
-	public Sprite sprComputerRight;
-	public Sprite sprComputerWrong;
-	public GameObject buttonTutorial;
+	[SerializeField] private float range;				// How far can the player be from the terminal to trigger it;
+	[SerializeField] private GameObject laserCaster;	// Laser Caster that with which this terminal communicates. Must be set on the inspector;
+	[SerializeField] private bool canTrigger = true;	// Whether the terminal is interactable;
+	[SerializeField] private Sprite sprComputerOn;
+	[SerializeField] private Sprite sprComputerRight;
+	[SerializeField] private Sprite sprComputerWrong;
+	[SerializeField] private GameObject buttonTutorial;
 
 	// Variables for camera transition
-	public string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
+	[SerializeField] private string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
 	private CinemachineVirtualCamera _virtualCamera;
-	public GameObject _cameraTarget;				// The target the camera will move towards.
-	private Transform _returnToPlayer;				// Stores the original follow that the camera shall return to.
+	[SerializeField] private GameObject _cameraTarget;				// The target the camera will move towards.
+	private Transform _returnToPlayer;								// Stores the original follow that the camera shall return to.
 
 	// Variables to react to the player in range;
 	private Transform _player;
 	private GameObject _tutInstance;
 	private ButtonTutorial _tutScript;
 
+	private SpriteRenderer _spriteRenderer;			// Sprite Renderer reference;
 	private string _intKey = "space";				// Keycode of the key used for interactions;
 
 	void Start() {
+		_spriteRenderer = GetComponent<SpriteRenderer>();
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		_virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
 		_returnToPlayer = _virtualCamera.Follow;
@@ -56,7 +57,7 @@ public class LaserTerminal : MonoBehaviour
 				if (_tutInstance != null) {
 					_tutScript.Fade();
 				}
-				spriteRenderer.sprite = sprComputerOn;
+				_spriteRenderer.sprite = sprComputerOn;
 				AudioControl.Instance.PlaySFX("Computer On");
 				canTrigger = false;
 				StartCoroutine(CameraTransitionIn());
@@ -77,7 +78,7 @@ public class LaserTerminal : MonoBehaviour
 	// Coroutine to transition back if the puzzle is successful;
 	IEnumerator CameraTransitionOutGood() {
 		yield return new WaitForSeconds(0.5f);
-		spriteRenderer.sprite = sprComputerRight;
+		_spriteRenderer.sprite = sprComputerRight;
 		AudioControl.Instance.PlaySFX("Computer Right");
 		canTrigger = true;
 	}
@@ -85,7 +86,7 @@ public class LaserTerminal : MonoBehaviour
 	// Coroutine to transition back if the puzzle fails;
 	IEnumerator CameraTransitionOutBad() {
 		yield return new WaitForSeconds(0.5f);
-		spriteRenderer.sprite = sprComputerWrong;
+		_spriteRenderer.sprite = sprComputerWrong;
 		AudioControl.Instance.PlaySFX("Computer Wrong");
 		canTrigger = true;
 	}

@@ -98,7 +98,7 @@ public class Firewood_Script : MonoBehaviour
         //}
     }
 
-    void ChangeLit() {
+    public void ChangeLit() {
         if (isLit) {
             render.sprite = unlitSprite;
             isLit = false;

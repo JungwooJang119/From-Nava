@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9b31e958d08b1cd4b8a1167d48493152
+guid: 72a72f48182759e49a84d2d4471779cd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nava_melee_0
+      name: big_attack_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 144
-        width: 48
-        height: 48
+        y: 288
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,41 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7e584e9d4f25c84e95befc23ef3910e
-      internalID: 828145703
+      spriteID: 68c5d16a8e29fd64d9e74ba0eefd3566
+      internalID: -846876487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 144
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca1ec4907db98e54e80dbce06cbf7cb0
-      internalID: -1981044565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_2
+      name: big_attack_1
       rect:
         serializedVersion: 2
         x: 96
-        y: 144
-        width: 48
-        height: 48
+        y: 288
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,41 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1fc25726922796459f9129ef1a81840
-      internalID: -2041241742
+      spriteID: a1b85f6115abff84d8798e4d2ac67ab0
+      internalID: -1068703872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 144
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28561e41fa84719449d14cb8a6e760b0
-      internalID: 1601905291
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_4
+      name: big_attack_2
       rect:
         serializedVersion: 2
         x: 192
-        y: 144
-        width: 48
-        height: 48
+        y: 288
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,41 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 098efeb5d52115d428110b569216050e
-      internalID: 348892166
+      spriteID: fb05630e83892784f96502489c3c5b6a
+      internalID: 545020313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 144
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f0a2a53281ab314fbdc1351d5324112
-      internalID: 1964403830
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_6
+      name: big_attack_3
       rect:
         serializedVersion: 2
         x: 288
-        y: 144
-        width: 48
-        height: 48
+        y: 288
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dfc231f41830c0459060566f143f599
-      internalID: -742883278
+      spriteID: 1433cf4a909bde744a4843bdfc0df9be
+      internalID: -2113079841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_7
+      name: big_attack_4
       rect:
         serializedVersion: 2
-        x: 336
-        y: 144
-        width: 48
-        height: 48
+        x: 384
+        y: 288
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,20 +203,209 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1349c0b97e950214aa90820b2fccea18
-      internalID: 1391808362
+      spriteID: 50b5ee8dbd1ef5244a37e7d179c9734a
+      internalID: 1112535529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_8
+      name: big_attack_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20c81bc57d88c2c4cabde174986a9efa
+      internalID: 5547144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50d89b8e887755c41b0723a0c53b352e
+      internalID: -177099800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9f9e950cd8a9fa4ba33b582526bb998
+      internalID: 2037303260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a3f600e8ffb0144835f30e2f544d58
+      internalID: 830638505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e1620a00f5c2ef45b56533a8287888a
+      internalID: 1964149920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_10
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08bc8b11cac398247a344c91d369941d
+      internalID: -866331550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c37c46ce04c5b47909fd9ce34adb42
+      internalID: -1429549027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b62c2f7ddf0fcb46949d0b09c1b9c1a
+      internalID: 1710220685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_13
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13c915048d82d254fa6462075a13f6f3
+      internalID: 142864595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_14
       rect:
         serializedVersion: 2
         x: 0
         y: 96
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,41 +413,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12fb5e473cf734940a41cfa499bab15b
-      internalID: -695697497
+      spriteID: 7f75a1950c51f074f8a8b8321c55dbe2
+      internalID: 106040193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_9
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 96
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1adb09598edf34e4db436ba8f51d0f8f
-      internalID: 1085654227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_10
+      name: big_attack_15
       rect:
         serializedVersion: 2
         x: 96
         y: 96
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -329,20 +434,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1137d3df839524f4b9cbd3a4b990b10e
-      internalID: 750819433
+      spriteID: b933950c6a0a31845b4720e1be41ced8
+      internalID: -1447903045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_12
+      name: big_attack_16
       rect:
         serializedVersion: 2
         x: 192
         y: 96
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -350,41 +455,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26883899c296d414fbebe73bc8b620dc
-      internalID: 580676321
+      spriteID: e9ea4fb3150f81b43b026c4170752223
+      internalID: -646726017
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_13
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 96
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b1b35d5db34cd8c4aa340358891b8385
-      internalID: 456054718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_14
+      name: big_attack_17
       rect:
         serializedVersion: 2
         x: 288
         y: 96
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -392,20 +476,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 101e192f656fccd459c9dd9fdbb26988
-      internalID: -2114744001
+      spriteID: d7641878cf2e2bb4c97fa91de9f9388d
+      internalID: 1007642311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_15
+      name: big_attack_18
       rect:
         serializedVersion: 2
-        x: 336
+        x: 384
         y: 96
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -413,20 +497,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f739015ceb943d4d8e4ea2d35e05df1
-      internalID: -409928167
+      spriteID: 7bd5cc41218eea94386fc77a4cb5946d
+      internalID: 193294474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_16
+      name: big_attack_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
-        width: 48
-        height: 48
+        x: 480
+        y: 96
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -434,20 +518,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1003fb231c34bee4bb255755c9f7d1da
-      internalID: 1309644583
+      spriteID: a9ee30eecd4d6b7488cd2275c5147180
+      internalID: -503298950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_17
+      name: big_attack_20
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
-        width: 48
-        height: 48
+        x: 576
+        y: 96
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -455,146 +539,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35e2f0e1e815a9841a167460b547d74a
-      internalID: 1166650799
+      spriteID: 2df7e367e73d957438a03d744f3b9ba4
+      internalID: -1112066833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_18
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f4c2a1a0cb4703b46b21bc5dcf038e67
-      internalID: 413641789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_19
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88947a4fa0d72d945b67255ca63db44e
-      internalID: 426196073
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_20
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bdc78141005a54a4d890b2eb08d44bdd
-      internalID: -1628285434
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_21
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed330f96845c4184bae3ef3d840e24a9
-      internalID: 1275543985
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_22
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 55b08d5126478c94fbc8d4a857baba1f
-      internalID: -1421448579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_23
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 058a93ed297a6ce4e8d75311d50fd8c5
-      internalID: 1661360217
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_24
+      name: big_attack_21
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -602,41 +560,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2e987c63c75ac1459783e6b6d46b209
-      internalID: 2127334269
+      spriteID: 4cfa57fc88cb8414cb93213639dbd995
+      internalID: 2003888803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_25
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc2238f5f7dc42843a69b92f342fa64c
-      internalID: -1885222694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_26
+      name: big_attack_22
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -644,41 +581,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e9caa981f4c91341918e7dc052ff932
-      internalID: -401381418
+      spriteID: 36b9af3fe80a9154c90b522f2f14c2ac
+      internalID: 1201705511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_27
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70cbdbd8e5936af4fbc717b6077ebe1e
-      internalID: -108784234
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_28
+      name: big_attack_23
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -686,83 +602,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73cfec99e7bc6724cbbbfd13b22459a0
-      internalID: -1632968830
+      spriteID: d93700741f4b1ea48aab85513df5e0b5
+      internalID: -1896799597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_29
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c0f4698d0a3ee7448b6914ced83649c0
-      internalID: -100179031
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_31
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81afe12924816f842bd749fd6254ede8
-      internalID: 152804006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_11
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 96
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70960f4009fd261459c6a9862d1a37e3
-      internalID: -410291055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nava_melee_30
+      name: big_attack_24
       rect:
         serializedVersion: 2
         x: 288
         y: 0
-        width: 48
-        height: 48
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -770,8 +623,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34fb3a5dcb7926c499b39ac6f7f47b86
-      internalID: -582479427
+      spriteID: 984feac5ff55a1b42b1d8a30a91937fe
+      internalID: -1739237526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_25
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f9bebd01367cd428b5aa90e9c2e93e
+      internalID: 6794253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_26
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6af2f0f9153f904f83ab59c0ba77da5
+      internalID: -1238456212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_attack_27
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21356cf42f639ee4184c75346f9deb8e
+      internalID: 1336880659
       vertices: []
       indices: 
       edges: []
@@ -787,38 +703,34 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      nava_melee_1: -1981044565
-      nava_melee_18: 413641789
-      nava_melee_12: 580676321
-      nava_melee_3: 1601905291
-      nava_melee_30: -582479427
-      nava_melee_10: 750819433
-      nava_melee_22: -1421448579
-      nava_melee_6: -742883278
-      nava_melee_5: 1964403830
-      nava_melee_7: 1391808362
-      nava_melee_9: 1085654227
-      nava_melee_27: -108784234
-      nava_melee_20: -1628285434
-      nava_melee_25: -1885222694
-      nava_melee_15: -409928167
-      nava_melee_11: -410291055
-      nava_melee_26: -401381418
-      nava_melee_2: -2041241742
-      nava_melee_21: 1275543985
-      nava_melee_17: 1166650799
-      nava_melee_23: 1661360217
-      nava_melee_0: 828145703
-      nava_melee_13: 456054718
-      nava_melee_24: 2127334269
-      nava_melee_8: -695697497
-      nava_melee_14: -2114744001
-      nava_melee_31: 152804006
-      nava_melee_28: -1632968830
-      nava_melee_4: 348892166
-      nava_melee_29: -100179031
-      nava_melee_19: 426196073
-      nava_melee_16: 1309644583
+      big_attack_21: 2003888803
+      big_attack_9: 1964149920
+      big_attack_25: 6794253
+      big_attack_0: -846876487
+      big_attack_5: 5547144
+      big_attack_15: -1447903045
+      big_attack_22: 1201705511
+      big_attack_1: -1068703872
+      big_attack_14: 106040193
+      big_attack_6: -177099800
+      big_attack_16: -646726017
+      big_attack_3: -2113079841
+      big_attack_17: 1007642311
+      big_attack_8: 830638505
+      big_attack_7: 2037303260
+      big_attack_12: 1710220685
+      big_attack_20: -1112066833
+      big_attack_23: -1896799597
+      big_attack_4: 1112535529
+      big_attack_24: -1739237526
+      big_attack_26: -1238456212
+      big_attack_2: 545020313
+      big_attack_27: 1336880659
+      big_attack_18: 193294474
+      big_attack_11: -1429549027
+      big_attack_10: -866331550
+      big_attack_19: -503298950
+      big_attack_13: 142864595
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

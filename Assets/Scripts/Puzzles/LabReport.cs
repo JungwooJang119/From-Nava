@@ -7,11 +7,11 @@ using TMPro;
 
 public class LabReport : MonoBehaviour
 {
-	public int reportNumber;			// Number of the report, the script will disable if number is invalid;
-	public float range = 2;             // How far can the player be from the terminal to trigger it;
-	public TextContainer reportSO;      // Reference to the Lab Report Text Container, Do Not Change [please];
-	public GameObject textModel;        // Reference to the text prefab to draw on-screen;
-	public GameObject bottomNote;       // Reference to the button press notice mid-report;
+	[SerializeField] private int reportNumber;          // Number of the report, the script will disable if number is invalid;
+	[SerializeField] private float range = 2;             // How far can the player be from the terminal to trigger it;
+	[SerializeField] private TextContainer reportSO;      // Reference to the Lab Report Text Container, Do Not Change [please];
+	[SerializeField] private GameObject textModel;        // Reference to the text prefab to draw on-screen;
+	[SerializeField] private GameObject bottomNote;       // Reference to the button press notice mid-report;
 
 	private List<string> _strings2Grab;	// List of strings that will be taken from the ScriptableObject;
 	private string _string2Report;		// String that will be grabbed based on the reportNumber;

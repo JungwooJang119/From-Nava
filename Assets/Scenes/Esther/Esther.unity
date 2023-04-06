@@ -11258,10 +11258,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.045924224
+    y: 0.10714285
+    width: 0.27554536
+    height: 0.2755102
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -13033,7 +13033,6 @@ MonoBehaviour:
   maxHealth: 9
   healthText: {fileID: 551475690}
   _spell: {fileID: 8916631681253868026, guid: 0ac82b8b3a613aa498401c42f2846bc2, type: 3}
-  _chairSpell: {fileID: 0}
   castPoint: {fileID: 1807977532}
   iceTower: {fileID: 1296275657}
   maxMagic: 20

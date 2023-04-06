@@ -38,11 +38,15 @@ public class Projectile : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy")) {
             return;
         }
+        if (col.gameObject.CompareTag("IceTower")) {
+            return;
+        }
         if (col.gameObject.CompareTag("Player")) {
             if (hasParticles) {
     			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Destroy(this.gameObject, 0.5f);
                 Instantiate(deathParticles, transform);
+                
             }
             else {
                 Destroy(this.gameObject);

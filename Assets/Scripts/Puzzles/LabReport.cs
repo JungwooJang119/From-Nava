@@ -53,6 +53,8 @@ public class LabReport : MonoBehaviour
 	private GameObject _tutInstance;    // Reference to instantiate text pop-up;
 	private ButtonTutorial _tutScript;	// Reference to instantiated text script;
 
+	public bool unlockRoom = false;
+
 	// Initialize variable references;
 	void Start() {
 		_strings2Grab = new List<string>();
@@ -90,6 +92,7 @@ public class LabReport : MonoBehaviour
 					_tutScript.CancelFade();
 				}
 				if (Input.GetKeyDown(_intKey)) {
+					unlockRoom = true;
 					_state = "FadeOut";
 					_timer = _tranScript.DarkenOut() + 1f;
 					if (_tutInstance != null) {
@@ -243,5 +246,9 @@ public class LabReport : MonoBehaviour
 			return true;
 		}
 		return false;
+	}
+
+	public bool GetUnlockStatus() {
+		return unlockRoom;
 	}
 }

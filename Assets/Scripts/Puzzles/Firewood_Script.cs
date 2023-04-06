@@ -11,6 +11,7 @@ public class Firewood_Script : MonoBehaviour
     private bool checkIfRepeat = false;
     private SpriteRenderer render;
     private GameObject light;
+    private bool defaulLitStatus;
 
     [SerializeField] private GameObject adjFirewood1;
     [SerializeField] private GameObject adjFirewood2;
@@ -26,6 +27,7 @@ public class Firewood_Script : MonoBehaviour
     void Start() {
         render = GetComponent<SpriteRenderer>();
         light = this.transform.GetChild(0).gameObject;
+        defaulLitStatus = isLit;
     }
 
     //activate firelight effect if the firewood is lit
@@ -120,6 +122,14 @@ public class Firewood_Script : MonoBehaviour
                 return;
             }
             prevLitStatus = 1;
+        }
+    }
+
+    public void SetDefaultLit() {
+        if (isLit == defaulLitStatus) {
+            return;
+        } else {
+            ChangeLit();
         }
     }
 }

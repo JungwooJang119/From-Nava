@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 50f;
-    [SerializeField] private bool isIceTower;
+    public bool isIceTower = false;
     private float currHealth;
 
     private bool isPushed;
@@ -23,7 +23,6 @@ public class Enemy : MonoBehaviour
     {
         currHealth = maxHealth;
         isPushed = false;
-        isIceTower = false;
     }
 
     public void TakeDamage(float damage) {

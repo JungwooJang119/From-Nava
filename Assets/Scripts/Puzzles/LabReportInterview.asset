@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db1bda11ffd0cf4ba6f10d0c02ef4a0, type: 3}
   m_Name: LabReportInterview
   m_EditorClassIdentifier: 
-  textEntries: []
-  reportStart: 
-  reportEnd: 
+  textEntries:
+  - Project Ice Tower is nearing completion.\nJust remember to ask [REDACTED] about
+    the overheating issue...
+  reportStart: 00000000
+  reportEnd: 01000000

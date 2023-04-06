@@ -12,7 +12,7 @@ public class SpellMachine : MonoBehaviour
     void Update() {
         if (active) {
 			if (time <= 0) {
-				spell.CastSpell(Vector2.right);
+				spell.CastSpell(Vector2.down);
 				Instantiate(spell, transform.position, Quaternion.identity);
 				time = timeBetweenCasts;
 			}

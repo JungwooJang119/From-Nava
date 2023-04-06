@@ -13,6 +13,7 @@ TagManager:
   - PanCamera
   - Firewood
   - Spell
+  - IceTower
   layers:
   - Default
   - TransparentFX

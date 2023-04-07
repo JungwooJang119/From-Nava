@@ -14,6 +14,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private int maxHealth;
     [SerializeField] private Text healthText;
     [SerializeField] private float speed = 7f;
+    [SerializeField] private DamageFlash damageFlash;
     private Vector2 movement;
     private Rigidbody2D rb;
  
@@ -101,6 +102,10 @@ public class PlayerController : Singleton<PlayerController>
 
     public void TakeDamage(int damage) {
         playerHealth -= damage;
+        if (damageFlash != null)
+        {
+            damageFlash.Flash();
+        }
     }
 
     IEnumerator Die() {

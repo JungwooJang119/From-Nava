@@ -71,8 +71,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d422008afb2ff846b6437b51671b9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeCollider: {fileID: 1207147807643693753}
-  meleeDamage: 10
+  player: {fileID: 0}
+  hitboxN: {fileID: 0}
+  hitboxE: {fileID: 0}
+  hitboxS: {fileID: 0}
+  hitboxW: {fileID: 0}
+  damage: 5
 --- !u!1 &2461991493637316061
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,8 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d422008afb2ff846b6437b51671b9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeCollider: {fileID: 6913153627440720359}
-  meleeDamage: 10
+  player: {fileID: 0}
+  hitboxN: {fileID: 0}
+  hitboxE: {fileID: 0}
+  hitboxS: {fileID: 0}
+  hitboxW: {fileID: 0}
+  damage: 5
 --- !u!1 &2571063176125842610
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,8 +225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d422008afb2ff846b6437b51671b9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeCollider: {fileID: 1207398729555764716}
-  meleeDamage: 10
+  player: {fileID: 0}
+  hitboxN: {fileID: 0}
+  hitboxE: {fileID: 0}
+  hitboxS: {fileID: 0}
+  hitboxW: {fileID: 0}
+  damage: 5
 --- !u!1 &5556920019658772367
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,8 +302,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d422008afb2ff846b6437b51671b9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeCollider: {fileID: 7364822561145139933}
-  meleeDamage: 10
+  player: {fileID: 0}
+  hitboxN: {fileID: 0}
+  hitboxE: {fileID: 0}
+  hitboxS: {fileID: 0}
+  hitboxW: {fileID: 0}
+  damage: 5
 --- !u!1 &7067001630421764646
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +386,7 @@ GameObject:
   - component: {fileID: 7257062049063242859}
   - component: {fileID: 7257062049063242858}
   - component: {fileID: 7257062049063242861}
+  - component: {fileID: 5714560712089473425}
   - component: {fileID: 7257062049063242860}
   - component: {fileID: 7257062049063242863}
   - component: {fileID: 746650167423377727}
@@ -497,10 +514,25 @@ MonoBehaviour:
   maxHealth: 0
   healthText: {fileID: 0}
   speed: 6
+  damageFlash: {fileID: 5714560712089473425}
   collisionOffset: 0.05
   castPoint: {fileID: 7257062048071687618}
   spawn: {fileID: 0}
   facingDir: {x: 0, y: 0}
+--- !u!114 &5714560712089473425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257062049063242862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340f19f892c97da43a69aeca75659afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 6e7a5fcd9775fcd40a27cf24bd9f8d93, type: 2}
+  duration: 0.125
 --- !u!50 &7257062049063242860
 Rigidbody2D:
   serializedVersion: 4

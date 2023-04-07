@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 797491692293421798}
   - component: {fileID: 4266145420635378479}
   - component: {fileID: 7816608974960025993}
+  - component: {fileID: 6632084955643231022}
   m_Layer: 0
   m_Name: FireballGoomba
   m_TagString: Enemy
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   isIceTower: 0
+  damageFlash: {fileID: 6632084955643231022}
   onMeleeHit:
     m_PersistentCalls:
       m_Calls:
@@ -209,3 +211,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6632084955643231022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797491692293421795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340f19f892c97da43a69aeca75659afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 6e7a5fcd9775fcd40a27cf24bd9f8d93, type: 2}
+  duration: 0.125

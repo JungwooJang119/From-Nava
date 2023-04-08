@@ -49,7 +49,7 @@ public class LabReport : MonoBehaviour
 	private bool _alertUp = true;       // State machine to control alert fading;
 
 	// Button Tutorial;
-	public GameObject buttonTutorial;   // Reference to button tutorial pop-up;
+	[SerializeField] private GameObject buttonTutorial; // Reference to button tutorial pop-up;
 	private GameObject _tutInstance;    // Reference to instantiate text pop-up;
 	private ButtonTutorial _tutScript;	// Reference to instantiated text script;
 
@@ -86,15 +86,14 @@ public class LabReport : MonoBehaviour
 				if (_tutInstance == null) {
 					_tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
 					_tutScript = _tutInstance.GetComponent<ButtonTutorial>();
-					_tutScript.keyToPress = _intKey;
-					_tutScript.parent = gameObject;
+					_tutScript.SetUp(_intKey, gameObject);
 				} else {
 					_tutScript.CancelFade();
 				}
 				if (Input.GetKeyDown(_intKey)) {
 					unlockRoom = true;
 					_state = "FadeOut";
-					_timer = _tranScript.DarkenOut() + 1f;
+					_timer = _tranScript.DarkenOut() + 0.5f;
 					if (_tutInstance != null) {
 						_tutScript.Fade();
 					}

@@ -48,8 +48,7 @@ public class LaserTerminal : MonoBehaviour
 			if (_tutInstance == null) {
 				_tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
 				_tutScript = _tutInstance.GetComponent<ButtonTutorial>();
-				_tutScript.keyToPress = _intKey;
-				_tutScript.parent = gameObject;
+				_tutScript.SetUp(_intKey, gameObject);
 			} else {
 				_tutScript.CancelFade();
 			}

@@ -19,6 +19,7 @@ public class LoadNextRoom : MonoBehaviour
         var wait = tm.FadeOut();
         yield return new WaitForSeconds(wait);
 		player.transform.position = spawn.transform.position;
+        yield return new WaitForSeconds(wait);
         tm.FadeIn();
 	}
     

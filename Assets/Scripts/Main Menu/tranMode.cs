@@ -17,6 +17,11 @@ public class tranMode : MonoBehaviour {
 	private float timecheck;
 
 	void Start() {
+		if (SceneManager.GetActiveScene().buildIndex == 0) { // 0 index corresponds to Main Menu
+			AudioControl.Instance.PlayMusic("Main Theme");
+		} else {
+			AudioControl.Instance.PlayMusic("Exploration Theme");
+		}
 		fadeScreen = GetComponentInChildren<CanvasGroup>();
 		alpha = 1f;
 		target = 0;
@@ -43,6 +48,9 @@ public class tranMode : MonoBehaviour {
 	// Takes in the index of the level one may want to call.
 	// I reccommend setting up a String reference somewhere once more levels are added.
 	public void StartGame() {
+		AudioControl.Instance.FadeMusic(true);
+		// Note: The music fadeout may stop the Lab Music if the transition happens too fast.
+		// Consider migrating the fadeout to Update() in AudioControl.cs if it becomes an issue.
 		StartCoroutine(LoadLevel());
 	}
 

@@ -119,13 +119,13 @@ public class PlayerController : Singleton<PlayerController>
         animator.SetTrigger("doMelee");
     }
 
-    void ActivateMovement() {
+    public void ActivateMovement() {
         canMove = true;
         canChangeDir = true;
         ChooseFacingDir();
     }
 
-    void DeactivateMovement() {
+    public void DeactivateMovement() {
         canMove = false;
         canChangeDir = false;
     }

@@ -80,9 +80,9 @@ public class ChestScript : MonoBehaviour
     IEnumerator TextPopUp() {
         spellNotif.SetActive(true);
         animator.SetBool("OpeningChest", true);
-        yield return new WaitForSeconds(4.0f);
-        spellNotif.SetActive(false);
 		AudioControl.Instance.PlaySFX("Chest Open");
+		yield return new WaitForSeconds(4.0f);
+        spellNotif.SetActive(false);
         animator.SetBool("OpeningChest", false);
         AudioControl.Instance.PlaySFX("Chest Close");
         door.GetComponent<Door>().OpenDoor();

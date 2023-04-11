@@ -45,6 +45,7 @@ public class SpellCastManager : MonoBehaviour
         Spell spell = spellDict[e.spellType];
         
         spell.CastSpell(face);
+        PlayerController.Instance.animator.SetTrigger("doSpellCast");
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
     }
 

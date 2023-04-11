@@ -1,98 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class RoomControlA3 : MonoBehaviour
 {
-    public GameObject plate1;
-    public GameObject plate2;
-    public GameObject plate3;
-    public GameObject plate4;
-    public GameObject plate5;
-    public GameObject plate6;
+    [SerializeField] GameObject pressurePlateController;
+    private PressurePlate_Script[] _pressurePlates;
+    private bool _canClear = true;
+    
+    public GameObject B3Chest = null;
+    public bool cheat = false;
+    public bool _earlyRoom = false;
 
-    public PressurePlate_Script p1;
-    public PressurePlate_Script p2;
-    public PressurePlate_Script p3;
-    public PressurePlate_Script p4;
-    public PressurePlate_Script p5;
-    public PressurePlate_Script p6;
-
-    public GameObject A3Chest;
-
-    public bool check1;
-    public bool check2;
-    public bool check3;
-    public bool check4;
-    public bool check5;
-    public bool check6;
+    public string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
+	private CinemachineVirtualCamera _virtualCamera;
+	public GameObject _cameraTarget;				// The target the camera will move towards.
+	public Transform _returnToPlayer;
+    public GameObject door;
 
     [SerializeField] private bool isClear = false;
     // [SerializeField] private GameObject spellNotif;
 
     void Start() {
-        p1 = plate1.GetComponent<PressurePlate_Script>();
-        p2 = plate2.GetComponent<PressurePlate_Script>();
-        p3 = plate3.GetComponent<PressurePlate_Script>();
-        p4 = plate4.GetComponent<PressurePlate_Script>();
-        p5 = plate5.GetComponent<PressurePlate_Script>();
-        p6 = plate6.GetComponent<PressurePlate_Script>();
+        _pressurePlates = pressurePlateController.GetComponentsInChildren<PressurePlate_Script>();
+        _virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
+		_returnToPlayer = _virtualCamera.Follow;
     }
 
     void Update() {
-        checkPlates();
         if (!isClear) {
-            if (check1 && check2 && check3 && check4 && check5 && check6) {
-                A3Chest.SetActive(true);
-                StartCoroutine(DurationTime());
-                    isClear = true;
-                    Destroy(this.gameObject);
+            foreach (PressurePlate_Script plate in _pressurePlates) {
+                if (!plate.GetIsPressed()) {
+                    _canClear = false;
+                    break; 
+                }
+            }
+
+			if (_canClear) {
+                if (_earlyRoom) {
+                    StartCoroutine(CameraTransitionIn());
+                    StartCoroutine(DoorOpen());
+                    _earlyRoom = false;
+                    return;
+                }
+				B3Chest.SetActive(true);
+				StartCoroutine(DurationTime());
+				isClear = true;
+				//Destroy(this.gameObject);
+			}
+			_canClear = true;
+
+			if (cheat) {
+                B3Chest.SetActive(true);
+                isClear = true;
+                //Destroy(this.gameObject);
             }
         }
     }
 
     IEnumerator DurationTime() {
 		yield return new WaitForSeconds(5f);
-        //spellNotif.SetActive(false);
+		//spellNotif.SetActive(false);
 	}
 
-    void checkPlates() {
-        if (p1.getIsPressed()) {
-            check1 = true;
-        } else {
-            check1 = false;
-        }
-        if (p2.getIsPressed()) {
-            check2 = true;
-        }
-        else {
-            check2 = false;
-        }
-        if (p3.getIsPressed()) {
-            check3 = true;
-        }
-        else {
-            check3 = false;
-        }
-        if (p4.getIsPressed()) {
-            check4 = true;
-        }
-        else {
-            check4 = false;
-        }
-        if (p5.getIsPressed()) {
-            check5 = true;
-        }
-        else {
-            check5 = false;
-        }
-        if (p6.getIsPressed()) {
-            check6 = true;
-        }
-        else {
-            check6 = false;
-        }
+    IEnumerator CameraTransitionIn() {
+		yield return new WaitForSeconds(0.0f);
+		_virtualCamera.Follow = _cameraTarget.transform;
+		yield return new WaitForSeconds(2f);
+        _virtualCamera.Follow = _returnToPlayer;
+	}
 
+    IEnumerator DoorOpen() {
+        yield return new WaitForSeconds(0.0f);
+        door.GetComponent<Door>().OpenDoor();
     }
 
 

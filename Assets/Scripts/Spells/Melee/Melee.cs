@@ -21,8 +21,6 @@ public class Melee : MonoBehaviour
 
     private float valueDir;
 
-    //how long should hitbox last, in frames
-    private float duration = 15f;
     //how much damage the melee does
     [SerializeField] private float damage = 5f;
     //timer

@@ -52,7 +52,7 @@ public class PressurePlate_Script : MonoBehaviour
         }
     }
 
-    public bool getIsPressed() {
+    public bool GetIsPressed() {
         return isPressed;
     }
 }

@@ -8,7 +8,7 @@ public class Firewood_Script : MonoBehaviour
     public bool isLit;
     public int prevLitStatus;
     public int currLitStatus;
-    private bool checkIfRepeat = false;
+    //private bool checkIfRepeat = false;
     private SpriteRenderer render;
     private GameObject light;
     private bool defaulLitStatus;
@@ -74,7 +74,7 @@ public class Firewood_Script : MonoBehaviour
             currLitStatus = 1;
             if (prevLitStatus == currLitStatus) {
                 print("copy");
-                checkIfRepeat = true;
+                //checkIfRepeat = true;
                 return;
             }
             prevLitStatus = 1;
@@ -85,7 +85,7 @@ public class Firewood_Script : MonoBehaviour
             currLitStatus = 0;
             if (prevLitStatus == currLitStatus) {
                 print("copy");
-                checkIfRepeat = true;
+                //checkIfRepeat = true;
                 return;
             }
             prevLitStatus = 0;
@@ -114,7 +114,7 @@ public class Firewood_Script : MonoBehaviour
             currLitStatus = 0;
             if (prevLitStatus == currLitStatus) {
                 print("copy");
-                checkIfRepeat = true;
+                //checkIfRepeat = true;
                 return;
             }
             prevLitStatus = 0;
@@ -126,7 +126,7 @@ public class Firewood_Script : MonoBehaviour
             currLitStatus = 1;
             if (prevLitStatus == currLitStatus) {
                 print("copy");
-                checkIfRepeat = true;
+                //checkIfRepeat = true;
                 return;
             }
             prevLitStatus = 1;

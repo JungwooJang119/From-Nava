@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7500840900014958930}
   - component: {fileID: 7500840900014958934}
   - component: {fileID: 7500840900014958935}
+  - component: {fileID: 6627468194880087435}
   m_Layer: 0
   m_Name: Firewood
   m_TagString: Firewood
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7500840900014958941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.001253, y: 2.7729363, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7231581319997829147}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 01b2252a2aa27fd45ae83ccb48014c4c, type: 3}
+  m_Sprite: {fileID: 1836419961, guid: cfe5659cc37826e49ab337674f961d23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,9 +103,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0030548573, y: 0}
+  m_Offset: {x: -0.015205383, y: -0.16228676}
   serializedVersion: 2
-  m_Radius: 0.19360375
+  m_Radius: 0.81251335
 --- !u!114 &7500840900014958930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119f0d9181c631d4898f413bb33cfff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlitSprite: {fileID: 21300000, guid: 01b2252a2aa27fd45ae83ccb48014c4c, type: 3}
-  litSprite: {fileID: 21300000, guid: 37813cbf0f544244791735b42ba43c2a, type: 3}
   isLit: 0
   prevLitStatus: 0
   currLitStatus: 0
@@ -160,9 +159,29 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03589797, y: -0.19142151}
   serializedVersion: 2
-  m_Radius: 0.16
+  m_Radius: 0.5167601
+--- !u!95 &6627468194880087435
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500840900014958941}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d33780f121cae74285271c47219f8c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2779411707680205700
 PrefabInstance:
   m_ObjectHideFlags: 0

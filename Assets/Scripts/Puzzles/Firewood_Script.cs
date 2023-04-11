@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Firewood_Script : MonoBehaviour
 {
-    [SerializeField] private Sprite unlitSprite, litSprite;
+    //[SerializeField] private Sprite unlitSprite, litSprite;
     public bool isLit;
     public int prevLitStatus;
     public int currLitStatus;
@@ -12,6 +12,8 @@ public class Firewood_Script : MonoBehaviour
     private SpriteRenderer render;
     private GameObject light;
     private bool defaulLitStatus;
+
+    private Animator animator;
 
     [SerializeField] private GameObject adjFirewood1;
     [SerializeField] private GameObject adjFirewood2;
@@ -26,6 +28,7 @@ public class Firewood_Script : MonoBehaviour
     //gets the sprite
     void Start() {
         render = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         light = this.transform.GetChild(0).gameObject;
         defaulLitStatus = isLit;
     }
@@ -34,7 +37,8 @@ public class Firewood_Script : MonoBehaviour
     void Update() {
         light.SetActive(isLit);
         if (isLit) {
-            render.sprite = litSprite;
+            //render.sprite = litSprite;
+            animator.SetBool("isLit", true);
         }
         if (adjFirewood1 != null) {
             f1 = adjFirewood1.GetComponent<Firewood_Script>();
@@ -64,7 +68,8 @@ public class Firewood_Script : MonoBehaviour
     */
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.name == ("Fireball_Spell(Clone)")) {
-            render.sprite = litSprite;
+            //render.sprite = litSprite;
+            animator.SetBool("isLit", true);
             isLit = true;
             currLitStatus = 1;
             if (prevLitStatus == currLitStatus) {
@@ -74,7 +79,8 @@ public class Firewood_Script : MonoBehaviour
             }
             prevLitStatus = 1;
         } else if (collision.gameObject.name == ("Iceball_Spell(Clone)")) {
-            render.sprite = unlitSprite;
+            //render.sprite = unlitSprite;
+            animator.SetBool("isLit", false);
             isLit = false;
             currLitStatus = 0;
             if (prevLitStatus == currLitStatus) {
@@ -102,7 +108,8 @@ public class Firewood_Script : MonoBehaviour
 
     public void ChangeLit() {
         if (isLit) {
-            render.sprite = unlitSprite;
+            //render.sprite = unlitSprite;
+            animator.SetBool("isLit", false);
             isLit = false;
             currLitStatus = 0;
             if (prevLitStatus == currLitStatus) {
@@ -113,7 +120,8 @@ public class Firewood_Script : MonoBehaviour
             prevLitStatus = 0;
             
         } else {
-            render.sprite = litSprite;
+            //render.sprite = litSprite;
+            animator.SetBool("isLit", true);
             isLit = true;
             currLitStatus = 1;
             if (prevLitStatus == currLitStatus) {

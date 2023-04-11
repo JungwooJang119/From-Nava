@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 50f;
     public bool isIceTower = false;
+    [SerializeField] private DamageFlash damageFlash;
     private float currHealth;
 
     private bool isPushed;
@@ -27,6 +28,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage) {
         currHealth -= damage;
+        if (damageFlash != null)
+        {
+            damageFlash.Flash();
+        }
         //Debug.Log(currHealth);
         if (currHealth <= 0) {
             Destroy(this.gameObject);

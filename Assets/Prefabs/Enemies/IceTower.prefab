@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 3570325442150851927}
   - component: {fileID: 3570325442150851924}
   - component: {fileID: 3570325442150851928}
-  - component: {fileID: 7573938738326685184}
   - component: {fileID: 7147859089947672259}
   - component: {fileID: 2880031122338850227}
   m_Layer: 0
@@ -67,7 +66,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3570325441346370061}
-  - {fileID: 5630840335195562694}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -187,19 +185,8 @@ MonoBehaviour:
   iceballInterval: 0.5
   currIceballTime: 0
   hasFired: 0
+  range: 15
   disableTower: 0
---- !u!114 &7573938738326685184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3570325442150851925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf6a6c7ed96d204c938699c58945212, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7147859089947672259
 MonoBehaviour:
   m_ObjectHideFlags: 0

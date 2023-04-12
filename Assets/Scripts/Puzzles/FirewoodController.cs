@@ -32,9 +32,10 @@ public class FirewoodController : MonoBehaviour
 			_wait -= Time.deltaTime;
 			if (_wait <= 0) {
 				foreach (Firewood_Script _firewood in _allFirewoods) {
-					if (_firewood.isLit) {
-						_firewood.ChangeLit();
-					}
+					// if (_firewood.isLit) {
+					// 	_firewood.ChangeLit();
+					// }
+					_firewood.SetDefaultLit();
 				}
 				_transition.FadeIn();
 			}

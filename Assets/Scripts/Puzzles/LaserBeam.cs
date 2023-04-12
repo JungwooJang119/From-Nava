@@ -8,23 +8,23 @@ using UnityEngine;
 public class LaserBeam : MonoBehaviour
 {	
 	// Speed of the beam. Inherited from the Caster;
-	public float speed;
+	private float speed;
 
 	// Duration of the beam trail. Inherited from the Caster;
-	public float life;
+	private float life;
 
 	// Max and min width for the laser-like wiggle;
-	public float maxWidth;
-	public float minWidth;
+	[SerializeField] private float maxWidth;
+	[SerializeField] private float minWidth;
 
 	// Reference to the parent Terminal of the mirror system;
-	public LaserTerminal parentTerminal;
+	private LaserTerminal parentTerminal;
 
 	// Reference to the particle generator that will be spawned;
-	public GameObject laserParticles;
+	[SerializeField] private GameObject laserParticles;
 
 	// References to the rigid body, the trail renderer,
-	// and the particle system;
+	// the object collider, and the particle system;
 	private Rigidbody2D _rigidBody;
 	private TrailRenderer _trailRenderer;
 	private ParticleSystem _parSystem;
@@ -42,9 +42,9 @@ public class LaserBeam : MonoBehaviour
 
 	// Grab component references and set the life of the trail;
 	void Awake() {
-		_rigidBody = gameObject.GetComponent<Rigidbody2D>();
-		_trailRenderer = gameObject.GetComponent<TrailRenderer>();
-		_parSystem = gameObject.GetComponent<ParticleSystem>();
+		_rigidBody = GetComponent<Rigidbody2D>();
+		_trailRenderer = GetComponent<TrailRenderer>();
+		_parSystem = GetComponent<ParticleSystem>();
 		_emissions = _parSystem.emission;
 	}
 
@@ -118,5 +118,11 @@ public class LaserBeam : MonoBehaviour
 		else {
 			parentTerminal.PuzzleFailure();
 		}
+	}
+
+	public void SetUpBeam(float speed, LaserTerminal parentTerminal, float life) {
+		this.speed = speed;
+		this.parentTerminal = parentTerminal;
+		this.life = life;
 	}
 }

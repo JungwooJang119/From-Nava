@@ -114,7 +114,7 @@ public class LogicScript : MonoBehaviour
 
     */
     private void CastMelee() {
-        //_melee.activateMelee();
+        _melee.activateMelee();
     }
 
 // /*

@@ -902,8 +902,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1271022904}
-        m_TargetAssemblyTypeName: TranMode, Assembly-CSharp
-        m_MethodName: LoadNext
+        m_TargetAssemblyTypeName: tranMode, Assembly-CSharp
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

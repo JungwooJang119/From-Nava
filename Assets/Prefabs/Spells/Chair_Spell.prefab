@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3702030663533370546}
   m_Layer: 0
   m_Name: Chair_Spell
-  m_TagString: Untagged
+  m_TagString: Chair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5135262842242903108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -113,8 +113,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 726f86f4450d33f4da9e4c513819500e, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 989ceff47c7ad7340a7c495f0cbf1165, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,9 +140,12 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: 0b831836399b0754d9f5861a550b1331, type: 2}
   collider: {fileID: 0}
   rb: {fileID: 1026724369791607120}
-  rotate: {x: 0, y: 0, z: 0}
+  rotate: {x: 0, y: 0, z: 180}
   spellActive: 1
-  direction: {x: 1, y: 0}
+  isChair: 1
+  isWind: 0
+  isPiplup: 1
+  direction: {x: 0, y: -1}
 --- !u!61 &3702030663533370546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -156,16 +159,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0032866746, y: 0.0008216575}
+  m_Offset: {x: 0.0055760145, y: -0.052972794}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 2}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25919667, y: 0.30849665}
+  m_Size: {x: 0.7546544, y: 1.514885}
   m_EdgeRadius: 0

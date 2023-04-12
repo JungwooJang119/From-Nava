@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4759562196223860384}
   - component: {fileID: 4759562196223860385}
-  - component: {fileID: 1795797454133266638}
+  - component: {fileID: 1092257312163240010}
   m_Layer: 0
   m_Name: Transition
   m_TagString: Untagged
@@ -59,7 +59,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1795797454133266638
+--- !u!114 &1092257312163240010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4759562196223860391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d64af6380d92bbf4d80ee7f9be990871, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b458757a5590cf419e8f3b8af1978de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 4759562196223860385}
@@ -158,7 +158,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4759562196730566459}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

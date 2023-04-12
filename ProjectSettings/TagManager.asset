@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Walls
+  - Mirror
+  - Receiver
+  - Fan
+  - Chair
+  - PanCamera
+  - Firewood
+  - Spell
+  - IceTower
   layers:
   - Default
   - TransparentFX

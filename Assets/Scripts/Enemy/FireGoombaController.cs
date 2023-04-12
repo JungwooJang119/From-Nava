@@ -25,6 +25,10 @@ public class FireGoombaController : MonoBehaviour
 
     private Enemy enemy;
 
+    
+    Transform t;
+    public float fixedRotation = 0;
+
 
     private void Start()
     {
@@ -32,6 +36,7 @@ public class FireGoombaController : MonoBehaviour
         enemy = GetComponent<Enemy>();
         lastChangeTime = 0f;
         NewDirection();
+        t = transform;
     }
 
     private void NewDirection()
@@ -43,6 +48,7 @@ public class FireGoombaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        t.eulerAngles = new Vector3 (t.eulerAngles.x, fixedRotation, t.eulerAngles.z);
         if(!enemy.GetPushed()){
             if (Vector2.Distance(transform.position, player.position) < maxDistance) {
                 if (idle) {

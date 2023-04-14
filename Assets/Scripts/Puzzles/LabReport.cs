@@ -7,20 +7,22 @@ using TMPro;
 
 public class LabReport : MonoBehaviour
 {
-	[SerializeField] private int reportNumber;          // Number of the report, the script will disable if number is invalid;
+	[SerializeField] private int reportNumber;			  // Number of the report, the script will disable if number is invalid;
 	[SerializeField] private float range = 2;             // How far can the player be from the terminal to trigger it;
 	[SerializeField] private TextContainer reportSO;      // Reference to the Lab Report Text Container, Do Not Change [please];
 	[SerializeField] private GameObject textModel;        // Reference to the text prefab to draw on-screen;
 	[SerializeField] private GameObject bottomNote;       // Reference to the button press notice mid-report;
 
-	private List<string> _strings2Grab;	// List of strings that will be taken from the ScriptableObject;
-	private string _string2Report;		// String that will be grabbed based on the reportNumber;
-	private GameObject _playerRef;		// Reference to player object;
-	private Transform _player;          // References to player script;
-	private bool _playerNear;			// Whether the player is near or not;
-	private string _intKey = "z";       // Key used to trigger the interactions;
-	private string _spdKey = "x";       // Key used to speed up the text;
-	private string _skpKey = "c";		// Key used to skip the writing cinematic;
+	private List<string> _strings2Grab;			// List of strings that will be taken from the ScriptableObject;
+	private string _string2Report;				// String that will be grabbed based on the reportNumber;
+	private string _intKey = "z";				// Key used to trigger the interactions;
+	private string _spdKey = "x";				// Key used to speed up the text;
+	private string _skpKey = "c";				// Key used to skip the writing cinematic;
+
+	private GameObject _playerRef;				// Reference to player object;
+	private Transform _playerTransform;			// Reference to player transform;
+	private PlayerController _playerController; // Reference to player controller script;
+	private bool _playerNear;					// Whether the player is near or not;
 
 	private GameObject _tranRef;        // Reference to player object;
 	private tranMode _tranScript;       // Reference to Transition script;
@@ -49,7 +51,7 @@ public class LabReport : MonoBehaviour
 	private bool _alertUp = true;       // State machine to control alert fading;
 
 	// Button Tutorial;
-	public GameObject buttonTutorial;   // Reference to button tutorial pop-up;
+	[SerializeField] private GameObject buttonTutorial; // Reference to button tutorial pop-up;
 	private GameObject _tutInstance;    // Reference to instantiate text pop-up;
 	private ButtonTutorial _tutScript;	// Reference to instantiated text script;
 
@@ -61,11 +63,12 @@ public class LabReport : MonoBehaviour
 		_playerRef = GameObject.Find("Player");
 		_tranRef = GameObject.Find("Transition");
 		_canvasRef = GameObject.Find("UI Canvas");
-		// Shuts down the script to avoid errors if either is missing;
+		// Displays an alert if either object is missing. Check string identifiers above;
 		if (_playerRef == null || _tranRef == null || _canvasRef == null) {
-			Debug.Log("Player, Canvas, or Transition Object Not Found. Lab Report Disabled");
+			Debug.LogWarning("Player, Canvas, or Transition Object Not Found. Lab Report Disabled");
 		} else {
-			_player = _playerRef.GetComponent<Transform>();
+			_playerTransform = _playerRef.GetComponent<Transform>();
+			_playerController = _playerRef.GetComponent<PlayerController>();
 			_tranScript = _tranRef.GetComponent<tranMode>();
 			_canvasRT = _canvasRef.GetComponent<RectTransform>();
 		}
@@ -75,26 +78,26 @@ public class LabReport : MonoBehaviour
 			}
 			FetchString();
 		} else {
-			Debug.Log("Report Number doesn't exist");
+			Debug.LogWarning("Report Number doesn't exist");
 		}
 	}
 
 	void Update() {
 		// Start Lab Report if player interacts in range \\
-		if (((Vector2)_player.position - (Vector2)transform.position).magnitude < range) {
+		if (((Vector2)_playerTransform.position - (Vector2)transform.position).magnitude < range) {
 			if (_state == "Idle") {
 				if (_tutInstance == null) {
 					_tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
 					_tutScript = _tutInstance.GetComponent<ButtonTutorial>();
-					_tutScript.keyToPress = _intKey;
-					_tutScript.parent = gameObject;
+					_tutScript.SetUp(_intKey, gameObject);
 				} else {
 					_tutScript.CancelFade();
 				}
 				if (Input.GetKeyDown(_intKey)) {
 					unlockRoom = true;
+					_playerController.DeactivateMovement();
 					_state = "FadeOut";
-					_timer = _tranScript.DarkenOut() + 1f;
+					_timer = _tranScript.DarkenOut() + 0.5f;
 					if (_tutInstance != null) {
 						_tutScript.Fade();
 					}
@@ -174,6 +177,7 @@ public class LabReport : MonoBehaviour
 				} else {
 					Destroy(_currentText.gameObject);
 					Destroy(_currentNote.gameObject);
+					_playerController.ActivateMovement();
 					_state = "Inactive";
 				}
 			}

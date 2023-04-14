@@ -29,6 +29,7 @@ public class LaserTerminal : MonoBehaviour
 
 	// Variables to react to the player in range;
 	private Transform _player;
+	private PlayerController _playerController;
 	private GameObject _tutInstance;
 	private ButtonTutorial _tutScript;
 
@@ -43,6 +44,7 @@ public class LaserTerminal : MonoBehaviour
 	void Start() {
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+		_playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 		_virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
 		_returnToPlayer = _virtualCamera.Follow;
 	}
@@ -53,12 +55,12 @@ public class LaserTerminal : MonoBehaviour
 			if (_tutInstance == null && !roomComplete) {
 				_tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
 				_tutScript = _tutInstance.GetComponent<ButtonTutorial>();
-				_tutScript.keyToPress = _intKey;
-				_tutScript.parent = gameObject;
+				_tutScript.SetUp(_intKey, gameObject);
 			} else {
 				_tutScript.CancelFade();
 			}
 			if (Input.GetKeyDown(_intKey)) {
+				_playerController.DeactivateMovement();
 				if (_tutInstance != null) {
 					_tutScript.Fade();
 				}
@@ -113,11 +115,13 @@ public class LaserTerminal : MonoBehaviour
 	public void PuzzleSuccess() {
 		_virtualCamera.Follow = _returnToPlayer;
 		StartCoroutine(CameraTransitionOutGood());
+		_playerController.ActivateMovement();
 	}
 
 	// Called by the beam if the puzzle attempt fails;
 	public void PuzzleFailure() {
 		_virtualCamera.Follow = _returnToPlayer;
 		StartCoroutine(CameraTransitionOutBad());
+		_playerController.ActivateMovement();
 	}
 }

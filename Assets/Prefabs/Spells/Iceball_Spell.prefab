@@ -4911,6 +4911,7 @@ GameObject:
   - component: {fileID: 8916631681253868026}
   - component: {fileID: -2210433279254611879}
   - component: {fileID: 3149705390126071934}
+  - component: {fileID: 428484724962094794}
   m_Layer: 0
   m_Name: Iceball_Spell
   m_TagString: Spell
@@ -5044,8 +5045,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4701790566160024944
-MonoBehaviour:
 --- !u!95 &3149705390126071934
 Animator:
   serializedVersion: 4
@@ -5066,3 +5065,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &428484724962094794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866387084450533419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576cecbb2a863294ca0332dde34d8f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4701790566160024944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 

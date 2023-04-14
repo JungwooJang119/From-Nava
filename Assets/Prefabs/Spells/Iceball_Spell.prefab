@@ -4910,6 +4910,7 @@ GameObject:
   - component: {fileID: 7410404838220746693}
   - component: {fileID: 8916631681253868026}
   - component: {fileID: -2210433279254611879}
+  - component: {fileID: 4701790566160024944}
   m_Layer: 0
   m_Name: Iceball_Spell
   m_TagString: Spell
@@ -5043,3 +5044,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4701790566160024944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866387084450533419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02da090f8c5115746a8213e5f26f725c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1029 &102900000
+DefaultAsset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Iceball_Spell
+  m_Message: .prefab file is not a prefab. There are no GameObjects in the file.
+    Did you give the asset the wrong extension?
+  m_IsWarning: 1

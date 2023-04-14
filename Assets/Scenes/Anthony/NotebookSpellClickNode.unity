@@ -11800,6 +11800,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2098379137546307902, guid: b22bc72942a9f6a469693718ba2fc984, type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2149143485610072929, guid: b22bc72942a9f6a469693718ba2fc984, type: 3}
       propertyPath: nodeNum
       value: 4

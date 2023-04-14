@@ -32,22 +32,23 @@ public class FireballBehavior : MonoBehaviour {
             deathTimer += Time.deltaTime;
         }
         else if (!awaitForDeath) {
-            if (scaleFactor > 0) {
-                ReduceSize(5f);
-                ModifyLight(-0.1f);
+			ModifyLight(-0.075f);
+			if (scaleFactor > 0) {
+                ReduceSize(10f);
             }
             else {
 				if (spellScript != null) {
                     CleanUp();
-                    GenerateBurst(1f, 10f);
+                    GenerateBurst(1f, 100f);
                 } else {
-                    GenerateBurst(0.75f, 15f);
+                    GenerateBurst(0.75f, 150f);
                 }
                 awaitForDeath = true;
             }
         }
         else {
-            parSystem.Stop();
+			ModifyLight(-0.075f);
+			parSystem.Stop();
         }
     }
 

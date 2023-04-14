@@ -21,10 +21,8 @@ public class Melee : MonoBehaviour
 
     private float valueDir;
 
-    //how long should hitbox last, in frames
-    private float duration = 15f;
     //how much damage the melee does
-    private float damage = 5f;
+    [SerializeField] private float damage = 5f;
     //timer
     private float timeSinceLast;
     // Start is called before the first frame update
@@ -36,13 +34,13 @@ public class Melee : MonoBehaviour
 
         //loads all four directional melee hitboxes
         hitboxN = GetComponent<BoxCollider2D>();
-        hitboxN.isTrigger = false;
+        hitboxN.isTrigger = true;
         hitboxE = GetComponent<BoxCollider2D>();
-        hitboxE.isTrigger = false;
+        hitboxE.isTrigger = true;
         hitboxS = GetComponent<BoxCollider2D>();
-        hitboxS.isTrigger = false;
+        hitboxS.isTrigger = true;
         hitboxW = GetComponent<BoxCollider2D>();
-        hitboxW.isTrigger = false;
+        hitboxW.isTrigger = true;
 
         //logicScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<LogicScript>();
         //valueDir = logicScript.facingDir;
@@ -65,6 +63,9 @@ public class Melee : MonoBehaviour
         //checks if melee hits enemy
         if(other.gameObject.CompareTag("Enemy")) {
             Enemy enemyHealth = other.GetComponent<Enemy>();
+            if (enemyHealth.isIceTower) {
+                return;
+            }
             enemyHealth.TakeDamage(damage);
         }
         //Destroy(this.gameObject);

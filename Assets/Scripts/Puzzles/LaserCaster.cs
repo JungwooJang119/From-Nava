@@ -7,16 +7,13 @@ using UnityEngine;
 public class LaserCaster : MonoBehaviour
 {
 	// Speed of the laser launched defined on the inspector;
-	public float speed;
+	[SerializeField] private float speed;
 
     // A bunch of required object references;
-    public GameObject laserBeam;
-    public GameObject laserWave;
-    public GameObject laserParticles;
-	public GameObject laserTerminal;
-
-	// Reference to the script of the beam casted;
-    private LaserBeam _beamScript;
+    [SerializeField] private GameObject laserBeam;
+    [SerializeField] private GameObject laserWave;
+    [SerializeField] private GameObject laserParticles;
+	[SerializeField] private GameObject laserTerminal;
 
 	// Projected life of the beam,
 	// passed onto the beam when the object is created;
@@ -36,10 +33,7 @@ public class LaserCaster : MonoBehaviour
 	public void InitiateBeam() {
 		_beamLife = AudioControl.Instance.PlaySFX("Final Shot");
 		_currentLaser = Instantiate(laserBeam, transform.position, transform.rotation);
-		_beamScript = _currentLaser.GetComponent<LaserBeam>();
-		_beamScript.speed = speed;
-		_beamScript.parentTerminal = laserTerminal.GetComponent<LaserTerminal>();
-		_beamScript.life = _beamLife * 1.01f;
+		_currentLaser.GetComponent<LaserBeam>().SetUpBeam(speed, laserTerminal.GetComponent<LaserTerminal>(), _beamLife * 1.01f);
 	}
 
 	// Method called from the terminal, initiates the shot by loading the caster first;

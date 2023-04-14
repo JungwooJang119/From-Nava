@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 50f;
+    public bool isIceTower = false;
+    [SerializeField] private DamageFlash damageFlash;
     private float currHealth;
 
     private bool isPushed;
     private float pushDist;
     private float pushSpd;
     private Vector3 pushDir;
+
+    public UnityEvent onMeleeHit;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -23,6 +28,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage) {
         currHealth -= damage;
+        if (damageFlash != null)
+        {
+            damageFlash.Flash();
+        }
         //Debug.Log(currHealth);
         if (currHealth <= 0) {
             Destroy(this.gameObject);
@@ -48,5 +57,13 @@ public class Enemy : MonoBehaviour
 
     public bool GetPushed() {
         return isPushed;
+    }
+
+    void OnMeleeHit(float meleeDamage) {
+        if (isIceTower) {
+            return;
+        }
+        TakeDamage(meleeDamage);
+        onMeleeHit?.Invoke();
     }
 }

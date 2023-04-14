@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Icicle
   m_EditorClassIdentifier: 
   manaCost: 5
-  speed: 8
-  damageAmt: 10
+  speed: 7
+  damageAmt: 2
   lifetime: 2

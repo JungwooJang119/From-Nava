@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 6866387084450533419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.69, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3442349469620098249}
@@ -157,12 +157,12 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: cb799c27f5fb04949a73f3d9c4bbd993, type: 2}
   collider: {fileID: 0}
   rb: {fileID: 7410404838220746693}
-  rotate: {x: 0, y: 0, z: 0}
+  rotate: {x: 0, y: 0, z: 180}
   spellActive: 1
   isChair: 0
   isWind: 1
   isPiplup: 0
-  direction: {x: 0, y: 1}
+  direction: {x: 0, y: -1}
 --- !u!61 &9097417068368567135
 BoxCollider2D:
   m_ObjectHideFlags: 0

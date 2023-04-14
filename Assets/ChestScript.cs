@@ -14,6 +14,14 @@ public class ChestScript : MonoBehaviour
     public Animator animator;
     public GameObject door;
 
+    // Button Tutorial Pop-Up
+    [SerializeField] private GameObject buttonTutorial;
+    private GameObject _tutInstance;
+    private ButtonTutorial _tutScript;
+
+    // Key to interact
+    private string _intKey = "space";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +36,26 @@ public class ChestScript : MonoBehaviour
     void Update()
     {
         if (isNear) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                StartCoroutine(TextPopUp());
+            if (!spellNotif.activeSelf) {
+                if (_tutInstance == null) {
+                    _tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
+                    _tutScript = _tutInstance.GetComponent<ButtonTutorial>();
+                    _tutScript.SetUp(_intKey, gameObject);
+                }
+                else {
+                    _tutScript.CancelFade();
+                }
             }
-        }
-    }
+			if (Input.GetKeyDown(_intKey)) {
+                StartCoroutine(TextPopUp());
+				if (_tutInstance != null) {
+					_tutScript.Fade();
+				}
+			}
+        } else if (_tutInstance) {
+			_tutScript.Fade();
+		}
+	}
 
     IEnumerator CameraTransitionIn() {
 		yield return new WaitForSeconds(0.0f);
@@ -57,9 +80,11 @@ public class ChestScript : MonoBehaviour
     IEnumerator TextPopUp() {
         spellNotif.SetActive(true);
         animator.SetBool("OpeningChest", true);
-        yield return new WaitForSeconds(4.0f);
+		AudioControl.Instance.PlaySFX("Chest Open");
+		yield return new WaitForSeconds(4.0f);
         spellNotif.SetActive(false);
         animator.SetBool("OpeningChest", false);
-        Destroy(door);
+        AudioControl.Instance.PlaySFX("Chest Close");
+        door.GetComponent<Door>().OpenDoor();
     }
 }

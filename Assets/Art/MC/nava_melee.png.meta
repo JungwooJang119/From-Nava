@@ -112,8 +112,8 @@ TextureImporter:
         y: 161
         width: 16
         height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -133,8 +133,8 @@ TextureImporter:
         y: 157
         width: 19
         height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,8 +154,8 @@ TextureImporter:
         y: 152
         width: 18
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.26666668}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: nava_melee_3
       rect:
         serializedVersion: 2
-        x: 161
+        x: 148
         y: 153
-        width: 29
+        width: 42
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,12 +192,12 @@ TextureImporter:
       name: nava_melee_4
       rect:
         serializedVersion: 2
-        x: 209
+        x: 197
         y: 156
-        width: 28
+        width: 40
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12903225}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,12 +213,12 @@ TextureImporter:
       name: nava_melee_5
       rect:
         serializedVersion: 2
-        x: 256
+        x: 243
         y: 160
-        width: 29
+        width: 42
         height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: nava_melee_6
       rect:
         serializedVersion: 2
-        x: 305
+        x: 294
         y: 161
-        width: 27
+        width: 38
         height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: nava_melee_7
       rect:
         serializedVersion: 2
-        x: 352
+        x: 350
         y: 161
-        width: 20
+        width: 22
         height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -276,12 +276,12 @@ TextureImporter:
       name: nava_melee_8
       rect:
         serializedVersion: 2
-        x: 153
+        x: 15
         y: 113
-        width: 26
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 17
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -297,12 +297,12 @@ TextureImporter:
       name: nava_melee_9
       rect:
         serializedVersion: 2
-        x: 206
+        x: 62
         y: 113
-        width: 26
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 19
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -318,12 +318,12 @@ TextureImporter:
       name: nava_melee_10
       rect:
         serializedVersion: 2
-        x: 255
+        x: 104
         y: 113
-        width: 25
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 31
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -336,36 +336,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_11
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 137
-        width: 13
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d56b17b8cf377b942b34334f68034390
-      internalID: -410291055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: nava_melee_12
       rect:
         serializedVersion: 2
-        x: 303
+        x: 199
         y: 113
-        width: 24
+        width: 33
         height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -381,12 +360,12 @@ TextureImporter:
       name: nava_melee_13
       rect:
         serializedVersion: 2
-        x: 351
+        x: 247
         y: 113
-        width: 24
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 33
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -402,12 +381,12 @@ TextureImporter:
       name: nava_melee_14
       rect:
         serializedVersion: 2
-        x: 15
+        x: 296
         y: 113
-        width: 17
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 31
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -423,12 +402,12 @@ TextureImporter:
       name: nava_melee_15
       rect:
         serializedVersion: 2
-        x: 65
+        x: 344
         y: 113
-        width: 16
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 31
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -444,12 +423,12 @@ TextureImporter:
       name: nava_melee_16
       rect:
         serializedVersion: 2
-        x: 104
-        y: 113
-        width: 25
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 14
+        y: 65
+        width: 18
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -465,12 +444,12 @@ TextureImporter:
       name: nava_melee_17
       rect:
         serializedVersion: 2
-        x: 16
-        y: 65
-        width: 16
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 62
+        y: 61
+        width: 20
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -486,12 +465,12 @@ TextureImporter:
       name: nava_melee_18
       rect:
         serializedVersion: 2
-        x: 62
-        y: 61
-        width: 19
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 111
+        y: 56
+        width: 18
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5, y: 0.26666668}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -507,12 +486,12 @@ TextureImporter:
       name: nava_melee_19
       rect:
         serializedVersion: 2
-        x: 111
-        y: 56
-        width: 18
+        x: 146
+        y: 57
+        width: 42
         height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23333333}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -528,12 +507,12 @@ TextureImporter:
       name: nava_melee_20
       rect:
         serializedVersion: 2
-        x: 146
-        y: 57
-        width: 29
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 195
+        y: 60
+        width: 40
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12903225}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -549,12 +528,12 @@ TextureImporter:
       name: nava_melee_21
       rect:
         serializedVersion: 2
-        x: 195
-        y: 60
-        width: 28
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 243
+        y: 64
+        width: 42
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -570,12 +549,12 @@ TextureImporter:
       name: nava_melee_22
       rect:
         serializedVersion: 2
-        x: 243
-        y: 64
-        width: 29
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 292
+        y: 65
+        width: 40
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -591,12 +570,12 @@ TextureImporter:
       name: nava_melee_23
       rect:
         serializedVersion: 2
-        x: 292
+        x: 348
         y: 65
-        width: 27
+        width: 24
         height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -612,12 +591,12 @@ TextureImporter:
       name: nava_melee_24
       rect:
         serializedVersion: 2
-        x: 348
-        y: 65
-        width: 20
+        x: 15
+        y: 17
+        width: 17
         height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -633,12 +612,12 @@ TextureImporter:
       name: nava_melee_25
       rect:
         serializedVersion: 2
-        x: 15
-        y: 17
+        x: 63
+        y: 15
         width: 17
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 23
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -654,12 +633,12 @@ TextureImporter:
       name: nava_melee_26
       rect:
         serializedVersion: 2
-        x: 63
-        y: 15
-        width: 17
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 105
+        y: 13
+        width: 30
+        height: 25
+      alignment: 9
+      pivot: {x: 0.5, y: 0.08}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -675,12 +654,12 @@ TextureImporter:
       name: nava_melee_27
       rect:
         serializedVersion: 2
-        x: 111
-        y: 13
-        width: 24
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 152
+        y: 2
+        width: 30
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.41666666}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -696,12 +675,12 @@ TextureImporter:
       name: nava_melee_28
       rect:
         serializedVersion: 2
-        x: 156
-        y: 2
-        width: 26
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 199
+        y: 3
+        width: 33
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -717,12 +696,12 @@ TextureImporter:
       name: nava_melee_29
       rect:
         serializedVersion: 2
-        x: 199
+        x: 247
         y: 3
-        width: 26
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 33
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3888889}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -735,36 +714,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_30
-      rect:
-        serializedVersion: 2
-        x: 247
-        y: 4
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b9b5c21d18281648b26c940ec3ecd0a
-      internalID: -582479427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: nava_melee_31
       rect:
         serializedVersion: 2
-        x: 249
-        y: 3
-        width: 23
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 344
+        y: 7
+        width: 31
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.29411766}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -777,43 +735,43 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_32
+      name: nava_melee_11
       rect:
         serializedVersion: 2
-        x: 296
-        y: 3
-        width: 24
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 153
+        y: 113
+        width: 29
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8258309a0c0e91f4ba83935dd359c040
-      internalID: 875830554
+      spriteID: 70960f4009fd261459c6a9862d1a37e3
+      internalID: -410291055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nava_melee_33
+      name: nava_melee_30
       rect:
         serializedVersion: 2
-        x: 344
-        y: 7
-        width: 24
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 296
+        y: 3
+        width: 31
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36842105}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecb3e8832d872034da9f76d3bc8236ee
-      internalID: -773366802
+      spriteID: 34fb3a5dcb7926c499b39ac6f7f47b86
+      internalID: -582479427
       vertices: []
       indices: 
       edges: []
@@ -833,7 +791,6 @@ TextureImporter:
       nava_melee_18: 413641789
       nava_melee_12: 580676321
       nava_melee_3: 1601905291
-      nava_melee_33: -773366802
       nava_melee_30: -582479427
       nava_melee_10: 750819433
       nava_melee_22: -1421448579
@@ -843,7 +800,6 @@ TextureImporter:
       nava_melee_9: 1085654227
       nava_melee_27: -108784234
       nava_melee_20: -1628285434
-      nava_melee_32: 875830554
       nava_melee_25: -1885222694
       nava_melee_15: -409928167
       nava_melee_11: -410291055

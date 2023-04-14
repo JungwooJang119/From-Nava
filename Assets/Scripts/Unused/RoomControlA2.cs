@@ -1,93 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class RoomControlA2 : MonoBehaviour
 {
-    public GameObject firewood1, firewood2, firewood3, firewood4, firewood5;
-    public GameObject firewood6, firewood7, firewood8, firewood9, firewood10;
-    public GameObject firewood11, firewood12, firewood13,firewood14;
-    public GameObject firewood15;
-    public GameObject firewood16;
-    public GameObject firewood17;
-    public GameObject firewood18;
-    public GameObject firewood19;
-    public GameObject firewood20;
-    public GameObject firewood21;
-    public GameObject firewood22;
-    public GameObject firewood23;
-    public GameObject firewood24;
-    public GameObject firewood25;
-
-    private Firewood_Script p1, p2, p3, p4, p5;
-    private Firewood_Script p6, p7, p8, p9, p10;
-    private Firewood_Script p11, p12, p13, p14, p15;
-    private Firewood_Script p16, p17, p18, p19, p20;
-    private Firewood_Script p21, p22, p23, p24, p25;
+    [SerializeField] GameObject firewoodController;
+    private Firewood_Script[] _firewoods;
+    private bool _canClear = true;
 
     [SerializeField] private bool isClear = false;
     //[SerializeField] private GameObject spellNotif;
-    public GameObject A2Chest;
+    public GameObject A2Chest = null;
     public bool cheat = false;
-    
+    public bool _earlyRoom = false;
 
+    public string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
+	private CinemachineVirtualCamera _virtualCamera;
+	public GameObject _cameraTarget;				// The target the camera will move towards.
+	public Transform _returnToPlayer;
+    public GameObject door;
+    
     // Start is called before the first frame update
-    void Start()
-    {
-        p1 = firewood1.GetComponent<Firewood_Script>();
-        p2 = firewood2.GetComponent<Firewood_Script>();
-        p3 = firewood3.GetComponent<Firewood_Script>();
-        p4 = firewood4.GetComponent<Firewood_Script>();
-        p5 = firewood5.GetComponent<Firewood_Script>();
-        p6 = firewood6.GetComponent<Firewood_Script>();
-        p7 = firewood7.GetComponent<Firewood_Script>();
-        p8 = firewood8.GetComponent<Firewood_Script>();
-        p9 = firewood9.GetComponent<Firewood_Script>();
-        p10 = firewood10.GetComponent<Firewood_Script>();
-        p11 = firewood11.GetComponent<Firewood_Script>();
-        p12 = firewood12.GetComponent<Firewood_Script>();
-        p13 = firewood13.GetComponent<Firewood_Script>();
-        p14 = firewood14.GetComponent<Firewood_Script>();
-        p15 = firewood15.GetComponent<Firewood_Script>();
-        p16 = firewood16.GetComponent<Firewood_Script>();
-        p17 = firewood17.GetComponent<Firewood_Script>();
-        p18 = firewood18.GetComponent<Firewood_Script>();
-        p19 = firewood19.GetComponent<Firewood_Script>();
-        p20 = firewood20.GetComponent<Firewood_Script>();
-        p21 = firewood21.GetComponent<Firewood_Script>();
-        p22 = firewood22.GetComponent<Firewood_Script>();
-        p23 = firewood23.GetComponent<Firewood_Script>();
-        p24 = firewood24.GetComponent<Firewood_Script>();
-        p25 = firewood25.GetComponent<Firewood_Script>();
-    }
+    void Start() {
+		_firewoods = firewoodController.GetComponentsInChildren<Firewood_Script>();
+        _virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
+		_returnToPlayer = _virtualCamera.Follow;
+	}
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (!isClear) {
-        if (p1.isLit && p2.isLit && p3.isLit && p4.isLit && p5.isLit && p6.isLit && p7.isLit && p8.isLit && p9.isLit) {
-            if (p10.isLit && p11.isLit && p12.isLit && p13.isLit && p14.isLit && p15.isLit && p16.isLit && p17.isLit) {
-                if (p18.isLit && p19.isLit && p20.isLit && p21.isLit && p22.isLit && p23.isLit && p24.isLit && p25.isLit) {
-                    A2Chest.SetActive(true);
-                    //spellNotif.SetActive(true);
-                    StartCoroutine(DurationTime());
-                    isClear = true;
-                    Destroy(this.gameObject);
-                }
+            foreach (Firewood_Script _firewood in _firewoods) {
+                if (!_firewood.isLit) { _canClear = false; break; }
             }
-        }
-        }
-        if (cheat) {
-            A2Chest.SetActive(true);
-                    //spellNotif.SetActive(true);
-                    //StartCoroutine(DurationTime());
-                    isClear = true;
-                    Destroy(this.gameObject);
+
+			if (_canClear) {
+                if (_earlyRoom) {
+                    StartCoroutine(CameraTransitionIn());
+                    StartCoroutine(DoorOpen());
+                    _earlyRoom = false;
+                    return;
+                }
+				A2Chest.SetActive(true);
+				//spellNotif.SetActive(true);
+				StartCoroutine(DurationTime());
+				isClear = true;
+				Destroy(this.gameObject);
+			}
+			_canClear = true;
+
+			if (cheat) {
+                A2Chest.SetActive(true);
+                //spellNotif.SetActive(true);
+                //StartCoroutine(DurationTime());
+                isClear = true;
+                Destroy(this.gameObject);
+            }
         }
     }
 
-    IEnumerator DurationTime() {
+	IEnumerator DurationTime() {
 		yield return new WaitForSeconds(5f);
-        //spellNotif.SetActive(false);
+		//spellNotif.SetActive(false);
 	}
+
+    IEnumerator CameraTransitionIn() {
+		yield return new WaitForSeconds(0.0f);
+		_virtualCamera.Follow = _cameraTarget.transform;
+		yield return new WaitForSeconds(2f);
+        _virtualCamera.Follow = _returnToPlayer;
+	}
+
+    IEnumerator DoorOpen() {
+        yield return new WaitForSeconds(0.0f);
+        door.GetComponent<Door>().OpenDoor();
+    }
 }

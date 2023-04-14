@@ -49,8 +49,10 @@ MonoBehaviour:
   _musicSource: {fileID: 8403224658944174719}
   _sfxSource: {fileID: 8403224659635729808}
   musicSounds:
-  - name: Theme Sample
-    clip: {fileID: 8300000, guid: f083c239cc49bdc4dbd55612a8024154, type: 3}
+  - name: Main Theme
+    clip: {fileID: 8300000, guid: d2a2510d285c71d408b359124009c862, type: 3}
+  - name: Exploration Theme
+    clip: {fileID: 8300000, guid: f996f94893c31b24f8c7178a18834f27, type: 3}
   sfxSounds:
   - name: Button
     clip: {fileID: 8300000, guid: 299938c5f3379464c9c116c2db5ad113, type: 3}
@@ -66,6 +68,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0d7cf8d22c88a80499b4fa7bef6074cd, type: 3}
   - name: Receiver Triggered
     clip: {fileID: 8300000, guid: 73100d6b60c546341bb6097eeff548bc, type: 3}
+  - name: Chest Open
+    clip: {fileID: 8300000, guid: 5a81c80ab4d934e4c8d6058aac0bb2dc, type: 3}
+  - name: Chest Close
+    clip: {fileID: 8300000, guid: da14571a6d36096458d47670e101a48a, type: 3}
 --- !u!1 &8403224658944174706
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class RoomControlB1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isActive = true) {
+        if (isActive == true) {
             if (enemy1 == null && enemy2 == null) {
                 chest.SetActive(true);
                 // spellNotif.SetActive(true);

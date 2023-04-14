@@ -39,6 +39,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
 
     private List<int> pattern = new List<int>();
     private bool activePattern = false;
+    private bool activeLineAnimation = false;
 
 
     private void Awake() {
@@ -54,14 +55,15 @@ public class NotepadLogic : Singleton<NotepadLogic>
     }
 
     private void OnInputPress(object sender, int inputNum) {
-        if(!activePattern && inputNum == startNode) 
+        if(!activePattern && inputNum == startNode && !activeLineAnimation) {
             StartPattern();
-        
-        else if(activePattern && inputNum == endNode)
+        }
+        else if(activePattern && inputNum == endNode) {
             EndPattern();
-
-        else if(activePattern && !pattern.Contains(inputNum))
+        }
+        else if(activePattern && !pattern.Contains(inputNum)) {
             AddToPattern(inputNum);
+        }
         else {
             //invalid input: active node, non-start node on inactive pattern, etc
             //handle at will
@@ -101,6 +103,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
             if(sd.unlocked && patternString.Equals(sd.pattern)) 
             {
                 OnSpellCast?.Invoke(this, new OnSpellCastArgs(sd.spellType, pattern));
+                BlockClicks();
                 return;
             }
         }
@@ -111,6 +114,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
     {
         print("Invalid Pattern");
         OnSpellCast?.Invoke(this, new OnSpellCastArgs(SpellType.NONE, pattern));
+        BlockClicks();
     }
 
     public void UnlockSpell(SpellType spellType)
@@ -125,6 +129,17 @@ public class NotepadLogic : Singleton<NotepadLogic>
         }
     }
 
+    private void BlockClicks()
+    {
+        StartCoroutine(Blocker());
+    }
+
+    private IEnumerator Blocker()
+    {
+        activeLineAnimation = true;
+        yield return new WaitForSeconds(1);
+        activeLineAnimation = false;
+    }
 
     private void PrintPattern() {
         string patternString = "";

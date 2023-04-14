@@ -44,9 +44,11 @@ GameObject:
   - component: {fileID: 3570325442150851927}
   - component: {fileID: 3570325442150851924}
   - component: {fileID: 3570325442150851928}
+  - component: {fileID: 7147859089947672259}
+  - component: {fileID: 2880031122338850227}
   m_Layer: 0
   m_Name: IceTower
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +66,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3570325441346370061}
-  - {fileID: 5630840335195562694}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,10 +79,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012846291, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -92,7 +93,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.60604227, y: 0.888664}
+  m_Size: {x: 2, y: 4}
   m_EdgeRadius: 0
 --- !u!212 &3570325442150851927
 SpriteRenderer:
@@ -181,10 +182,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   iceball: {fileID: 5536333251357887935, guid: 363dac1b39fb0bf4b9df3e4a04aa424c, type: 3}
-  iceballInterval: 5
+  iceballInterval: 0.5
   currIceballTime: 0
   hasFired: 0
+  range: 15
   disableTower: 0
+--- !u!114 &7147859089947672259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570325442150851925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a723323d004f54ea57365880aa320c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  isIceTower: 1
+  damageFlash: {fileID: 2880031122338850227}
+  onMeleeHit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2880031122338850227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570325442150851925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340f19f892c97da43a69aeca75659afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 6e7a5fcd9775fcd40a27cf24bd9f8d93, type: 2}
+  duration: 0.125
 --- !u!1 &6938067032728277203
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5630840335195562694}
   - component: {fileID: 8323052421879387965}
+  - component: {fileID: 4559761177033002534}
   m_Layer: 0
   m_Name: RangeIndicator
   m_TagString: Untagged
@@ -243,3 +278,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 19.040598, y: 13.152958}
   m_EdgeRadius: 0
+--- !u!114 &4559761177033002534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938067032728277203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf6a6c7ed96d204c938699c58945212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

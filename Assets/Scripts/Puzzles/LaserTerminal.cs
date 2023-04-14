@@ -35,6 +35,11 @@ public class LaserTerminal : MonoBehaviour
 	private SpriteRenderer _spriteRenderer;			// Sprite Renderer reference;
 	private string _intKey = "space";				// Keycode of the key used for interactions;
 
+	public GameObject _cameraTarget2;				// The target the camera will move towards.
+    public GameObject door;
+
+	private bool roomComplete;
+
 	void Start() {
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -45,7 +50,7 @@ public class LaserTerminal : MonoBehaviour
 	// Checks if the player is in range to interact, inspired by Grace's script;
 	void Update() {
 		if (((Vector2)_player.position - (Vector2)transform.position).magnitude < range && canTrigger) {
-			if (_tutInstance == null) {
+			if (_tutInstance == null && !roomComplete) {
 				_tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
 				_tutScript = _tutInstance.GetComponent<ButtonTutorial>();
 				_tutScript.keyToPress = _intKey;
@@ -57,10 +62,12 @@ public class LaserTerminal : MonoBehaviour
 				if (_tutInstance != null) {
 					_tutScript.Fade();
 				}
-				_spriteRenderer.sprite = sprComputerOn;
-				AudioControl.Instance.PlaySFX("Computer On");
-				canTrigger = false;
-				StartCoroutine(CameraTransitionIn());
+				if (!roomComplete) {
+					_spriteRenderer.sprite = sprComputerOn;
+					AudioControl.Instance.PlaySFX("Computer On");
+					canTrigger = false;
+					StartCoroutine(CameraTransitionIn());
+				}
 			}
 		} else if (_tutInstance) {
 			_tutScript.Fade();
@@ -80,7 +87,18 @@ public class LaserTerminal : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		_spriteRenderer.sprite = sprComputerRight;
 		AudioControl.Instance.PlaySFX("Computer Right");
+		yield return new WaitForSeconds(1f);
+		_virtualCamera.Follow = _cameraTarget2.transform;
+		if (door != null) {
+			door.GetComponent<Door>().OpenDoor();
+		}
+		if (_cameraTarget2.tag == "Chest") {
+			_cameraTarget2.SetActive(true);
+		}
+		yield return new WaitForSeconds(2f);
+        _virtualCamera.Follow = _returnToPlayer;
 		canTrigger = true;
+		roomComplete = true;
 	}
 
 	// Coroutine to transition back if the puzzle fails;

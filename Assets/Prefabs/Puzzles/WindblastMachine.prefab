@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 8916631681253868026, guid: 4c7ed7f61f63d2840884458d6f971cb0, type: 3}
-  timeBetweenCasts: 5
+  timeBetweenCasts: 7
   active: 1
+  time: 1
 --- !u!212 &559866243194655127
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ TagManager:
   - Firewood
   - Spell
   - IceTower
+  - Chest
   layers:
   - Default
   - TransparentFX

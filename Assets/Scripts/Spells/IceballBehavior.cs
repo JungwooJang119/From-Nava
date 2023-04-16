@@ -80,7 +80,7 @@ public class IceballBehavior : MonoBehaviour {
 					var ps = parSystem.emission;
 					ps.enabled = true;
 					// Reactivate components;
-					ToggleComponents();
+					if (spellScript != null) ToggleComponents();
 					state = State.Lifetime;
 				}
 				break;

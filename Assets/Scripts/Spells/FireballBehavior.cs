@@ -82,8 +82,8 @@ public class FireballBehavior : MonoBehaviour {
                     // Enable emissions;
 					var ps = parSystem.emission;
 					ps.enabled = true;
-                    // Reactivate components;
-					ToggleComponents();
+					// Reactivate components;
+					if (spellScript != null) ToggleComponents();
                     state = State.Lifetime;
 				}
                 break;

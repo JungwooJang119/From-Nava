@@ -8,10 +8,15 @@ public class PressurePlate_Script : MonoBehaviour
     public bool isPressed = false;
     [SerializeField] private SpriteRenderer render;
     [SerializeField] private float setTime;
+    [SerializeField] private SpellScriptObj chairScriptObj;
     private bool isChair = false;
     private float time = 0;
     private int numObject = 0;
     private Collider2D chairCollider;
+
+    private void Start() {
+        setTime = chairScriptObj.lifetime;
+    }
 
     void Update() {
         if (isChair) {
@@ -20,7 +25,7 @@ public class PressurePlate_Script : MonoBehaviour
         if (time >= setTime) {
             isChair = false;
             time = 0;
-            numObject--;
+            //numObject--;
             OnTriggerExit2D(chairCollider);
         }
     }

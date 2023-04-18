@@ -7,9 +7,9 @@ using UnityEngine;
 public class LaserWave : MonoBehaviour
 {
     // Reference variables to control the visual behavior of the wave;
-    public float growthRate;
-    public float vanishRate;
-    public float maxGrowth;
+    [SerializeField] private float growthRate;
+    [SerializeField] private float vanishRate;
+    [SerializeField] private float maxGrowth;
 	private Color alpha;
 
 	// Reference to the sprite renderer;

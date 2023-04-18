@@ -153,7 +153,7 @@ MonoBehaviour:
   hitboxE: {fileID: 0}
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
-  damage: 10
+  damage: 5
 --- !u!1 &2571063176125842610
 GameObject:
   m_ObjectHideFlags: 0

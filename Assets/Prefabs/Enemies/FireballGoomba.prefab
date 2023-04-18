@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a723323d004f54ea57365880aa320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   isIceTower: 0
   damageFlash: {fileID: 6632084955643231022}
   onMeleeHit:
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 7816608974960025993}
-  strength: 16
+  strength: 9001
   delay: 0.15
   OnBegin:
     m_PersistentCalls:

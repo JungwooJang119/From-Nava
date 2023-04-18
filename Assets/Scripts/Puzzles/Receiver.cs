@@ -9,21 +9,18 @@ using UnityEngine;
 public class Receiver : MonoBehaviour {
 
 	// Reference to the laserWave to be generated;
-	public GameObject laserWave;
+	[SerializeField] private GameObject laserWave;
 
 	// Generate laser waves on collision with the laser beam;
 	// Called by the laser beam OnCollision2D;
-	public void feedback(float life) {
+	public void Feedback(float life) {
 		StartCoroutine(SoundDelay(life));
 	}
 
 	// Coroutine to repeat the wave and sound twice;
 	IEnumerator SoundDelay(float life) {
 		yield return new WaitForSeconds(life);
-		var _dur = AudioControl.Instance.PlaySFX("Receiver Triggered");
-		Instantiate(laserWave, transform.position, transform.rotation);
-		yield return new WaitForSeconds(_dur);
-		AudioControl.Instance.PlaySFX("Receiver Triggered");
+		AudioControl.Instance.PlayVoidSFX("Receiver Triggered");
 		Instantiate(laserWave, transform.position, transform.rotation);
 	}
 }

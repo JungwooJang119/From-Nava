@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,14 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     public SpellScriptObj spell;
+    public event Action<GameObject> OnSpellDestroy;
+
     //[SerializeField] private LogicScript logicScript;
     [SerializeField] private Collider2D collider;
     [SerializeField] private Rigidbody2D rb;
 
-    [SerializeField]private Vector3 rotate;
-    [SerializeField]private bool spellActive = false;
+    [SerializeField] private Vector3 rotate;
+    [SerializeField] private bool spellActive = false;
     [SerializeField] private bool isChair = false;
     [SerializeField] private bool isWind = false;
     [SerializeField] private bool isPiplup = false;
@@ -30,7 +33,10 @@ public class Spell : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
 
-        Destroy(this.gameObject, spell.lifetime); 
+        // Spells no longer get destroyed automatically.
+        // They must carry out their own destroy sequence
+        // on lifetime and collision. 1/3 Spells Done;
+        //Destroy(this.gameObject, spell.lifetime);
     }
 
     protected virtual void Update()
@@ -78,10 +84,8 @@ public class Spell : MonoBehaviour
 
         if (isWind) {
             if (other.gameObject.CompareTag("Walls")) {
-                Destroy(this.gameObject);
-            } else {
-                return;
-            }
+                OnSpellDestroy?.Invoke(other.gameObject);
+            } return;
         }
 
         //Apply hit particle effects, sfx, spell effects\
@@ -90,6 +94,6 @@ public class Spell : MonoBehaviour
             enemyHealth.TakeDamage(spell.damageAmt);
             Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+		OnSpellDestroy?.Invoke(other.gameObject);
     }
 }

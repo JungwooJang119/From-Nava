@@ -45,14 +45,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87607e9c15af53b408fc8894aed61be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startNode: 4
-  endNode: 6
+  startNode: 1
+  endNode: 9
   spellData:
   - spellType: 0
-    pattern: 456
+    pattern: 159
+    unlocked: 1
+  - spellType: 1
+    pattern: 1269
     unlocked: 1
   - spellType: 3
-    pattern: 1469
+    pattern: 1489
+    unlocked: 1
+  - spellType: 2
+    pattern: 1259
+    unlocked: 1
+  - spellType: 4
+    pattern: 162348759
     unlocked: 1
 --- !u!114 &2463856277162178069
 MonoBehaviour:
@@ -66,8 +75,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2860e447053db424394aed5033d1aad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startLagTime: 0.25
   enumToSpell:
   - spellType: 0
-    spell: {fileID: 0}
+    spell: {fileID: 8916631681253868026, guid: 0ac82b8b3a613aa498401c42f2846bc2, type: 3}
+  - spellType: 1
+    spell: {fileID: 6389482856583591886, guid: 3ac2add376d46f84f972d5291edc289d, type: 3}
   - spellType: 3
-    spell: {fileID: 0}
+    spell: {fileID: 8916631681253868026, guid: 4c7ed7f61f63d2840884458d6f971cb0, type: 3}
+  - spellType: 2
+    spell: {fileID: 8916631681253868026, guid: 7f8bc1551ccff794fa26c98cc515245a, type: 3}
+  - spellType: 4
+    spell: {fileID: 6389482856583591886, guid: 2ef26001a212b354c8b601ddb0ed7c40, type: 3}

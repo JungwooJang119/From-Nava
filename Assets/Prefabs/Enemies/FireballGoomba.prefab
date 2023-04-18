@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4266145420635378479}
   - component: {fileID: 7816608974960025993}
   - component: {fileID: 6632084955643231022}
+  - component: {fileID: 5853837958062122997}
   m_Layer: 0
   m_Name: FireballGoomba
   m_TagString: Enemy
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a723323d004f54ea57365880aa320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   isIceTower: 0
   damageFlash: {fileID: 6632084955643231022}
   onMeleeHit:
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 7816608974960025993}
-  strength: 16
+  strength: 9001
   delay: 0.15
   OnBegin:
     m_PersistentCalls:
@@ -225,3 +226,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: 6e7a5fcd9775fcd40a27cf24bd9f8d93, type: 2}
   duration: 0.125
+--- !u!95 &5853837958062122997
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797491692293421795}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddee4324721c08e4897d911253d57368, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -38,6 +38,9 @@ public class Projectile : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy")) {
             return;
         }
+        if (col.gameObject.CompareTag("EnemyProjectile")) {
+            return;
+        }
         if (col.gameObject.CompareTag("IceTower")) {
             return;
         }

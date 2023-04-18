@@ -7,6 +7,8 @@ public class SpellCastManager : MonoBehaviour
 {
     //Responsible for spawning spells
 
+    [SerializeField] private float startLagTime;
+
     [Serializable]
     public struct EnumToSpell
     {
@@ -46,6 +48,11 @@ public class SpellCastManager : MonoBehaviour
         
         spell.CastSpell(face);
         PlayerController.Instance.animator.SetTrigger("doSpellCast");
+        StartCoroutine(CastSpell(spell));
+    }
+
+    IEnumerator CastSpell(Spell spell) {
+        yield return new WaitForSeconds(startLagTime);
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
     }
 

@@ -94,7 +94,6 @@ public class LabReport : MonoBehaviour
 					_tutScript.CancelFade();
 				}
 				if (Input.GetKeyDown(_intKey)) {
-					unlockRoom = true;
 					_playerController.DeactivateMovement();
 					_state = "FadeOut";
 					_timer = _tranScript.DarkenOut() + 0.5f;
@@ -179,6 +178,7 @@ public class LabReport : MonoBehaviour
 					Destroy(_currentNote.gameObject);
 					_playerController.ActivateMovement();
 					_state = "Inactive";
+					unlockRoom = true;
 				}
 			}
 		}

@@ -29,11 +29,15 @@ public class FireGoombaController : MonoBehaviour
     Transform t;
     public float fixedRotation = 0;
 
+    private Animator animator;
+
+
 
     private void Start()
     {
         GetComponent<Rigidbody2D>().gravityScale = 0;
         enemy = GetComponent<Enemy>();
+        animator = GetComponent<Animator>();
         lastChangeTime = 0f;
         NewDirection();
         t = transform;
@@ -55,8 +59,8 @@ public class FireGoombaController : MonoBehaviour
                     idle = false;
                 }
                 if (currFireballTime >= fireballInterval) {
-                    Instantiate(fireball, transform.position, Quaternion.identity);
                     currFireballTime = 0;
+                    StartCoroutine(Attack());
                 } else {
                     currFireballTime += Time.deltaTime;
                 }
@@ -83,5 +87,12 @@ public class FireGoombaController : MonoBehaviour
     private void OnCollisionStay2D(UnityEngine.Collision2D collision)
     {
         NewDirection();
+    }
+
+    IEnumerator Attack() {
+        animator.SetBool("isFiring", true);
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(fireball, transform.position, Quaternion.identity);
+        animator.SetBool("isFiring", false);
     }
 }

@@ -93,8 +93,9 @@ public class LaserTerminal : MonoBehaviour
 		_virtualCamera.Follow = _cameraTarget2.transform;
 		if (door != null) {
 			door.GetComponent<Door>().OpenDoor();
+			
 		}
-		if (_cameraTarget2.tag == "Chest") {
+		if (_cameraTarget2 != null) {
 			_cameraTarget2.SetActive(true);
 		}
 		yield return new WaitForSeconds(2f);

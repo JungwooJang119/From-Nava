@@ -66,6 +66,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3570325441346370061}
+  - {fileID: 5630840335195562694}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,10 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   iceball: {fileID: 5536333251357887935, guid: 363dac1b39fb0bf4b9df3e4a04aa424c, type: 3}
-  iceballInterval: 0.5
+  iceballInterval: 1
   currIceballTime: 0
   hasFired: 0
-  range: 15
+  range: 9
   disableTower: 0
 --- !u!114 &7147859089947672259
 MonoBehaviour:

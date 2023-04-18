@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 8403224658944174719}
-  _sfxSource: {fileID: 8403224659635729808}
   musicSounds:
   - name: Main
     clip: {fileID: 8300000, guid: 8196983bb7a99dc47a3e17e77a606386, type: 3}
@@ -69,7 +68,7 @@ MonoBehaviour:
   - name: Final Shot
     clip: {fileID: 8300000, guid: 71e5e6c8d6e7cff48871d0091ad8872e, type: 3}
   - name: Receiver Triggered
-    clip: {fileID: 8300000, guid: 53ae6952a2def7b4c924e2e29151f70c, type: 3}
+    clip: {fileID: 8300000, guid: 73100d6b60c546341bb6097eeff548bc, type: 3}
   - name: Chest Open
     clip: {fileID: 8300000, guid: 5a81c80ab4d934e4c8d6058aac0bb2dc, type: 3}
   - name: Chest Close

@@ -32,7 +32,7 @@ public class SpikeBehavior : MonoBehaviour
 
             Vector3 contact = new Vector3(avgCollision.x, avgCollision.y, other.transform.position.z);
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
-            Vector3 pushDir = other.transform.position - contact;
+            Vector3 pushDir = Vector3.Normalize(other.transform.position - contact);
             other.gameObject.GetComponent<Enemy>().Push(pushDir, knockbackDist, knockbackSpd);
             other.gameObject.GetComponent<Enemy>().TakeDamage((float)dmg);
         } else if (other.gameObject.CompareTag("Player")) {
@@ -45,7 +45,7 @@ public class SpikeBehavior : MonoBehaviour
 
             Vector3 contact = new Vector3(avgCollision.x, avgCollision.y, other.transform.position.z);
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
-            Vector3 pushDir = other.transform.position - contact;
+            Vector3 pushDir = Vector3.Normalize(other.transform.position - contact);
             Debug.Log(pushDir);
 
             other.gameObject.GetComponent<PlayerController>().Push(pushDir, knockbackDist, knockbackSpd);

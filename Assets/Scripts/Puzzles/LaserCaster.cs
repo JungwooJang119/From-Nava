@@ -8,54 +8,91 @@ public class LaserCaster : MonoBehaviour
 {
 	// Speed of the laser launched defined on the inspector;
 	[SerializeField] private float speed;
+	// Projected life of the beam, passed onto the beam when the object is created;
+	[SerializeField] private float beamLife;
+	// Aesthetic wait after the SFX fades away;
+	[SerializeField] private float launchDelay;
 
-    // A bunch of required object references;
-    [SerializeField] private GameObject laserBeam;
+	// A bunch of required object references;
+	[SerializeField] private GameObject laserBeam;
     [SerializeField] private GameObject laserWave;
-    [SerializeField] private GameObject laserParticles;
-	[SerializeField] private GameObject laserTerminal;
 
-	// Projected life of the beam,
-	// passed onto the beam when the object is created;
-	private float _beamLife;
+	// Reference to associated objects;
+	private LaserTerminal laserTerminal;
+	private ParticleSystem parSystem;
+	private Transform laserCastPoint;
+	private GameObject currentLaser;
 
-	// Reference to the beam casted and the parent terminal;
-	private GameObject _currentLaser;
-    private GameObject _currentTerminal;
+	// Simple state machine to control the loading sequence of the laser;
+	private enum Stage {
+		Idle,
+		Start,
+		Launch,
+		Done,
+	} private Stage stage;
+	private float timer = 0;
 
-	// Variables to control the looping of loading sounds;
-	private bool _load = false;
-    private float _fxDuration = 0;
-    private int _fxAllocations;
-    private int _fxAllocationsMax = 4;
-
-	// Method to cast the beam;
-	public void InitiateBeam() {
-		_beamLife = AudioControl.Instance.PlaySFX("Final Shot");
-		_currentLaser = Instantiate(laserBeam, transform.position, transform.rotation);
-		_currentLaser.GetComponent<LaserBeam>().SetUpBeam(speed, laserTerminal.GetComponent<LaserTerminal>(), _beamLife * 1.01f);
+	void Start() {
+		stage = Stage.Idle;
+		laserTerminal = transform.parent.GetComponent<LaserTerminal>();
+		// Fetching references from children. Funky way to do it, but looks tidy doesn't it? :D
+		for (int i = 0; i < transform.childCount; i++) {
+			var componentCheck = transform.GetChild(i).GetComponent<ParticleSystem>();
+			if (componentCheck != null) {
+				parSystem = componentCheck;
+			} else {
+				laserCastPoint = transform.GetChild(i);
+			}
+		}
+		// Stop emissions;
+		var emission = parSystem.emission;
+		emission.enabled = false;
+	}
+	
+	// Load the shot and cast the beam [aesthetically];
+	void Update() {
+		switch (stage) {
+			case Stage.Start:
+				if (timer > 0) {
+					timer -= Time.deltaTime;
+				} else {
+					// Stop emissions;
+					var emission = parSystem.emission;
+					emission.enabled = false;
+					// Set up wait timer;
+					timer = launchDelay;
+					stage = Stage.Launch;
+				}
+				break;
+			case Stage.Launch:
+				if (timer > 0) {
+					timer -= Time.deltaTime;
+				}
+				else {
+					// The beam gets instantiated, all done;
+					InitiateBeam();
+					stage = Stage.Done;
+				}
+				break;
+		}
 	}
 
 	// Method called from the terminal, initiates the shot by loading the caster first;
-	// Note: This sequence used to be required to wait for the dummy laser to find a
-	//		 target. It was later used to add some delay for the beam to find its way
-	//		 before tracing. Now, it is merely aesthetic;
 	public void LoadBeam() {
-		_fxAllocations = _fxAllocationsMax;
-		_load = true;
+		timer = AudioControl.Instance.PlaySFX("Loading Shot", laserTerminal.gameObject);
+		// Start particle emissions;
+		var emission = parSystem.emission;
+		emission.enabled = true;
+		// Spawn a wave on the caster [aesthetically];
+		Instantiate(laserWave, transform.position, transform.rotation);
+		stage = Stage.Start;
 	}
-	
-	// Load the shot and cast the beam [aesthetic load];
-	void Update() {
-        if ((_fxDuration > 0) && (_load)) {
-            _fxDuration -= Time.deltaTime;
-        } else if ((_fxDuration <= 0) && (_load) && (_fxAllocations > 0)) {
-			_fxDuration = 8f/9f * AudioControl.Instance.PlaySFX("Loading Shot");
-			Instantiate(laserWave, transform.position, transform.rotation);
-            _fxAllocations--;
-		} else if ((_load) && (_fxAllocations <= 0)) {
-			_load = false;
-			InitiateBeam();
-		}
+
+	// Method to cast the beam;
+	private void InitiateBeam() {
+		AudioControl.Instance.PlaySFX("Final Shot", laserTerminal.gameObject);
+		currentLaser = Instantiate(laserBeam, laserCastPoint.position, transform.rotation);
+		// Pass required values to the laser beam. For more information, visit LaserBeam.cs;
+		currentLaser.GetComponent<LaserBeam>().SetUpBeam(speed, laserTerminal, beamLife * 1.01f, GetComponent<Collider2D>());
 	}
 }

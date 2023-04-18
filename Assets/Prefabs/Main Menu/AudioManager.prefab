@@ -47,25 +47,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 8403224658944174719}
-  _sfxSource: {fileID: 8403224659635729808}
   musicSounds:
-  - name: Main Theme
-    clip: {fileID: 8300000, guid: d2a2510d285c71d408b359124009c862, type: 3}
-  - name: Exploration Theme
-    clip: {fileID: 8300000, guid: f996f94893c31b24f8c7178a18834f27, type: 3}
+  - name: Main
+    clip: {fileID: 8300000, guid: 8196983bb7a99dc47a3e17e77a606386, type: 3}
+  - name: Exploration
+    clip: {fileID: 8300000, guid: bf5c5de18f87b5b4aaec6b81397ec2b0, type: 3}
+  - name: Exploration Opening
+    clip: {fileID: 8300000, guid: 21f1c5187ba79864d9f16f0520e227d2, type: 3}
   sfxSounds:
   - name: Button
     clip: {fileID: 8300000, guid: 299938c5f3379464c9c116c2db5ad113, type: 3}
   - name: Computer On
-    clip: {fileID: 8300000, guid: 03be708f473301d4f9cec8864f00ad69, type: 3}
+    clip: {fileID: 8300000, guid: fe410dd731f3ecc47bea994507706e79, type: 3}
   - name: Computer Wrong
-    clip: {fileID: 8300000, guid: d8175941145a78844b106d2cfa78587a, type: 3}
+    clip: {fileID: 8300000, guid: b45226143ab83e0428a540ed3b3f2c14, type: 3}
   - name: Computer Right
     clip: {fileID: 8300000, guid: 4e631cd981aa7b24d870470892cb8a8a, type: 3}
   - name: Loading Shot
-    clip: {fileID: 8300000, guid: b6b1970cdbced7449b492f58e945406d, type: 3}
+    clip: {fileID: 8300000, guid: e9a8492e672569b42a8685377b02e596, type: 3}
   - name: Final Shot
-    clip: {fileID: 8300000, guid: 0d7cf8d22c88a80499b4fa7bef6074cd, type: 3}
+    clip: {fileID: 8300000, guid: 71e5e6c8d6e7cff48871d0091ad8872e, type: 3}
   - name: Receiver Triggered
     clip: {fileID: 8300000, guid: 73100d6b60c546341bb6097eeff548bc, type: 3}
   - name: Chest Open

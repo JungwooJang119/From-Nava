@@ -6,123 +6,127 @@ using UnityEngine;
 // Draws a colored trail that varies in width to simulate light;
 
 public class LaserBeam : MonoBehaviour
-{	
-	// Speed of the beam. Inherited from the Caster;
-	private float speed;
-
-	// Duration of the beam trail. Inherited from the Caster;
-	private float life;
-
+{
 	// Max and min width for the laser-like wiggle;
-	[SerializeField] private float maxWidth;
-	[SerializeField] private float minWidth;
+	[SerializeField] private float trailWidth;
+	[SerializeField] private float wiggleRadius;
 
-	// Reference to the parent Terminal of the mirror system;
-	private LaserTerminal parentTerminal;
-
-	// Reference to the particle generator that will be spawned;
 	[SerializeField] private GameObject laserParticles;
 
-	// References to the rigid body, the trail renderer,
-	// the object collider, and the particle system;
-	private Rigidbody2D _rigidBody;
-	private TrailRenderer _trailRenderer;
-	private ParticleSystem _parSystem;
-	private ParticleSystem.EmissionModule _emissions;
+	// Variables inherited from the caster;
+	private float speed;
+	private float lifetime;
+	private LaserTerminal parentTerminal;
 
-	// Stores how the beam has been active.
-	// Passed onto the particles the beam generates.
-	private float _timer;
+	private Rigidbody2D rigidBody;
+	private TrailRenderer trailRenderer;
+	private ParticleSystem parSystem;
+	private float timer;
 
-	// Variables used to control the wiggle and behavior of the trail;
-	private bool _widthSwipeUp = true;
+	// State machine!
+	private enum Stage {
+		Start,
+		Cool,
+		Wiggle,
+		End,
+	} private Stage stage;
 
-	// Variable to store the outcome of the laser shot;
-	private bool _succeeded = false;
+	private bool hitReceiver = false;
 
-	// Grab component references and set the life of the trail;
+	// Grab component references and set the lifetime of the trail;
 	void Awake() {
-		_rigidBody = GetComponent<Rigidbody2D>();
-		_trailRenderer = GetComponent<TrailRenderer>();
-		_parSystem = GetComponent<ParticleSystem>();
-		_emissions = _parSystem.emission;
+		rigidBody = GetComponent<Rigidbody2D>();
+		trailRenderer = GetComponent<TrailRenderer>();
+		parSystem = GetComponent<ParticleSystem>();
 	}
 
 	// Initiates the motion of the beam;
 	void Start() {
-		_trailRenderer.widthMultiplier = 0;
-		_rigidBody.AddForce(transform.right * speed);
-		_trailRenderer.time = life*3f/4f;
+		trailRenderer.widthMultiplier = 0;
+		rigidBody.AddForce(transform.right * speed);
+		trailRenderer.time = lifetime * 0.75f;
+		stage = Stage.Start;
 	}
 
-	// Controls the wiggle of the laser;
+	// Controls THE ALMIGHTY LASER;
 	void Update() {
-		if (life > 0) {
-			if ((_widthSwipeUp) && (_trailRenderer.widthMultiplier < maxWidth)) {
-				_trailRenderer.widthMultiplier += Time.deltaTime;
-			}
-			else if ((_widthSwipeUp) && (_trailRenderer.widthMultiplier >= maxWidth)) {
-				_widthSwipeUp = false;
-				_trailRenderer.widthMultiplier -= Time.deltaTime;
-			}
-			else if ((!_widthSwipeUp) && (_trailRenderer.widthMultiplier > minWidth)) {
-				_trailRenderer.widthMultiplier -= Time.deltaTime;
-			}
-			else if ((!_widthSwipeUp) && (_trailRenderer.widthMultiplier <= minWidth)) {
-				_widthSwipeUp = true;
-				_trailRenderer.widthMultiplier += Time.deltaTime;
-			}
-			_timer += Time.deltaTime;
-			life -= Time.deltaTime;
-		} // Destroys the laser a certain time after the projected life time runs out;
-		if (life <= 0) {
-			if (_timer > 0) {
-				Destroy(gameObject, _trailRenderer.widthMultiplier);
-				_timer = 0;
-			}
-			if (_trailRenderer.widthMultiplier > 0) {
-				_trailRenderer.widthMultiplier -= Time.deltaTime;
-			}
+		switch (stage) {
+			case Stage.Start:
+				// Increase width heavily after instantiation;
+				if (trailRenderer.widthMultiplier < trailWidth * 2) {
+					trailRenderer.widthMultiplier += Time.deltaTime;
+				}
+				else {
+					stage = Stage.Cool;
+				}
+				break;
+			case Stage.Cool:
+				// Decrease size to match declared width;
+				if (trailRenderer.widthMultiplier > trailWidth) {
+					trailRenderer.widthMultiplier -= Time.deltaTime;
+				}
+				else {
+					stage = Stage.Wiggle;
+				}
+				break;
+			case Stage.Wiggle:
+				// Calculate wiggle;
+				trailRenderer.widthMultiplier = Mathf.Sin(Time.time * 7.5f) * wiggleRadius + trailWidth;
+				// Destroy beam when lifetime runs out;
+				if (lifetime < 0) {
+					Destroy(gameObject, trailRenderer.widthMultiplier);
+					stage = Stage.End;
+				}
+				break;
+			case Stage.End:
+				// Decrease width to zero;
+				if (trailRenderer.widthMultiplier > 0) {
+					trailRenderer.widthMultiplier -= Time.deltaTime;
+				}
+				break;
+		}
+		if (lifetime > 0) {
+			timer += Time.deltaTime;
+			lifetime -= Time.deltaTime;
 		}
 	}
 
 	// Creates a particle effect on collision and destroys on alien contact;
 	void OnCollisionEnter2D(Collision2D collider) {
 		if (collider.gameObject.tag == "Mirror") {
-			Instantiate(laserParticles, transform.position, transform.rotation).GetComponent<LaserParticles>().life = life - _timer;
-		}
-		else if (collider.gameObject.tag == "Receiver") {
-			collider.gameObject.GetComponent<Receiver>().feedback(0);
-			_rigidBody.velocity = Vector3.zero;
-			_succeeded = true;
-			StartCoroutine(DisableHeader(_trailRenderer.time));
-		}
-		else {
-			_rigidBody.velocity = Vector3.zero;
-			StartCoroutine(DisableHeader(_trailRenderer.time));
+			var particle = Instantiate(laserParticles, transform.position, transform.rotation);
+			particle.GetComponent<LaserParticles>().SetLife(lifetime - timer);
+		} else if (collider.gameObject.tag == "Receiver") {
+			collider.gameObject.GetComponent<Receiver>().Feedback(0);
+			rigidBody.velocity = Vector3.zero;
+			hitReceiver = true;
+			StartCoroutine(DisableHeader(trailRenderer.time));
+		} else {
+			rigidBody.velocity = Vector3.zero;
+			StartCoroutine(DisableHeader(trailRenderer.time));
 		}
 	}
 
-	// Coroutine to stop the header particle system from emitting,
-	// when the trails runs out;
 	IEnumerator DisableHeader(float wait) {
 		yield return new WaitForSeconds(wait);
-		_emissions.enabled = false;
+		var emission = parSystem.emission;
+		emission.enabled = false;
 	}
 
 	// Make the call to the parent terminal to react based on results;
 	void OnDestroy() {
-		if (_succeeded) {
+		if (hitReceiver) {
 			parentTerminal.PuzzleSuccess();
-		}
-		else {
+		} else {
 			parentTerminal.PuzzleFailure();
 		}
 	}
 
-	public void SetUpBeam(float speed, LaserTerminal parentTerminal, float life) {
+	// Method to initialize a beam from LaserCaster.cs;
+	public void SetUpBeam(float speed, LaserTerminal parentTerminal, float lifetime, Collider2D casterCollider) {
 		this.speed = speed;
 		this.parentTerminal = parentTerminal;
-		this.life = life;
+		this.lifetime = lifetime;
+		Physics2D.IgnoreCollision(casterCollider, GetComponent<Collider2D>());
 	}
 }

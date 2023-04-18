@@ -30,8 +30,6 @@ public class FireGoombaController : MonoBehaviour
     Transform t;
     public float fixedRotation = 0;
 
-    private Animator animator;
-
 
 
     private void Start()

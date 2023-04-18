@@ -31,10 +31,15 @@ public class IceballBehavior : MonoBehaviour {
 
     private Transform[] sprTransforms;  // Array of references to the transforms of children;
 
-    // In today's news, start is called before the first frame update! O.O
-    void Start() {
-        // Suscribe to the OnDestroy event from Spell.cs
-        spellScript = GetComponent<Spell>();
+	// private AudioSource audioRef;
+
+	// In today's news, start is called before the first frame update! O.O
+	void Start() {
+		// Play start SFX;
+		// AudioControl.Instance.PlaySFX("Iceball Cast", gameObject, out audioRef);
+
+		// Suscribe to the OnDestroy event from Spell.cs
+		spellScript = GetComponent<Spell>();
         spellScript.OnSpellDestroy += Spell_OnSpellDestroy;
 
         // Variables to manage the particle system;
@@ -105,10 +110,10 @@ public class IceballBehavior : MonoBehaviour {
 					// Stop spell and generate particles;
 					if (spellScript != null) {
 						CleanUp();
-						GenerateBurst(1f, 10f);
+						GenerateBurst(1f, 40f);
 					}
 					else {
-						GenerateBurst(0.75f, 15f);
+						GenerateBurst(0.75f, 60f);
 					}
 					state = State.Done;
 				}
@@ -138,7 +143,11 @@ public class IceballBehavior : MonoBehaviour {
 
     // Method called when the Spell script fires the destroy event! YEET!
     private void Spell_OnSpellDestroy(GameObject o) {
-        deathTimer = spellData.lifetime;
+		// AudioControl.Instance.PlaySFX("Iceball Collision", gameObject);
+		// Detach audio source from fireball to avoid cutting the sound;
+		// if (audioRef != null) audioRef.gameObject.transform.SetParent(null);
+
+		deathTimer = spellData.lifetime;
         CleanUp();
     }
 

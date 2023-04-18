@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d777463c111da94d99c3f12ac5c132b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWidth: 0.225
-  minWidth: 0.125
+  trailWidth: 0.17
+  wiggleRadius: 0.055
   laserParticles: {fileID: 5019274892667672986, guid: bad25e54763ed454cbec0116e9ce8ed9, type: 3}
 --- !u!50 &8271317558625874070
 Rigidbody2D:
@@ -1147,7 +1147,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2

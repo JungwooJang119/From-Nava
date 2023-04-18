@@ -31,8 +31,13 @@ public class WindblastBehavior : MonoBehaviour {
 
 	private ParticleSystem[] parSystems;    // Children Particle Systems. Reverb on 0, Trail on 1;
 
+	// private AudioSource audioRef;
+
 	// Have you heard of start, the method called before the first frame of Update? :O
 	void Start() {
+		// Play start SFX;
+		// AudioControl.Instance.PlaySFX("Windblast Cast", gameObject, out audioRef);
+
 		// Suscribe to the OnDestroy event from Spell.cs
 		spell = GetComponent<Spell>();
 		spell.OnSpellDestroy += Spell_OnSpellDestroy;
@@ -107,6 +112,10 @@ public class WindblastBehavior : MonoBehaviour {
 
 	// Method called when the Spell script fires the destroy event! YEET!
 	private void Spell_OnSpellDestroy(GameObject o) {
+		// AudioControl.Instance.PlaySFX("Windblast Collision", gameObject);
+		// Detach audio source from fireball to avoid cutting the sound;
+		// if (audioRef != null) audioRef.gameObject.transform.SetParent(null);
+
 		deathTimer = spellData.lifetime;
 		CleanUp();
 	}

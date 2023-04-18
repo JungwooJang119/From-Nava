@@ -9,6 +9,7 @@ public class FireGoombaController : MonoBehaviour
     public Transform player;
     public float minDistance;
     public float maxDistance;
+    private Animator animator;
 
     public GameObject fireball;
     public float fireballInterval;
@@ -33,6 +34,7 @@ public class FireGoombaController : MonoBehaviour
     private void Start()
     {
         GetComponent<Rigidbody2D>().gravityScale = 0;
+        animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
         lastChangeTime = 0f;
         NewDirection();
@@ -41,11 +43,12 @@ public class FireGoombaController : MonoBehaviour
 
     private void NewDirection()
     {
+        // idle, no attack
+        animator.SetBool("Attack", false);
         direction = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
         movement = direction * speed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         t.eulerAngles = new Vector3 (t.eulerAngles.x, fixedRotation, t.eulerAngles.z);
@@ -60,8 +63,9 @@ public class FireGoombaController : MonoBehaviour
                 } else {
                     currFireballTime += Time.deltaTime;
                 }
-
+                // chase mode
                 if (Vector2.Distance(transform.position, player.position) > minDistance) {
+                    animator.SetBool("Attack", true);
                     transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
                 }
             } else {

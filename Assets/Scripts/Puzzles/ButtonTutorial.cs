@@ -6,9 +6,9 @@ using TMPro;
 // Reference
 public class ButtonTutorial : MonoBehaviour
 {
-    public string keyToPress;           // Key displayed within brackets in the prompt;
-	public GameObject arrow;            // Reference to arrow prefab;
-    public GameObject parent;           // Reference to parent;
+    [SerializeField] private string keyToPress;     // Key displayed within brackets in the prompt;
+	[SerializeField] private GameObject arrow;      // Reference to arrow prefab;
+    [SerializeField] private GameObject parent;     // Reference to parent;
 
     private GameObject _myArrow;        // Reference to arrow spawned;
     private SpriteRenderer _arrowSpr;   // Reference to the arrow sprite;
@@ -87,9 +87,14 @@ public class ButtonTutorial : MonoBehaviour
 		}
     }
 
+    // Method to set up the button tutorial
+    public void SetUp(string keyToPress, GameObject parent) {
+        this.keyToPress = keyToPress;
+        this.parent = parent;
+    }
+
     // Methods called by the parent object to control fading;
     // Hello CS 1331 ;-;
-
     public void Fade() {
         _fade = true;
     }

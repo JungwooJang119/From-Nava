@@ -16,10 +16,15 @@ public class LoadNextRoom : MonoBehaviour
         }
     }
     IEnumerator SimulateLoad(GameObject player) {
+        PlayerController controller = player.GetComponent<PlayerController>();
+        controller.DeactivateMovement();
         var wait = tm.FadeOut();
         yield return new WaitForSeconds(wait);
 		player.transform.position = spawn.transform.position;
+        controller.ChangeSpawn(spawn);
+        yield return new WaitForSeconds(wait);
         tm.FadeIn();
+        controller.ActivateMovement();
 	}
     
 }

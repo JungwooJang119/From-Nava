@@ -7,12 +7,17 @@ public class SpellMachine : MonoBehaviour
     [SerializeField] Spell spell;
     [SerializeField] float timeBetweenCasts = 5;
 	[SerializeField] bool active;
-    private float time = 1;
+	[SerializeField] float time;
+	[SerializeField] private string dir;
 
     void Update() {
         if (active) {
 			if (time <= 0) {
-				spell.CastSpell(Vector2.down);
+				if (dir == "North") {
+					spell.CastSpell(Vector2.up);
+				} else {
+					spell.CastSpell(Vector2.down);
+				}
 				Instantiate(spell, transform.position, Quaternion.identity);
 				time = timeBetweenCasts;
 			}

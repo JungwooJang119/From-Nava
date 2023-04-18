@@ -153,7 +153,7 @@ MonoBehaviour:
   hitboxE: {fileID: 0}
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
-  damage: 10
+  damage: 5
 --- !u!1 &2571063176125842610
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +582,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -662,16 +662,15 @@ MonoBehaviour:
   healthText: {fileID: 0}
   speed: 6
   damageFlash: {fileID: 5714560712089473425}
-  collisionOffset: 0.05
-  castPoint: {fileID: 7257062048071687618}
   spawn: {fileID: 0}
   rightCast: {fileID: 7257062048071687618}
   leftCast: {fileID: 1348347235528117894}
   upCast: {fileID: 2350260626018253611}
   downCast: {fileID: 7317125658014208788}
   collisionOffset: 0.05
-  castPoint: {fileID: 0}
+  castPoint: {fileID: 7257062048071687618}
   facingDir: {x: 0, y: 0}
+  animator: {fileID: 0}
 --- !u!114 &5714560712089473425
 MonoBehaviour:
   m_ObjectHideFlags: 0

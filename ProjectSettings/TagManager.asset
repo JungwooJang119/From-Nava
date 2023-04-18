@@ -14,6 +14,9 @@ TagManager:
   - Firewood
   - Spell
   - IceTower
+  - Chest
+  - Melee
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX

@@ -106,7 +106,7 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Enemy")) {
+        if (other.gameObject.CompareTag("EnemyProjectile")) {
             // **FIX**
             //Damage taken when melee on enemy
             TakeDamage(1);
@@ -141,13 +141,13 @@ public class PlayerController : Singleton<PlayerController>
         animator.SetTrigger("doMelee");
     }
 
-    void ActivateMovement() {
+    public void ActivateMovement() {
         canMove = true;
         canChangeDir = true;
         ChooseFacingDir();
     }
 
-    void DeactivateMovement() {
+    public void DeactivateMovement() {
         canMove = false;
         canChangeDir = false;
     }

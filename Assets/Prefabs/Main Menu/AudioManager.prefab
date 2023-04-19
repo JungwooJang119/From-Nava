@@ -55,15 +55,15 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 21f1c5187ba79864d9f16f0520e227d2, type: 3}
   sfxSounds:
   - name: Fireball Cast
-    clip: {fileID: 8300000, guid: 9e21d89a2c6e45e4182f46829ca6be37, type: 3}
+    clip: {fileID: 8300000, guid: f949953db1f45f44fb6a824454d0a46c, type: 3}
   - name: Iceball Cast
-    clip: {fileID: 8300000, guid: 0715902bd63c9fd41a402641c937c480, type: 3}
+    clip: {fileID: 8300000, guid: 23686b1aff428744098aada4af1ca02a, type: 3}
   - name: Windblast Cast
-    clip: {fileID: 8300000, guid: 65726ab1760977f49b79927a20f35580, type: 3}
+    clip: {fileID: 8300000, guid: 0eb750e8c24fab747b9d907a7a506944, type: 3}
   - name: Melee Cast
-    clip: {fileID: 8300000, guid: 80294d96c7305c94cb5c38f6959b6a07, type: 3}
+    clip: {fileID: 8300000, guid: acaca8d7b82ea0444935e4d6b7c2596e, type: 3}
   - name: Chair Cast
-    clip: {fileID: 8300000, guid: 5be0e5d827d2c6a439beae64b7f50ce4, type: 3}
+    clip: {fileID: 8300000, guid: 7c226470289769f4c937a5abfb8fd489, type: 3}
   - name: Fireball Collision
     clip: {fileID: 8300000, guid: d23f92c4c71e945469812a0a7f5f9fec, type: 3}
   - name: Iceball Collision

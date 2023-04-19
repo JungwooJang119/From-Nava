@@ -16,3 +16,4 @@ MonoBehaviour:
   speed: 0
   damageAmt: 10
   lifetime: 9999
+  sfxString: Iceball Cast

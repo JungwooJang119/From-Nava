@@ -144,9 +144,12 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     void OnMelee() {
-        canMove = false;
-        canChangeDir = false;
-        animator.SetTrigger("doMelee");
+        if (canMove) {
+			AudioControl.Instance.PlaySFX("Melee Cast", gameObject, 0.2f);
+			canMove = false;
+			canChangeDir = false;
+			animator.SetTrigger("doMelee");
+		}
     }
 
     public void ActivateMovement() {

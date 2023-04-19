@@ -55,11 +55,11 @@ public class AudioControl : Singleton<AudioControl> {
 	// May also output a reference to the given audio source if the parameter is provided;
 	// Plays the sound requested if found. May be used several times to call multiple sounds;
 	// This version returns the length of the sound played;
-	public float PlaySFX(string name, GameObject sender, out AudioSource optionalSourceRef) {
+	public float PlaySFX(string name, GameObject sender, out AudioSource optionalSourceRef, float pitchRChange = 0) {
 		Sound sn = Array.Find(sfxSounds, item => item.name == name);
 
 		if (sn != null) {
-			optionalSourceRef = SetUpSFX(sn.clip, sender);
+			optionalSourceRef = SetUpSFX(sn.clip, sender, pitchRChange);
 			return sn.clip.length;
 		} else {
 			optionalSourceRef = null;
@@ -69,11 +69,11 @@ public class AudioControl : Singleton<AudioControl> {
 	}
 
 	// Overloaded version of the method above that does not require an out parameter;
-	public float PlaySFX(string name, GameObject sender) {
+	public float PlaySFX(string name, GameObject sender, float pitchRChange = 0) {
 		Sound sn = Array.Find(sfxSounds, item => item.name == name);
 
 		if (sn != null) {
-			SetUpSFX(sn.clip, sender);
+			SetUpSFX(sn.clip, sender, pitchRChange);
 			return sn.clip.length;
 		} else {
 			Debug.LogWarning("Clip string is wrong");
@@ -84,8 +84,8 @@ public class AudioControl : Singleton<AudioControl> {
 	// Method to play SOUND EFFECTS. Call syntax: AudioControl.Instance.PlaySFX(name);
 	// Takes a string 'name', which corresponds to the name of a sound in sfxSounds[];
 	// This version returns null and it's global, for use in UI elements or global SFXs;
-	public void PlayVoidSFX(string name) {
-		PlaySFX(name, GameObject.Find("Main Camera"));
+	public void PlayVoidSFX(string name, float pitchRChange = 0) {
+		PlaySFX(name, GameObject.Find("Main Camera"), pitchRChange);
 	}
 
 	// Method to adjust the music volume. Called from VolumeSliders.cs;
@@ -120,12 +120,13 @@ public class AudioControl : Singleton<AudioControl> {
 	}
 
 	// Method to spawn an AudioSource in game space to play the sfx;
-	private AudioSource SetUpSFX(AudioClip sn, GameObject sender) {
+	private AudioSource SetUpSFX(AudioClip sn, GameObject sender, float pitchRChange) {
 		GameObject tempObject = new GameObject("TempSFX");
 		tempObject.transform.SetParent(sender.transform);
 		tempObject.transform.position = sender.transform.position;
 		AudioSource tempAudioSource = tempObject.AddComponent<AudioSource>();
 		tempAudioSource.volume = sfxVolume;
+		tempAudioSource.pitch += UnityEngine.Random.Range(-pitchRChange, pitchRChange);
 		tempAudioSource.rolloffMode = AudioRolloffMode.Custom;
 		tempAudioSource.clip = sn;
 		tempAudioSource.dopplerLevel = 0;

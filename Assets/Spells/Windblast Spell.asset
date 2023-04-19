@@ -16,3 +16,4 @@ MonoBehaviour:
   speed: 17
   damageAmt: 0
   lifetime: 2
+  sfxString: Windblast Cast

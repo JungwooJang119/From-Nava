@@ -79,7 +79,7 @@ public class LaserCaster : MonoBehaviour
 
 	// Method called from the terminal, initiates the shot by loading the caster first;
 	public void LoadBeam() {
-		timer = AudioControl.Instance.PlaySFX("Loading Shot", laserTerminal.gameObject);
+		AudioControl.Instance.PlayVoidSFX("Loading Shot", out timer, 0.05f, 0.45f);
 		// Start particle emissions;
 		var emission = parSystem.emission;
 		emission.enabled = true;
@@ -90,7 +90,7 @@ public class LaserCaster : MonoBehaviour
 
 	// Method to cast the beam;
 	private void InitiateBeam() {
-		AudioControl.Instance.PlaySFX("Final Shot", laserTerminal.gameObject);
+		AudioControl.Instance.PlayVoidSFX("Final Shot", 0.05f, 0.5f);
 		currentLaser = Instantiate(laserBeam, laserCastPoint.position, transform.rotation);
 		// Pass required values to the laser beam. For more information, visit LaserBeam.cs;
 		currentLaser.GetComponent<LaserBeam>().SetUpBeam(speed, laserTerminal, beamLife * 1.01f, GetComponent<Collider2D>());

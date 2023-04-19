@@ -44,19 +44,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5135262842242903108}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50000
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!58 &1560241845063776652
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -140,12 +140,12 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: 0b831836399b0754d9f5861a550b1331, type: 2}
   collider: {fileID: 0}
   rb: {fileID: 1026724369791607120}
-  rotate: {x: 0, y: 0, z: 180}
+  rotate: {x: 0, y: 0, z: -90}
   spellActive: 1
   isChair: 1
   isWind: 0
   isPiplup: 1
-  direction: {x: 0, y: -1}
+  direction: {x: 1, y: 0}
 --- !u!61 &3702030663533370546
 BoxCollider2D:
   m_ObjectHideFlags: 0

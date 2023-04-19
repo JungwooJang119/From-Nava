@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7922623161821573808}
   - component: {fileID: 2285584211662863295}
   - component: {fileID: 8544901404632152555}
-  - component: {fileID: 334098996747270866}
+  - component: {fileID: 1404458473019767258}
+  - component: {fileID: 1517183321439442673}
   m_Layer: 0
   m_Name: ComputerDesk
   m_TagString: Untagged
@@ -107,8 +108,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &334098996747270866
-BoxCollider2D:
+--- !u!114 &1404458473019767258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88058032512915596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfeea27845cf2b498871e1d47c1a4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unlitScreen: {fileID: 21300000, guid: 57bcb9bd4412c54448d3dc9eefe04a96, type: 3}
+  litScreen: {fileID: 21300000, guid: 2ff242b1b9c12d64a9783c3a350467b8, type: 3}
+--- !u!60 &1517183321439442673
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,7 +135,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02228868, y: 0.17088056}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -130,9 +145,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.3907735, y: 2.658239}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.6661682, y: -0.85926056}
+      - {x: 1.8125, y: -0.0625}
+      - {x: 0.75, y: 1.3125}
+      - {x: -0.5625, y: 1.3125}
+      - {x: -1.9588318, y: -0.078243256}
+      - {x: -1.6905594, y: -0.7611847}
+      - {x: -1.5655518, y: -1.0792732}
+      - {x: -0.9425659, y: -1.08741}
+      - {x: -0.5838394, y: -0.36588287}
+      - {x: 0.37648773, y: -0.31726837}
+      - {x: 0.6981659, y: -1.0711441}
+      - {x: 1.6280594, y: -1.1199226}
 --- !u!1 &2926106997917147662
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +170,7 @@ GameObject:
   - component: {fileID: 3568216190474876619}
   - component: {fileID: 2816147811325236221}
   - component: {fileID: 2186095737502504018}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BottomNote
   m_TagString: Untagged
   m_Icon: {fileID: 0}

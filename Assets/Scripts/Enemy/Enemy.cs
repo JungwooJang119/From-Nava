@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     public UnityEvent onMeleeHit;
 
+    private Animator animator;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -24,6 +26,7 @@ public class Enemy : MonoBehaviour
     {
         currHealth = maxHealth;
         isPushed = false;
+        animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(float damage) {
@@ -34,7 +37,12 @@ public class Enemy : MonoBehaviour
         }
         //Debug.Log(currHealth);
         if (currHealth <= 0) {
-            Destroy(this.gameObject);
+            if (!isIceTower) {
+                animator.SetBool("isDead", true);
+                StartCoroutine(DeathSequence());
+            } else {
+                Destroy(this.gameObject);
+            }
         }
     }
 
@@ -46,7 +54,6 @@ public class Enemy : MonoBehaviour
     }
 
     public void PushTranslate() {
-        Debug.Log(pushDist);
         if (pushDist <= 0) {
             isPushed = false;
         } else {
@@ -65,5 +72,16 @@ public class Enemy : MonoBehaviour
         }
         TakeDamage(meleeDamage);
         onMeleeHit?.Invoke();
+    }
+
+    IEnumerator DeathSequence() {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Melee") {
+            OnMeleeHit(10);
+        }
     }
 }

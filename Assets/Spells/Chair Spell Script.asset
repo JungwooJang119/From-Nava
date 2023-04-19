@@ -16,3 +16,4 @@ MonoBehaviour:
   speed: 0
   damageAmt: 0
   lifetime: 15
+  sfxString: Chair Cast

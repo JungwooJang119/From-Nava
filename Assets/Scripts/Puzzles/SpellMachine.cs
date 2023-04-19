@@ -5,7 +5,8 @@ using UnityEngine;
 public class SpellMachine : MonoBehaviour
 {
     [SerializeField] Spell spell;
-    [SerializeField] float timeBetweenCasts = 5;
+	[SerializeField] SpellScriptObj spellData;
+	[SerializeField] float timeBetweenCasts = 5;
 	[SerializeField] bool active;
 	[SerializeField] float time;
 	[SerializeField] private string dir;
@@ -18,7 +19,9 @@ public class SpellMachine : MonoBehaviour
 				} else {
 					spell.CastSpell(Vector2.down);
 				}
-				Instantiate(spell, transform.position, Quaternion.identity);
+				var spellCasted = Instantiate(spell, transform.position, Quaternion.identity);
+				spellCasted.transform.SetParent(transform);
+				AudioControl.Instance.PlaySFX(spellData.sfxString, gameObject, 0.15f);
 				time = timeBetweenCasts;
 			}
 			time -= Time.deltaTime;

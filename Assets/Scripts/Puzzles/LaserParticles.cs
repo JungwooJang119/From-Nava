@@ -20,6 +20,6 @@ public class LaserParticles : MonoBehaviour
 	private void LaserParticles_OnBeamEnd() {
 		var emission = parSystem.emission;
 		emission.enabled = false;
-		Destroy(gameObject, 1f);
+		Destroy(gameObject, 0.25f);
 	}
 }

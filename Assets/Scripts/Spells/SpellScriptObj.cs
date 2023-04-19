@@ -10,4 +10,5 @@ public class SpellScriptObj : ScriptableObject
     public float speed = 15f;
     public float damageAmt = 10f;
     public float lifetime = 2f;
+    public string sfxString = "Fireball Cast";
 }

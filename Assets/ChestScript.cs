@@ -45,28 +45,28 @@ public class ChestScript : MonoBehaviour
                 else {
                     _tutScript.CancelFade();
                 }
-            }
-			if (Input.GetKeyDown(_intKey)) {
-                StartCoroutine(TextPopUp());
+			}
+			if (Input.GetKeyDown(_intKey) 
+                && animator.GetCurrentAnimatorStateInfo(0).IsName("ChestIdle")) {
+				StartCoroutine(TextPopUp());
 				if (_tutInstance != null) {
 					_tutScript.Fade();
 				}
 			}
-        } else if (_tutInstance) {
+		} else if (_tutInstance) {
 			_tutScript.Fade();
 		}
 	}
 
     IEnumerator CameraTransitionIn() {
 		yield return new WaitForSeconds(0.0f);
-		_virtualCamera.Follow = _cameraTarget.transform;
+		if (_cameraTarget != null) _virtualCamera.Follow = _cameraTarget.transform;
 		yield return new WaitForSeconds(2f);
         _virtualCamera.Follow = _returnToPlayer;
 	}
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            print("here");
             isNear = true;
         }
     }

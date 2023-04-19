@@ -52,9 +52,10 @@ public class SpellCastManager : MonoBehaviour
     }
 
     IEnumerator CastSpell(Spell spell) {
-        yield return new WaitForSeconds(startLagTime);
+		AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f);
+		yield return new WaitForSeconds(startLagTime);
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
-    }
+	}
 
 }
 

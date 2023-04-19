@@ -95,7 +95,6 @@ public class LabReport : MonoBehaviour
 			canvasTransform = canvasRef.transform;
 			transitionScript = tranRef.GetComponent<tranMode>();
 		}
-		
 	}
 
 	void Update() {
@@ -106,8 +105,7 @@ public class LabReport : MonoBehaviour
 						tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
 						tutScript = tutInstance.GetComponent<ButtonTutorial>();
 						tutScript.SetUp(intKey, gameObject);
-					}
-					else {
+					} else {
 						tutScript.CancelFade();
 					}
 					// Start the Lab Report;
@@ -131,7 +129,7 @@ public class LabReport : MonoBehaviour
 				if (textTimer <= 0 && currentText != null) {
 					// Move the start of the invisible color tag toward the end, thus showing more characters;
 					if (currentIndex < string2Report.Length && string2Report[currentIndex] != '\\') {
-						//if (letterWait > 0) AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0,2)], 0.15f);
+						if (letterWait > 0) AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0,2)], 0.15f);
 						currentText.text = BuildStr(string2Report, "|");
 						textTimer = letterWait;
 						currentIndex++;

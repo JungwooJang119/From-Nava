@@ -86,6 +86,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 75091b6f59ff273478d6a4aa48b8f9d4, type: 3}
   - name: Chest Close
     clip: {fileID: 8300000, guid: 8875c3456e8247b42aab5d543efbea8a, type: 3}
+  - name: Report Key v1
+    clip: {fileID: 8300000, guid: 1485a719d6c854d40b9f2545bead2ddf, type: 3}
+  - name: Report Key v2
+    clip: {fileID: 8300000, guid: 4f92c9bdac78f0240b34731e5c74a942, type: 3}
   - name: Button
     clip: {fileID: 8300000, guid: 299938c5f3379464c9c116c2db5ad113, type: 3}
 --- !u!1 &8403224658944174706

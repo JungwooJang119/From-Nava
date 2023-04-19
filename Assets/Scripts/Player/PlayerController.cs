@@ -144,9 +144,11 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     void OnMelee() {
-        canMove = false;
-        canChangeDir = false;
-        animator.SetTrigger("doMelee");
+        if (canMove) {
+			canMove = false;
+			canChangeDir = false;
+			animator.SetTrigger("doMelee");
+		}
     }
 
     public void ActivateMovement() {

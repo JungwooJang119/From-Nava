@@ -32,13 +32,8 @@ public class FireballBehavior : MonoBehaviour {
     private float[] lightBounds;        // Target outer radii of light sources;
     private float lightRate = 0.075f;   // Rate at which the light will change;
 
-    // private AudioSource audioRef;
-
     // Did you know start is called before the first frame update? :V
     void Start() {
-        // Play start SFX;
-        // AudioControl.Instance.PlaySFX("Fireball Cast", gameObject, out audioRef);
-
         // Suscribe to the OnDestroy event from Spell.cs;
         spellScript = GetComponent<Spell>();
         spellScript.OnSpellDestroy += Spell_OnSpellDestroy;
@@ -154,10 +149,7 @@ public class FireballBehavior : MonoBehaviour {
 
     // Method called when the Spell script fires the destroy event! YEET!
     private void Spell_OnSpellDestroy(GameObject o) {
-		// AudioControl.Instance.PlaySFX("Fireball Collision", gameObject);
-		// Detach audio source from fireball to avoid cutting the sound;
-		// if (audioRef != null) audioRef.gameObject.transform.SetParent(null);
-
+		AudioControl.Instance.PlaySFX("Fireball Collision", gameObject, 0.2f);
 		deathTimer = spellData.lifetime;
         CleanUp();
     }

@@ -25,7 +25,11 @@ public class MeleeMiniBossController : MonoBehaviour
     private Vector2 pos1;
     private Vector2 pos2;
 
+    private Vector2 oldPos;
+
     private Vector3 dir;
+
+    private Animator animator;
 
 
     private void Start()
@@ -39,6 +43,7 @@ public class MeleeMiniBossController : MonoBehaviour
         currTime = 0;
         pos1 = transform.position + new Vector3(2, 0, 0);
         pos2 = transform.position + new Vector3(-2, 0, 0);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,6 +57,9 @@ public class MeleeMiniBossController : MonoBehaviour
         if (idle)
         {
             transform.position = Vector2.Lerp(pos1, pos2, Mathf.PingPong(Time.time * speed * 0.1f, 1.0f));
+            // animator.SetFloat("X", .x);
+            // animator.SetFloat("Y", movement.y);
+            // animator.SetTrigger(doWalking);
         }
         
         if(!enemy.GetPushed()){

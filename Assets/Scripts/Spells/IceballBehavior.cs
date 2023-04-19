@@ -31,13 +31,10 @@ public class IceballBehavior : MonoBehaviour {
 
     private Transform[] sprTransforms;  // Array of references to the transforms of children;
 
-	// private AudioSource audioRef;
+	private AudioSource audioRef;
 
 	// In today's news, start is called before the first frame update! O.O
 	void Start() {
-		// Play start SFX;
-		// AudioControl.Instance.PlaySFX("Iceball Cast", gameObject, out audioRef);
-
 		// Suscribe to the OnDestroy event from Spell.cs
 		spellScript = GetComponent<Spell>();
         spellScript.OnSpellDestroy += Spell_OnSpellDestroy;
@@ -143,10 +140,7 @@ public class IceballBehavior : MonoBehaviour {
 
     // Method called when the Spell script fires the destroy event! YEET!
     private void Spell_OnSpellDestroy(GameObject o) {
-		// AudioControl.Instance.PlaySFX("Iceball Collision", gameObject);
-		// Detach audio source from fireball to avoid cutting the sound;
-		// if (audioRef != null) audioRef.gameObject.transform.SetParent(null);
-
+		AudioControl.Instance.PlaySFX("Iceball Collision", gameObject, 0.1f);
 		deathTimer = spellData.lifetime;
         CleanUp();
     }

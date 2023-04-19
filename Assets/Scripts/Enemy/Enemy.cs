@@ -54,7 +54,6 @@ public class Enemy : MonoBehaviour
     }
 
     public void PushTranslate() {
-        Debug.Log(pushDist);
         if (pushDist <= 0) {
             isPushed = false;
         } else {

@@ -21,7 +21,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private Transform leftCast;
     [SerializeField] private Transform upCast;
     [SerializeField] private Transform downCast;
-    
+
     private Vector2 movement;
     private Rigidbody2D rb;
  
@@ -30,6 +30,11 @@ public class PlayerController : Singleton<PlayerController>
 
     public Vector2 facingDir;
     private GameObject light;
+
+    private bool isPushed;
+    private float pushDist;
+    private float pushSpd;
+    private Vector3 pushDir;
 
     public Vector2 FacingDir
     {
@@ -63,6 +68,9 @@ public class PlayerController : Singleton<PlayerController>
     private void FixedUpdate() {
         if (canMove) {
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        }
+        if (isPushed) {
+            PushTranslate();
         }
         healthText.text = "Health: " + playerHealth;
     }
@@ -136,9 +144,12 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     void OnMelee() {
-        canMove = false;
-        canChangeDir = false;
-        animator.SetTrigger("doMelee");
+        if (canMove) {
+			AudioControl.Instance.PlaySFX("Melee Cast", gameObject, 0.2f);
+			canMove = false;
+			canChangeDir = false;
+			animator.SetTrigger("doMelee");
+		}
     }
 
     public void ActivateMovement() {
@@ -154,6 +165,29 @@ public class PlayerController : Singleton<PlayerController>
 
     public void ChangeSpawn(Transform newSpawn) {
         spawn = newSpawn;
+    }
+
+    //adding push behavior for spikes
+    public void Push(Vector2 dir, float dist, float spd) {
+        canMove = false;
+        isPushed = true;
+        pushDir = new Vector3(dir.x, dir.y, 0);
+        pushDist = dist;
+        pushSpd = spd;
+    }
+
+    public void PushTranslate() {
+        if (pushDist <= 0) {
+            canMove = true;
+            isPushed = false;
+        } else {
+            transform.Translate(pushDir * pushSpd * Time.deltaTime);
+            pushDist -= (pushDir *  pushSpd * Time.deltaTime).magnitude;
+        }
+    }
+
+    public bool GetPushed() {
+        return isPushed;
     }
 }
 

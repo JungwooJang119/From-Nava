@@ -117,6 +117,8 @@ public class LabReport : MonoBehaviour
 							tutScript.Fade();
 						}
 					}
+				} else if (tutInstance) {
+					tutScript.Fade();
 				}
 				break;
 			case State.Start:

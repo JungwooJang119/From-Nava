@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class LaserParticles : MonoBehaviour
 {
-	private float lifetime;
 	private ParticleSystem parSystem;
 
 	// Hello there!
@@ -14,17 +13,13 @@ public class LaserParticles : MonoBehaviour
 		parSystem = GetComponent<ParticleSystem>();
 	}
 
-	// Disable emissions when it runs out of life time;
-	void Update() {
-		lifetime -= Time.deltaTime;
-		if (lifetime <= 0.5f) {
-			var emission = parSystem.emission;
-			emission.enabled = false;
-			Destroy(gameObject, 1f);
-		}
+	public void Subscribe2Parent(LaserBeam parentBeam) {
+		parentBeam.OnBeamEnd += LaserParticles_OnBeamEnd;
 	}
 
-	public void SetLife(float lifetime) {
-		this.lifetime = lifetime;
+	private void LaserParticles_OnBeamEnd() {
+		var emission = parSystem.emission;
+		emission.enabled = false;
+		Destroy(gameObject, 0.25f);
 	}
 }

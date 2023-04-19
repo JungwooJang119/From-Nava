@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,10 @@ public class LaserBeam : MonoBehaviour
 	// Max and min width for the laser-like wiggle;
 	[SerializeField] private float trailWidth;
 	[SerializeField] private float wiggleRadius;
-
+	[SerializeField] private float endDelay = 3f;
 	[SerializeField] private GameObject laserParticles;
+
+	public event Action OnBeamEnd;
 
 	// Variables inherited from the caster;
 	private float speed;
@@ -21,7 +24,6 @@ public class LaserBeam : MonoBehaviour
 	private Rigidbody2D rigidBody;
 	private TrailRenderer trailRenderer;
 	private ParticleSystem parSystem;
-	private float timer;
 
 	// State machine!
 	private enum Stage {
@@ -44,7 +46,6 @@ public class LaserBeam : MonoBehaviour
 	void Start() {
 		trailRenderer.widthMultiplier = 0;
 		rigidBody.AddForce(transform.right * speed);
-		trailRenderer.time = lifetime * 0.75f;
 		stage = Stage.Start;
 	}
 
@@ -55,8 +56,7 @@ public class LaserBeam : MonoBehaviour
 				// Increase width heavily after instantiation;
 				if (trailRenderer.widthMultiplier < trailWidth * 2) {
 					trailRenderer.widthMultiplier += Time.deltaTime;
-				}
-				else {
+				} else {
 					stage = Stage.Cool;
 				}
 				break;
@@ -64,8 +64,7 @@ public class LaserBeam : MonoBehaviour
 				// Decrease size to match declared width;
 				if (trailRenderer.widthMultiplier > trailWidth) {
 					trailRenderer.widthMultiplier -= Time.deltaTime;
-				}
-				else {
+				} else {
 					stage = Stage.Wiggle;
 				}
 				break;
@@ -74,7 +73,8 @@ public class LaserBeam : MonoBehaviour
 				trailRenderer.widthMultiplier = Mathf.Sin(Time.time * 7.5f) * wiggleRadius + trailWidth;
 				// Destroy beam when lifetime runs out;
 				if (lifetime < 0) {
-					Destroy(gameObject, trailRenderer.widthMultiplier);
+					Destroy(gameObject, trailRenderer.widthMultiplier + 0.5f);
+					OnBeamEnd?.Invoke();
 					stage = Stage.End;
 				}
 				break;
@@ -85,25 +85,24 @@ public class LaserBeam : MonoBehaviour
 				}
 				break;
 		}
-		if (lifetime > 0) {
-			timer += Time.deltaTime;
-			lifetime -= Time.deltaTime;
-		}
+		if (lifetime > 0) lifetime -= Time.deltaTime;
 	}
 
 	// Creates a particle effect on collision and destroys on alien contact;
 	void OnCollisionEnter2D(Collision2D collider) {
 		if (collider.gameObject.tag == "Mirror") {
 			var particle = Instantiate(laserParticles, transform.position, transform.rotation);
-			particle.GetComponent<LaserParticles>().SetLife(lifetime - timer);
+			particle.GetComponent<LaserParticles>().Subscribe2Parent(this);
 		} else if (collider.gameObject.tag == "Receiver") {
 			collider.gameObject.GetComponent<Receiver>().Feedback(0);
 			rigidBody.velocity = Vector3.zero;
 			hitReceiver = true;
-			StartCoroutine(DisableHeader(trailRenderer.time));
+			lifetime = endDelay;
+			StartCoroutine(DisableHeader(endDelay));
 		} else {
 			rigidBody.velocity = Vector3.zero;
-			StartCoroutine(DisableHeader(trailRenderer.time));
+			lifetime = endDelay;
+			StartCoroutine(DisableHeader(endDelay));
 		}
 	}
 

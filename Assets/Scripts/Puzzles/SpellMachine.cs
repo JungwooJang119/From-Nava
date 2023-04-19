@@ -21,7 +21,7 @@ public class SpellMachine : MonoBehaviour
 				}
 				var spellCasted = Instantiate(spell, transform.position, Quaternion.identity);
 				spellCasted.transform.SetParent(transform);
-				AudioControl.Instance.PlaySFX(spellData.sfxString, gameObject, 0.15f);
+				AudioControl.Instance.PlaySFX(spellData.sfxString, gameObject, 0.15f, 0.5f);
 				time = timeBetweenCasts;
 			}
 			time -= Time.deltaTime;

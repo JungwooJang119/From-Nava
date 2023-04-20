@@ -145,13 +145,16 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     IEnumerator Die() {
-        canMove = false;
+		canMove = false;
         canChangeDir = false;
         dissolveShader.DissolveOut();
-        yield return new WaitForSeconds(1.5f);
+		GetComponent<Collider2D>().enabled = false;
+		yield return new WaitForSeconds(1.5f);
+        GetComponent<Collider2D>().enabled = true;
         canMove = true;
         canChangeDir = true;
-        dissolveShader.DissolveIn();
+		ChooseFacingDir();
+		dissolveShader.DissolveIn();
 		transform.position = spawn.transform.position;
         playerHealth = maxHealth;
     }

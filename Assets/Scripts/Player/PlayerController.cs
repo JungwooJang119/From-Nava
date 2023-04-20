@@ -23,6 +23,9 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private Transform upCast;
     [SerializeField] private Transform downCast;
 
+    [SerializeField] private Material defaultLit;
+    [SerializeField] private Material dissolve;
+
     private Vector2 movement;
     private Rigidbody2D rb;
  
@@ -31,6 +34,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public Vector2 facingDir;
     private GameObject light;
+    private SpriteRenderer sr;
 
     private bool isPushed;
     private float pushDist;
@@ -64,6 +68,7 @@ public class PlayerController : Singleton<PlayerController>
         playerHealth = maxHealth;
         canMove = true;
         canChangeDir = true;
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate() {
@@ -74,6 +79,11 @@ public class PlayerController : Singleton<PlayerController>
             PushTranslate();
         }
         healthText.text = "Health: " + playerHealth;
+        if (spawn.gameObject.tag == "DarkRoom") {
+            sr.material = defaultLit;
+        } else {
+            sr.material = dissolve;
+        }
     }
 
     private void OnMove(InputValue movementValue) {

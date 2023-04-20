@@ -201,10 +201,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a723323d004f54ea57365880aa320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 15
   isIceTower: 1
   damageFlash: {fileID: 2880031122338850227}
   dealthShader: {fileID: 0}
+  defaultLit: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  dissolve: {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
+  isInDarkRoom: 0
   onMeleeHit:
     m_PersistentCalls:
       m_Calls: []

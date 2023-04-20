@@ -17,6 +17,7 @@ TagManager:
   - Chest
   - Melee
   - EnemyProjectile
+  - DarkRoom
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     public bool isIceTower = false;
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dealthShader;
+    [SerializeField] private Material defaultLit;
+    [SerializeField] private Material dissolve;
+    [SerializeField] private bool isInDarkRoom;
     private float currHealth;
 
     private bool isPushed;
@@ -20,6 +23,8 @@ public class Enemy : MonoBehaviour
 
     private Animator animator;
 
+    private SpriteRenderer sr;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -29,6 +34,12 @@ public class Enemy : MonoBehaviour
         isPushed = false;
         animator = GetComponent<Animator>();
         dealthShader = GetComponent<DealthDissolveShader>();
+        sr = GetComponent<SpriteRenderer>();
+        if (isInDarkRoom) {
+            sr.material = defaultLit;
+        } else {
+            sr.material = dissolve;
+        }
     }
 
     public void TakeDamage(float damage) {

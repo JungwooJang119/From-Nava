@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7531634241011708925}
   - component: {fileID: 6781299553897351116}
   m_Layer: 0
-  m_Name: FireballGoomba
+  m_Name: FireballGoombaDarkRoom
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   dealthShader: {fileID: 0}
   defaultLit: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   dissolve: {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
-  isInDarkRoom: 0
+  isInDarkRoom: 1
   onMeleeHit:
     m_PersistentCalls:
       m_Calls:

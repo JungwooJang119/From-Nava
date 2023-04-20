@@ -20025,6 +20025,8 @@ MonoBehaviour:
   leftCast: {fileID: 1348347235528117894}
   upCast: {fileID: 2350260626018253611}
   downCast: {fileID: 7317125658014208788}
+  defaultLit: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  dissolve: {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
   collisionOffset: 0.05
   castPoint: {fileID: 7257062048071687618}
   facingDir: {x: 0, y: 0}
@@ -20055,7 +20057,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -20122,11 +20124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78d5504e54954640985696cebcc01c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissolveAmount: 0
-  dissolveSpeed: 0
+  dissolveAmount: 1
+  dissolveSpeed: 1
   isDissolving: 0
-  outColor: {r: 0, g: 0, b: 0, a: 0}
-  inColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &6058108156622817644
 PrefabInstance:
   m_ObjectHideFlags: 0

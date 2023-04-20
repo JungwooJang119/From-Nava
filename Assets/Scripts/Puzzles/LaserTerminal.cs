@@ -40,6 +40,7 @@ public class LaserTerminal : MonoBehaviour
     public GameObject door;
 
 	private bool roomComplete;
+	
 
 	void Start() {
 		laserCaster = GetComponentInChildren<LaserCaster>();

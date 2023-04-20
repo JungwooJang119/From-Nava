@@ -80,13 +80,13 @@ public class FakeChestScript : MonoBehaviour
 
     IEnumerator EnemySpawn() {
         animator.SetBool("OpeningChest", true);
-        AudioControl.Instance.PlaySFX("Chest Open");
-        yield return new WaitForSeconds(4.0f);
+        AudioControl.Instance.PlaySFX("Chest Open", gameObject);
+        yield return new WaitForSeconds(1.0f);
         //spawn enemy
         GameObject newEnemy = Instantiate(enemy, enemySpawnPoint.position, enemySpawnPoint.rotation);
         newEnemy.name = newEnemy.name.Replace("(Clone)","").Trim();
         animator.SetBool("OpeningChest", false);
-        AudioControl.Instance.PlaySFX("Chest Close");
+        AudioControl.Instance.PlaySFX("Chest Close", gameObject);
         door.GetComponent<Door>().OpenDoor();
     }
 }

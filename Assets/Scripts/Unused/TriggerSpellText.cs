@@ -5,7 +5,6 @@ using UnityEngine;
 public class TriggerSpellText : MonoBehaviour
 {
     [SerializeField] private GameObject spellNotif;
-    public bool isDeadSci = false;
     public bool isDirections = false;
     // Start is called before the first frame update
     void Start()
@@ -32,11 +31,7 @@ public class TriggerSpellText : MonoBehaviour
 
     IEnumerator TextPopUp() {
         spellNotif.SetActive(true);
-        if (!isDeadSci) {
-            yield return new WaitForSeconds(4.0f);
-        } else {
-            yield return new WaitForSeconds(0.5f);
-        }
+        yield return new WaitForSeconds(4.0f);
         spellNotif.SetActive(false);
         if (isDirections) {
             Destroy(this.gameObject);

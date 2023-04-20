@@ -86,7 +86,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2641451294692747104
@@ -109,7 +109,7 @@ MonoBehaviour:
   door: {fileID: 0}
   buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
   enemySpawnPoint: {fileID: 2641451294692747114}
-  enemy: {fileID: 797491692293421795, guid: 769b84a5e95c1774499201fc04e679de, type: 3}
+  enemy: {fileID: 797491692293421795, guid: 974bee478c004154394606b63e079e41, type: 3}
 --- !u!61 &2641451294692747108
 BoxCollider2D:
   m_ObjectHideFlags: 0

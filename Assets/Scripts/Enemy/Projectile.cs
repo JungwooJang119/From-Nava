@@ -44,6 +44,9 @@ public class Projectile : MonoBehaviour
         if (col.gameObject.CompareTag("IceTower")) {
             return;
         }
+        if (col.gameObject.CompareTag("Chest")) {
+            return;
+        }
         if (col.gameObject.CompareTag("Player")) {
             if (hasParticles) {
     			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;

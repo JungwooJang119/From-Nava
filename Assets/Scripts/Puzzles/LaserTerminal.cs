@@ -68,7 +68,7 @@ public class LaserTerminal : MonoBehaviour
 				}
 				if (!roomComplete) {
 					_spriteRenderer.sprite = sprComputerOn;
-					AudioControl.Instance.PlaySFX("Computer On", gameObject);
+					AudioControl.Instance.PlaySFX("Computer On", gameObject, 0f, 0.8f);
 					canTrigger = false;
 					StartCoroutine(CameraTransitionIn());
 				}
@@ -102,7 +102,7 @@ public class LaserTerminal : MonoBehaviour
 		}
 		yield return new WaitForSeconds(2f);
         _virtualCamera.Follow = _returnToPlayer;
-		canTrigger = true;
+		canTrigger = false;
 		roomComplete = true;
 	}
 

@@ -145,7 +145,7 @@ public class PlayerController : Singleton<PlayerController>
 
     void OnMelee() {
         if (canMove) {
-			AudioControl.Instance.PlaySFX("Melee Cast", gameObject, 0.2f);
+			AudioControl.Instance.PlaySFX("Melee Cast", gameObject, 0.2f, 0.5f);
 			canMove = false;
 			canChangeDir = false;
 			animator.SetTrigger("doMelee");

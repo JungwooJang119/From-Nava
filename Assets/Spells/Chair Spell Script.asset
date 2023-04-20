@@ -17,3 +17,8 @@ MonoBehaviour:
   damageAmt: 0
   lifetime: 15
   sfxString: Chair Cast
+  particleColor:
+  - 0.45
+  - 0.26
+  - 0.31
+  - 1

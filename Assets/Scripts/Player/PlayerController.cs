@@ -189,6 +189,19 @@ public class PlayerController : Singleton<PlayerController>
     public bool GetPushed() {
         return isPushed;
     }
+
+    public void TriggerParticles(Spell s) {
+        ParticleSystem ps = castPoint.GetComponent<ParticleSystem>();
+        Color c = new Color(s.spell.particleColor[0], s.spell.particleColor[1], s.spell.particleColor[2], 1.0f);
+        var col = ps.colorOverLifetime;
+        col.enabled = true;
+
+        Gradient grad = new Gradient();
+        grad.SetKeys( new GradientColorKey[] { new GradientColorKey(c, 0.0f), new GradientColorKey(c, 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 0.0f) } );
+        col.color = grad;
+
+        ps.Play();
+    }
 }
 
 

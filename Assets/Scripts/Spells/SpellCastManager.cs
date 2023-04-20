@@ -54,6 +54,7 @@ public class SpellCastManager : MonoBehaviour
     IEnumerator CastSpell(Spell spell) {
 		AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f);
 		yield return new WaitForSeconds(startLagTime);
+        PlayerController.Instance.TriggerParticles(spell);
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
 	}
 

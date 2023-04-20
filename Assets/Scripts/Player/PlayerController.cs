@@ -131,7 +131,6 @@ public class PlayerController : Singleton<PlayerController>
             TakeDamage(1);
             if (playerHealth <= 0) {
                 playerHealth = 0;
-                GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(Die());
             }
         }
@@ -153,7 +152,6 @@ public class PlayerController : Singleton<PlayerController>
         canMove = true;
         canChangeDir = true;
         dissolveShader.DissolveIn();
-		GetComponent<Collider2D>().enabled = true;
 		transform.position = spawn.transform.position;
         playerHealth = maxHealth;
     }

@@ -15,6 +15,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private Text healthText;
     [SerializeField] private float speed = 7f;
     [SerializeField] private DamageFlash damageFlash;
+    [SerializeField] private DealthDissolveShader dissolveShader;
 
     [SerializeField] private Transform spawn;
     [SerializeField] private Transform rightCast;
@@ -136,9 +137,11 @@ public class PlayerController : Singleton<PlayerController>
     IEnumerator Die() {
         canMove = false;
         canChangeDir = false;
-        yield return new WaitForSeconds(1f);
+        dissolveShader.DissolveOut();
+        yield return new WaitForSeconds(1.5f);
         canMove = true;
         canChangeDir = true;
+        dissolveShader.DissolveIn();
         transform.position = spawn.transform.position;
         playerHealth = maxHealth;
     }

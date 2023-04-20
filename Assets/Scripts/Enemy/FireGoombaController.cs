@@ -7,6 +7,7 @@ public class FireGoombaController : MonoBehaviour
 
     public float speed;
     public Transform player;
+    public GameObject spawn;//added for fake chest
     public float minDistance;
     public float maxDistance;
 
@@ -25,7 +26,7 @@ public class FireGoombaController : MonoBehaviour
 
     private Enemy enemy;
 
-    
+
     Transform t;
     public float fixedRotation = 0;
 
@@ -37,6 +38,9 @@ public class FireGoombaController : MonoBehaviour
         lastChangeTime = 0f;
         NewDirection();
         t = transform;
+        //added for fake chest
+        spawn = GameObject.FindWithTag("Player");
+        player = spawn.transform;
     }
 
     private void NewDirection()

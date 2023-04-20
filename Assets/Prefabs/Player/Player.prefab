@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 7257062049063242860}
   - component: {fileID: 7257062049063242863}
   - component: {fileID: 746650167423377727}
+  - component: {fileID: 4693234618195918297}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -662,6 +663,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   speed: 6
   damageFlash: {fileID: 5714560712089473425}
+  dissolveShader: {fileID: 4693234618195918297}
   spawn: {fileID: 0}
   rightCast: {fileID: 7257062048071687618}
   leftCast: {fileID: 1348347235528117894}
@@ -752,6 +754,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4693234618195918297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257062049063242862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78d5504e54954640985696cebcc01c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveAmount: 0
+  dissolveSpeed: 0
+  isDissolving: 0
+  outColor: {r: 0, g: 0, b: 0, a: 0}
+  inColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &6058108156622817644
 PrefabInstance:
   m_ObjectHideFlags: 0

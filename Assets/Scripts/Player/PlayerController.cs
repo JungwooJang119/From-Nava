@@ -125,7 +125,7 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("EnemyProjectile")) {
+        if (other.gameObject.CompareTag("EnemyProjectile") && canMove) {
             // **FIX**
             //Damage taken when melee on enemy
             TakeDamage(1);

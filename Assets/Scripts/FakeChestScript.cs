@@ -32,7 +32,7 @@ public class FakeChestScript : MonoBehaviour
         //_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
         _returnToPlayer = _virtualCamera.Follow;
-        StartCoroutine(CameraTransitionIn());
+        if (_cameraTarget != null) StartCoroutine(CameraTransitionIn());
         animator = GetComponent<Animator>();
     }
 

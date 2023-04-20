@@ -125,12 +125,13 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("EnemyProjectile") && canMove) {
+        if (other.gameObject.CompareTag("EnemyProjectile")) {
             // **FIX**
             //Damage taken when melee on enemy
             TakeDamage(1);
             if (playerHealth <= 0) {
                 playerHealth = 0;
+                GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(Die());
             }
         }
@@ -152,7 +153,8 @@ public class PlayerController : Singleton<PlayerController>
         canMove = true;
         canChangeDir = true;
         dissolveShader.DissolveIn();
-        transform.position = spawn.transform.position;
+		GetComponent<Collider2D>().enabled = true;
+		transform.position = spawn.transform.position;
         playerHealth = maxHealth;
     }
 

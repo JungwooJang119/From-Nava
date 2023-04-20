@@ -20,6 +20,8 @@ public class Spell : MonoBehaviour
 
     public Vector2 direction;
 
+    public float damage;
+
 
     private void Awake()
     {
@@ -33,10 +35,15 @@ public class Spell : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
 
+        damage = spell.damageAmt;
+
         // Spells no longer get destroyed automatically.
         // They must carry out their own destroy sequence
         // on lifetime and collision. 1/3 Spells Done;
         //Destroy(this.gameObject, spell.lifetime);
+        if (isChair) {
+            Destroy(this.gameObject, spell.lifetime);
+        }
     }
 
     protected virtual void Update()

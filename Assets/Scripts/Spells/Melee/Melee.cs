@@ -22,7 +22,7 @@ public class Melee : MonoBehaviour
     private float valueDir;
 
     //how much damage the melee does
-    [SerializeField] private float damage = 5f;
+    public float damage = 5f;
     //timer
     private float timeSinceLast;
     // Start is called before the first frame update

@@ -13,6 +13,8 @@ public class PressurePlate_Script : MonoBehaviour
     private float time = 0;
     private int numObject = 0;
     private Collider2D chairCollider;
+    
+    [SerializeField] private bool testing = false;
 
     private void Start() {
         setTime = chairScriptObj.lifetime;
@@ -25,8 +27,11 @@ public class PressurePlate_Script : MonoBehaviour
         if (time >= setTime) {
             isChair = false;
             time = 0;
-            //numObject--;
+            // numObject--;
             OnTriggerExit2D(chairCollider);
+        }
+        if (testing) {
+            print(numObject);
         }
     }
 
@@ -34,14 +39,14 @@ public class PressurePlate_Script : MonoBehaviour
         if (other.tag == "Spell") {
             return;
         }
-        numObject++;
+        numObject = numObject + 1;
         if (other.attachedRigidbody.mass > 1){
             render.sprite = pressed;
             isPressed = true;
         }
         if (other.tag == "Chair") {
             if (time > 0) {
-                numObject -= 2;
+                numObject -= 1;
             }
             time = 0;
             isChair = true;

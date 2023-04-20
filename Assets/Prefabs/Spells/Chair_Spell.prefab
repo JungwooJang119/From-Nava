@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8734685110782888771}
   - component: {fileID: 6389482856583591886}
   - component: {fileID: 3702030663533370546}
+  - component: {fileID: 5794971183758856041}
+  - component: {fileID: 4448647195134008995}
   m_Layer: 0
   m_Name: Chair_Spell
   m_TagString: Chair
@@ -64,7 +66,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5135262842242903108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -146,6 +148,7 @@ MonoBehaviour:
   isWind: 0
   isPiplup: 1
   direction: {x: 1, y: 0}
+  damage: 0
 --- !u!61 &3702030663533370546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +162,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0055760145, y: -0.052972794}
+  m_Offset: {x: 0.0055760145, y: -0.06130752}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -170,5 +173,33 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7546544, y: 1.514885}
+  m_Size: {x: 0.7546544, y: 1.4982154}
   m_EdgeRadius: 0
+--- !u!114 &5794971183758856041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135262842242903108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de291001939b8a4eb327241aa8bc334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  damageFlash: {fileID: 4448647195134008995}
+--- !u!114 &4448647195134008995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135262842242903108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340f19f892c97da43a69aeca75659afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 6e7a5fcd9775fcd40a27cf24bd9f8d93, type: 2}
+  duration: 0.125

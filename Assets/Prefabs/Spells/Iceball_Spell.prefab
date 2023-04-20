@@ -5195,3 +5195,4 @@ MonoBehaviour:
   isWind: 0
   isPiplup: 0
   direction: {x: 1, y: 0}
+  damage: 2

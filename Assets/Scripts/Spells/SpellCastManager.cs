@@ -48,6 +48,7 @@ public class SpellCastManager : MonoBehaviour
         
         spell.CastSpell(face);
         PlayerController.Instance.animator.SetTrigger("doSpellCast");
+        PlayerController.Instance.DeactivateMovement();
         StartCoroutine(CastSpell(spell));
     }
 
@@ -55,6 +56,7 @@ public class SpellCastManager : MonoBehaviour
 		AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
 		yield return new WaitForSeconds(startLagTime);
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
+        PlayerController.Instance.ActivateMovement();
 	}
 
 }

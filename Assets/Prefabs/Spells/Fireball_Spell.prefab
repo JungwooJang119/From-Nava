@@ -4916,12 +4916,12 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: a027ff46ade83dc43aee18da74e625c1, type: 2}
   collider: {fileID: 0}
   rb: {fileID: 7410404838220746693}
-  rotate: {x: 0, y: 0, z: -90}
+  rotate: {x: 0, y: 0, z: 180}
   spellActive: 1
   isChair: 0
   isWind: 0
   isPiplup: 0
-  direction: {x: 1, y: 0}
+  direction: {x: 0, y: -1}
   damage: 5
 --- !u!212 &4974338871379012986
 SpriteRenderer:
@@ -4963,7 +4963,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1768438839, guid: a124e1c4efdfeb044948faff1a765f4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

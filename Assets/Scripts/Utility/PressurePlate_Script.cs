@@ -55,6 +55,9 @@ public class PressurePlate_Script : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D other) {
+		if (other && other.tag == "Spell") {
+            return;
+        }
         numObject--; 
         if (numObject == 0) {
             isPressed = false;

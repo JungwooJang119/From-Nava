@@ -125,22 +125,35 @@ public class LabReport : MonoBehaviour
 				} break;
 
 			case State.Writing:
-				if (textTimer <= 0 && currentText != null) {
-					// Move the start of the invisible color tag toward the end, thus showing more characters;
-					if (currentIndex < string2Report.Length && string2Report[currentIndex] != '\\') {
-						AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0,2)], 0.15f);
-						currentText.text = BuildStr(string2Report, "|");
-						textTimer = letterWait;
-						currentIndex++;
-					} else if (currentIndex < string2Report.Length && string2Report[currentIndex] == '\\') {
+				if (currentText != null) {
+					if (textTimer <= 0) {
+						// Move the start of the invisible color tag toward the end, thus showing more characters;
+						if (currentIndex < string2Report.Length && string2Report[currentIndex] != '\\') {
+							AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0, 2)], 0.15f);
+							currentText.text = BuildStr(string2Report, "|");
+							textTimer = letterWait;
+							currentIndex++;
+						}
+						else if (currentIndex < string2Report.Length && string2Report[currentIndex] == '\\') {
+							state = State.Waiting;
+							currentText.text = BuildStr(string2Report, "|");
+							textTimer = 0;
+						}
+						else if (currentIndex == string2Report.Length) {
+							state = State.Waiting;
+							textTimer = 0;
+						}
+					}
+					if (Input.GetKeyDown(intKey)) {
 						state = State.Waiting;
-						currentText.text = BuildStr(string2Report, "|");
-						textTimer = 0;
-					} else if (currentIndex == string2Report.Length) {
-						state = State.Waiting;
+						AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0, 2)], 0.2f);
+						currentText.text = BuildStr(string2Report, "<color=#00000000>|</color>");
+						currentIndex = string2Report.Length;
+						waitForPress = true;
 						textTimer = 0;
 					}
-				} break;
+				}
+				break;
 
 			case State.Waiting:
 				if (currentText != null) {
@@ -199,16 +212,6 @@ public class LabReport : MonoBehaviour
 						}
 					}
 				} break;
-		}
-
-		// Finish earlier if player presses skip button;
-		if (state == State.Writing && Input.GetKeyDown(intKey) && currentText != null) {
-			state = State.Waiting;
-			AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0, 2)], 0.2f);
-			currentText.text = BuildStr(string2Report, "<color=#00000000>|</color>");
-			currentIndex = string2Report.Length;
-			waitForPress = true;
-			textTimer = 0;
 		}
 
 		// Fading effect of the pop-up;

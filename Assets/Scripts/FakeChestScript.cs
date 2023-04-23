@@ -49,9 +49,6 @@ public class FakeChestScript : MonoBehaviour
         }
         if (Input.GetKeyDown(_intKey)) {
           StartCoroutine(EnemySpawn());
-          if (_tutInstance != null) {
-            _tutScript.Fade();
-          }
         }
       } else if (_tutInstance) {
         _tutScript.Fade();
@@ -83,10 +80,14 @@ public class FakeChestScript : MonoBehaviour
         AudioControl.Instance.PlaySFX("Chest Open", gameObject);
         yield return new WaitForSeconds(1.0f);
         //spawn enemy
-        GameObject newEnemy = Instantiate(enemy, enemySpawnPoint.position, enemySpawnPoint.rotation);
+        var newEnemy = Instantiate(enemy, enemySpawnPoint.position, enemySpawnPoint.rotation);
         newEnemy.name = newEnemy.name.Replace("(Clone)","").Trim();
-        animator.SetBool("OpeningChest", false);
-        AudioControl.Instance.PlaySFX("Chest Close", gameObject);
-        door.GetComponent<Door>().OpenDoor();
-    }
+        //animator.SetBool("OpeningChest", false);
+        //AudioControl.Instance.PlaySFX("Chest Close", gameObject);
+		if (_tutInstance != null) {
+			_tutScript.Fade();
+			_tutScript.transform.SetParent(transform.parent);
+		} Destroy(this);
+		//door.GetComponent<Door>().OpenDoor();
+	}
 }

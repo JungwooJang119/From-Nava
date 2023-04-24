@@ -11,7 +11,6 @@ public class RoomControlA3 : MonoBehaviour
     
     public GameObject B3Chest = null;
     public bool cheat = false;
-    public bool _earlyRoom = false;
 
     public string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
 	private CinemachineVirtualCamera _virtualCamera;
@@ -30,32 +29,14 @@ public class RoomControlA3 : MonoBehaviour
 
     void Update() {
         if (!isClear) {
+            _canClear = true;
             foreach (PressurePlate_Script plate in _pressurePlates) {
                 if (!plate.GetIsPressed()) {
                     _canClear = false;
                     break; 
                 }
             }
-
-			if (_canClear) {
-                if (_earlyRoom) {
-                    StartCoroutine(CameraTransitionIn());
-                    StartCoroutine(DoorOpen());
-                    _earlyRoom = false;
-                    return;
-                }
-				B3Chest.SetActive(true);
-				StartCoroutine(DurationTime());
-				isClear = true;
-				//Destroy(this.gameObject);
-			}
-			_canClear = true;
-
-			if (cheat) {
-                B3Chest.SetActive(true);
-                isClear = true;
-                //Destroy(this.gameObject);
-            }
+            if (_canClear) CompleteRoom();
         }
     }
 
@@ -71,10 +52,12 @@ public class RoomControlA3 : MonoBehaviour
         _virtualCamera.Follow = _returnToPlayer;
 	}
 
-    IEnumerator DoorOpen() {
-        yield return new WaitForSeconds(0.0f);
-        door.GetComponent<Door>().OpenDoor();
-    }
-
-
+	private void CompleteRoom() {
+		if (!cheat) {
+			StartCoroutine(CameraTransitionIn());
+			door.GetComponent<Door>().OpenDoor();
+		}
+        if (B3Chest) B3Chest.SetActive(true);
+		isClear = true;
+	}
 }

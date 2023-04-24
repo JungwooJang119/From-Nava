@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
             return;
         }
         TakeDamage(meleeDamage);
-        onMeleeHit?.Invoke();
+        if (!isInDarkRoom) onMeleeHit?.Invoke();
         
     }
 

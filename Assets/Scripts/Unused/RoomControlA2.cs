@@ -31,49 +31,32 @@ public class RoomControlA2 : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (!isClear) {
+            _canClear = true;
             foreach (Firewood_Script _firewood in _firewoods) {
                 if (!_firewood.isLit) { _canClear = false; break; }
             }
-
-			if (_canClear) {
-                if (_earlyRoom) {
-                    StartCoroutine(CameraTransitionIn());
-                    StartCoroutine(DoorOpen());
-                    _earlyRoom = false;
-                    return;
-                }
-				A2Chest.SetActive(true);
-				//spellNotif.SetActive(true);
-				StartCoroutine(DurationTime());
-				isClear = true;
-				Destroy(this.gameObject);
-			}
-			_canClear = true;
-
-			if (cheat) {
-                A2Chest.SetActive(true);
-                //spellNotif.SetActive(true);
-                //StartCoroutine(DurationTime());
-                isClear = true;
-                Destroy(this.gameObject);
-            }
+            if (_canClear) CompleteRoom();
         }
     }
 
-	IEnumerator DurationTime() {
-		yield return new WaitForSeconds(5f);
-		//spellNotif.SetActive(false);
-	}
-
     IEnumerator CameraTransitionIn() {
-		yield return new WaitForSeconds(0.0f);
+        yield return new WaitForSeconds(0.0f);
 		_virtualCamera.Follow = _cameraTarget.transform;
 		yield return new WaitForSeconds(2f);
         _virtualCamera.Follow = _returnToPlayer;
+		Destroy(this.gameObject);
+		//spellNotif.SetActive(false);
 	}
 
-    IEnumerator DoorOpen() {
-        yield return new WaitForSeconds(0.0f);
-        door.GetComponent<Door>().OpenDoor();
-    }
+	private void CompleteRoom() {
+        if (!cheat) {
+            StartCoroutine(CameraTransitionIn());
+			door.GetComponent<Door>().OpenDoor();
+            if (!_earlyRoom) A2Chest.SetActive(true);
+        } else {
+			if (!_earlyRoom) A2Chest.SetActive(true);
+			Destroy(this.gameObject);
+		}
+		isClear = true;
+	}
 }

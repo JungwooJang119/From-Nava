@@ -18,9 +18,8 @@ public class LabReport : MonoBehaviour
 	private List<string> strings2Grab;			// List of strings that will be taken from the ScriptableObject;
 	private string string2Report;				// String that will be grabbed based on the reportNumber;
 
-	private string intKey = "z";				// Key used to trigger the interactions;
-	private string spdKey = "x";				// Key used to speed up the text;
-	private string skpKey = "c";				// Key used to skip the writing cinematic;
+	private string intKey = "space";				// Key used to trigger interactions;
+	private bool waitForPress = false;				// Lazy boolean, zero creativity atm ;-;
 
 	// References;
 	private PlayerController playerController;
@@ -40,14 +39,12 @@ public class LabReport : MonoBehaviour
 	} private State state = State.Idle;
 
 	private float textTimer = 0;
-	private float noteTimer = 0;
 
 	private TextMeshProUGUI currentText; // Reference to the text instance operating;
 	private TextMeshProUGUI currentNote; // Reference to the bottom note pointing the key to press;
 
 	// Text pacing variables
 	private float letterWait = 0.05f;  // Controls how fast are characters written to the screen;
-	private float normalWait = 0.05f;  // Delay if no button is pressed;
 	private int currentIndex;          // Controls the current limit of the written string;
 	private bool dotted = false;       // Variable to control the cursor;
 
@@ -128,29 +125,35 @@ public class LabReport : MonoBehaviour
 				} break;
 
 			case State.Writing:
-				if (textTimer <= 0 && currentText != null) {
-					// Move the start of the invisible color tag toward the end, thus showing more characters;
-					if (currentIndex < string2Report.Length && string2Report[currentIndex] != '\\') {
-						if (letterWait > 0) AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0,2)], 0.15f);
-						currentText.text = BuildStr(string2Report, "|");
-						textTimer = letterWait;
-						currentIndex++;
-					} else if (currentIndex < string2Report.Length && string2Report[currentIndex] == '\\') {
+				if (currentText != null) {
+					if (textTimer <= 0) {
+						// Move the start of the invisible color tag toward the end, thus showing more characters;
+						if (currentIndex < string2Report.Length && string2Report[currentIndex] != '\\') {
+							AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0, 2)], 0.15f);
+							currentText.text = BuildStr(string2Report, "|");
+							textTimer = letterWait;
+							currentIndex++;
+						}
+						else if (currentIndex < string2Report.Length && string2Report[currentIndex] == '\\') {
+							state = State.Waiting;
+							currentText.text = BuildStr(string2Report, "|");
+							textTimer = 0;
+						}
+						else if (currentIndex == string2Report.Length) {
+							state = State.Waiting;
+							textTimer = 0;
+						}
+					}
+					if (Input.GetKeyDown(intKey)) {
 						state = State.Waiting;
-						currentText.text = BuildStr(string2Report, "|");
-						textTimer = 0;
-					} else if (currentIndex == string2Report.Length) {
-						state = State.Waiting;
+						AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0, 2)], 0.2f);
+						currentText.text = BuildStr(string2Report, "<color=#00000000>|</color>");
+						currentIndex = string2Report.Length;
+						waitForPress = true;
 						textTimer = 0;
 					}
 				}
-				// Speed up the writing process if the speed key is pressed;
-				if (Input.GetKey(spdKey)) {
-					textTimer = 0;
-					letterWait = 0;
-				} else {
-					letterWait = normalWait;
-				} break;
+				break;
 
 			case State.Waiting:
 				if (currentText != null) {
@@ -167,27 +170,29 @@ public class LabReport : MonoBehaviour
 						}
 					}
 					// Continue writing or finish report if an input key is pressed;
-					if (Input.GetKey(intKey) || Input.GetKey(spdKey)) {
+					if (Input.GetKeyUp(intKey)) {
 						if (currentIndex < string2Report.Length) {
 							state = State.Writing;
 							string2Report = string2Report.Substring(0, currentIndex) + "<color=#00000000>|</color>"
 											 + string2Report.Substring(currentIndex);
 							currentIndex += 31; // Skip length of tag + length of escape sequence;
-							textTimer = 0;
-						} else if (Input.GetKeyDown(intKey) || Input.GetKeyDown(spdKey)) {
+						} else if (!waitForPress) {
 							state = State.End;
+						} else {
+							waitForPress = false;
 						}
+						textTimer = 0;
 					}
 				} break;
 
 			case State.End:
 				if (currentText != null) {
 					// Finish report if there are no more pages to present;
-					if (strings2Grab.Count <= 0) transitionScript.DarkenIn();
+					if (strings2Grab.Count == 0) transitionScript.DarkenIn();
 					// Fade out all text;
-					textAlpha -= 5;
+					textAlpha = (byte) Mathf.Max(0, (int) textAlpha - 10);
 					currentText.color = new Color32(_r, _g, _b, textAlpha);
-					if (noteAlpha >= 5) { noteAlpha -= 5; };
+					if (noteAlpha >= 5) { noteAlpha = (byte) Mathf.Max(0, (int) textAlpha - 10); };
 					currentNote.color = new Color32(_r, _g, _b, noteAlpha);
 					// Continue to next page if there's one or finalize report;
 					if (textAlpha < 5) {
@@ -209,14 +214,6 @@ public class LabReport : MonoBehaviour
 				} break;
 		}
 
-		// Finish earlier if player presses skip button;
-		if (ReportIsActive() && Input.GetKeyDown(skpKey) && currentText != null) {
-			state = State.Waiting;
-			currentText.text = BuildStr(string2Report, "<color=#00000000>|</color>");
-			currentIndex = string2Report.Length;
-			textTimer = 0;
-		}
-
 		// Fading effect of the pop-up;
 		if (ReportIsActive()) {
 			if (noteAlpha >= 250) {
@@ -224,21 +221,15 @@ public class LabReport : MonoBehaviour
 			} else if (noteAlpha <= 50) {
 				alertUp = true;
 			}
-			if (noteTimer <= 0) {
-				if (alertUp) {
-					noteAlpha++;
-					noteTimer = 0.002f;
-				}
-				else {
-					noteAlpha--;
-					noteTimer = 0.002f;
-				}
+			if (alertUp) {
+				noteAlpha++;
+			} else {
+				noteAlpha--;
 			}
 			currentNote.color = new Color32(_r, _g, _b, noteAlpha);
 		}
 
 		if (textTimer > 0) textTimer -= Time.deltaTime;
-		if (noteTimer > 0) noteTimer -= Time.deltaTime;
 	}
 	
 	// Instantiates the text and the button/bottom note \\
@@ -262,7 +253,7 @@ public class LabReport : MonoBehaviour
 			bottomNoteTransform.rotation = canvasTransform.rotation;
 			bottomNoteTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y - 7, canvasTransform.position.z);
 			currentNote = bottomNote.GetComponent<TextMeshProUGUI>();
-			currentNote.text = "Speed [" + spdKey.ToUpper() + "]        Advance [" + intKey.ToUpper() + "]        Skip [" + skpKey.ToUpper() + "]";
+			currentNote.text = "Advance [" + intKey.ToUpper() + "]";
 		}
 	}
 

@@ -79,11 +79,6 @@ public class PlayerController : Singleton<PlayerController>
             PushTranslate();
         }
         healthText.text = "Health: " + playerHealth;
-        if (spawn.gameObject.tag == "DarkRoom") {
-            sr.material = defaultLit;
-        } else {
-            sr.material = dissolve;
-        }
     }
 
     private void OnMove(InputValue movementValue) {
@@ -145,14 +140,17 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     IEnumerator Die() {
-        canMove = false;
+		canMove = false;
         canChangeDir = false;
         dissolveShader.DissolveOut();
-        yield return new WaitForSeconds(1.5f);
+		GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(3f);
+		transform.position = spawn.transform.position;
+		dissolveShader.DissolveIn();
+		GetComponent<Collider2D>().enabled = true;
         canMove = true;
         canChangeDir = true;
-        dissolveShader.DissolveIn();
-        transform.position = spawn.transform.position;
+		ChooseFacingDir();
         playerHealth = maxHealth;
     }
 
@@ -178,7 +176,12 @@ public class PlayerController : Singleton<PlayerController>
 
     public void ChangeSpawn(Transform newSpawn) {
         spawn = newSpawn;
-    }
+		if (spawn.gameObject.tag == "DarkRoom") {
+			sr.material = defaultLit;
+		} else {
+			sr.material = dissolve;
+		}
+	}
 
     //adding push behavior for spikes
     public void Push(Vector2 dir, float dist, float spd) {
@@ -202,8 +205,6 @@ public class PlayerController : Singleton<PlayerController>
     public bool GetPushed() {
         return isPushed;
     }
-
-
 }
 
 

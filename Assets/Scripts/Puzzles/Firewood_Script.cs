@@ -89,6 +89,8 @@ public class Firewood_Script : MonoBehaviour
                 return;
             }
             prevLitStatus = 0;
+        } else {
+            return;
         }
         //if (!checkIfRepeat) {
             if (adjFirewood1 != null) {

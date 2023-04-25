@@ -30,9 +30,9 @@ public class tranMode : MonoBehaviour {
 
 	void Update() {
 		// Lazy timer for exploration theme opening;
-		if (!musicSource.isPlaying) {
-			AudioControl.Instance.PlayMusic("Exploration");
-		}
+		// if (!musicSource.isPlaying) {
+		// 	AudioControl.Instance.PlayMusic("Exploration");
+		// }
 		// // Update the alpha of the FadeTB blackscreen depending on the transition state;
 		if (alpha != target) {
 			if (alpha < target) {

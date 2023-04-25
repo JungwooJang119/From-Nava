@@ -35,7 +35,7 @@ public class IceTowerController : MonoBehaviour
             Destroy(this.gameObject);
         }
         if (detected) {
-            Debug.Log(currIceballTime);
+            //Debug.Log(currIceballTime);
             if (currIceballTime >= iceballInterval) {
                 Instantiate(iceball, transform.position, Quaternion.identity, gameObject.transform);
                 currIceballTime = 0;

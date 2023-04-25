@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxHealth = 50f;
     public bool isIceTower = false;
     [SerializeField] private DamageFlash damageFlash;
+    [SerializeField] private DealthDissolveShader dealthShader;
+    [SerializeField] private Material defaultLit;
+    [SerializeField] private Material dissolve;
+    [SerializeField] private bool isInDarkRoom;
     private float currHealth;
 
     private bool isPushed;
@@ -19,6 +23,8 @@ public class Enemy : MonoBehaviour
 
     private Animator animator;
 
+    private SpriteRenderer sr;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -27,6 +33,13 @@ public class Enemy : MonoBehaviour
         currHealth = maxHealth;
         isPushed = false;
         animator = GetComponent<Animator>();
+        dealthShader = GetComponent<DealthDissolveShader>();
+        sr = GetComponent<SpriteRenderer>();
+        if (isInDarkRoom) {
+            sr.material = defaultLit;
+        } else {
+            sr.material = dissolve;
+        }
     }
 
     public void TakeDamage(float damage) {
@@ -37,11 +50,12 @@ public class Enemy : MonoBehaviour
         }
         //Debug.Log(currHealth);
         if (currHealth <= 0) {
+            dealthShader.DissolveOut();
             if (!isIceTower) {
                 animator.SetBool("isDead", true);
                 StartCoroutine(DeathSequence());
             } else {
-                Destroy(this.gameObject);
+                Destroy(this.gameObject, 1f);
             }
         }
     }
@@ -71,11 +85,13 @@ public class Enemy : MonoBehaviour
             return;
         }
         TakeDamage(meleeDamage);
-        onMeleeHit?.Invoke();
+        if (!isInDarkRoom) onMeleeHit?.Invoke();
+        
     }
 
     IEnumerator DeathSequence() {
-        yield return new WaitForSeconds(0.5f);
+        dealthShader.DissolveOut();
+        yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
 

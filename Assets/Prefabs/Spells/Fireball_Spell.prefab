@@ -1308,7 +1308,7 @@ ParticleSystem:
         key0: {r: 0.7607844, g: 0.14117648, b: 0.10588236, a: 1}
         key1: {r: 0.34217697, g: 0.29578432, b: 0.2931142, a: 1}
         key2: {r: 0.2924528, g: 0.28555533, b: 0.28555533, a: 1}
-        key3: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
+        key3: {r: 0.14117648, g: 0.14117648, b: 0.14117648, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -4916,12 +4916,13 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: a027ff46ade83dc43aee18da74e625c1, type: 2}
   collider: {fileID: 0}
   rb: {fileID: 7410404838220746693}
-  rotate: {x: 0, y: 0, z: 0}
+  rotate: {x: 0, y: 0, z: 180}
   spellActive: 1
   isChair: 0
   isWind: 0
   isPiplup: 0
-  direction: {x: 0, y: 1}
+  direction: {x: 0, y: -1}
+  damage: 5
 --- !u!212 &4974338871379012986
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4962,7 +4963,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1768438839, guid: a124e1c4efdfeb044948faff1a765f4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

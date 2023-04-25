@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7816608974960025993}
   - component: {fileID: 6632084955643231022}
   - component: {fileID: 7531634241011708925}
-  - component: {fileID: 1067764646636391755}
+  - component: {fileID: 6781299553897351116}
   m_Layer: 0
   m_Name: FireballGoomba
   m_TagString: Enemy
@@ -133,6 +133,10 @@ MonoBehaviour:
   maxHealth: 20
   isIceTower: 0
   damageFlash: {fileID: 6632084955643231022}
+  dealthShader: {fileID: 0}
+  defaultLit: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  dissolve: {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
+  isInDarkRoom: 0
   onMeleeHit:
     m_PersistentCalls:
       m_Calls:
@@ -162,9 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   player: {fileID: 0}
+  spawn: {fileID: 0}
   minDistance: 4
   maxDistance: 8
-  animator: {fileID: 7531634241011708925}
   fireball: {fileID: 5536333251357887935, guid: 35fc593afbb361645b7f2b23f3daec1f, type: 3}
   fireballInterval: 2
   currFireballTime: 0
@@ -248,7 +252,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1067764646636391755
+--- !u!114 &6781299553897351116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,11 +261,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 797491692293421795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e342bdf7562c0374381c8694c2b91606, type: 3}
+  m_Script: {fileID: 11500000, guid: d78d5504e54954640985696cebcc01c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dissolveAmount: 2
+  dissolveAmount: 1
   dissolveSpeed: 1
   isDissolving: 0
-  outColor: {r: 0, g: 0, b: 0, a: 0}
-  inColor: {r: 0, g: 0, b: 0, a: 0}

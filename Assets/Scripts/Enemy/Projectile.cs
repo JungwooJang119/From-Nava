@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject deathParticles;
     [SerializeField] private float speed;
-    [SerializeField] private int damage;
+    public int damage;
 
     [SerializeField] private bool hasParticles;
 
@@ -42,6 +42,9 @@ public class Projectile : MonoBehaviour
             return;
         }
         if (col.gameObject.CompareTag("IceTower")) {
+            return;
+        }
+        if (col.gameObject.CompareTag("Chest")) {
             return;
         }
         if (col.gameObject.CompareTag("Player")) {

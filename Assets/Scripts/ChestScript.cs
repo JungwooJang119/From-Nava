@@ -19,6 +19,8 @@ public class ChestScript : MonoBehaviour
     private GameObject _tutInstance;
     private ButtonTutorial _tutScript;
 
+    [SerializeField] private bool isLaserRoom;
+
     // Key to interact
     private string _intKey = "space";
 
@@ -28,8 +30,12 @@ public class ChestScript : MonoBehaviour
         //_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		_virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
 		_returnToPlayer = _virtualCamera.Follow;
-        StartCoroutine(CameraTransitionIn());
         animator = GetComponent<Animator>();
+        if (isLaserRoom) {
+            print("happy");
+        } else {
+            StartCoroutine(CameraTransitionIn());
+        }
     }
 
     // Update is called once per frame

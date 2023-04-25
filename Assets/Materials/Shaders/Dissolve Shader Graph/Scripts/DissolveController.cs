@@ -43,7 +43,7 @@ public class DissolveController : MonoBehaviour
             DissolveIn(dissolveSpeed, inColor);
         }
 
-        mat.SetFloat("_DissolveAmount", dissolveAmount);
+        //mat.SetFloat("_DissolveAmount", dissolveAmount);
 
 
     }

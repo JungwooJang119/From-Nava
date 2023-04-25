@@ -17,3 +17,8 @@ MonoBehaviour:
   damageAmt: 10
   lifetime: 9999
   sfxString: Iceball Cast
+  particleColor:
+  - 0.25
+  - 0.53
+  - 0.74
+  - 1

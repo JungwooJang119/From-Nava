@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyToPress: 
   arrow: {fileID: 369773725455216726, guid: 9a363789517e0a146930509ffe13a34a, type: 3}
+  parent: {fileID: 0}
 --- !u!23 &8936418806480048214
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73,7 +74,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  - {fileID: 1638262852633438937, guid: 11ade6c97155724489141c1fdac62371, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,8 +118,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 48a228ae9f174534d8f05762e1153004, type: 2}
+  m_sharedMaterial: {fileID: 2313505472603330909, guid: 48a228ae9f174534d8f05762e1153004, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

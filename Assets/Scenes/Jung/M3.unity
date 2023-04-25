@@ -40641,7 +40641,6 @@ MonoBehaviour:
   pressurePlateController: {fileID: 1420851917}
   B3Chest: {fileID: 583125964}
   cheat: 0
-  _earlyRoom: 1
   virtualCameraName: CM vcam1
   _cameraTarget: {fileID: 400261287}
   _returnToPlayer: {fileID: 639690686}
@@ -112783,7 +112782,6 @@ MonoBehaviour:
   pressurePlateController: {fileID: 393114671}
   B3Chest: {fileID: 0}
   cheat: 0
-  _earlyRoom: 1
   virtualCameraName: CM vcam1
   _cameraTarget: {fileID: 1945310047}
   _returnToPlayer: {fileID: 639690686}
@@ -129864,11 +129862,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726909, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.71
+      value: -98.9
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726909, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -36.42
+      value: -196.4
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726909, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_LocalPosition.z
@@ -129908,7 +129906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726914, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: orthographic size
-      value: 8.4375
+      value: 5.625
       objectReference: {fileID: 0}
     - target: {fileID: 3465685018912726914, guid: f4e7ab862df369c48814615318ce9889, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -130179,11 +130177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7257062049370043968, guid: 2c846db8616a7644287af38547484ea6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.71
+      value: -98.9
       objectReference: {fileID: 0}
     - target: {fileID: 7257062049370043968, guid: 2c846db8616a7644287af38547484ea6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -36.42
+      value: -196.4
       objectReference: {fileID: 0}
     - target: {fileID: 7257062049370043968, guid: 2c846db8616a7644287af38547484ea6, type: 3}
       propertyPath: m_LocalPosition.z

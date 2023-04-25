@@ -39,6 +39,9 @@ public class PressurePlate_Script : MonoBehaviour
         if (other.tag == "Spell") {
             return;
         }
+        if (other.tag == "Melee") {
+            return;
+        }
         numObject = numObject + 1;
         if (other.attachedRigidbody.mass > 1){
             render.sprite = pressed;
@@ -56,6 +59,9 @@ public class PressurePlate_Script : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other) {
 		if (other && other.tag == "Spell") {
+            return;
+        }
+        if (other.tag == "Melee") {
             return;
         }
         numObject--; 

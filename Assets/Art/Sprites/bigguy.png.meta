@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 415f3eccc5e46474baa00ee957433951
+guid: d7df5fa015d4bb2409f7cc90befd7bc9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bigguywalk_0
+      name: bigguy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +113,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a00f6f1f03ccabe41819d579509c98bb
-      internalID: -1987854198
+      spriteID: e216b61e8d2cbd445b0ec7dc489eb6fc
+      internalID: -1098099549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_1
+      name: bigguy_1
       rect:
         serializedVersion: 2
         x: 96
@@ -134,20 +134,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2131c21543276d64b9530387362e3626
-      internalID: -505602598
+      spriteID: 6fd99b3bbe453b849872485cf9f71343
+      internalID: 2083341863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_2
+      name: bigguy_2
       rect:
         serializedVersion: 2
         x: 192
@@ -155,20 +155,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f8d827d8f8112f4f96e8810a280fbd9
-      internalID: -994181560
+      spriteID: 1c9acfcbed42f9a439fae351e207051d
+      internalID: -689020102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_3
+      name: bigguy_3
       rect:
         serializedVersion: 2
         x: 288
@@ -176,20 +176,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4cafbe0ab4356d4b99b02f68066a7f4
-      internalID: -215204114
+      spriteID: a8490e4d47952a94f87c62ec3615df44
+      internalID: -2048929698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_4
+      name: bigguy_4
       rect:
         serializedVersion: 2
         x: 384
@@ -197,20 +197,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 737c9d107efd9ac4598069b4d553f88e
-      internalID: -274115128
+      spriteID: 86806affd51d81f41a69d793c92d5037
+      internalID: -653372692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_5
+      name: bigguy_5
       rect:
         serializedVersion: 2
         x: 480
@@ -218,20 +218,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04420285b56d6e44698101142270b829
-      internalID: -2121916393
+      spriteID: 19259fb36262dc74384770abac9ae1d1
+      internalID: -184189626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_6
+      name: bigguy_6
       rect:
         serializedVersion: 2
         x: 576
@@ -239,20 +239,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1ed122199eeb1f47a9e066b98c85502
-      internalID: -535900270
+      spriteID: a67e18b35c8f2b747bd4eb9b6857175b
+      internalID: 245338202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_7
+      name: bigguy_7
       rect:
         serializedVersion: 2
         x: 672
@@ -260,20 +260,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32dadb9383ec67d409634ac71232d717
-      internalID: -214825050
+      spriteID: d987c53bb1514d14ba6801b9c15e50aa
+      internalID: 835402113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguy_attack7
+      name: bigguy_8
       rect:
         serializedVersion: 2
         x: 768
@@ -281,20 +281,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d3eceb1f0413284090c2909f9042413
-      internalID: -1360900928
+      spriteID: 7b24a3d751f830240a81be6982588878
+      internalID: -1251882106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguy_attack6
+      name: bigguy_9
       rect:
         serializedVersion: 2
         x: 864
@@ -302,20 +302,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd51b27ee66d3f347887af9f147e0f8b
-      internalID: 889476019
+      spriteID: be8347b93aad92e4aa81db753deccbd6
+      internalID: -289160787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguy_attack5
+      name: bigguy_10
       rect:
         serializedVersion: 2
         x: 960
@@ -323,20 +323,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fcfbf419850f394a9031730d2262cf4
-      internalID: 1068302263
+      spriteID: 4c79dc91cc6baf248b02bff1be4ae2dc
+      internalID: 692779531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguy_attack4
+      name: bigguy_11
       rect:
         serializedVersion: 2
         x: 1056
@@ -344,41 +344,41 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6be4012b1b14ff141a50e545a1c7af0e
-      internalID: 737736416
+      spriteID: bbfffe71cfdfc894b95875e951e79a2d
+      internalID: 857503513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguy_attack3
+      name: bigguy_12
       rect:
         serializedVersion: 2
-        x: 1147
+        x: 1152
         y: 288
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 373e38e285425c041b466a53d268bc28
-      internalID: 857824615
+      spriteID: df0add5736b62604ea9ef6178927e28a
+      internalID: 2121486644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguy_attack2
+      name: bigguy_13
       rect:
         serializedVersion: 2
         x: 1248
@@ -386,20 +386,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6321e31b9c0fd4e4482c40c26462bfb3
-      internalID: 773961733
+      spriteID: 2b8c402154f7eae469bcdedac2ac099c
+      internalID: 1974143165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguy_attack1
+      name: bigguy_14
       rect:
         serializedVersion: 2
         x: 1344
@@ -407,20 +407,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 341e51f31851e02448e2bd9e79204324
-      internalID: -1127871947
+      spriteID: 53768541d1256e746b62c0a9760f712c
+      internalID: -694967451
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_15
+      name: bigguy_15
       rect:
         serializedVersion: 2
         x: 0
@@ -428,20 +428,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9cf3bc1b32cd36478c250667401f43e
-      internalID: -1196180304
+      spriteID: 8bfd3314773ee8741aae4df6e5730aa0
+      internalID: 962068484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_16
+      name: bigguy_16
       rect:
         serializedVersion: 2
         x: 96
@@ -449,20 +449,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afbd4b60fc8243349bc84179037945ed
-      internalID: -216137520
+      spriteID: 4a84d10edeb091446a0c198a00cbb1b8
+      internalID: -1624973593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_17
+      name: bigguy_17
       rect:
         serializedVersion: 2
         x: 192
@@ -470,20 +470,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3755bf9fdd1d6548b76e7ca82d6e998
-      internalID: 590943509
+      spriteID: 09862a6703771ce4dbde8eaad3753950
+      internalID: 410620420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_18
+      name: bigguy_18
       rect:
         serializedVersion: 2
         x: 288
@@ -491,20 +491,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a600e5475c83a924a9fdcf095ef7a8ce
-      internalID: -1228084088
+      spriteID: 2afbea3d0801a19408843a46b30f61c0
+      internalID: -1638736527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_19
+      name: bigguy_19
       rect:
         serializedVersion: 2
         x: 384
@@ -512,20 +512,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c69f87b0ed8f8be479a55d13eb2f48bd
-      internalID: -1963163657
+      spriteID: d933cf074013fad4e870ab9b16c2961e
+      internalID: -1228239478
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_20
+      name: bigguy_20
       rect:
         serializedVersion: 2
         x: 480
@@ -533,20 +533,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82295bcf79b9afa4fbbed40ebcdd06eb
-      internalID: -288608265
+      spriteID: 2efa94322db9b204689ba2fa2efafff0
+      internalID: -263235756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_21
+      name: bigguy_21
       rect:
         serializedVersion: 2
         x: 576
@@ -554,20 +554,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbb3eb805352ddb41b40ca97449dd446
-      internalID: 1039827456
+      spriteID: 89e42d629bd42664faf603fd8be6582f
+      internalID: 1694871554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_22
+      name: bigguy_22
       rect:
         serializedVersion: 2
         x: 672
@@ -575,20 +575,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94c7b4d689eb6e0448e1457c14fd5900
-      internalID: -1101637208
+      spriteID: cb907de39f4fee04d8bc6f09d9aac7f1
+      internalID: 277746257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_23
+      name: bigguy_23
       rect:
         serializedVersion: 2
         x: 768
@@ -596,20 +596,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc978f21aed9cd747bf66032dfae0611
-      internalID: 1511072648
+      spriteID: 02718bc42c6aa934d9d93e40fa8e443b
+      internalID: -202175724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_24
+      name: bigguy_24
       rect:
         serializedVersion: 2
         x: 864
@@ -617,20 +617,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40c6d07de9794754aa6932e428c0836e
-      internalID: -850669846
+      spriteID: f339f0de2d8252546ba6efc087f67fef
+      internalID: 1307893991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_25
+      name: bigguy_25
       rect:
         serializedVersion: 2
         x: 960
@@ -638,20 +638,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d303384af7ffc742bcedac528b15f16
-      internalID: 1257655058
+      spriteID: 7ebde69a7d8f30d4db55e1a9c51d129b
+      internalID: -632911215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_26
+      name: bigguy_26
       rect:
         serializedVersion: 2
         x: 1056
@@ -659,20 +659,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 510a4d0dc5262cf4aa59e1581cd451df
-      internalID: -1614009306
+      spriteID: 7e322c7fbdf8a1a4c97dfaa4bbdfeeef
+      internalID: -1208050313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_27
+      name: bigguy_27
       rect:
         serializedVersion: 2
         x: 1152
@@ -680,20 +680,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4973861a2db617946b7ee4ea35a01651
-      internalID: 917390491
+      spriteID: 19ea90f80a4eace4bbdd6f2c78e3acfb
+      internalID: 1692691325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_28
+      name: bigguy_28
       rect:
         serializedVersion: 2
         x: 1248
@@ -701,20 +701,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 859180bbb3fc43449b285dbd98d6a688
-      internalID: 442357071
+      spriteID: f7d7179217dd0c746a609989f7252202
+      internalID: -1720716685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_29
+      name: bigguy_29
       rect:
         serializedVersion: 2
         x: 1344
@@ -722,20 +722,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4aa257c838518da4cb7283e1ae75a617
-      internalID: -304675455
+      spriteID: d418721ad446ed9498e1fafdc9ed2cb2
+      internalID: -128525403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_30
+      name: bigguy_30
       rect:
         serializedVersion: 2
         x: 0
@@ -743,20 +743,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b6eb37ef4a87b643a16be3370178cc0
-      internalID: 2079421976
+      spriteID: 605adc558bd14714392020ffad6bea94
+      internalID: -2134653101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_31
+      name: bigguy_31
       rect:
         serializedVersion: 2
         x: 96
@@ -764,20 +764,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 184d4b624e2dd90498e4c99ee58ecc2b
-      internalID: -1339676046
+      spriteID: f3eed7297f54a984b8be12ff82c38355
+      internalID: -1479868581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_32
+      name: bigguy_32
       rect:
         serializedVersion: 2
         x: 192
@@ -785,20 +785,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f67f8880b0b163c4a994ed287cbfaff5
-      internalID: 658604717
+      spriteID: 87c12af4f9813c9498f008f870738b60
+      internalID: 645327533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_33
+      name: bigguy_33
       rect:
         serializedVersion: 2
         x: 288
@@ -806,20 +806,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 823e9e31d4617304c82096daed314fa7
-      internalID: -1207408265
+      spriteID: 452db5c8afbbdb747a732323b3b63684
+      internalID: 1859667126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_34
+      name: bigguy_34
       rect:
         serializedVersion: 2
         x: 384
@@ -827,20 +827,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a12bf8914555fa44ab320ede80b59ad5
-      internalID: -1644433812
+      spriteID: 6bdd7a37c147f654d88ba7d030dac040
+      internalID: 697576776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_35
+      name: bigguy_35
       rect:
         serializedVersion: 2
         x: 480
@@ -848,20 +848,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f377bc720d87f14e89ed3a65b06a622
-      internalID: -1030999996
+      spriteID: 54b2c7eb98e50eb4799cd17448d2c420
+      internalID: 1751296631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_36
+      name: bigguy_36
       rect:
         serializedVersion: 2
         x: 576
@@ -869,20 +869,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09c5cfcc4f8023747a615fabf91d46a8
-      internalID: 1643142728
+      spriteID: 93ed179ec7a16e54f8f33b4860f1fba2
+      internalID: 1091341508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_37
+      name: bigguy_37
       rect:
         serializedVersion: 2
         x: 672
@@ -890,20 +890,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d7a9b10e59e2c14799aa7d4dbc0c81c
-      internalID: -1966220100
+      spriteID: 932cea7a49b748e48a2fac54e0a9fc33
+      internalID: 950796959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_38
+      name: bigguy_38
       rect:
         serializedVersion: 2
         x: 768
@@ -911,20 +911,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2774bdf3c61710498f2e6ef12cb761b
-      internalID: 1693320372
+      spriteID: add06ab32d393de49ac6ef7497aa4cd1
+      internalID: -385437268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_39
+      name: bigguy_39
       rect:
         serializedVersion: 2
         x: 864
@@ -932,20 +932,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d09a2ec822959c94e90e3ab01d57ace9
-      internalID: 197883916
+      spriteID: f065286fab92f1741a7abb4ef0e57325
+      internalID: 1823678395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_40
+      name: bigguy_40
       rect:
         serializedVersion: 2
         x: 960
@@ -953,20 +953,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da0474ea13f74c94186e1164b8431468
-      internalID: 988286158
+      spriteID: 5619fb74ec4c8da44b6a3f60302290cb
+      internalID: 510481192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_41
+      name: bigguy_41
       rect:
         serializedVersion: 2
         x: 1056
@@ -974,20 +974,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09f633448dc467b4da97918401fef43d
-      internalID: -1062533359
+      spriteID: 634e098ce9093e241a2fd57ed10d9d29
+      internalID: 74590096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_42
+      name: bigguy_42
       rect:
         serializedVersion: 2
         x: 1152
@@ -995,20 +995,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36a0a862369c59049b4862e41c408eb9
-      internalID: 1853492232
+      spriteID: b87470c9635de3240a6c2b4ec77948c8
+      internalID: -364828291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_43
+      name: bigguy_43
       rect:
         serializedVersion: 2
         x: 1248
@@ -1016,20 +1016,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32c1c725d412abd48a5022b6130322a8
-      internalID: -1731237869
+      spriteID: a9f4f0bd8cf1e2c47b03c86cbf7f19fb
+      internalID: 491417306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_44
+      name: bigguy_44
       rect:
         serializedVersion: 2
         x: 1344
@@ -1037,20 +1037,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d48b8bbfa2c5f04d82b76ca52e27e28
-      internalID: 390140639
+      spriteID: 6c426bce48a927a46bb2ebc3ee3c03d6
+      internalID: -1801721654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_45
+      name: bigguy_45
       rect:
         serializedVersion: 2
         x: 0
@@ -1058,20 +1058,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95bf3613cc7bd7b4da7a51f0d1beca22
-      internalID: -973931483
+      spriteID: bb94dc2cb4ccb2449a15f838acfd68f4
+      internalID: -781652637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_46
+      name: bigguy_46
       rect:
         serializedVersion: 2
         x: 96
@@ -1079,20 +1079,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8c62cdd2d72e4f40a87d373949dda34
-      internalID: -1829087763
+      spriteID: 5d159e9f9bd028c4bb3b6ecbf3a06917
+      internalID: -458133912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_47
+      name: bigguy_47
       rect:
         serializedVersion: 2
         x: 192
@@ -1100,20 +1100,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5cd7aa3ce2c9824a8cdc06eddffbf6a
-      internalID: -953145288
+      spriteID: 6eedd327f261eca4186b91054cbd1ea7
+      internalID: -1961522984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_48
+      name: bigguy_48
       rect:
         serializedVersion: 2
         x: 288
@@ -1121,20 +1121,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1518e19a9afca8b40aef286805dc4ccc
-      internalID: -2079546268
+      spriteID: 3ef84b44400f9c64e80718d425cb080b
+      internalID: -1185140025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_49
+      name: bigguy_49
       rect:
         serializedVersion: 2
         x: 384
@@ -1142,20 +1142,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2d3b1641d9e77a48a51d2564f685d49
-      internalID: 1898631758
+      spriteID: 7afd4bc7d0662eb4ab3d5239c25c09e5
+      internalID: 1672679384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_50
+      name: bigguy_50
       rect:
         serializedVersion: 2
         x: 480
@@ -1163,20 +1163,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85eb58df2dcf348438fbcc3d9e65f258
-      internalID: 223723460
+      spriteID: 0adac2430d10c0e48b824b126afea150
+      internalID: 1695895886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_51
+      name: bigguy_51
       rect:
         serializedVersion: 2
         x: 576
@@ -1184,20 +1184,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c8cba9de91a3e44fb842d153de20358
-      internalID: -1352018429
+      spriteID: 1c4e349a6f1bf8b48854b85ec5b9df90
+      internalID: 347847127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_52
+      name: bigguy_52
       rect:
         serializedVersion: 2
         x: 672
@@ -1205,20 +1205,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 007de2443b6309940867fced6928178d
-      internalID: 2120251709
+      spriteID: e5f9f15f2d49cd144bb4c2f1d7d89d1f
+      internalID: 2064124301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_53
+      name: bigguy_53
       rect:
         serializedVersion: 2
         x: 768
@@ -1226,20 +1226,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9eb98821e7bf9f54aaec4b9aa4a5a692
-      internalID: 1197697163
+      spriteID: 26a4fa0a972a8ee418f07b542a44a8cd
+      internalID: 1684899532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_54
+      name: bigguy_54
       rect:
         serializedVersion: 2
         x: 864
@@ -1247,20 +1247,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2f32a5e7fc3e8d44b471270a87a1eb5
-      internalID: 383506134
+      spriteID: fec13fc0f7b2e0843953c0c9b2b5cfee
+      internalID: 1554588696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_55
+      name: bigguy_55
       rect:
         serializedVersion: 2
         x: 960
@@ -1268,20 +1268,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb0fa2ffefae0664086ff18f08192d78
-      internalID: 903152553
+      spriteID: 8bdc8e2b289c76f42915daa78bffb85f
+      internalID: 541197624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_56
+      name: bigguy_56
       rect:
         serializedVersion: 2
         x: 1056
@@ -1289,20 +1289,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0eb1173eca52c341b3d9297f92a63eb
-      internalID: 1780126119
+      spriteID: 6aed3d5cf8228a04ba50667ed1d439aa
+      internalID: 1735084435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_57
+      name: bigguy_57
       rect:
         serializedVersion: 2
         x: 1152
@@ -1310,20 +1310,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 724cfe0e33025be40b150a17d02f86a1
-      internalID: -1903343307
+      spriteID: a898f4946a02ac64c9153b12a25f832f
+      internalID: -808241406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_58
+      name: bigguy_58
       rect:
         serializedVersion: 2
         x: 1248
@@ -1331,20 +1331,20 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c926d5c9527a3d48aa9d54bc92596fe
-      internalID: 1445275487
+      spriteID: e9d225f068e548a49b0de649e71bd8c1
+      internalID: 115238683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bigguywalk_59
+      name: bigguy_59
       rect:
         serializedVersion: 2
         x: 1344
@@ -1352,14 +1352,14 @@ TextureImporter:
         width: 96
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ff780a58d8626d4bbc540520714c086
-      internalID: 645000251
+      spriteID: 5a9ed4c40f570714db6568dd8bb96a55
+      internalID: -2050939944
       vertices: []
       indices: 
       edges: []
@@ -1375,66 +1375,66 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bigguywalk_16: -216137520
-      bigguywalk_58: 1445275487
-      bigguy_attack5: 1068302263
-      bigguywalk_0: -1987854198
-      bigguywalk_48: -2079546268
-      bigguywalk_19: -1963163657
-      bigguywalk_45: -973931483
-      bigguywalk_7: -214825050
-      bigguywalk_15: -1196180304
-      bigguywalk_28: 442357071
-      bigguywalk_52: 2120251709
-      bigguywalk_25: 1257655058
-      bigguywalk_27: 917390491
-      bigguywalk_35: -1030999996
-      bigguywalk_4: -274115128
-      bigguywalk_32: 658604717
-      bigguywalk_1: -505602598
-      bigguywalk_31: -1339676046
-      bigguywalk_38: 1693320372
-      bigguywalk_57: -1903343307
-      bigguywalk_26: -1614009306
-      bigguywalk_51: -1352018429
-      bigguywalk_46: -1829087763
-      bigguywalk_43: -1731237869
-      bigguy_attack4: 737736416
-      bigguywalk_40: 988286158
-      bigguywalk_56: 1780126119
-      bigguy_attack2: 773961733
-      bigguywalk_23: 1511072648
-      bigguywalk_55: 903152553
-      bigguywalk_59: 645000251
-      bigguywalk_49: 1898631758
-      bigguywalk_3: -215204114
-      bigguy_attack6: 889476019
-      bigguywalk_34: -1644433812
-      bigguywalk_21: 1039827456
-      bigguywalk_37: -1966220100
-      bigguywalk_33: -1207408265
-      bigguywalk_44: 390140639
-      bigguy_attack7: -1360900928
-      bigguy_attack1: -1127871947
-      bigguywalk_50: 223723460
-      bigguywalk_54: 383506134
-      bigguywalk_17: 590943509
-      bigguywalk_39: 197883916
-      bigguywalk_42: 1853492232
-      bigguywalk_5: -2121916393
-      bigguywalk_24: -850669846
-      bigguywalk_36: 1643142728
-      bigguywalk_18: -1228084088
-      bigguywalk_41: -1062533359
-      bigguywalk_29: -304675455
-      bigguywalk_53: 1197697163
-      bigguywalk_47: -953145288
-      bigguywalk_6: -535900270
-      bigguywalk_20: -288608265
-      bigguywalk_2: -994181560
-      bigguywalk_30: 2079421976
-      bigguywalk_22: -1101637208
-      bigguy_attack3: 857824615
+      bigguy_34: 697576776
+      bigguy_20: -263235756
+      bigguy_46: -458133912
+      bigguy_52: 2064124301
+      bigguy_18: -1638736527
+      bigguy_59: -2050939944
+      bigguy_26: -1208050313
+      bigguy_45: -781652637
+      bigguy_38: -385437268
+      bigguy_4: -653372692
+      bigguy_54: 1554588696
+      bigguy_1: 2083341863
+      bigguy_39: 1823678395
+      bigguy_40: 510481192
+      bigguy_32: 645327533
+      bigguy_37: 950796959
+      bigguy_25: -632911215
+      bigguy_36: 1091341508
+      bigguy_17: 410620420
+      bigguy_48: -1185140025
+      bigguy_6: 245338202
+      bigguy_2: -689020102
+      bigguy_41: 74590096
+      bigguy_29: -128525403
+      bigguy_49: 1672679384
+      bigguy_7: 835402113
+      bigguy_15: 962068484
+      bigguy_42: -364828291
+      bigguy_3: -2048929698
+      bigguy_47: -1961522984
+      bigguy_21: 1694871554
+      bigguy_5: -184189626
+      bigguy_14: -694967451
+      bigguy_19: -1228239478
+      bigguy_22: 277746257
+      bigguy_56: 1735084435
+      bigguy_55: 541197624
+      bigguy_9: -289160787
+      bigguy_11: 857503513
+      bigguy_13: 1974143165
+      bigguy_58: 115238683
+      bigguy_24: 1307893991
+      bigguy_12: 2121486644
+      bigguy_28: -1720716685
+      bigguy_30: -2134653101
+      bigguy_31: -1479868581
+      bigguy_16: -1624973593
+      bigguy_53: 1684899532
+      bigguy_23: -202175724
+      bigguy_44: -1801721654
+      bigguy_0: -1098099549
+      bigguy_35: 1751296631
+      bigguy_33: 1859667126
+      bigguy_51: 347847127
+      bigguy_57: -808241406
+      bigguy_10: 692779531
+      bigguy_43: 491417306
+      bigguy_8: -1251882106
+      bigguy_50: 1695895886
+      bigguy_27: 1692691325
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

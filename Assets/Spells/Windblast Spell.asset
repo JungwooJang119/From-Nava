@@ -16,3 +16,9 @@ MonoBehaviour:
   speed: 17
   damageAmt: 0
   lifetime: 2
+  sfxString: Windblast Cast
+  particleColor:
+  - 0.84
+  - 0.64
+  - 0.91
+  - 1

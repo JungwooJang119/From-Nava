@@ -15,4 +15,10 @@ MonoBehaviour:
   manaCost: 5
   speed: 0
   damageAmt: 0
-  lifetime: 30
+  lifetime: 25
+  sfxString: Chair Cast
+  particleColor:
+  - 0.45
+  - 0.26
+  - 0.31
+  - 1

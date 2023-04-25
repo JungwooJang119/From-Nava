@@ -7,6 +7,8 @@ public class SpellCastManager : MonoBehaviour
 {
     //Responsible for spawning spells
 
+    [SerializeField] private float startLagTime;
+
     [Serializable]
     public struct EnumToSpell
     {
@@ -46,10 +48,33 @@ public class SpellCastManager : MonoBehaviour
         
         spell.CastSpell(face);
         PlayerController.Instance.animator.SetTrigger("doSpellCast");
+        PlayerController.Instance.DeactivateMovement();
+        StartCoroutine(CastSpell(spell));
+    }
+
+    IEnumerator CastSpell(Spell spell) {
+		AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
+		yield return new WaitForSeconds(startLagTime);
+        TriggerParticles(spell);
         Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
+        PlayerController.Instance.ActivateMovement();
+	}
+
+    public void TriggerParticles(Spell s) {
+        ParticleSystem ps = PlayerController.Instance.castPoint.GetComponent<ParticleSystem>();
+        Color c = new Color(s.spell.particleColor[0], s.spell.particleColor[1], s.spell.particleColor[2], 1.0f);
+        var col = ps.colorOverLifetime;
+        col.enabled = true;
+
+        Gradient grad = new Gradient();
+        grad.SetKeys( new GradientColorKey[] { new GradientColorKey(c, 0.0f), new GradientColorKey(c, 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 0.0f) } );
+        col.color = grad;
+
+        ps.Play();
     }
 
 }
+
 
 
 public enum SpellType {

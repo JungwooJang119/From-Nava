@@ -6,25 +6,20 @@ using UnityEngine;
 
 public class LaserParticles : MonoBehaviour
 {
-	// Duration of the object;
-	public float life;
-
-	// References to the particle system component;
 	private ParticleSystem parSystem;
-	private ParticleSystem.EmissionModule _emissions;
 
-	// Set references;
+	// Hello there!
 	void Start() {
 		parSystem = GetComponent<ParticleSystem>();
-		_emissions = parSystem.emission;
 	}
 
-	// Disable emissions when it runs out of life time;
-	void Update() {
-		life -= Time.deltaTime;
-		if (life <= 0.5f) {
-			_emissions.enabled = false;
-			Destroy(gameObject, 1f);
-		}
+	public void Subscribe2Parent(LaserBeam parentBeam) {
+		parentBeam.OnBeamEnd += LaserParticles_OnBeamEnd;
+	}
+
+	private void LaserParticles_OnBeamEnd() {
+		var emission = parSystem.emission;
+		emission.enabled = false;
+		Destroy(gameObject, 0.25f);
 	}
 }

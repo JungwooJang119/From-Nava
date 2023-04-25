@@ -8,6 +8,8 @@ public class RoomControlB1 : MonoBehaviour
     [SerializeField] private GameObject enemy2;
 
     [SerializeField] private GameObject chest;
+    [SerializeField] private bool isC1;
+    [SerializeField] private GameObject door;
     //[SerializeField] private GameObject spellNotif;
 
     private bool isActive = true;
@@ -28,6 +30,9 @@ public class RoomControlB1 : MonoBehaviour
                 // spellNotif.SetActive(true);
                 // StartCoroutine(DurationTime());
                 isActive = false;
+                if (isC1) {
+                    door.GetComponent<Door>().OpenDoor();
+                }
                 Destroy(this.gameObject);
             }
         }

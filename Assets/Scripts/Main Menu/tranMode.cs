@@ -14,13 +14,13 @@ public class tranMode : MonoBehaviour {
 	private float alpha;
 	private float target;
 	private CanvasGroup fadeScreen;
-	private float timecheck;
+	private AudioSource musicSource;
 
 	void Start() {
 		if (SceneManager.GetActiveScene().buildIndex == 0) { // 0 index corresponds to Main Menu
-			AudioControl.Instance.PlayMusic("Main Theme");
+			AudioControl.Instance.PlayMusic("Main");
 		} else {
-			AudioControl.Instance.PlayMusic("Exploration Theme");
+			musicSource = AudioControl.Instance.PlayMusic("Exploration Opening", false);
 		}
 		fadeScreen = GetComponentInChildren<CanvasGroup>();
 		alpha = 1f;
@@ -29,8 +29,12 @@ public class tranMode : MonoBehaviour {
 	}
 
 	void Update() {
+		// Lazy timer for exploration theme opening;
+		// if (!musicSource.isPlaying) {
+		// 	AudioControl.Instance.PlayMusic("Exploration");
+		// }
+		// // Update the alpha of the FadeTB blackscreen depending on the transition state;
 		if (alpha != target) {
-			timecheck += Time.deltaTime;
 			if (alpha < target) {
 				alpha = Mathf.Min(target, alpha + Time.deltaTime * 1f/currentTransitionTime);
 			}

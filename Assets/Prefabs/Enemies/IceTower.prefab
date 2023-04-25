@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 3570325442150851928}
   - component: {fileID: 7147859089947672259}
   - component: {fileID: 2880031122338850227}
+  - component: {fileID: 5366220940276059311}
   m_Layer: 0
   m_Name: IceTower
   m_TagString: Enemy
@@ -66,6 +67,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3570325441346370061}
+  - {fileID: 5630840335195562694}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,7 +117,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,10 +184,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   iceball: {fileID: 5536333251357887935, guid: 363dac1b39fb0bf4b9df3e4a04aa424c, type: 3}
-  iceballInterval: 0.5
+  iceballInterval: 1
   currIceballTime: 0
   hasFired: 0
-  range: 15
+  range: 9
   disableTower: 0
 --- !u!114 &7147859089947672259
 MonoBehaviour:
@@ -199,9 +201,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a723323d004f54ea57365880aa320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 15
   isIceTower: 1
   damageFlash: {fileID: 2880031122338850227}
+  dealthShader: {fileID: 0}
+  defaultLit: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  dissolve: {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
+  isInDarkRoom: 0
   onMeleeHit:
     m_PersistentCalls:
       m_Calls: []
@@ -219,6 +225,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: 6e7a5fcd9775fcd40a27cf24bd9f8d93, type: 2}
   duration: 0.125
+--- !u!114 &5366220940276059311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570325442150851925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78d5504e54954640985696cebcc01c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveAmount: 1
+  dissolveSpeed: 1
+  isDissolving: 0
 --- !u!1 &6938067032728277203
 GameObject:
   m_ObjectHideFlags: 0

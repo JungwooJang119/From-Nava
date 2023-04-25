@@ -15,6 +15,9 @@ TagManager:
   - Spell
   - IceTower
   - Chest
+  - Melee
+  - EnemyProjectile
+  - DarkRoom
   layers:
   - Default
   - TransparentFX

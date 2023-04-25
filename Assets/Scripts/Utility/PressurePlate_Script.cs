@@ -8,10 +8,17 @@ public class PressurePlate_Script : MonoBehaviour
     public bool isPressed = false;
     [SerializeField] private SpriteRenderer render;
     [SerializeField] private float setTime;
+    [SerializeField] private SpellScriptObj chairScriptObj;
     private bool isChair = false;
     private float time = 0;
     private int numObject = 0;
     private Collider2D chairCollider;
+    
+    [SerializeField] private bool testing = false;
+
+    private void Start() {
+        setTime = chairScriptObj.lifetime;
+    }
 
     void Update() {
         if (isChair) {
@@ -20,8 +27,11 @@ public class PressurePlate_Script : MonoBehaviour
         if (time >= setTime) {
             isChair = false;
             time = 0;
-            numObject--;
+            // numObject--;
             OnTriggerExit2D(chairCollider);
+        }
+        if (testing) {
+            print(numObject);
         }
     }
 
@@ -29,14 +39,17 @@ public class PressurePlate_Script : MonoBehaviour
         if (other.tag == "Spell") {
             return;
         }
-        numObject++;
+        if (other.tag == "Melee") {
+            return;
+        }
+        numObject = numObject + 1;
         if (other.attachedRigidbody.mass > 1){
             render.sprite = pressed;
             isPressed = true;
         }
         if (other.tag == "Chair") {
             if (time > 0) {
-                numObject -= 2;
+                numObject -= 1;
             }
             time = 0;
             isChair = true;
@@ -45,6 +58,12 @@ public class PressurePlate_Script : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D other) {
+		if (other && other.tag == "Spell") {
+            return;
+        }
+        if (other.tag == "Melee") {
+            return;
+        }
         numObject--; 
         if (numObject == 0) {
             isPressed = false;

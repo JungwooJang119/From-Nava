@@ -14,7 +14,7 @@ using Cinemachine;
 public class LaserTerminal : MonoBehaviour
 {
 	[SerializeField] private float range;				// How far can the player be from the terminal to trigger it;
-	[SerializeField] private GameObject laserCaster;	// Laser Caster that with which this terminal communicates. Must be set on the inspector;
+	private LaserCaster laserCaster;					// Laser Caster that with which this terminal communicates. Must be set on the inspector;
 	[SerializeField] private bool canTrigger = true;	// Whether the terminal is interactable;
 	[SerializeField] private Sprite sprComputerOn;
 	[SerializeField] private Sprite sprComputerRight;
@@ -24,7 +24,7 @@ public class LaserTerminal : MonoBehaviour
 	// Variables for camera transition
 	[SerializeField] private string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
 	private CinemachineVirtualCamera _virtualCamera;
-	[SerializeField] private GameObject _cameraTarget;				// The target the camera will move towards.
+	private GameObject _cameraTarget;				// The target the camera will move towards.
 	private Transform _returnToPlayer;								// Stores the original follow that the camera shall return to.
 
 	// Variables to react to the player in range;
@@ -40,8 +40,11 @@ public class LaserTerminal : MonoBehaviour
     public GameObject door;
 
 	private bool roomComplete;
+	
 
 	void Start() {
+		laserCaster = GetComponentInChildren<LaserCaster>();
+		_cameraTarget = transform.Find("CameraTarget").gameObject;
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		_playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -66,7 +69,7 @@ public class LaserTerminal : MonoBehaviour
 				}
 				if (!roomComplete) {
 					_spriteRenderer.sprite = sprComputerOn;
-					AudioControl.Instance.PlaySFX("Computer On");
+					AudioControl.Instance.PlaySFX("Computer On", gameObject, 0f, 0.8f);
 					canTrigger = false;
 					StartCoroutine(CameraTransitionIn());
 				}
@@ -88,18 +91,19 @@ public class LaserTerminal : MonoBehaviour
 	IEnumerator CameraTransitionOutGood() {
 		yield return new WaitForSeconds(0.5f);
 		_spriteRenderer.sprite = sprComputerRight;
-		AudioControl.Instance.PlaySFX("Computer Right");
+		AudioControl.Instance.PlaySFX("Computer Right", gameObject);
 		yield return new WaitForSeconds(1f);
 		_virtualCamera.Follow = _cameraTarget2.transform;
 		if (door != null) {
 			door.GetComponent<Door>().OpenDoor();
+			
 		}
-		if (_cameraTarget2.tag == "Chest") {
+		if (_cameraTarget2 != null) {
 			_cameraTarget2.SetActive(true);
 		}
 		yield return new WaitForSeconds(2f);
         _virtualCamera.Follow = _returnToPlayer;
-		canTrigger = true;
+		canTrigger = false;
 		roomComplete = true;
 	}
 
@@ -107,7 +111,7 @@ public class LaserTerminal : MonoBehaviour
 	IEnumerator CameraTransitionOutBad() {
 		yield return new WaitForSeconds(0.5f);
 		_spriteRenderer.sprite = sprComputerWrong;
-		AudioControl.Instance.PlaySFX("Computer Wrong");
+		AudioControl.Instance.PlaySFX("Computer Wrong", gameObject);
 		canTrigger = true;
 	}
 

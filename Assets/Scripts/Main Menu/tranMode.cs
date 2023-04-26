@@ -14,13 +14,12 @@ public class tranMode : MonoBehaviour {
 	private float alpha;
 	private float target;
 	private CanvasGroup fadeScreen;
-	private AudioSource musicSource;
 
 	void Start() {
 		if (SceneManager.GetActiveScene().buildIndex == 0) { // 0 index corresponds to Main Menu
 			AudioControl.Instance.PlayMusic("Main");
 		} else {
-			musicSource = AudioControl.Instance.PlayMusic("Exploration Opening", false);
+			StartCoroutine(LoadMusic());
 		}
 		fadeScreen = GetComponentInChildren<CanvasGroup>();
 		alpha = 1f;
@@ -29,11 +28,6 @@ public class tranMode : MonoBehaviour {
 	}
 
 	void Update() {
-		// Lazy timer for exploration theme opening;
-		// if (!musicSource.isPlaying) {
-		// 	AudioControl.Instance.PlayMusic("Exploration");
-		// }
-		// // Update the alpha of the FadeTB blackscreen depending on the transition state;
 		if (alpha != target) {
 			if (alpha < target) {
 				alpha = Mathf.Min(target, alpha + Time.deltaTime * 1f/currentTransitionTime);
@@ -96,6 +90,12 @@ public class tranMode : MonoBehaviour {
 
 		//Load Scene;
 		SceneManager.LoadScene(1);
+	}
+
+	IEnumerator LoadMusic() {
+		var musicSource = AudioControl.Instance.PlayMusic("Exploration Opening", false);
+		while (musicSource.isPlaying) yield return null;
+		AudioControl.Instance.PlayMusic("Exploration");
 	}
 
 	// Method to quit the game. Called on Quit button. Exits play mode if testing;

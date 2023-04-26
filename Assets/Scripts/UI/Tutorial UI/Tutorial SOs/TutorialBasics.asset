@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d65ab38480fcff4ab0ff17e67f67d36, type: 3}
+  m_Name: TutorialBasics
+  m_EditorClassIdentifier: 
+  textHeaderNew: Basic Controls
+  textHeader: Basic Controls
+  text: 'Move Around! Use WASD to move.
+
+
+    Use your Spell Pad to cast spells:
+
+    Start
+    from the top left corner and finish in the bottom right corner. Always!
+
+
+    You
+    will acquire spells as you traverse Nava Labs.
+
+
+    Press [Escape] to open the
+    Pause Menu and check the items you have collected.'
+  inputImage: {fileID: 0}
+  videoClip: {fileID: 0}

@@ -22,10 +22,8 @@ public class LaserTerminal : MonoBehaviour
 	[SerializeField] private GameObject buttonTutorial;
 
 	// Variables for camera transition
-	[SerializeField] private string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
 	private CinemachineVirtualCamera _virtualCamera;
-	private GameObject _cameraTarget;				// The target the camera will move towards.
-	private Transform _returnToPlayer;								// Stores the original follow that the camera shall return to.
+	private GameObject _cameraTarget;								// The target the camera will move towards.
 
 	// Variables to react to the player in range;
 	private Transform _player;
@@ -46,10 +44,9 @@ public class LaserTerminal : MonoBehaviour
 		laserCaster = GetComponentInChildren<LaserCaster>();
 		_cameraTarget = transform.Find("CameraTarget").gameObject;
 		_spriteRenderer = GetComponent<SpriteRenderer>();
-		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-		_playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-		_virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
-		_returnToPlayer = _virtualCamera.Follow;
+		_player = PlayerController.Instance.transform;
+		_playerController = PlayerController.Instance;
+		_virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
 	}
 
 	// Checks if the player is in range to interact, inspired by Grace's script;
@@ -96,13 +93,12 @@ public class LaserTerminal : MonoBehaviour
 		_virtualCamera.Follow = _cameraTarget2.transform;
 		if (door != null) {
 			door.GetComponent<Door>().OpenDoor();
-			
 		}
 		if (_cameraTarget2 != null) {
 			_cameraTarget2.SetActive(true);
 		}
 		yield return new WaitForSeconds(2f);
-        _virtualCamera.Follow = _returnToPlayer;
+        _virtualCamera.Follow = _player;
 		canTrigger = false;
 		roomComplete = true;
 	}
@@ -117,14 +113,14 @@ public class LaserTerminal : MonoBehaviour
 
 	// Called by the beam if the puzzle attempt succeeds;
 	public void PuzzleSuccess() {
-		_virtualCamera.Follow = _returnToPlayer;
+		_virtualCamera.Follow = _player;
 		StartCoroutine(CameraTransitionOutGood());
 		_playerController.ActivateMovement();
 	}
 
 	// Called by the beam if the puzzle attempt fails;
 	public void PuzzleFailure() {
-		_virtualCamera.Follow = _returnToPlayer;
+		_virtualCamera.Follow = _player;
 		StartCoroutine(CameraTransitionOutBad());
 		_playerController.ActivateMovement();
 	}

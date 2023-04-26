@@ -34,7 +34,7 @@ public class SpikeBehavior : MonoBehaviour
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
             Vector3 pushDir = Vector3.Normalize(other.transform.position - contact);
             other.gameObject.GetComponent<Enemy>().Push(pushDir, knockbackDist, knockbackSpd);
-            other.gameObject.GetComponent<Enemy>().TakeDamage((float)dmg);
+            //other.gameObject.GetComponent<Enemy>().TakeDamage((float)dmg);
         } else if (other.gameObject.CompareTag("Player")) {
             Vector2 avgCollision = new Vector2(0, 0);
 

@@ -24,10 +24,11 @@ MonoBehaviour:
 
 
     You
-    will acquire spells as you traverse Nava Labs.
+    will acquire spells as you traverse Nava Labs. For now, use [Shift] or [Right
+    Click] to do a swing.
 
 
-    Press [Escape] to open the
-    Pause Menu and check the items you have collected.'
+    Press [Escape] to open the Pause Menu and check the
+    items you have collected.'
   inputImage: {fileID: 0}
   videoClip: {fileID: 0}

@@ -52,6 +52,13 @@ public class tranMode : MonoBehaviour {
 		StartCoroutine(LoadLevel());
 	}
 
+	public void Credits() {
+		AudioControl.Instance.FadeMusic(true);
+		// Note: The music fadeout may stop the Lab Music if the transition happens too fast.
+		// Consider migrating the fadeout to Update() in AudioControl.cs if it becomes an issue.
+		StartCoroutine(LoadCredits());
+	}
+
 	// Method to fade the screen back in;
 	public float FadeIn() {
 		currentTransitionTime = shortTransitionTime;
@@ -91,6 +98,18 @@ public class tranMode : MonoBehaviour {
 		//Load Scene;
 		SceneManager.LoadScene(1);
 	}
+
+	IEnumerator LoadCredits() {
+		//Play animation;
+		target = 1;
+
+		//Wait;
+		yield return new WaitForSeconds(currentTransitionTime);
+
+		//Load Scene;
+		SceneManager.LoadScene(2);
+	}
+
 
 	IEnumerator LoadMusic() {
 		var musicSource = AudioControl.Instance.PlayMusic("Exploration Opening", false);

@@ -37,7 +37,6 @@ public class CollectibleController : MonoBehaviour {
 
 	private List<string> polaroidsClaimed;
 	private List<string> tutorialsClaimed;
-	private List<string> reportsClaimed;
 
 	private bool busy;
 
@@ -46,7 +45,6 @@ public class CollectibleController : MonoBehaviour {
 		callStack = new List<Call>();
 		polaroidsClaimed = new List<string>();
 		tutorialsClaimed = new List<string>();
-		reportsClaimed = new List<string>();
 
 		polaroidManager = GetComponentInChildren<PolaroidManager>();
 		polaroidManager.OnDisplayEnd += CollectibleManager_OnDisplayEnd;
@@ -92,22 +90,12 @@ public class CollectibleController : MonoBehaviour {
 			if (type == CollectibleType.Polaroid) {
 				if (polaroidsClaimed.Contains(name)) {
 					notificationManager.Notify(NotificationType.CollectibleRedundant);
-					OnCallsEnd?.Invoke();
 					return;
 				} else {
 					notificationType = NotificationType.PolaroidClaimed;
 					polaroidsClaimed.Add(name);
 				}
-			} else if (type == CollectibleType.Report) {
-				if (polaroidsClaimed.Contains(name)) {
-					notificationManager.Notify(NotificationType.CollectibleRedundant);
-					OnCallsEnd?.Invoke();
-					return;
-				} else {
-					notificationType = NotificationType.ReportClaimed;
-					reportsClaimed.Add(name);
-				}
-			} else {
+			} else if (type == CollectibleType.Tutorial) {
 				if (tutorialsClaimed.Contains(name)) {
 					return;
 				} else {
@@ -125,8 +113,6 @@ public class CollectibleController : MonoBehaviour {
 				return polaroidsClaimed.Contains(name);
 			case CollectibleType.Tutorial:
 				return tutorialsClaimed.Contains(name);
-			case CollectibleType.Report:
-				return reportsClaimed.Contains(name);
 			default:
 				return false;
 		}

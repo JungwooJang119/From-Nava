@@ -7,7 +7,6 @@ public class NotificationManager : MonoBehaviour {
         None,
         PolaroidClaimed,
 		CollectibleRedundant,
-		ReportClaimed,
     }
 
     private Notification notification;
@@ -22,9 +21,6 @@ public class NotificationManager : MonoBehaviour {
             switch (type) {
                 case NotificationType.PolaroidClaimed:
                     notification.SetMessage("Polaroid Claimed");
-                    break;
-                case NotificationType.ReportClaimed:
-                    notification.SetMessage("New Text Entry Recorded");
                     break;
                 case NotificationType.CollectibleRedundant:
                     notification.SetMessage("The Item Is Already Taken");

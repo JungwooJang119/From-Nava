@@ -11,8 +11,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
 
     [SerializeField] private GameObject polaroidMenu;
-    [SerializeField] private GameObject tutorialMenu;
-    [SerializeField] private GameObject reportMenu;
     [SerializeField] private GameObject notebook;
     private bool awaitingCalls;
 
@@ -87,50 +85,12 @@ public class PauseMenu : MonoBehaviour
         polaroidMenu.SetActive(!polaroidMenu.activeSelf);
     }
 
-    public void ToggleTutorialMenu()
-    {
-		if (currentMenu == pauseMenuUI) {
-			currentMenu = tutorialMenu;
-		} else {
-			currentMenu = pauseMenuUI;
-		}
-		pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
-        tutorialMenu.SetActive(!tutorialMenu.activeSelf);
-	}
-
-    public void ToggleReportMenu()
-    {
-        if (currentMenu == pauseMenuUI) {
-            currentMenu = reportMenu;
-        } else {
-            currentMenu = pauseMenuUI;
-        }
-		pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
-		reportMenu.SetActive(!reportMenu.activeSelf);
-    }
-
     public void DisplayPolaroid(string polaroid)
     {
 		Time.timeScale = 1f;
 		currentMenu.SetActive(false);
         controller.AddCall(CollectibleController.CollectibleType.Polaroid, polaroid, false);
 		awaitingCalls = true;
-	}
-
-    public void DisplayTutorial(string tutorial)
-    {
-		Time.timeScale = 1f;
-		currentMenu.SetActive(false);
-		controller.AddCall(CollectibleController.CollectibleType.Tutorial, tutorial, false);
-		awaitingCalls = true;
-	}
-
-    public void DisplayReport(string report)
-    {
-		Time.timeScale = 1f;
-		currentMenu.SetActive(false);
-		controller.AddCall(CollectibleController.CollectibleType.Report, report, false);
-        awaitingCalls = true;
 	}
 
 	private void PauseMenu_OnCallsEnd() 

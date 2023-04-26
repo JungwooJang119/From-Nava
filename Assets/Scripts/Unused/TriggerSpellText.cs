@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TriggerSpellText : MonoBehaviour
 {
-    [SerializeField] private GameObject spellNotif;
     public bool isDirections = false;
 
     private ClaimCollectible collectible;

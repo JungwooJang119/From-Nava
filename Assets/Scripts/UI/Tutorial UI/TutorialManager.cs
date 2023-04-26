@@ -158,19 +158,11 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 			currentNote.text = "Advance [" + intKey.ToUpper() + "]";
 		}
 
-		if (transitionTime > 0) {
-			timer = transitionTime;
-			textAlpha = 0;
-			noteAlpha = 0;
-			ChangeOpacity(0);
-			state = State.Start;
-		} else {
-			textAlpha = 255;
-			noteAlpha = 255;
-			ChangeOpacity(0);
-			state = State.Await;
-			// AudioControl.PlayVoidSFX("Paper Drawn");
-		}
+		timer = transitionTime;
+		textAlpha = 0;
+		noteAlpha = 0;
+		ChangeOpacity(0);
+		state = State.Start;
 	}
 
 	private void ChangeOpacity(int rate) {

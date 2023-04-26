@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 //Handle input and movement on Player
 public class PlayerController : Singleton<PlayerController>
@@ -51,6 +52,8 @@ public class PlayerController : Singleton<PlayerController>
     private bool canMove = true;
     private bool canChangeDir = true;
 
+    private PlayerInput input;
+
     
 
     private void Awake() {
@@ -59,6 +62,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Start()
     {
+        input = GetComponent<PlayerInput>();
         light = this.transform.GetChild(1).gameObject;
         facingDir = Vector2.down;
         castPoint = downCast;
@@ -72,6 +76,9 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     private void FixedUpdate() {
+        if (input.actions["MainMenu"].IsPressed()) {
+            SceneManager.LoadScene(0);
+        }
         if (canMove) {
             rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }

@@ -9,10 +9,12 @@ public class TriggerSpellText : MonoBehaviour
     private ClaimCollectible collectible;
 
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
+        // Disabling this script for now, re-enable to see how it looks like :D
+        Destroy(gameObject);
         collectible = GetComponent<ClaimCollectible>();
         if (collectible) collectible.OnCollectibleClaimed += TriggerSpellText_OnCollectibleClaimed;
-    }
+	}
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {

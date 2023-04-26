@@ -158,15 +158,15 @@ public class ReportManager : MonoBehaviour, ICollectibleManager
 
 		// Fading effect of the pop-up;
 		if (state == State.Writing || state == State.Waiting) {
-			if (noteAlpha >= 250) {
+			if (noteAlpha >= 245) {
 				alertUp = false;
 			} else if (noteAlpha <= 50) {
 				alertUp = true;
 			}
 			if (alertUp) {
-				noteAlpha++;
+				noteAlpha += 5;
 			} else {
-				noteAlpha--;
+				noteAlpha -= 5;
 			}
 			currentNote.color = new Color32(_r, _g, _b, noteAlpha);
 		}

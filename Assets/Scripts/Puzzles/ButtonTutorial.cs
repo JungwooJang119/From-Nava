@@ -47,12 +47,14 @@ public class ButtonTutorial : MonoBehaviour
         _topPoint = _myArrow.transform.position.y;
         _botPoint = parent.transform.position.y + _parentSpr.bounds.size.y/2 + 0.3f;
         _arrowSpr = _myArrow.GetComponent<SpriteRenderer>();
+		_textComp.color = new Color32(_r, _g, _b, 0);
+		_arrowSpr.color = new Color32(255, 255, 255, 0);
 	}
 
     // Controls fading and the movement of the arrow;
     void Update() {
-        if (_alpha <= 250 && !_fade) {
-            _alpha += 5;
+        if (_alpha <= 245 && !_fade) {
+            _alpha += 10;
 			_textComp.color = new Color32(_r, _g, _b, _alpha);
             _arrowSpr.color = new Color32(255, 255, 255, _alpha);
 		}
@@ -77,10 +79,10 @@ public class ButtonTutorial : MonoBehaviour
             }
         }
         if (_fade) {
-			_alpha -= 5;
+			_alpha -= 10;
 			_textComp.color = new Color32(_r, _g, _b, _alpha);
 			_arrowSpr.color = new Color32(255, 255, 255, _alpha);
-            if (_alpha <= 5) {
+            if (_alpha <= 10) {
                 Destroy(_myArrow);
                 Destroy(gameObject);
             }

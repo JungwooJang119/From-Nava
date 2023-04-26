@@ -7,32 +7,22 @@ public class PressurePlate_Script : MonoBehaviour
     [SerializeField] private Sprite unpressed, pressed;
     public bool isPressed = false;
     [SerializeField] private SpriteRenderer render;
-    [SerializeField] private float setTime;
-    [SerializeField] private SpellScriptObj chairScriptObj;
-    private bool isChair = false;
-    private float time = 0;
-    private int numObject = 0;
-    private Collider2D chairCollider;
-    
-    [SerializeField] private bool testing = false;
+
+    private List<GameObject> entitiesInsideCollider;
 
     private void Start() {
-        setTime = chairScriptObj.lifetime;
+        entitiesInsideCollider = new List<GameObject>();
     }
 
     void Update() {
-        if (isChair) {
-            time += Time.deltaTime;
-        }
-        if (time >= setTime) {
-            isChair = false;
-            time = 0;
-            // numObject--;
-            OnTriggerExit2D(chairCollider);
-        }
-        if (testing) {
-            print(numObject);
-        }
+        if (entitiesInsideCollider.Count > 0) {
+            for (int i = 0; i < entitiesInsideCollider.Count; i++) {
+                if (!entitiesInsideCollider[i]) entitiesInsideCollider.RemoveAt(i);
+            }
+        } else {
+			isPressed = false;
+			render.sprite = unpressed;
+		}
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -42,32 +32,16 @@ public class PressurePlate_Script : MonoBehaviour
         if (other.tag == "Melee") {
             return;
         }
-        numObject = numObject + 1;
         if (other.attachedRigidbody.mass > 1){
+            entitiesInsideCollider.Add(other.gameObject);
             render.sprite = pressed;
             isPressed = true;
-        }
-        if (other.tag == "Chair") {
-            if (time > 0) {
-                numObject -= 1;
-            }
-            time = 0;
-            isChair = true;
-            chairCollider = other;
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
-		if (other && other.tag == "Spell") {
-            return;
-        }
-        if (other.tag == "Melee") {
-            return;
-        }
-        numObject--; 
-        if (numObject == 0) {
-            isPressed = false;
-            render.sprite = unpressed;
+		if (entitiesInsideCollider.Contains(other.gameObject)) {
+            entitiesInsideCollider.Remove(other.gameObject);
         }
     }
 

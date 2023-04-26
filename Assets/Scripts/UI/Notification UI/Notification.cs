@@ -18,8 +18,8 @@ public class Notification : MonoBehaviour
     private Image image;
     private TextMeshProUGUI text;
 
-	[SerializeField] private float maxScale;
     [SerializeField] private float duration;
+	private float maxScale;
 	private float xGrowth;
     private float textAlpha;
     private float timer;
@@ -44,14 +44,14 @@ public class Notification : MonoBehaviour
                 break;
 			case State.Start:
                 if (xGrowth < maxScale) {
-                    ChangeXScale(0.05f);
+                    ChangeXScale(0.2f);
                 } else {
                     state = State.Write;
                 }
                 break;
             case State.Write:
                 if (textAlpha < 1) {
-                    ChangeTextOpacity(Time.deltaTime * 2.5f);
+                    ChangeTextOpacity(Time.deltaTime * 3f);
                 } else {
                     state = State.Wait;
                 } break;
@@ -63,9 +63,9 @@ public class Notification : MonoBehaviour
                 } break;
             case State.End:
                 if (textAlpha > 0) {
-                    ChangeTextOpacity(-Time.deltaTime * 2.5f);
+                    ChangeTextOpacity(-Time.deltaTime * 3f);
                 } else if (xGrowth > 0) {
-                    ChangeXScale(-0.05f);
+                    ChangeXScale(-0.2f);
                 } else {
                     timer = duration;
                     text.gameObject.SetActive(false);
@@ -92,5 +92,9 @@ public class Notification : MonoBehaviour
 
     public void SetMessage(string message) {
         this.message = message;
+    }
+    
+    public void SetWidth(float maxScale) {
+        this.maxScale = maxScale;
     }
 }

@@ -28,7 +28,8 @@ public class ClaimCollectible : MonoBehaviour
     }
     
     public void Collect() {
-        foreach (CollectibleCall call in collectibleCalls) {
+		awaitingCallback = true;
+		foreach (CollectibleCall call in collectibleCalls) {
             if (call.collectibleType == 0) {
                 controller.AddCall(CollectibleController.CollectibleType.Polaroid, call.name);
             } else if (call.collectibleType == 1) {
@@ -36,11 +37,11 @@ public class ClaimCollectible : MonoBehaviour
             } else {
                 controller.AddCall(CollectibleController.CollectibleType.Report, call.name);
             }
-        } awaitingCallback = true;
+        }
     }
 
     void CollectibleCall_OnCallsEnd() {
-		if (awaitingCallback) OnCollectibleClaimed?.Invoke();
+        if (awaitingCallback) OnCollectibleClaimed?.Invoke();
         awaitingCallback = false;
 	}
 }

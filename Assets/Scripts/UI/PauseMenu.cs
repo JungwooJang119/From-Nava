@@ -87,7 +87,6 @@ public class PauseMenu : MonoBehaviour
 
     public void DisplayPolaroid(string polaroid)
     {
-		Time.timeScale = 1f;
 		currentMenu.SetActive(false);
         controller.AddCall(CollectibleController.CollectibleType.Polaroid, polaroid, false);
 		awaitingCalls = true;

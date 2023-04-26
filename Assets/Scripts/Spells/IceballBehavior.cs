@@ -64,7 +64,7 @@ public class IceballBehavior : MonoBehaviour {
 	// The spell shall die when all particles run out ;-;
 	void Update() {
 		// Continously rotate sprites;
-		RotateSprites(-0.75f, 0.5f, 5f);
+		RotateSprites(-3.75f, 2.5f, 25f);
 		switch (state) {
 
 			case State.Start:

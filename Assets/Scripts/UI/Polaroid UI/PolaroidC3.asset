@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PolaroidC3
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  text: '"..."'
+  text: "\u201CDr. Greene?\u201D - Nava Labs: Room A1"

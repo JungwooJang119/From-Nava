@@ -15,7 +15,7 @@ MonoBehaviour:
   manaCost: 5
   speed: 0
   damageAmt: 10
-  lifetime: 9999
+  lifetime: 10
   sfxString: Iceball Cast
   particleColor:
   - 0.25

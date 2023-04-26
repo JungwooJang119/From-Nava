@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField] bool isDark;
-    [SerializeField] private int playerHealth;
+    public int playerHealth;
     [SerializeField] private int maxHealth;
     [SerializeField] private Text healthText;
     [SerializeField] private float speed = 7f;

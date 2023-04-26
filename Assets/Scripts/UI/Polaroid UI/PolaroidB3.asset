@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PolaroidB3
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  text: '"..."'
+  text: "\u201CThis can\u2019t be the best course of action. They can\u2019t be doing
+    this.\u201D - Nava Labs: Room A1"

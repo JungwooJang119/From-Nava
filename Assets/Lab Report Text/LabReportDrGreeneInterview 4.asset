@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db1bda11ffd0cf4ba6f10d0c02ef4a0, type: 3}
+  m_Name: LabReportDrGreeneInterview 4
+  m_EditorClassIdentifier: 
+  textEntries:
+  - "INTERVIEW RECORDING - DR. TAYLOR GREENE PART 4\\n[BEGIN LOG: 10:29 AM]\\n\\nDr.
+    Greene: \u201CAnd, if I gave you a pen, would you be able to write it down?\u201D\\n\\nThe
+    subject is silent.\\n\\nDr. Greene lets out a small cough and clears her throat
+    again.\\n\\nDr. Greene: \u201CThat\u2019s quite alright. Actually, about a pen:
+    that pen in your hands isn\u2019t like any pen I\u2019ve seen before. It\u2019s
+    quite\u2026 pretty, though. Is that pen important to you?\u201D\\n\\nThe subject
+    is silent."
+  - "Dr. Greene adjusts her chair and there is the sound of her writing, much slower
+    this time. She stops.\\n\\nDr. Greene: \u201CI see. And, was the pen given to
+    you by anyone?\u201D\\n\\nThe subject remains silent.\\n\\nThere is the sound
+    of the door opening and footsteps. Dr. Greene says a thank you quietly, and the
+    door closes. "

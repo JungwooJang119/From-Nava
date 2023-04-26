@@ -18,6 +18,7 @@ TagManager:
   - Melee
   - EnemyProjectile
   - DarkRoom
+  - Pit
   layers:
   - Default
   - TransparentFX

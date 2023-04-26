@@ -84,6 +84,9 @@ public class Spell : MonoBehaviour
         if (other.gameObject.CompareTag("IceTower")) {
             return;
         }
+        if (other.gameObject.CompareTag("Pit")) {
+            return;
+        }
 
         if (isChair || isPiplup) {
             return;

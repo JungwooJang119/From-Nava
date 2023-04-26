@@ -6,6 +6,10 @@ public class RoomControlB1 : MonoBehaviour
 {
     [SerializeField] private GameObject enemy1;
     [SerializeField] private GameObject enemy2;
+    [SerializeField] private GameObject enemy3;
+    [SerializeField] private GameObject enemy4;
+    [SerializeField] private GameObject enemy5;
+    [SerializeField] private GameObject enemy6;
 
     [SerializeField] private GameObject chest;
     [SerializeField] private bool isC1;
@@ -25,7 +29,7 @@ public class RoomControlB1 : MonoBehaviour
     void Update()
     {
         if (isActive == true) {
-            if (enemy1 == null && enemy2 == null) {
+            if (enemy1 == null && enemy2 == null && enemy3 == null && enemy4 == null && enemy5 == null && enemy6 == null) {
                 chest.SetActive(true);
                 // spellNotif.SetActive(true);
                 // StartCoroutine(DurationTime());

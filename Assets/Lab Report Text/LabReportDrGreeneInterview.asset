@@ -13,72 +13,10 @@ MonoBehaviour:
   m_Name: LabReportDrGreeneInterview
   m_EditorClassIdentifier: 
   textEntries:
-  - "INTERVIEW RECORDING - DR. TAYLOR GREENE  [BEGIN LOG: 10:16 AM]  Dr. Greene clears
-    her throat.  Dr. Greene: \u201C...hello! How have you been holding up?\u201D 
-    The subject is silent. Dr. Greene scribbles something down on her clipboard quietly
-    and continues.  Dr. Greene: \u201CThat\u2019s quite alright, you don\u2019t have
-    to say anything. I know you\u2019ve been through a lot recently. It\u2019s been
-    so hectic and uncomfortable for you since we found you, and I can imagine how
-    tired you must be. Does that sound right?\u201D "
-  - "he subject is silent. Dr. Greene waits for a few seconds, and then goes on. 
-    Dr. Greene: \u201CFirst, I want you to know that all of us here at Nava Labs,
-    all of us, want to help you as best we can. We all want you to be safe, and we
-    all want you to be as comfortable and as happy as possible. So, if you would
-    like anything at all, or if you really just don\u2019t want to talk right now,
-    don\u2019t be afraid to ask. We all are here for you. Does that sound okay?\u201D"
-  - "The subject is silent, but there is the sound of shuffling feet, and Dr. Greene
-    quickly writes something down on her clipboard.  Dr. Greene: \u201CThank you.
-    Would you be alright with talking with me for a little bit? You won\u2019t need
-    to speak if you aren\u2019t comfortable.\u201D  The subject is silent. "
-  - "Dr. Greene: \u201CExcellent. Thank you! And again, if at any point you need
-    anything, just let me know. Before we start, would you like some water?\u201D 
-    The subject is silent.  Dr. Greene: \u201CAre you sure? No worries. So, before
-    I\u2013\u201D  Dr. Greene is cut off with a brief fit of coughing. She then mutters
-    something inaudible to another scientist in the room, and there is the sound
-    of the door opening and closing. "
-  - "Dr. Greene: \u201CAh, sorry about that. Anyways...I wanted to ask, before we
-    get started, do you have a name? You don\u2019t need to say it, just nod yes
-    or no.\u201D   The subject is silent. "
-  - "Dr. Greene: \u201CAnd, if I gave you a pen, would you be able to write it down?\u201D 
-    The subject is silent. Dr. Greene lets out a small cough and clears her throat
-    again.  Dr. Greene: \u201CThat\u2019s quite alright. Actually, about a pen: that
-    pen in your hands isn\u2019t like any pen I\u2019ve seen before. It\u2019s quite\u2026
-    pretty, though. Is that pen important to you?\u201D "
-  - "The subject is silent. Dr. Greene adjusts her chair and there is the sound of
-    her writing, much slower this time. She stops.   Dr. Greene: \u201CI see. And,
-    was the pen given to you by anyone?\u201D  The subject is silent. There is the
-    sound of the door opening and footsteps. Dr. Greene says a thank you quietly,
-    and the door closes. Dr. Greene takes a long sip, and puts a glass down on the
-    table. She clears her throat again. "
-  - "Dr. Greene: \u201CUh, and\u2026 sorry, tell me again: Did anyone give you the
-    pen?\u201D  The subject is silent. Dr. Greene begins taking a long sip. She coughs
-    into the drink, and there is the sound of a glass falling to the ground and shattering
-    as Dr. Greene struggles to regain her composure through a much heavier fit of
-    coughing. She stands up, and her chair clatters to the ground behind her. "
-  - "Dr. Greene: \u201CAh, shoot. Sorry, I just\u2026 I just spit all over you, didn\u2019t
-    I? I\u2019m sorry. Are you\u2026 wow, isn\u2019t it hot in here? No, don\u2019t
-    worry about cleaning anything\u2026 cleaning anything up, we can just continue
-    for now. Sorry about that. Uh, so\u2026\u201D  The subject is silent. Dr. Greene
-    picks up her chair, and takes another seat. She scribbles for a minute on her
-    clipboard. She clears her throat. "
-  - "Dr. Greene: \u201CSo\u2026 do you remember exactly\u2026 sorry, I can\u2019t
-    even read what I\u2026 what I wrote down! Isn\u2019t that funny? Tell me\u2026
-    tell me one more time, did anyone give you the pen? Did anyone give you the pen?\u201D"
-  - The subject is silent. The door to the room opens, and a few sets of footsteps
-    walk in. Dr. Greene turns and begins to say something to them, but is interrupted
-    by another fit of coughing, and after a few seconds a guttural sound begins to
-    come from her throat, something between retching and screaming, and her chair
-    clatters to the floor again as Dr. Greene falls to the floor. The subject is
-    silent.
-  - Something begins to work its way up through Dr. Greene, something heavy and wet
-    that comes from her stomach and pinches her throat and falls onto the ground.
-    Dr. Greene grabs onto the wall and tries to pull herself up, but she falls. The
-    footsteps in the room are now panicked and erratic. Now, Dr. Greene begins to
-    scream.
-  - "There is the sound of something ancient and deadly in her scream, a banshee\u2019s
-    wail, and Dr. Greene no longer sounds like a human. There are screams, much more
-    human screams, from those watching, but the subject is silent. And Dr. Greene
-    now lurches out of the room and into the hallway, but it is not footsteps she
-    makes but an unearthly slimy squelching, as if she is melting into nothing."
-  reportStart: 00000000
-  reportEnd: 0d000000
+  - "INTERVIEW RECORDING - DR. TAYLOR GREENE PART 1\\n[BEGIN LOG: 10:16 AM]\\n\\nDr.
+    Greene clears her throat.\\n\\nDr. Greene: \u201CHello! How have you been holding
+    up?\u201D\\n\\nThe subject is silent.\\n\\nDr. Greene scribbles something down
+    on her clipboard quietly and continues.\\n\\nDr. Greene: \u201CThat\u2019s quite
+    alright, you don\u2019t have to say anything. It must have been so hectic and
+    uncomfortable for you since we found you, and I can imagine how tired you must
+    be. Does that sound right?\u201D\\n\\nThe subject remains silent. "

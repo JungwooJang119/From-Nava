@@ -5,23 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/M1 and M2/M2/M2 Final/Main Menu Final.unity
-    guid: 8e4ca210fc908cd43ba638e1a889add3
-  - enabled: 0
-    path: Assets/Scenes/M1 and M2/M2/M2 Final/B1 - M1.unity
-    guid: b452b91f1e20e2e4f93f6ffe3bc82480
-  - enabled: 0
-    path: Assets/Scenes/Carlos/CopyTestingScene.unity
-    guid: 075d042a10d4d3c42aa08b5c20b6712d
-  - enabled: 0
-    path: Assets/Scenes/Carlos/CopyTestingScene 1.unity
-    guid: 2bc34e2fb48a8c143bf4d512c51be504
   - enabled: 1
     path: Assets/Scenes/Esther/Main Menu Final 1.unity
     guid: 356cc64547cd2004aae10bcd06c053ae
   - enabled: 1
     path: Assets/Scenes/Jung/M3.unity
     guid: 821128f0d8d5ce743a7aad0b3b0766b1
+  - enabled: 1
+    path: Assets/Scenes/EOS Spring Demo/Credits.unity
+    guid: 7335a24bd5c90854b9da537bcab6b8fd
+  - enabled: 1
+    path: Assets/Scenes/EOS Spring Demo/Thank You.unity
+    guid: fdd44b1fc00871a49b271989c9e72fd7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f7d90a78b7f26184b8a11e6c4a0587b8, type: 2}

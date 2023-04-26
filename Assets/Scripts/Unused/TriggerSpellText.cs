@@ -6,33 +6,22 @@ public class TriggerSpellText : MonoBehaviour
 {
     [SerializeField] private GameObject spellNotif;
     public bool isDirections = false;
+
+    private ClaimCollectible collectible;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        collectible = GetComponent<ClaimCollectible>();
+        if (collectible) collectible.OnCollectibleClaimed += TriggerSpellText_OnCollectibleClaimed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            StartCoroutine(TextPopUp());
+            collectible.Collect();
         }
     }
 
-    IEnumerator DurationTime() {
-		yield return new WaitForSeconds(3f);
-        spellNotif.SetActive(false);
-	}
-
-    IEnumerator TextPopUp() {
-        spellNotif.SetActive(true);
-        yield return new WaitForSeconds(4.0f);
-        spellNotif.SetActive(false);
+    private void TriggerSpellText_OnCollectibleClaimed() {
         if (isDirections) {
             Destroy(this.gameObject);
         }

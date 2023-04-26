@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ComputerDesk : MonoBehaviour
-{
+{   
     [SerializeField] private Sprite unlitScreen, litScreen;
     private SpriteRenderer render;
     // Start is called before the first frame update

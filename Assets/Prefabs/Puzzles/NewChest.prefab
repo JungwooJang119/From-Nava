@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 4374620799244638945}
   - component: {fileID: 4374620799244638958}
   - component: {fileID: 4374620799244638959}
-  - component: {fileID: 4374620799244638956}
   - component: {fileID: 4374620799244638957}
   - component: {fileID: 4374620799244638944}
+  - component: {fileID: 4374620799244638956}
+  - component: {fileID: 953841834406917339}
   m_Layer: 0
   m_Name: NewChest
   m_TagString: Untagged
@@ -137,7 +138,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.18}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 0.18, y: 0.18}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -146,25 +147,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &4374620799244638956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4374620799244638954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d5c8c2ecadd0f44820dc9e908e7056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCameraName: CM vcam1
-  _cameraTarget: {fileID: 4374620797492079609}
-  _returnToPlayer: {fileID: 0}
-  spellNotif: {fileID: 0}
-  animator: {fileID: 0}
-  door: {fileID: 0}
-  buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
 --- !u!58 &4374620799244638957
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -201,3 +183,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4374620799244638956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374620799244638954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d5c8c2ecadd0f44820dc9e908e7056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 0}
+  buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
+  startsActive: 0
+--- !u!114 &953841834406917339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374620799244638954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a7493a42aeab3418ae4c33f686e3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibleCalls: []

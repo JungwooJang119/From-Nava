@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: PolaroidA3
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  text: '"..."'
+  text: '"It''s been months, and I still can''t forgive what happened. But they just
+    look so lonely in there. I thought I might bring them something to pass the time."
+    - Nava Labs: Room B2'

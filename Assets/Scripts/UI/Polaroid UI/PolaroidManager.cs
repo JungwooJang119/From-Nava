@@ -66,8 +66,8 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 				} break;
 
 			case State.Fade:
-				if (textAlpha < 254) {
-					ChangeOpacity(2);
+				if (textAlpha < 255) {
+					ChangeOpacity(5);
 				} else {
 					state = State.Await;
 				} break;
@@ -79,9 +79,9 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 					alertUp = true;
 				} 
 				if (alertUp) {
-					noteAlpha++;
+					noteAlpha += 5;
 				} else {
-					noteAlpha--;
+					noteAlpha -= 5;
 				} 
 				currentNote.color = new Color32(_r, _g, _b, noteAlpha);
 
@@ -91,7 +91,7 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 
 			case State.End:
 				if (textAlpha > 0) {
-					ChangeOpacity(-5);
+					ChangeOpacity(-10);
 				} else {
 					OnDisplayEnd?.Invoke();
 					ResetElements();

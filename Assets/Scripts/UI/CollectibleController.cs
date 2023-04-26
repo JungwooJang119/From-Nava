@@ -91,6 +91,7 @@ public class CollectibleController : MonoBehaviour {
 			if (type == CollectibleType.Polaroid) {
 				if (polaroidsClaimed.Contains(name)) {
 					notificationManager.Notify(NotificationType.CollectibleRedundant);
+					OnCallsEnd?.Invoke();
 					return;
 				} else {
 					notificationType = NotificationType.PolaroidClaimed;

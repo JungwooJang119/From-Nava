@@ -41,7 +41,7 @@ public class ChestScript : MonoBehaviour
     void Update()
     {
         if (isNear) {
-            if (!awaitingCollectible) {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("ChestIdle")) {
                 if (_tutInstance == null) {
                     _tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
                     _tutScript = _tutInstance.GetComponent<ButtonTutorial>();
@@ -83,14 +83,17 @@ public class ChestScript : MonoBehaviour
     }
 
     IEnumerator AwaitCollectible() {
-		collectible.Collect();
 		awaitingCollectible = true;
+		collectible.Collect();
 		animator.SetBool("OpeningChest", true);
 		AudioControl.Instance.PlaySFX("Chest Open", gameObject);
-        while (awaitingCollectible) yield return null;
-		animator.SetBool("OpeningChest", false);
+        var timer = 2.5f;
+        while (awaitingCollectible || timer > 0) {
+            if (timer > 0) timer -= Time.deltaTime;
+            yield return null;
+        } animator.SetBool("OpeningChest", false);
 		AudioControl.Instance.PlaySFX("Chest Close", gameObject);
-		door.GetComponent<Door>().OpenDoor();
+		if (door) door.GetComponent<Door>().OpenDoor();
 	}
 
     private void ChestScript_OnCollectibleClaimed() {

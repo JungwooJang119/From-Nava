@@ -81,9 +81,9 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 					alertUp = true;
 				}
 				if (alertUp) {
-					noteAlpha++;
+					noteAlpha += 5;
 				} else {
-					noteAlpha--;
+					noteAlpha -= 5;
 				}
 				currentNote.color = new Color32(_r, _g, _b, noteAlpha);
 
@@ -93,7 +93,7 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 
 			case State.End:
 				if (textAlpha > 0) {
-					ChangeOpacity(-5);
+					ChangeOpacity(-10);
 				} else {
 					OnTutorialEnd?.Invoke();
 					ResetElements();

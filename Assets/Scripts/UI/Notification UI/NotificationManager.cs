@@ -21,10 +21,12 @@ public class NotificationManager : MonoBehaviour {
             switch (type) {
                 case NotificationType.PolaroidClaimed:
                     notification.SetMessage("Polaroid Claimed");
+                    notification.SetWidth(2f);
                     break;
                 case NotificationType.CollectibleRedundant:
                     notification.SetMessage("The Item Is Already Taken");
-                    break;
+					notification.SetWidth(2.75f);
+					break;
             } notification.gameObject.SetActive(true);
 		}
 	}

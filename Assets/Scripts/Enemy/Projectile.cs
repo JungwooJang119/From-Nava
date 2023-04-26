@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject deathParticles;
     [SerializeField] private float speed;
     public int damage;
-
-    [SerializeField] private bool hasParticles;
-
 
     private Vector3 playerPos;
     private LogicScript logic;
@@ -19,8 +14,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerPos = player.transform.position;
+        playerPos = PlayerController.Instance.transform.position;
         dir = (new Vector2(playerPos.x - transform.position.x, playerPos.y - transform.position.y)).normalized;
         Destroy(this.gameObject, 4f); 
     }
@@ -48,6 +42,7 @@ public class Projectile : MonoBehaviour
             return;
         }
         if (col.gameObject.CompareTag("Player")) {
+            /*
             if (hasParticles) {
     			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 Destroy(this.gameObject, 0.5f);
@@ -56,7 +51,7 @@ public class Projectile : MonoBehaviour
             }
             else {
                 Destroy(this.gameObject);
-            }
+            }*/
         }
         Destroy(this.gameObject);
     }

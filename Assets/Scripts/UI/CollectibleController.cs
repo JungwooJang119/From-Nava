@@ -60,6 +60,7 @@ public class CollectibleController : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 		if (callStack.Count > 0 && !busy) {
+			PlayerController.Instance.DeactivateMovement();
 			switch (callStack[0].type) {
 				case CollectibleType.Polaroid:
 					DisplayCollectible(polaroidManager, callStack[0].name, callStack[0].firstTime);
@@ -124,6 +125,7 @@ public class CollectibleController : MonoBehaviour {
 			transition.DarkenIn();
 			notificationManager.Notify(notificationType);
 			notificationType = NotificationType.None;
+			PlayerController.Instance.ActivateMovement();
 			//AudioControl.Instance.ResumeMusic();
 		} busy = false;
 	}

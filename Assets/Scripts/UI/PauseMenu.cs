@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-
+    private CollectibleController controller;
+    private tranMode transition;
+    private GameObject currentMenu;
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+
+    [SerializeField] private GameObject polaroidMenu;
+    [SerializeField] private GameObject notebook;
+    private bool awaitingCalls;
+
+    void Start() 
+    {
+        currentMenu = pauseMenuUI;
+        controller = ReferenceSingleton.Instance.collectibleController;
+        transition = ReferenceSingleton.Instance.transition;
+		controller.OnCallsEnd += PauseMenu_OnCallsEnd;
+    }
 
     // Update is called once per frame
     void Update()
     {
-     if (Input.GetKeyDown(KeyCode.Escape))
+     if (Input.GetKeyDown(KeyCode.Escape) && !controller.GetBusy())
         {
             if (GameIsPaused)
             {
@@ -27,6 +41,7 @@ public class PauseMenu : MonoBehaviour
     /// Resume the game
     public void Resume()
     {
+        notebook.SetActive(true);
         pauseMenuUI.SetActive(false);
 		PlayerController.Instance.ActivateMovement();
 		Time.timeScale = 1f;
@@ -36,8 +51,9 @@ public class PauseMenu : MonoBehaviour
     /// Pause the game
     void Pause()
     {
+        notebook.SetActive(false);
         pauseMenuUI.SetActive(true);
-        PlayerController.Instance.DeactivateMovement();
+		PlayerController.Instance.DeactivateMovement();
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
@@ -58,8 +74,30 @@ public class PauseMenu : MonoBehaviour
 
     /// Load the polaroids menu
     /// TODO: implement transitioning to the polaroids menu
-    public void LoadPolaroids()
+    public void TogglePolaroidMenu()
     {
-        Debug.Log("Loading Polaroids...");
+		if (currentMenu == pauseMenuUI) {
+			currentMenu = polaroidMenu;
+		} else {
+			currentMenu = pauseMenuUI;
+		}
+		pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
+        polaroidMenu.SetActive(!polaroidMenu.activeSelf);
+    }
+
+    public void DisplayPolaroid(string polaroid)
+    {
+		Time.timeScale = 1f;
+		currentMenu.SetActive(false);
+        controller.AddCall(CollectibleController.CollectibleType.Polaroid, polaroid, false);
+		awaitingCalls = true;
+	}
+
+	private void PauseMenu_OnCallsEnd() 
+    {
+        if (awaitingCalls) {
+			currentMenu.SetActive(true);
+			awaitingCalls = false;
+		}
     }
 }

@@ -222,6 +222,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1485a719d6c854d40b9f2545bead2ddf, type: 3}
   - name: Report Key v2
     clip: {fileID: 8300000, guid: 4f92c9bdac78f0240b34731e5c74a942, type: 3}
+  - name: Woosh
+    clip: {fileID: 8300000, guid: cdd5c7882b70be745a3b32e2cbb67b03, type: 3}
   - name: Button
     clip: {fileID: 8300000, guid: 299938c5f3379464c9c116c2db5ad113, type: 3}
 --- !u!1 &8403224658944174706

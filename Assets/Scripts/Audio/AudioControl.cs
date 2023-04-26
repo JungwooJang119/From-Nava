@@ -139,6 +139,10 @@ public class AudioControl : Singleton<AudioControl> {
 		}
 	}
 
+	public void ResumeMusic() {
+		StartCoroutine(_ResumeMusic());
+	}
+
 	// Coroutine to fade away the music. Hopefully more efficient than running a bool in Update;
 	IEnumerator _FadeMusic(bool stopsMusic) {
 		while (musicSource.volume > 0) {
@@ -148,6 +152,14 @@ public class AudioControl : Singleton<AudioControl> {
 		if (stopsMusic) {
 			musicSource.Stop();
 		}
+	}
+
+	IEnumerator _ResumeMusic() {
+		if (musicSource) musicSource.UnPause();
+		while (musicSource.volume < musicVolume) {
+			musicSource.volume = Mathf.Min(musicVolume, musicSource.volume + musicVolume / (0.5f / Time.deltaTime));
+			yield return null;
+		} 
 	}
 
 	// Method to spawn an AudioSource in game space to play the sfx;

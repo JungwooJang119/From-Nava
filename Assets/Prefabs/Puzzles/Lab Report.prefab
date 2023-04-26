@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6950422144262471358}
   - component: {fileID: 6739755094298743099}
+  - component: {fileID: 8256046566017255765}
   - component: {fileID: 6950422144262471359}
   m_Layer: 0
   m_Name: Lab Report
@@ -47,10 +48,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cb04e094a599a44ab405862476ae5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reportNumber: 0
   range: 2
-  reportSO: {fileID: 11400000, guid: 2cfd11d69b9ae114cb6b955c2f6e5382, type: 2}
   buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
+--- !u!114 &8256046566017255765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6950422144262471356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a7493a42aeab3418ae4c33f686e3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibleCalls:
+  - collectibleType: 2
+    name: 
 --- !u!212 &6950422144262471359
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ public class FireballBehavior : MonoBehaviour {
 
     private UnityEngine.Rendering.Universal.Light2D[] lightList; // Array to store light references;
     private float[] lightBounds;        // Target outer radii of light sources;
-    private float lightRate = 0.075f;   // Rate at which the light will change;
+    private float lightRate = 0.375f;   // Rate at which the light will change;
 
     // Did you know start is called before the first frame update? :V
     void Start() {

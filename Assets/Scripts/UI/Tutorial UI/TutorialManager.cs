@@ -114,7 +114,7 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 				tutorialGIFTransform.SetParent(canvasTransform);
 				tutorialGIFTransform.localScale = Vector3.one * 0.8f;
 				tutorialGIFTransform.rotation = canvasTransform.rotation;
-				tutorialGIFTransform.position = new Vector3(canvasTransform.position.x + 5, canvasTransform.position.y - 3, canvasTransform.position.z);
+				tutorialGIFTransform.position = new Vector3(canvasTransform.position.x + 4, canvasTransform.position.y - 3, canvasTransform.position.z);
 				videoRenderer = tutorialVideo.GetComponent<VideoPlayer>();
 				if (!videoTexture) videoTexture = tutorialVideo.GetComponent<RawImage>();
 			} videoRenderer.clip = tutorialData.videoClip;
@@ -127,7 +127,7 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 				inputImageTransform.SetParent(canvasTransform);
 				inputImageTransform.localScale = Vector3.one * 1.2f;
 				inputImageTransform.rotation = canvasTransform.rotation;
-				inputImageTransform.position = new Vector3(canvasTransform.position.x - 4, canvasTransform.position.y - 3, canvasTransform.position.z);
+				inputImageTransform.position = new Vector3(canvasTransform.position.x - 6, canvasTransform.position.y - 3, canvasTransform.position.z);
 				inputRenderer = inputImage.GetComponent<Image>();
 			} inputRenderer.sprite = tutorialData.inputImage;
 			inputRenderer.SetNativeSize();

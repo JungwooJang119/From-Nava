@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 // Modifies the default behavior of Fireball. Most spells follow the same pattern:
 // Initialization, Lifetime, Death (just like your average human being), hence,
@@ -28,7 +29,7 @@ public class FireballBehavior : MonoBehaviour {
 
     private ParticleSystem parSystem;   // Reference to the particle system (child);
 
-    private UnityEngine.Rendering.Universal.Light2D[] lightList; // Array to store light references;
+    private Light2D[] lightList; // Array to store light references;
     private float[] lightBounds;        // Target outer radii of light sources;
     private float lightRate = 0.375f;   // Rate at which the light will change;
 
@@ -49,7 +50,7 @@ public class FireballBehavior : MonoBehaviour {
         ChangeSize(0f);
 
         // Variables to manage the lights;
-        lightList = GetComponentsInChildren<UnityEngine.Rendering.Universal.Light2D>();
+        lightList = GetComponentsInChildren<Light2D>();
         lightBounds = new float[lightList.Length];
         for (int i = 0; i < lightList.Length; i++) {
 			lightBounds[i] = lightList[i].pointLightOuterRadius;
@@ -156,7 +157,8 @@ public class FireballBehavior : MonoBehaviour {
 
     // Method to change the size of the spell sprite;
     private void ChangeSize(float sizeMultiplier) {
-        scaleFactor += Time.deltaTime * sizeMultiplier;
+        if (sizeMultiplier > 0) { scaleFactor = Math.Min(scaleFactor + Time.deltaTime * sizeMultiplier, maxScaleFactor); }
+        else { scaleFactor = Math.Max(0, scaleFactor + Time.deltaTime * sizeMultiplier); }
         transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
     }
 
@@ -166,7 +168,7 @@ public class FireballBehavior : MonoBehaviour {
             if (lightBounds[0] > 0) {
 				lightList[i].pointLightOuterRadius = Mathf.Min(lightBounds[i], lightList[i].pointLightOuterRadius + rate);
 			} else {
-				lightList[i].pointLightOuterRadius = Mathf.Max(lightBounds[i], lightList[i].pointLightOuterRadius + rate);
+				lightList[i].pointLightOuterRadius = Mathf.Max(0, lightList[i].pointLightOuterRadius + rate);
 			}
         }
     }

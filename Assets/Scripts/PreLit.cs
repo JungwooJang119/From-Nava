@@ -8,6 +8,6 @@ public class PreLit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        f.isLit = true;
+        f.SetLit(true);
     }
 }

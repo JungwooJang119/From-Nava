@@ -13,12 +13,13 @@ public class RoomControlA2 : MonoBehaviour
     public bool cheat = false;
 
 	private CinemachineVirtualCamera virtualCamera;
-	public GameObject cameraTarget;
+	private GameObject cameraTarget;
 	private Transform returnToPlayer;
     public GameObject door;
     
     // Start is called before the first frame update
     void Start() {
+		cameraTarget = A2Chest ? A2Chest : door;
 		virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
 		returnToPlayer = PlayerController.Instance.transform;
 

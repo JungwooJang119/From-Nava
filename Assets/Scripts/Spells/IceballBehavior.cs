@@ -31,8 +31,6 @@ public class IceballBehavior : MonoBehaviour {
 
     private Transform[] sprTransforms;  // Array of references to the transforms of children;
 
-	private AudioSource audioRef;
-
 	// In today's news, start is called before the first frame update! O.O
 	void Start() {
 		// Suscribe to the OnDestroy event from Spell.cs
@@ -101,9 +99,8 @@ public class IceballBehavior : MonoBehaviour {
 			case State.End:
 				// Scale down the sprite;
 				if (scaleFactor > 0) {
-					ChangeSize(-15f);
-				}
-				else {
+					ReduceSize(900f);
+				} else {
 					// Stop spell and generate particles;
 					if (spellScript != null) {
 						CleanUp();
@@ -124,11 +121,11 @@ public class IceballBehavior : MonoBehaviour {
 
 	// Method to "disable" functionality at the start;
 	private void ToggleComponents() {
-		spellScript.enabled = spellScript.enabled ? false : true;
+		spellScript.enabled = !spellScript.enabled;
 		var rb = GetComponent<Rigidbody2D>();
-		rb.simulated = rb.simulated ? false : true;
+		rb.simulated = !rb.simulated;
 		var coll = GetComponent<Collider2D>();
-		coll.enabled = coll.enabled ? false : true;
+		coll.enabled = !coll.enabled;
 	}
 
 	// Method to take away functionality after the lifetime has been exhausted;
@@ -146,9 +143,10 @@ public class IceballBehavior : MonoBehaviour {
     }
 
 	// Method to change the size of the spell sprite;
-	private void ChangeSize(float sizeMultiplier) {
-		scaleFactor += Time.deltaTime * sizeMultiplier;
-		transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+	private void ReduceSize(float rate) {
+		rate *= Time.deltaTime;
+		scaleFactor = Mathf.Max(0, scaleFactor - rate);
+		transform.localScale = new Vector2(scaleFactor, scaleFactor);
 	}
 
 	// Method to change the opacity of the spell sprite;
@@ -163,7 +161,10 @@ public class IceballBehavior : MonoBehaviour {
 	// Method to rotate the sprites;
 	private void RotateSprites(float rotationRateOuter1, float rotationRateOuter2, float rotationRateInner) {
         int tranNumber = 0;
-        foreach (Transform transform in sprTransforms) {
+		rotationRateOuter1 *= Time.deltaTime * 60;
+		rotationRateOuter2 *= Time.deltaTime * 60;
+		rotationRateInner *= Time.deltaTime * 60;
+		foreach (Transform transform in sprTransforms) {
             if (tranNumber == 0) {
 				transform.Rotate(0, 0, rotationRateInner);
 				tranNumber = 1;

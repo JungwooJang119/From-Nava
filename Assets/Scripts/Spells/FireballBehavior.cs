@@ -26,12 +26,13 @@ public class FireballBehavior : MonoBehaviour {
 
     private float scaleFactor;          // Variables to control size;
     private float maxScaleFactor;
+    private float scaleRate = 1200f;
 
     private ParticleSystem parSystem;   // Reference to the particle system (child);
 
     private Light2D[] lightList; // Array to store light references;
     private float[] lightBounds;        // Target outer radii of light sources;
-    private float lightRate = 0.375f;   // Rate at which the light will change;
+    private float lightRate = 22.5f;   // Rate at which the light will change;
 
     // Did you know start is called before the first frame update? :V
     void Start() {
@@ -78,7 +79,7 @@ public class FireballBehavior : MonoBehaviour {
                 ModifyLight(lightRate);
                 // Scale up the sprite;
 				if (scaleFactor < maxScaleFactor) {
-					ChangeSize(7.5f);
+					ChangeSize(scaleRate * 0.75f);
 				} else {
                     // Enable emissions;
 					var ps = parSystem.emission;
@@ -111,7 +112,7 @@ public class FireballBehavior : MonoBehaviour {
 				ModifyLight(-lightRate);
                 // Scale down the sprite;
 				if (scaleFactor > 0) {
-					ChangeSize(-10f);
+					ChangeSize(-scaleRate);
 				} else {
                     // Stop spell and generate particles;
 					if (spellScript != null) {
@@ -134,11 +135,11 @@ public class FireballBehavior : MonoBehaviour {
 
     // Method to "disable" functionality at the start;
     private void ToggleComponents() {
-		spellScript.enabled = spellScript.enabled ? false : true;
+		spellScript.enabled = !spellScript.enabled;
         var rb = GetComponent<Rigidbody2D>();
-		rb.simulated = rb.simulated ? false : true;
+		rb.simulated = !rb.simulated;
         var coll = GetComponent<Collider2D>();
-		coll.enabled = coll.enabled ? false : true;
+		coll.enabled = !coll.enabled;
 	}
 
     // Method to take away functionality after the lifetime has been exhausted;
@@ -157,6 +158,7 @@ public class FireballBehavior : MonoBehaviour {
 
     // Method to change the size of the spell sprite;
     private void ChangeSize(float sizeMultiplier) {
+        sizeMultiplier *= Time.deltaTime;
         if (sizeMultiplier > 0) { scaleFactor = Math.Min(scaleFactor + Time.deltaTime * sizeMultiplier, maxScaleFactor); }
         else { scaleFactor = Math.Max(0, scaleFactor + Time.deltaTime * sizeMultiplier); }
         transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
@@ -164,6 +166,7 @@ public class FireballBehavior : MonoBehaviour {
 
 	// Method to modify the light sources attached to the spell;
 	private void ModifyLight(float rate) {
+        rate *= Time.deltaTime;
         for (int i = 0; i < lightList.Length; i++) {
             if (lightBounds[0] > 0) {
 				lightList[i].pointLightOuterRadius = Mathf.Min(lightBounds[i], lightList[i].pointLightOuterRadius + rate);

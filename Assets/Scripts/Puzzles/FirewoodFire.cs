@@ -15,14 +15,14 @@ public class FirewoodFire : MonoBehaviour
 
 	private float oscillation = 0.5f;
 	private float targetScale;
-	private float scaleRate = 0.1f;
+	private float scaleRate = 6f;
 	private float modifier = 1f;
 
 	private ParticleSystem parSystem;
 	private GameObject lightParent;
 	private Light2D[] lightList;
 	private float[] lightBounds;
-	private float lightRate = 0.25f;
+	private float lightRate = 15f;
 
 	// Variables to control the twist from the Windblast;
 	private bool twisting = false;
@@ -50,8 +50,8 @@ public class FirewoodFire : MonoBehaviour
 		// X -> X-Scale | Y -> Y-Scale;
 		scale = new Vector2(1, 1);
 		// X -> Rotation Rate |Y -> Scaling Rate;
-		// Base values: (1, 0.0075f);
-		rates = new Vector2(5, 0.0375f);
+		// Base values: (60, 0.45f);
+		rates = new Vector2(300, 2.25f);
 	}
 
 	void OnDisable() { state = State.Idle; }
@@ -96,6 +96,7 @@ public class FirewoodFire : MonoBehaviour
 	// What do Update() and the grind have in common? They never stop!
 	void Update() {
 		// Visuals for changing the firewood's lit status;
+		var scaleRate = this.scaleRate * Time.deltaTime;
 		switch (state) {
 			case State.StartGrowing:
 				ModifyLight(lightRate, true);
@@ -129,13 +130,14 @@ public class FirewoodFire : MonoBehaviour
 		}
 		// Visuals for the Windblast interaction;
 		if (twisting) {
-			if (rates.x > 0) {
+			var rates = this.rates * Time.deltaTime;
+			if (this.rates.x > 0) {
 				transform.eulerAngles = new Vector3(Approach(transform.eulerAngles.x < 180 ? transform.eulerAngles.x : transform.eulerAngles.x - 360, 
 															 rotation.x, rates.x),
 													Approach(transform.eulerAngles.y, rotation.y, rates.x), 0);
 				transform.localScale = new Vector3(Approach(transform.localScale.x, scale.x, rates.y),
 												   Approach(transform.localScale.y, scale.y, rates.y), 0);
-				if (transform.eulerAngles.y == rotation.y) rates.x = -rates.x;
+				if (transform.eulerAngles.y == rotation.y) this.rates.x = -this.rates.x;
 			} else {
 				transform.eulerAngles = new Vector3(Approach(transform.eulerAngles.x < 180 ? transform.eulerAngles.x : transform.eulerAngles.x - 360,
 															 0, 1),
@@ -143,7 +145,7 @@ public class FirewoodFire : MonoBehaviour
 				transform.localScale = new Vector3(Approach(transform.localScale.x, targetScale, rates.y),
 												   Approach(transform.localScale.y, targetScale, rates.y), 0);
 				if (transform.eulerAngles.y == 0) {
-					rates.x = -rates.x;
+					this.rates.x = -this.rates.x;
 					twisting = false;
 				}
 			}
@@ -164,6 +166,7 @@ public class FirewoodFire : MonoBehaviour
 
 	// Modifies the outer radius of the light source;
 	private void ModifyLight(float rate, bool oscillate = false) {
+		rate *= Time.deltaTime;
 		for (int i = 0; i < lightList.Length; i++) {
 			if (rate > 0) {
 				lightList[i].pointLightOuterRadius = Approach(lightList[i].pointLightOuterRadius, 

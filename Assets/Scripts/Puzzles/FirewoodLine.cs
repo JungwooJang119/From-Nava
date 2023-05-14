@@ -7,6 +7,7 @@ public class FirewoodLine : MonoBehaviour
 	private new LineRenderer renderer;
 	private float key1 = 0.0f;
 	private float key2 = 0.05f;
+	private float keyRate = 3f;
 	private Color color1;
 	private Color color2;
 	private Color edgeColor;
@@ -43,15 +44,16 @@ public class FirewoodLine : MonoBehaviour
 	}
 
     void Update() {
+		var rate = keyRate * Time.deltaTime;
 		if (start) {
-			ComputeKeys(0.05f, 0.05f, 0.1f);
+			ComputeKeys(rate, rate, rate*2f);
 			SetGradient();
 			if (key2 >= 1f) {
 				targetFirewood.ChangeLit();
 				start = false;
 			}
 		} else {
-			ComputeKeys(0.025f, 0.025f, -0.05f);
+			ComputeKeys(rate/2f, rate/2f, -rate);
 			SetGradient();
 			if (alpha <= 0) Reset();
 		}

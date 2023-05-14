@@ -45,8 +45,8 @@ public class ReportManager : MonoBehaviour, ICollectibleManager
 
 	// Text color and opacity;
 	private byte _r = 255, _g = 255, _b = 255; // RGB values for the text color;
-	private byte textAlpha = 255;              // Controls alpha fadeout of text;
-	private byte noteAlpha = 0;                // Second alpha for the bottom alert text;
+	private float textAlpha = 1;              // Controls alpha fadeout of text;
+	private float noteAlpha = 0;                // Second alpha for the bottom alert text;
 	private bool alertUp;
 
 	private string[] soundStrings = { "Report Key v1", "Report Key v2" };
@@ -134,19 +134,20 @@ public class ReportManager : MonoBehaviour, ICollectibleManager
 			case State.End:
 				if (currentText != null) {
 					// Fade out all text;
-					textAlpha = (byte) Mathf.Max(0, (int)textAlpha - 10);
-					currentText.color = new Color32(_r, _g, _b, textAlpha);
-					if (noteAlpha >= 5) { noteAlpha = (byte) Mathf.Max(0, (int) textAlpha - 10); };
-					currentNote.color = new Color32(_r, _g, _b, noteAlpha);
+					var rate = Time.deltaTime * 4f;
+					textAlpha = Mathf.Max(0, textAlpha - rate);
+					currentText.color = new Color(_r, _g, _b, textAlpha);
+					if (noteAlpha >= 0) { noteAlpha = Mathf.Max(0, textAlpha - rate); };
+					currentNote.color = new Color(_r, _g, _b, noteAlpha);
 					// Continue to next page if there's one or finalize report;
-					if (textAlpha < 5) {
+					if (textAlpha == 0) {
 						if (FetchString()) {
 							NextPage();
 							state = State.Writing;
 							textTimer = 0.5f;
 							currentIndex = 0;
-							textAlpha = 255;
-							currentText.color = new Color32(_r, _g, _b, textAlpha);
+							textAlpha = 1;
+							currentText.color = new Color(_r, _g, _b, textAlpha);
 						} else {
 							state = State.Idle;
 							ResetElements();
@@ -158,17 +159,16 @@ public class ReportManager : MonoBehaviour, ICollectibleManager
 
 		// Fading effect of the pop-up;
 		if (state == State.Writing || state == State.Waiting) {
-			if (noteAlpha >= 245) {
+			if (noteAlpha >= 1) {
 				alertUp = false;
-			} else if (noteAlpha <= 50) {
+			} else if (noteAlpha <= 0.1f) {
 				alertUp = true;
 			}
 			if (alertUp) {
-				noteAlpha += 5;
+				noteAlpha += Time.deltaTime;
 			} else {
-				noteAlpha -= 5;
-			}
-			currentNote.color = new Color32(_r, _g, _b, noteAlpha);
+				noteAlpha -= Time.deltaTime;
+			} currentNote.color = new Color(_r, _g, _b, noteAlpha);
 		}
 
 		if (textTimer > 0) textTimer -= Time.deltaTime;
@@ -206,10 +206,10 @@ public class ReportManager : MonoBehaviour, ICollectibleManager
 
 		textTimer = transitionTime;
 		state = State.Start;
-		textAlpha = 255;
+		textAlpha = 1;
 		noteAlpha = 0;
-		currentText.color = new Color32(_r, _g, _b, textAlpha);
-		currentNote.color = new Color32(_r, _g, _b, noteAlpha);
+		currentText.color = new Color(_r, _g, _b, textAlpha);
+		currentNote.color = new Color(_r, _g, _b, noteAlpha);
 	}
 
 	private void NextPage() {

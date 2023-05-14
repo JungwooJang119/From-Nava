@@ -10,14 +10,13 @@ public class LaserWave : MonoBehaviour
     [SerializeField] private float growthRate;
     [SerializeField] private float vanishRate;
     [SerializeField] private float maxGrowth;
-	private Color alpha;
 
 	// Reference to the sprite renderer;
 	private SpriteRenderer sprRenderer;
 
     // Active variables to control the visual behavior of the wave;
-    private float _currentGrowth = 0f;
-    private float _currentVanish = 0f;
+    private float currentGrowth = 0f;
+    private float currentVanish = 0f;
 
     // Grab sprite render and begin at an infitesimal scale;
     void Start() {
@@ -27,13 +26,15 @@ public class LaserWave : MonoBehaviour
 
     // Update the scale and alpha of the sprite overtime;
     void Update() {
-        if (_currentGrowth < maxGrowth) {
-            _currentGrowth += growthRate;
-            _currentVanish += vanishRate;
+        var growthRate = this.growthRate * Time.deltaTime;
+        var vanishRate = this.vanishRate * Time.deltaTime;
+        if (currentGrowth < maxGrowth) {
+            currentGrowth += growthRate;
+            currentVanish += vanishRate;
         } else {
             Destroy(gameObject);
         }
-		transform.localScale = new Vector3(_currentGrowth, _currentGrowth, _currentGrowth);
-        sprRenderer.color = new Color(1f, 1f, 1f, 1f - _currentVanish);
+		transform.localScale = new Vector3(currentGrowth, currentGrowth, currentGrowth);
+        sprRenderer.color = new Color(1f, 1f, 1f, 1f - currentVanish);
 	}
 }

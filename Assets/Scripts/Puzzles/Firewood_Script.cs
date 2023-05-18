@@ -1,65 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Firewood_Script : MonoBehaviour
 {
-    //[SerializeField] private Sprite unlitSprite, litSprite;
-    public bool isLit;
-    public int prevLitStatus;
-    public int currLitStatus;
-    //private bool checkIfRepeat = false;
-    private SpriteRenderer render;
-    private GameObject light;
+    public event Action<int> OnLitStatusChange;
+
+	[SerializeField] private bool isLit;
+    [SerializeField] private Material lineMaterial;
+	[SerializeField] private GameObject[] adjFirewoods;
+
+    private enum TriggerType {
+        Fire,
+        Ice,
+        Wind,
+    }
+
+	private new GameObject light;
     private bool defaulLitStatus;
+    private GameObject fire;
 
-    private Animator animator;
+    private Firewood_Script[] firewoodScripts;
+    private FirewoodLine[] firewoodLines;
 
-    [SerializeField] private GameObject adjFirewood1;
-    [SerializeField] private GameObject adjFirewood2;
-    [SerializeField] private GameObject adjFirewood3;
-    [SerializeField] private GameObject adjFirewood4;
-
-    private Firewood_Script f1;
-    private Firewood_Script f2;
-    private Firewood_Script f3;
-    private Firewood_Script f4;
-
-    //gets the sprite
     void Start() {
-        render = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        light = this.transform.GetChild(0).gameObject;
-        defaulLitStatus = isLit;
-    }
+        // Grab the Sprite Renderer of the object that has an animator, funky but works;
+        fire = GetComponentInChildren<Animator>().gameObject;
+        light = GetComponentInChildren<LightController>().gameObject;
 
-    //activate firelight effect if the firewood is lit
-    void Update() {
-        light.SetActive(isLit);
-        if (isLit) {
-            //render.sprite = litSprite;
-            animator.SetBool("isLit", true);
-        }
-        if (adjFirewood1 != null) {
-            f1 = adjFirewood1.GetComponent<Firewood_Script>();
-            if (adjFirewood2 != null) {
-                f2 = adjFirewood2.GetComponent<Firewood_Script>();
-                if (adjFirewood3 != null) {
-                    f3 = adjFirewood3.GetComponent<Firewood_Script>();
-                    if (adjFirewood4 != null) {
-                        f4 = adjFirewood4.GetComponent<Firewood_Script>();
-                    }
-                }
-            }
-        }
-        if (isLit) {
-            prevLitStatus = 1;
-            currLitStatus = 1;
-        } else {
-            prevLitStatus = 0;
-            currLitStatus = 0;
-        }
-    }
+		firewoodScripts = new Firewood_Script[adjFirewoods.Length];
+        firewoodLines = new FirewoodLine[adjFirewoods.Length];
+		for (int i = 0; i < adjFirewoods.Length; i++) {
+			firewoodScripts[i] = adjFirewoods[i].GetComponent<Firewood_Script>();
+            firewoodLines[i] = (new GameObject("Firewood Line " + i)).AddComponent<FirewoodLine>();
+			firewoodLines[i].SetUpLine(transform, firewoodScripts[i].transform, lineMaterial);
+		}
+
+		defaulLitStatus = isLit;
+		fire.SetActive(isLit);
+		light.SetActive(isLit);
+	}
 
     /*unfortunately i was unable to get the trigger colliders of fireball to work with a regular collider, so i've added another 
     circle collider and set it to trigger to make this work. Enemies aren't working so not sure what to do about that :/.
@@ -67,73 +48,29 @@ public class Firewood_Script : MonoBehaviour
     or unlight.
     */
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.name == ("Fireball_Spell(Clone)")) {
-            //render.sprite = litSprite;
-            animator.SetBool("isLit", true);
-            isLit = true;
-            currLitStatus = 1;
-            if (prevLitStatus == currLitStatus) {
-                print("copy");
-                //checkIfRepeat = true;
-                return;
-            }
-            prevLitStatus = 1;
-        } else if (collision.gameObject.name == ("Iceball_Spell(Clone)")) {
-            //render.sprite = unlitSprite;
-            animator.SetBool("isLit", false);
-            isLit = false;
-            currLitStatus = 0;
-            if (prevLitStatus == currLitStatus) {
-                print("copy");
-                //checkIfRepeat = true;
-                return;
-            }
-            prevLitStatus = 0;
-        } else {
+        if (collision.gameObject.GetComponent<FireballBehavior>()) {
+            SpellReaction(TriggerType.Fire);
+            if (isLit) return;
+        } else if (collision.gameObject.GetComponent<IceballBehavior>() && isLit) {
+            SpellReaction(TriggerType.Ice);
+        } else if (collision.gameObject.GetComponent<WindblastBehavior>()) {
+			SpellReaction(TriggerType.Wind, collision.gameObject.GetComponent<Spell>().direction);
             return;
+        } else {
+			return;
         }
-        //if (!checkIfRepeat) {
-            if (adjFirewood1 != null) {
-                f1.ChangeLit();
-                if (adjFirewood2 != null) {
-                    f2.ChangeLit();
-                    if (adjFirewood3 != null) {
-                        f3.ChangeLit();
-                        if (adjFirewood4 != null) {
-                            f4.ChangeLit();
-                        }
-                    }
-                }
-            }
-        //}
+        ChangeLit();
+        var litChange = isLit ? 1 : -1;
+        foreach (Firewood_Script firewood in firewoodScripts) {
+            litChange += !firewood.GetLit() ? 1 : -1;
+        } OnLitStatusChange?.Invoke(litChange);
     }
 
     public void ChangeLit() {
-        if (isLit) {
-            //render.sprite = unlitSprite;
-            animator.SetBool("isLit", false);
-            isLit = false;
-            currLitStatus = 0;
-            if (prevLitStatus == currLitStatus) {
-                print("copy");
-                //checkIfRepeat = true;
-                return;
-            }
-            prevLitStatus = 0;
-            
-        } else {
-            //render.sprite = litSprite;
-            animator.SetBool("isLit", true);
-            isLit = true;
-            currLitStatus = 1;
-            if (prevLitStatus == currLitStatus) {
-                print("copy");
-                //checkIfRepeat = true;
-                return;
-            }
-            prevLitStatus = 1;
-        }
-    }
+        isLit = !isLit;
+		fire.SetActive(true);
+        fire.GetComponent<FirewoodFire>().Toggle(isLit);
+	}
 
     public void SetDefaultLit() {
         if (isLit == defaulLitStatus) {
@@ -142,4 +79,28 @@ public class Firewood_Script : MonoBehaviour
             ChangeLit();
         }
     }
+
+	private void SpellReaction(TriggerType type, Vector2 direction = default(Vector2)) {
+        foreach (FirewoodLine lineScript in firewoodLines) {
+            // The following color codes are drawn from the spell sprites themselves;
+			if (type == TriggerType.Fire && !isLit) {
+                lineScript.gameObject.SetActive(true);
+                var color1 = new Color32(223, 113, 38, 255);
+                var color2 = new Color32(222, 54, 54, 255);
+                lineScript.DrawLine(color1, color2, false);
+			} else if (type == TriggerType.Ice) {
+				lineScript.gameObject.SetActive(true);
+				var color1 = new Color32(8, 100, 153, 255);
+				var color2 = new Color32(128, 249, 255, 255);
+				lineScript.DrawLine(color1, color2, false);
+			}
+        }
+        if (isLit) {
+            if (type == TriggerType.Fire) fire.GetComponent<FirewoodFire>().Toggle(true);
+            else if (type == TriggerType.Wind) fire.GetComponent<FirewoodFire>().Twist(direction);
+		}
+    }
+
+	public void SetLit(bool isLit) { this.isLit = isLit; }
+	public bool GetLit() { return isLit; }
 }

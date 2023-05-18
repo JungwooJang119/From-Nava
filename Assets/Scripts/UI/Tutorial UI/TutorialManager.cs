@@ -40,8 +40,8 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 
 	// Text color and opacity;
 	private byte _r = 255, _g = 255, _b = 255; // RGB values for the text color;
-	private byte textAlpha = 0;              // Controls alpha fadeout of text;
-	private byte noteAlpha = 0;                // Second alpha for the bottom alert text;
+	private float textAlpha = 0;              // Controls alpha fadeout of text;
+	private float noteAlpha = 0;                // Second alpha for the bottom alert text;
 	private bool alertUp;
 
 	// Start is called before the first frame update
@@ -68,24 +68,23 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 				} break;
 
 			case State.Fade:
-				if (textAlpha < 255) {
-					ChangeOpacity(5);
+				if (textAlpha < 1) {
+					ChangeOpacity(5f);
 				} else {
 					state = State.Await;
 				} break;
 
 			case State.Await:
-				if (noteAlpha >= 250) {
+				if (noteAlpha >= 1f) {
 					alertUp = false;
-				} else if (noteAlpha <= 50) {
+				} else if (noteAlpha <= 0.1f) {
 					alertUp = true;
 				}
 				if (alertUp) {
-					noteAlpha += 5;
+					noteAlpha += Time.deltaTime;
 				} else {
-					noteAlpha -= 5;
-				}
-				currentNote.color = new Color32(_r, _g, _b, noteAlpha);
+					noteAlpha -= Time.deltaTime;
+				} currentNote.color = new Color(_r, _g, _b, noteAlpha);
 
 				if (Input.GetKeyDown(intKey)) {
 					state = State.End;
@@ -93,7 +92,7 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 
 			case State.End:
 				if (textAlpha > 0) {
-					ChangeOpacity(-10);
+					ChangeOpacity(-5f);
 				} else {
 					OnTutorialEnd?.Invoke();
 					ResetElements();
@@ -114,7 +113,7 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 				tutorialGIFTransform.SetParent(canvasTransform);
 				tutorialGIFTransform.localScale = Vector3.one * 0.8f;
 				tutorialGIFTransform.rotation = canvasTransform.rotation;
-				tutorialGIFTransform.position = new Vector3(canvasTransform.position.x + 5, canvasTransform.position.y - 3, canvasTransform.position.z);
+				tutorialGIFTransform.position = new Vector3(canvasTransform.position.x + 4, canvasTransform.position.y - 3, canvasTransform.position.z);
 				videoRenderer = tutorialVideo.GetComponent<VideoPlayer>();
 				if (!videoTexture) videoTexture = tutorialVideo.GetComponent<RawImage>();
 			} videoRenderer.clip = tutorialData.videoClip;
@@ -127,7 +126,7 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 				inputImageTransform.SetParent(canvasTransform);
 				inputImageTransform.localScale = Vector3.one * 1.2f;
 				inputImageTransform.rotation = canvasTransform.rotation;
-				inputImageTransform.position = new Vector3(canvasTransform.position.x - 4, canvasTransform.position.y - 3, canvasTransform.position.z);
+				inputImageTransform.position = new Vector3(canvasTransform.position.x - 6, canvasTransform.position.y - 3, canvasTransform.position.z);
 				inputRenderer = inputImage.GetComponent<Image>();
 			} inputRenderer.sprite = tutorialData.inputImage;
 			inputRenderer.SetNativeSize();
@@ -165,18 +164,19 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 		state = State.Start;
 	}
 
-	private void ChangeOpacity(int rate) {
+	private void ChangeOpacity(float rate) {
+		rate *= Time.deltaTime;
 		if (rate > 0) {
-			textAlpha = (byte)Mathf.Min(255, (int)textAlpha + rate);
-			noteAlpha = (byte)Mathf.Min(255, (int)textAlpha + rate);
+			textAlpha = Mathf.Min(1, textAlpha + rate);
+			noteAlpha = Mathf.Min(1, noteAlpha + rate);
 		} else {
-			textAlpha = (byte)Mathf.Max(0, (int)textAlpha + rate);
-			noteAlpha = (byte)Mathf.Max(0, (int)textAlpha + rate);
+			textAlpha = Mathf.Max(0, textAlpha + rate);
+			noteAlpha = Mathf.Max(0, textAlpha + rate);
 		}
-		currentText.color = new Color32(_r, _g, _b, textAlpha);
+		currentText.color = new Color(_r, _g, _b, textAlpha);
 		if (videoTexture != null) videoTexture.color = currentText.color;
 		if (inputRenderer != null) inputRenderer.color = currentText.color;
-		currentNote.color = new Color32(_r, _g, _b, noteAlpha);
+		currentNote.color = new Color(_r, _g, _b, noteAlpha);
 	}
 
 	private void ResetElements() {

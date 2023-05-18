@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4525808f37a56a64299ea704431cf3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthRate: 0.15
-  vanishRate: 0.01
+  growthRate: 45
+  vanishRate: 3
   maxGrowth: 15

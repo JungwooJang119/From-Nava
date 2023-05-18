@@ -81,7 +81,7 @@ public class LaserBeam : MonoBehaviour
 			case Stage.End:
 				// Decrease width to zero;
 				if (trailRenderer.widthMultiplier > 0) {
-					trailRenderer.widthMultiplier -= Time.deltaTime;
+					trailRenderer.widthMultiplier = Math.Max(0, trailRenderer.widthMultiplier - Time.deltaTime);
 				}
 				break;
 		}

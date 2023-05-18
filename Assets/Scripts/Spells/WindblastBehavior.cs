@@ -31,8 +31,6 @@ public class WindblastBehavior : MonoBehaviour {
 
 	private ParticleSystem[] parSystems;    // Children Particle Systems. Reverb on 0, Trail on 1;
 
-	private AudioSource audioRef;
-
 	// Have you heard of start, the method called before the first frame of Update? :O
 	void Start() {
 		// Suscribe to the OnDestroy event from Spell.cs
@@ -117,7 +115,7 @@ public class WindblastBehavior : MonoBehaviour {
 	// Method to change the y-scale of the sprite;
 	private void ChangeYScale(float reductionMultiplier) {
 		yScaleFactor = Mathf.Max(0, yScaleFactor + Time.deltaTime * reductionMultiplier);
-		transform.localScale = new Vector3(xScaleFactor, yScaleFactor, 1f);
+		transform.localScale = new Vector2(xScaleFactor, yScaleFactor);
 	}
 
 	// Method to generate a particle burst;

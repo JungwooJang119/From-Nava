@@ -13,12 +13,15 @@ public class IceTowerController : MonoBehaviour
     [SerializeField] private float range;
     private bool detected;
     public bool disableTower = false;
+    private Enemy enemy;
     
     // Start is called before the first frame update
     void Start()
     {
+        enemy = GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currIceballTime = 0;
+        enemy.ReactToPlayerInRange(detected);
         //range = this.gameObject;
     }
 
@@ -27,8 +30,10 @@ public class IceTowerController : MonoBehaviour
     {
         float dist = Vector3.Distance(this.transform.position, player.position);
         if (dist < range) {
+            if (!detected) enemy.ReactToPlayerInRange(!detected);
             detected = true;
         } else {
+            if (detected) enemy.ReactToPlayerInRange(!detected);
             detected = false;
         }
         if (disableTower) {

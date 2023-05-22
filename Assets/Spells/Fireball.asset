@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaCost: 5
   speed: 10
-  damageAmt: 5
+  damageAmt: 2
   lifetime: 2
+  sfxString: Fireball Cast
+  particleColor:
+  - 0.7607844
+  - 0.1411765
+  - 0.1058824
+  - 1

@@ -155,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500351459485912344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 0, z: 0}
+  m_LocalPosition: {x: 0.075, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -321,13 +321,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   canTrigger: 1
-  buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
   sprComputerOn: {fileID: 21300000, guid: 3bd65e00d4e994546b272c7b32ad2194, type: 3}
   sprComputerRight: {fileID: 21300000, guid: 380b2f4532bfe274a8a93c6d2adb2810, type: 3}
   sprComputerWrong: {fileID: 21300000, guid: 2d24c780cbb3bfe40b8361592b7ab604, type: 3}
-  virtualCameraName: CM vcam1
-  cameraTarget: {fileID: 3004565964450309312}
-  cameraTarget2: {fileID: 0}
+  buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
+  _cameraTarget2: {fileID: 0}
   door: {fileID: 0}
 --- !u!1 &7768151736171650684
 GameObject:

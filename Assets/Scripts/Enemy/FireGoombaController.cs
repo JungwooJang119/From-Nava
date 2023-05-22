@@ -38,6 +38,7 @@ public class FireGoombaController : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 0;
         animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
+        enemy.ReactToPlayerInRange(!idle);
         animator = GetComponent<Animator>();
         lastChangeTime = 0f;
         NewDirection();
@@ -62,6 +63,7 @@ public class FireGoombaController : MonoBehaviour
             if (Vector2.Distance(transform.position, player.position) < maxDistance) {
                 if (idle) {
                     idle = false;
+                    enemy.ReactToPlayerInRange(!idle);
                 }
                 if (currFireballTime >= fireballInterval) {
                     currFireballTime = 0;
@@ -77,6 +79,7 @@ public class FireGoombaController : MonoBehaviour
             } else {
                 if (!idle) {
                     idle = true;
+                    enemy.ReactToPlayerInRange(!idle);
                     NewDirection();
                 }
                 if (Time.time - lastChangeTime > changeTime) {

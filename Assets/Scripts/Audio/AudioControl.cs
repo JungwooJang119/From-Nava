@@ -182,3 +182,9 @@ public class AudioControl : Singleton<AudioControl> {
 		return tempAudioSource;
 	}
 }
+
+[System.Serializable]
+public class Sound {
+	public string name;
+	public AudioClip clip;
+}

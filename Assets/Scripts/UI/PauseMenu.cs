@@ -42,6 +42,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         notebook.SetActive(true);
+        if (polaroidMenu.activeSelf) TogglePolaroidMenu();
         pauseMenuUI.SetActive(false);
 		PlayerController.Instance.ActivateMovement();
 		Time.timeScale = 1f;

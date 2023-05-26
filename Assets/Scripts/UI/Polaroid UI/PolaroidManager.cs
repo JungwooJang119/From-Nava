@@ -40,7 +40,7 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 	private float noteAlpha = 0;                // Second alpha for the bottom alert text;
 	private bool alertUp;
 
-	private bool firstDisplay;
+	private float deltaTime = 0.01f;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -58,6 +58,8 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 
     // Update is called once per frame
     void Update() {
+		deltaTime = Time.deltaTime > 0 ? Time.deltaTime : 0.01f;
+
 		switch (state) {
 			case State.Start:
 				if (timer <= 0) {
@@ -79,9 +81,9 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 					alertUp = true;
 				} 
 				if (alertUp) {
-					noteAlpha += Time.deltaTime;
+					noteAlpha += deltaTime;
 				} else {
-					noteAlpha -= Time.deltaTime;
+					noteAlpha -= deltaTime;
 				} currentNote.color = new Color(_r, _g, _b, noteAlpha);
 
 				if (Input.GetKeyDown(intKey)) {
@@ -99,7 +101,7 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 				break;
 		}
 
-		if (timer > 0) timer -= Time.deltaTime;
+		if (timer > 0) timer -= deltaTime;
 	}
 
     public void Display(string polaroid, float transitionTime = 0) {
@@ -149,7 +151,7 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 	}
 
 	private void ChangeOpacity(float rate) {
-		rate *= Time.deltaTime;
+		rate *= deltaTime;
 		if (rate > 0) {
 			textAlpha = Mathf.Min(1, textAlpha + rate);
 			noteAlpha = Mathf.Min(1, textAlpha + rate);

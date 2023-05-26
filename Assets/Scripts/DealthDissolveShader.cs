@@ -20,13 +20,6 @@ public class DealthDissolveShader : MonoBehaviour
         /**!!!Make sure to assign sprite rendering to DissolveMat!!!**/
         mat = GetComponent<SpriteRenderer>().material;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            DissolveOut();
-        }
-    }
 
     /*void Update()
     {

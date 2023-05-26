@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e3fe976cafc7049928dc81d1921f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell: {fileID: 8916631681253868026, guid: 4c7ed7f61f63d2840884458d6f971cb0, type: 3}
+  spell: {fileID: 6866387084450533419, guid: 4c7ed7f61f63d2840884458d6f971cb0, type: 3}
   spellData: {fileID: 11400000, guid: cb799c27f5fb04949a73f3d9c4bbd993, type: 2}
   timeBetweenCasts: 7
   active: 1
   time: 1
+  dir: 
 --- !u!212 &559866243194655127
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,10 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+    public event Action<int> OnDamageTaken;
+    public event Action<bool> OnPlayerInRange;
     [SerializeField] private float maxHealth = 50f;
+    [SerializeField] private GameObject healthBar;
     public bool isIceTower = false;
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dealthShader;
@@ -42,8 +46,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Start() {
+        healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
+    }
+
     public void TakeDamage(float damage) {
         currHealth -= damage;
+        OnDamageTaken?.Invoke((int) damage);
         if (damageFlash != null)
         {
             damageFlash.Flash();
@@ -97,7 +106,12 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Melee") {
-            OnMeleeHit(10);
+            //OnMeleeHit(3);
         }
+    }
+
+    public void ReactToPlayerInRange(bool playerInRange) {
+        healthBar.SetActive(true);
+        OnPlayerInRange?.Invoke(playerInRange);
     }
 }

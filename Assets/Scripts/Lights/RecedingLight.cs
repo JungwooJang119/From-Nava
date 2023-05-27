@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 using UnityEditor;
 
 public class RecedingLight : MonoBehaviour {
+
     [SerializeField] private float propagationSpeed = 1f;
     [SerializeField] private LightVertex[] vertices;
     private new Light2D light;
@@ -23,10 +24,10 @@ public class RecedingLight : MonoBehaviour {
     void Update() {
         if (propagate) {
             for (int i = 0; i < light.shapePath.Length; i++) {
-                var target = vertices[i].position;
-                if (vertices[i].path.Count > 0) target = vertices[vertices[i].path[0] - 1].position;
+                var target = vertices[i].transform.localPosition;
+                if (vertices[i].path.Count > 0) target = vertices[i].path[0].localPosition;
                 light.shapePath[i] = new Vector2(Approach(light.shapePath[i].x, target.x, (target.x / transform.position.x) * propagationSpeed * Time.deltaTime),
-                                                   Approach(light.shapePath[i].y, target.y, (target.y / transform.position.y) * propagationSpeed * Time.deltaTime));
+                                                 Approach(light.shapePath[i].y, target.y, (target.y / transform.position.y) * propagationSpeed * Time.deltaTime));
                 if (vertices[i].path != null && vertices[i].path.Count > 0 && light.shapePath[i].y == target.y) vertices[i].path.RemoveAt(0);
                 Debug.Log(light.shapePath[i] + " vertex " + target + " speed " + (transform.position.y - target.y) * propagationSpeed);
             }
@@ -40,17 +41,17 @@ public class RecedingLight : MonoBehaviour {
         for (int i = 0; i < light.shapePath.Length; i++) {
             vertices[i] = new LightVertex();
             vertices[i].name += i + 1;
-            vertices[i].position = light.shapePath[i];
-            var o = new GameObject("Light " + (i + 1));
-            o.transform.SetParent(transform);
-            o.transform.localPosition = vertices[i].position;
+            var posGO = new GameObject("Light " + (i + 1));
+            posGO.transform.SetParent(transform);
+            posGO.transform.localPosition = light.shapePath[i];
+            vertices[i].transform = posGO.transform;
         }
     }
 
     public void ClearLightController() {
         if (light == null) light = GetComponentInChildren<Light2D>();
         for (int i = 0; i < vertices.Length; i++) {
-            vertices[i].position = transform.position;
+            vertices[i].transform = transform;
         }
     }
 
@@ -70,9 +71,9 @@ public class RecedingLight : MonoBehaviour {
 public class LightVertex {
     [HideInInspector] public string name = "Vertex ";
     [Tooltip("Position of the vertex in worldspace;")]
-    public Vector3 position;
+    public Transform transform;
     [Tooltip("Vertices to traverse before moving towards the final position. Use indexes;")]
-    public List<int> path;
+    public List<Transform> path;
 }
 
 [CustomEditor(typeof(RecedingLight))]

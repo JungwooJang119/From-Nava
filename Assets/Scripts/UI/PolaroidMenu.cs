@@ -8,7 +8,6 @@ using TMPro;
 public class PolaroidMenu : MonoBehaviour
 {
 	private CollectibleController controller;
-
 	[SerializeField] private Sprite unclaimedPolaroid;
 	private Dictionary<string, Sprite> polaroidSprites;
 

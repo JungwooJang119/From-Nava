@@ -85,7 +85,6 @@ public class PlayerController : Singleton<PlayerController>
         if (isPushed) {
             PushTranslate();
         }
-        healthText.text = "Health: " + playerHealth;
     }
 
     private void OnMove(InputValue movementValue) {

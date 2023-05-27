@@ -5192,12 +5192,12 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: bd51ffc9071f17a4eaf37dd650d2ecfb, type: 2}
   collider: {fileID: 0}
   rb: {fileID: 7410404838220746693}
-  rotate: {x: 0, y: 0, z: -90}
+  rotate: {x: 0, y: 0, z: 90}
   spellActive: 1
   isChair: 0
   isWind: 0
   isPiplup: 0
-  direction: {x: 1, y: 0}
+  direction: {x: -1, y: 0}
   damage: 0
 --- !u!212 &-2210433279254611879
 SpriteRenderer:
@@ -5278,12 +5278,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 576cecbb2a863294ca0332dde34d8f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedReduce: 0
+  speedReduce: 2
 --- !u!114 &4701790566160024944
 MonoBehaviour:
   m_ObjectHideFlags: 0

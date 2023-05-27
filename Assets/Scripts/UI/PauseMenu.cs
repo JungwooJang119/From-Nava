@@ -12,6 +12,8 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject polaroidMenu;
     [SerializeField] private GameObject notebook;
+    [SerializeField] private GameObject spellsControls;
+    [SerializeField] private GameObject polaroidOptions;
     private bool awaitingCalls;
 
     void Start() 
@@ -43,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     {
         notebook.SetActive(true);
         if (polaroidMenu.activeSelf) TogglePolaroidMenu();
+        SpellsPage();
         pauseMenuUI.SetActive(false);
 		PlayerController.Instance.ActivateMovement();
 		Time.timeScale = 1f;
@@ -99,5 +102,15 @@ public class PauseMenu : MonoBehaviour
 			currentMenu.SetActive(true);
 			awaitingCalls = false;
 		}
+    }
+
+    public void PolaroidPage() {
+        spellsControls.SetActive(false);
+        polaroidOptions.SetActive(true);
+    }
+
+    public void SpellsPage() {
+        polaroidOptions.SetActive(false);
+        spellsControls.SetActive(true);
     }
 }

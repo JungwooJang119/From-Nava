@@ -84,6 +84,7 @@ public class CollectibleController : MonoBehaviour {
 		} else {
 			manager.Display(name);
 		}
+		print("here");
 	}
 
 	public void AddCall(CollectibleType type, string name, bool firstTime = true) {
@@ -105,6 +106,7 @@ public class CollectibleController : MonoBehaviour {
 				}
 			}
 		}
+		//print("here");
 		//if (type == CollectibleType.Polaroid && firstTime) AudioControl.Instance.FadeMusic();
 		callStack.Add(new Call(type, name, firstTime));
 	}

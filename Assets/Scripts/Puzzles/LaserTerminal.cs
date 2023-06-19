@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using static RoomLights;
 using UnityEngine;
 using Cinemachine;
 
@@ -13,7 +14,8 @@ using Cinemachine;
 
 public class LaserTerminal : MonoBehaviour
 {
-	[SerializeField] private float range;				// How far can the player be from the terminal to trigger it;
+	[SerializeField] private float range;               // How far can the player be from the terminal to trigger it;
+	[SerializeField] private RoomCode revealRoomCode;
 	private LaserCaster laserCaster;					// Laser Caster that with which this terminal communicates. Must be set on the inspector;
 	[SerializeField] private bool canTrigger = true;	// Whether the terminal is interactable;
 	[SerializeField] private Sprite sprComputerOn;
@@ -93,6 +95,7 @@ public class LaserTerminal : MonoBehaviour
 		_virtualCamera.Follow = _cameraTarget2.transform;
 		if (door != null) {
 			door.GetComponent<Door>().OpenDoor();
+			ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);
 		}
 		if (_cameraTarget2 != null) {
 			_cameraTarget2.SetActive(true);
@@ -123,5 +126,9 @@ public class LaserTerminal : MonoBehaviour
 		_virtualCamera.Follow = _player;
 		StartCoroutine(CameraTransitionOutBad());
 		_playerController.ActivateMovement();
+	}
+
+	public void SetRoomCode(RoomCode revealRoomCode) {
+		this.revealRoomCode = revealRoomCode;
 	}
 }

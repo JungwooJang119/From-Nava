@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using static RoomLights;
 using UnityEngine;
 using Cinemachine;
 
 public class RoomControlA3 : MonoBehaviour
 {
     [SerializeField] GameObject pressurePlateController;
+    [SerializeField] RoomCode revealRoomCode;
     private PressurePlate_Script[] _pressurePlates;
     private bool _canClear = true;
     
     public GameObject B3Chest = null;
     public bool cheat = false;
 
-    public string virtualCameraName = "CM vcam1";	// For security reasons, the name of the virtual camera can be modified here if changed in the scene.
-	private CinemachineVirtualCamera _virtualCamera;
-	public GameObject _cameraTarget;				// The target the camera will move towards.
-	public Transform _returnToPlayer;
+	private CinemachineVirtualCamera virtualCamera;
+	public GameObject cameraTarget;				// The target the camera will move towards.
+	public Transform returnToPlayer;
     public GameObject door;
 
     [SerializeField] private bool isClear = false;
@@ -23,8 +24,8 @@ public class RoomControlA3 : MonoBehaviour
 
     void Start() {
         _pressurePlates = pressurePlateController.GetComponentsInChildren<PressurePlate_Script>();
-        _virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
-		_returnToPlayer = _virtualCamera.Follow;
+        virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
+        returnToPlayer = PlayerController.Instance.transform;
     }
 
     void Update() {
@@ -47,9 +48,9 @@ public class RoomControlA3 : MonoBehaviour
 
     IEnumerator CameraTransitionIn() {
 		yield return new WaitForSeconds(0.0f);
-		_virtualCamera.Follow = _cameraTarget.transform;
+		if (cameraTarget) virtualCamera.Follow = cameraTarget.transform;
 		yield return new WaitForSeconds(2f);
-        _virtualCamera.Follow = _returnToPlayer;
+        virtualCamera.Follow = returnToPlayer;
 	}
 
 	private void CompleteRoom() {
@@ -58,6 +59,11 @@ public class RoomControlA3 : MonoBehaviour
 			door.GetComponent<Door>().OpenDoor();
 		}
         if (B3Chest) B3Chest.SetActive(true);
-		isClear = true;
+        ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);
+        isClear = true;
 	}
+
+    public void SetRoomCode(RoomCode revealRoomCode) {
+        this.revealRoomCode = revealRoomCode;
+    }
 }

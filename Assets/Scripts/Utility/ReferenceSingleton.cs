@@ -9,6 +9,7 @@ public class ReferenceSingleton : Singleton<ReferenceSingleton>
 {
 	public GameObject mainCamera;
 	public tranMode transition;
+	public RoomLights roomLights;
 
 	[Header("Collectible References (separated by commas):")]
 	[Header("  Polaroids (Room Names):")]

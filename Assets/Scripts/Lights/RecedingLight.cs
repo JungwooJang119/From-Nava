@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class RecedingLight : MonoBehaviour {
+public class RecedingLight : RoomLights {
     [SerializeField] private float propagationSpeed = 1f;
+    [SerializeField] private RoomCode roomCode;
     private new Light2D light;
     private float intensity;
     private bool propagate;
@@ -11,15 +12,20 @@ public class RecedingLight : MonoBehaviour {
         light = GetComponent<Light2D>();
         intensity = light.intensity;
         light.intensity = 0;
+        transform.parent.GetComponent<RoomLights>().OnPropagate += RoomLights_OnPropagate;
+    }
+
+    private void RoomLights_OnPropagate(RoomCode roomCode) {
+        if (roomCode == this.roomCode) {
+            propagate = true;
+        }
     }
 
     private void Update() {
-        if (propagate) light.intensity = Approach(light.intensity, intensity, Time.deltaTime * propagationSpeed);
-        if (Input.GetKeyDown("u")) Propagate();
-    }
-
-    public void Propagate() {
-        propagate = true;
+        if (propagate) {
+            light.intensity = Approach(light.intensity, intensity, Time.deltaTime * propagationSpeed);
+            if (light.intensity == intensity) Destroy(this);
+        }
     }
 
     // Approach one value to another;

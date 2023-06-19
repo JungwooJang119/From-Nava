@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomControlA1Part1 : MonoBehaviour {
@@ -15,6 +13,7 @@ public class RoomControlA1Part1 : MonoBehaviour {
 
     private void RoomControlA1Part1_OnReportRead() {
         door.GetComponent<Door>().OpenDoor();
+        ReferenceSingleton.Instance.roomLights.Propagate(RoomLights.RoomCode.A1_2);
         Destroy(this.gameObject);
     }
 }

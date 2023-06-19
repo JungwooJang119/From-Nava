@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RoomLights;
 using Cinemachine;
 
 public class RoomControlA2 : MonoBehaviour
 {
     [SerializeField] GameObject firewoodController;
+	[SerializeField] RoomCode revealRoomCode;
     private Firewood_Script[] firewoods;
 	private int firewoodCount = 0;
 
@@ -52,9 +54,14 @@ public class RoomControlA2 : MonoBehaviour
             StartCoroutine(CameraTransitionIn());
 			door.GetComponent<Door>().OpenDoor();
             if (A2Chest != null) A2Chest.SetActive(true);
-        } else {
+			else ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);
+		} else {
 			if (A2Chest != null) A2Chest.SetActive(true);
 			Destroy(this.gameObject);
 		}
 	}
+
+	public void SetRoomCode(RoomCode revealRoomCode) {
+		this.revealRoomCode = revealRoomCode;
+    }
 }

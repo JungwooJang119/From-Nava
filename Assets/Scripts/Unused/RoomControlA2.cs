@@ -38,7 +38,8 @@ public class RoomControlA2 : MonoBehaviour
 			foreach (Firewood_Script firewood in firewoods) {
 				firewood.OnLitStatusChange -= RoomControlA2_OnLitStatusChange;
 			} CompleteRoom();
-		}
+		} print(firewoodCount);
+		print(firewoods.Length);
     }
 
 	IEnumerator CameraTransitionIn() {

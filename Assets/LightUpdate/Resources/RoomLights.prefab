@@ -5418,7 +5418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propagationSpeed: 1
-  roomCode: 2
+  roomCode: 3
 --- !u!114 &5691197899641407117
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class LightUpdatePatcher : MonoBehaviour {
         PrefabUtility.InstantiatePrefab(Resources.Load("RoomLights"));
         PrefabUtility.UnpackPrefabInstance(GameObject.Find("RoomLights"), PrefabUnpackMode.Completely, InteractionMode.UserAction);
         // Update RoomControl variables
+        // A2 Variables
         var roomControl = GameObject.Find("RoomControl").transform;
         var tempComponent1 = QueueFind(roomControl, "A2 - 1").GetComponent<RoomControlA2>();
         tempComponent1.SetRoomCode(RoomCode.A2_2);
@@ -20,6 +21,10 @@ public class LightUpdatePatcher : MonoBehaviour {
         tempComponent1 = QueueFind(roomControl, "A2 - 2").GetComponent<RoomControlA2>();
         tempComponent1.SetRoomCode(RoomCode.A2_3);
         PrefabUtility.RecordPrefabInstancePropertyModifications(tempComponent1);
+        // Firewood Fix
+        tempComponent1 = QueueFind(roomControl, "A2 - 3").GetComponent<RoomControlA2>();
+        tempComponent1.enabled = true;
+        // B3 Variables
         var tempComponent2 = QueueFind(roomControl, "B3 - 1").GetComponent<RoomControlA3>();
         tempComponent2.cameraTarget = tempComponent2.door;
         tempComponent2.SetRoomCode(RoomCode.B3_2);
@@ -27,7 +32,7 @@ public class LightUpdatePatcher : MonoBehaviour {
         tempComponent2 = QueueFind(roomControl, "B3 - 2").GetComponent<RoomControlA3>();
         tempComponent2.SetRoomCode(RoomCode.B3_3);
         PrefabUtility.RecordPrefabInstancePropertyModifications(tempComponent2);
-        // Update Terminal variables
+        // C2 Variables - Terminal
         var tempTerminal = GameObject.Find("C2 - 1").transform.Find("Terminal");
         tempTerminal.GetComponent<LaserTerminal>().SetRoomCode(RoomCode.C2_2);
         PrefabUtility.RecordPrefabInstancePropertyModifications(tempTerminal.GetComponent<LaserTerminal>());

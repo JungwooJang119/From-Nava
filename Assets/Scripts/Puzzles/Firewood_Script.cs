@@ -77,6 +77,7 @@ public class Firewood_Script : MonoBehaviour
         if (isLit == defaulLitStatus) {
             return;
         } else {
+            OnLitStatusChange?.Invoke(!isLit ? 1 : -1);
             ChangeLit();
         }
     }

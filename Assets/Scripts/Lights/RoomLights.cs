@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class RoomLights : MonoBehaviour {
     public enum RoomCode {
@@ -19,5 +20,11 @@ public class RoomLights : MonoBehaviour {
 
     public void Propagate(RoomCode roomCode) {
         OnPropagate?.Invoke(roomCode);
+    }
+
+    public void SetLightIntensity(float intensity) {
+        foreach (Transform t in transform) {
+            t.GetComponent<Light2D>().intensity = intensity;
+        }
     }
 }

@@ -22,7 +22,6 @@ public class ReferenceSingleton : Singleton<ReferenceSingleton>
 	public CollectibleController collectibleController;
 
 	void Awake() {
-		DontDestroyOnLoad(gameObject);
 		InitializeSingleton(gameObject);
 	}
 }

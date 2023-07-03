@@ -110,7 +110,6 @@ public class tranMode : MonoBehaviour {
 		SceneManager.LoadScene(2);
 	}
 
-
 	IEnumerator LoadMusic() {
 		var musicSource = AudioControl.Instance.PlayMusic("Exploration Opening", false);
 		while (musicSource.isPlaying) yield return null;

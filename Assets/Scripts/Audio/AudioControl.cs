@@ -118,18 +118,6 @@ public class AudioControl : Singleton<AudioControl> {
 		}
 	}
 
-	// Method to adjust the music volume. Called from VolumeSliders.cs;
-	public void SetMusicVolume(float value) {
-		musicVolume = value;
-		musicSource.volume = value;
-	}
-
-	// Method to adjust the SFX volume. Called from VolumeSliders.cs;
-	public void SetSFXVolume(float value) {
-		sfxVolume = value;
-		sfxSource.volume = value;
-	}
-
 	// Method to fade away the music.
 	public void FadeMusic(bool stopsMusic, bool stopsAbruptly = false) {
 		if (!stopsAbruptly) {
@@ -180,6 +168,23 @@ public class AudioControl : Singleton<AudioControl> {
 		tempAudioSource.Play();
 		Destroy(tempObject, sn.length);
 		return tempAudioSource;
+	}
+	public void SetMusicVolume(float value) {
+		musicVolume = value;
+		musicSource.volume = value;
+	}
+
+	public float GetMusicVolume() {
+		return musicVolume;
+	}
+
+	public void SetSFXVolume(float value) {
+		sfxVolume = value;
+		sfxSource.volume = value;
+	}
+
+	public float GetSFXVolume() {
+		return sfxVolume;
 	}
 }
 

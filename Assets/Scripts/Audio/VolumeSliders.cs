@@ -14,20 +14,35 @@ public class VolumeSliders : MonoBehaviour {
 		masterSlider.value = AudioListener.volume;
 		musicSlider.value = AudioControl.Instance.GetMusicVolume();
 		sfxSlider.value = AudioControl.Instance.GetSFXVolume();
+		masterSlider.onValueChanged.AddListener(SetMasterVolume);
+		musicSlider.onValueChanged.AddListener(SetMusicVolume);
+		sfxSlider.onValueChanged.AddListener(SetSFXVolume);
 	}
 
 	// Changes volume of the AudioListener in the Main Camera [Master Volume];
-	public void SetMasterVolume() {
-		AudioListener.volume = masterSlider.value;
+	public void SetMasterVolume(float value) {
+		AudioListener.volume = value;
 	}
 
 	// Changes volume of _musicSource [audio source] in AudioControl.cs;
-	public void SetMusicVolume() {
-		AudioControl.Instance.SetMusicVolume(musicSlider.value);
+	public void SetMusicVolume(float value) {
+		AudioControl.Instance.SetMusicVolume(value);
     }
 
 	// Changes volume of _sfxSource [audio source] in AudioControl.cs;
-	public void SetSFXVolume() {
-		AudioControl.Instance.SetSFXVolume(sfxSlider.value);
+	public void SetSFXVolume(float value) {
+		AudioControl.Instance.SetSFXVolume(value);
 	}
+
+	public Slider GetMasterSlider() {
+		return masterSlider;
+	}
+
+	public Slider GetMusicSlider() {
+		return musicSlider;
+	}
+
+	public Slider GetSFXSlider() {
+		return sfxSlider;
+    }
 }

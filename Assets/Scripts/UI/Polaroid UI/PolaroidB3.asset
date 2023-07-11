@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 140279d9a0cb8284c8c471f9fd7c3166, type: 3}
   text: "\u201CThis can\u2019t be the best course of action. They can\u2019t be doing
-    this.\u201D - Nava Labs: Room A1"
+    this.\u201D \\n- Nava Labs: Room A1"

@@ -1,27 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseMenu : MonoBehaviour
-{
+public class PauseMenu : MonoBehaviour {
+
+    public event Action<MenuPage> OnPageChanged;
+
+    public enum MenuPage {
+        None,
+        Spells,
+        Polaroids,
+        Options
+    } private MenuPage activePage = MenuPage.Spells;
+    private Dictionary<MenuPage, PauseMenuPage> pageDict;
+
     private CollectibleController controller;
     private tranMode transition;
-    private GameObject currentMenu;
-    public static bool GameIsPaused = false;
+    
     public GameObject pauseMenuUI;
-
-    [SerializeField] private GameObject polaroidMenu;
     [SerializeField] private GameObject notebook;
-    [SerializeField] private GameObject spellsControls;
-    [SerializeField] private GameObject polaroidOptions;
-    private bool awaitingCalls;
 
-    void Start() 
-    {
-        currentMenu = pauseMenuUI;
+    public static bool GameIsPaused = false;
+
+    void Start() {
+        pageDict = new Dictionary<MenuPage, PauseMenuPage>();
+        var childedMenus = GetComponentsInChildren<PauseMenuPage>(true);
+        foreach (PauseMenuPage page in childedMenus) {
+            pageDict[page.GetPageType()] = page;
+        }
+
         controller = ReferenceSingleton.Instance.collectibleController;
         transition = ReferenceSingleton.Instance.transition;
-		controller.OnCallsEnd += PauseMenu_OnCallsEnd;
     }
 
     // Update is called once per frame
@@ -44,64 +54,60 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         notebook.SetActive(true);
-        if (polaroidMenu.activeSelf) TogglePolaroidMenu();
-        SpellsPage();
+        ToggleActiveMenu(false);
         pauseMenuUI.SetActive(false);
 		PlayerController.Instance.ActivateMovement();
 		Time.timeScale = 1f;
+        transition.DarkenIn(true);
         GameIsPaused = false;
     }
 
     /// Pause the game
-    void Pause()
+    public void Pause()
     {
         notebook.SetActive(false);
+        ToggleActiveMenu(true);
         pauseMenuUI.SetActive(true);
 		PlayerController.Instance.DeactivateMovement();
         Time.timeScale = 0f;
+        transition.DarkenOut(true);
         GameIsPaused = true;
     }
 
     /// Quit the game
     public void QuitGame()
     {
-        Debug.Log("Quitting game...");
         Application.Quit();
     }
 
-    /// Load the options menu
-    /// TODO: implement transitioning into scene for the options menu
-    public void LoadOptions()
-    {
-        Debug.Log("Loading Options...");
+    public void ChangeActivePage(MenuPage pageType) {
+        foreach (KeyValuePair<MenuPage, PauseMenuPage> pair in pageDict) {
+            if (pair.Value.GetPageType() != pageType) pair.Value.gameObject.SetActive(false);
+        } activePage = pageType;
+        ToggleActiveMenu(true);
+        OnPageChanged?.Invoke(pageType);
     }
+
+    private void ToggleActiveMenu(bool active) {
+        pageDict[activePage].gameObject.SetActive(active);
+    }
+
+    public MenuPage GetActivePage() {
+        return activePage;
+    }
+
+    /*
 
     /// Load the polaroids menu
     /// TODO: implement transitioning to the polaroids menu
-    public void TogglePolaroidMenu()
-    {
-		if (currentMenu == pauseMenuUI) {
-			currentMenu = polaroidMenu;
-		} else {
-			currentMenu = pauseMenuUI;
-		}
-		pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
+    public void TogglePolaroidMenu() {
+        if (currentMenu == pauseMenuUI) {
+            currentMenu = polaroidMenu;
+        } else {
+            currentMenu = pauseMenuUI;
+        }
+        pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
         polaroidMenu.SetActive(!polaroidMenu.activeSelf);
-    }
-
-    public void DisplayPolaroid(string polaroid)
-    {
-		currentMenu.SetActive(false);
-        controller.AddCall(CollectibleController.CollectibleType.Polaroid, polaroid, false);
-		awaitingCalls = true;
-	}
-
-	private void PauseMenu_OnCallsEnd() 
-    {
-        if (awaitingCalls) {
-			currentMenu.SetActive(true);
-			awaitingCalls = false;
-		}
     }
 
     public void PolaroidPage() {
@@ -113,4 +119,13 @@ public class PauseMenu : MonoBehaviour
         polaroidOptions.SetActive(false);
         spellsControls.SetActive(true);
     }
+
+    /// Load the options menu
+    /// TODO: implement transitioning into scene for the options menu
+    public void LoadOptions()
+    {
+        Debug.Log("Loading Options...");
+    }
+
+    */
 }

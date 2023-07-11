@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutorialChair
   m_EditorClassIdentifier: 
   textHeaderNew: 'New Spell: Spawn Chair'
-  textHeader: Chair Spell
+  textHeader: Spawn Chair Spell
   text: Spawn a trusty chair in front of you. The chair has weight and can shield
     you from enemies. Use both to your advantage!
   inputImage: {fileID: 21300000, guid: bd87428d9f99d814ea7ae9da55ee0197, type: 3}

@@ -4,24 +4,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialDataBank : MonoBehaviour {
+	
+	public enum TutorialType {
+		Basics,
+		Melee,
+		Fireball,
+		Iceball,
+		Chair,
+		Windblast,
+    }
+
 	[Serializable]
 	private struct TutorialInfo {
-		public string name;
+		public TutorialType type;
 		public TutorialData data;
 	}
 	[SerializeField] private TutorialInfo[] tutorials;
 
-	private Dictionary<string, TutorialData> tutorialDict;
+	private Dictionary<TutorialType, TutorialData> tutorialDict;
 
 	// Initialize Polaroid Dictionary;
 	void Start() {
-		tutorialDict = new Dictionary<string, TutorialData>();
+		tutorialDict = new Dictionary<TutorialType, TutorialData>();
 		foreach (TutorialInfo tutorial in tutorials) {
-			tutorialDict[tutorial.name] = tutorial.data;
+			tutorialDict[tutorial.type] = tutorial.data;
 		}
 	}
 
 	public TutorialData GetTutorialData(string name) {
-		return tutorialDict[name];
+		var type = TutorialType.Basics;
+		Enum.TryParse(name, out type);
+		return tutorialDict[type];
 	}
+
+	public Dictionary<TutorialType, TutorialData> GetTutorialDict() {
+		return tutorialDict;
+    }
 }

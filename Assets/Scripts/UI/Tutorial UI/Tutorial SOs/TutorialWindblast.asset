@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutorialWindblast
   m_EditorClassIdentifier: 
   textHeaderNew: 'New Spell: Windblast'
-  textHeader: Windblast Spell
+  textHeader: Wind Blast Spell
   text: Cast forward a roaring wind wave. It is not solid enough to deal damage,
     but it sure can push things around!
   inputImage: {fileID: 21300000, guid: f6b2346a814b8954da192536e8673360, type: 3}

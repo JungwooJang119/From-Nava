@@ -11,12 +11,14 @@ public class PauseMenuSpells : MonoBehaviour {
     [SerializeField] private MonoBehaviour homePage;
     private GameObject activePage;
 
+    private PauseMenuPage masterScript;
+
     void Awake() {
         pageTypeDict = new Dictionary<Type, GameObject>();
         var pages = GetComponentsInChildren<ISpellPage>(true);
         foreach (MonoBehaviour pageScript in pages) {
             pageTypeDict[pageScript.GetType()] = pageScript.gameObject;
-        }
+        } masterScript = GetComponentInParent<PauseMenuPage>();
     }
 
     void OnEnable() {
@@ -25,18 +27,32 @@ public class PauseMenuSpells : MonoBehaviour {
 
     public void SetActiveSpellPage(Type type, TutorialDataBank.TutorialType tutorialType) {
         SetActiveSpellPage(type);
+        StartCoroutine(WaitForActiveTutorial(tutorialType));
+    }
+
+    private IEnumerator WaitForActiveTutorial(TutorialDataBank.TutorialType tutorialType) {
+        while (!activePage.activeSelf) yield return null;
         activePage.GetComponent<PauseMenuSpellTutorials>().SetActiveTutorial(tutorialType);
     }
 
-    public void SetActiveSpellPage(Type type) {
+    public void SetActiveSpellPage(Type type, bool animate = true) {
         foreach (KeyValuePair<Type, GameObject> pair in pageTypeDict) {
             if (pair.Key != type) pair.Value.SetActive(false);
-        } activePage = pageTypeDict[type];
-        activePage.SetActive(true);
+        } activePage = pageTypeDict[type]; 
+        if (animate) {
+            masterScript.Toggle(false, true);
+            masterScript.OnFadeFinished += PauseMenuPage_OnFadeFinished;
+        } else activePage.SetActive(true);
     }
 
-    public void SetActiveSpellPageHome() {
-        SetActiveSpellPage(homePage.GetType());
+    private void PauseMenuPage_OnFadeFinished(PauseMenuPage callingPage) {
+        activePage.SetActive(true);
+        masterScript.Toggle(true);
+        masterScript.OnFadeFinished -= PauseMenuPage_OnFadeFinished;
+    }
+
+    public void SetActiveSpellPageHome(bool animate = false) {
+        if (activePage != homePage.gameObject) SetActiveSpellPage(homePage.GetType(), animate);
     }
 }
 

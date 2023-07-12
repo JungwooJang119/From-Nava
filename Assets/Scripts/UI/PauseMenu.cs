@@ -26,24 +26,20 @@ public class PauseMenu : MonoBehaviour {
     void Start() {
         pageDict = new Dictionary<MenuPage, PauseMenuPage>();
         var childedMenus = GetComponentsInChildren<PauseMenuPage>(true);
-        foreach (PauseMenuPage page in childedMenus) {
-            pageDict[page.GetPageType()] = page;
-        }
+        foreach (PauseMenuPage page in childedMenus) pageDict[page.GetPageType()] = page;
 
         controller = ReferenceSingleton.Instance.collectibleController;
         transition = ReferenceSingleton.Instance.transition;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-     if (Input.GetKeyDown(KeyCode.Escape) && !controller.GetBusy())
-        {
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape) && !controller.GetBusy()) {
             if (GameIsPaused)
             {
                 Resume();
             }
-            else
+            else 
             {
                 Pause();
             }
@@ -51,8 +47,7 @@ public class PauseMenu : MonoBehaviour {
     }
 
     /// Resume the game
-    public void Resume()
-    {
+    public void Resume() {
         notebook.SetActive(true);
         ToggleActiveMenu(false);
         pauseMenuUI.SetActive(false);
@@ -63,8 +58,7 @@ public class PauseMenu : MonoBehaviour {
     }
 
     /// Pause the game
-    public void Pause()
-    {
+    public void Pause() {
         notebook.SetActive(false);
         ToggleActiveMenu(true);
         pauseMenuUI.SetActive(true);
@@ -82,10 +76,16 @@ public class PauseMenu : MonoBehaviour {
 
     public void ChangeActivePage(MenuPage pageType) {
         foreach (KeyValuePair<MenuPage, PauseMenuPage> pair in pageDict) {
-            if (pair.Value.GetPageType() != pageType) pair.Value.gameObject.SetActive(false);
-        } activePage = pageType;
-        ToggleActiveMenu(true);
+            if (pair.Value.GetPageType() != pageType) pair.Value.Toggle(false);
+        } pageDict[activePage].OnFadeFinished += PauseMenuPage_OnFadeFinished;
+        activePage = pageType;
         OnPageChanged?.Invoke(pageType);
+    }
+
+    private void PauseMenuPage_OnFadeFinished(PauseMenuPage callingPage) {
+        ToggleActiveMenu(true);
+        pageDict[activePage].Toggle(true);
+        callingPage.OnFadeFinished -= PauseMenuPage_OnFadeFinished;
     }
 
     private void ToggleActiveMenu(bool active) {
@@ -95,37 +95,4 @@ public class PauseMenu : MonoBehaviour {
     public MenuPage GetActivePage() {
         return activePage;
     }
-
-    /*
-
-    /// Load the polaroids menu
-    /// TODO: implement transitioning to the polaroids menu
-    public void TogglePolaroidMenu() {
-        if (currentMenu == pauseMenuUI) {
-            currentMenu = polaroidMenu;
-        } else {
-            currentMenu = pauseMenuUI;
-        }
-        pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
-        polaroidMenu.SetActive(!polaroidMenu.activeSelf);
-    }
-
-    public void PolaroidPage() {
-        spellsControls.SetActive(false);
-        polaroidOptions.SetActive(true);
-    }
-
-    public void SpellsPage() {
-        polaroidOptions.SetActive(false);
-        spellsControls.SetActive(true);
-    }
-
-    /// Load the options menu
-    /// TODO: implement transitioning into scene for the options menu
-    public void LoadOptions()
-    {
-        Debug.Log("Loading Options...");
-    }
-
-    */
 }

@@ -63,7 +63,7 @@ public class PauseMenuSpellTutorialButton : MonoBehaviour, IPointerEnterHandler,
     }
 
     public bool CallHome(bool returnForReal) {
-        if (returnForReal) GetComponentInParent<PauseMenuSpells>().SetActiveSpellPageHome();
+        if (returnForReal) GetComponentInParent<PauseMenuSpells>().SetActiveSpellPageHome(true);
         return returnForReal;
     }
 
@@ -79,8 +79,6 @@ public class PauseMenuSpellTutorialButton : MonoBehaviour, IPointerEnterHandler,
     }
 
     private void PauseMenuSpellTutorials_OnTutorialChanged() {
-        //print(pageScript.tutorialSequence.Count);
-        //print(pageScript.head.Value);
         buttonAction.Invoke(false);
     }
 

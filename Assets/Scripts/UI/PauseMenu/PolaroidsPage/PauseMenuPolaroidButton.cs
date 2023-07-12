@@ -12,7 +12,7 @@ public class PauseMenuPolaroidButton : MonoBehaviour, IPointerEnterHandler, IPoi
     [SerializeField] private float scaleSpeed = 1.5f;
     private Vector3 anchorScale;
 
-    private PauseMenuPolaroids masterScript;
+    private PauseMenuPage masterScript;
     private PauseMenuPolaroidShowcase showScript;
 
     private enum State {
@@ -26,7 +26,7 @@ public class PauseMenuPolaroidButton : MonoBehaviour, IPointerEnterHandler, IPoi
 
     void Awake() {
         anchorScale = transform.localScale;
-        masterScript = GetComponentInParent<PauseMenuPolaroids>();
+        masterScript = GetComponentInParent<PauseMenuPage>();
         showScript = masterScript.GetComponentInChildren<PauseMenuPolaroidShowcase>();
         GetComponent<Button>().onClick.AddListener(OnClick);
     }
@@ -70,10 +70,10 @@ public class PauseMenuPolaroidButton : MonoBehaviour, IPointerEnterHandler, IPoi
                 if (ApproachScaleByMultiplier(2f - scaleMultiplier, scaleSpeed)) state = State.Normal;
                 break;
             case State.OnClickUnderthrow:
-                if (ApproachScaleByMultiplier(2f - scaleMultiplier, scaleSpeed * 1.75f)) state = State.OnClickOverthrow;
+                if (ApproachScaleByMultiplier(2f - scaleMultiplier, scaleSpeed * 2f)) state = State.OnClickOverthrow;
                 break;
             case State.OnClickOverthrow:
-                if (ApproachScaleByMultiplier(scaleMultiplier * 1.1f, scaleSpeed * 2f)) state = State.Normal;
+                if (ApproachScaleByMultiplier(scaleMultiplier * 1.1f, scaleSpeed * 2.25f)) state = State.Normal;
                 break;
         }
     }

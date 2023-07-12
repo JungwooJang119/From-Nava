@@ -42,7 +42,12 @@ public class PauseMenuPolaroidShowcaseElement : MonoBehaviour {
     }
 
     void OnEnable() {
-        state = State.Show;
+        if (state == State.Idle) {
+            state = State.Show;
+        } else {
+            state = State.Idle;
+            gameObject.SetActive(false);
+        }
     }
 
     void Update() {
@@ -59,6 +64,7 @@ public class PauseMenuPolaroidShowcaseElement : MonoBehaviour {
                 break;
             case State.Hide:
                 if (ApproachScaleAndAlpha(scaleMultiplier, 0f, lerpSpeed * 1.5f)) {
+                    state = State.Idle;
                     gameObject.SetActive(false);
                 } break;
         }

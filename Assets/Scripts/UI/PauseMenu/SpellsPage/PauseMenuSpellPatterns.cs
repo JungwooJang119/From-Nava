@@ -23,8 +23,4 @@ public class PauseMenuSpellPatterns : MonoBehaviour, ISpellPage {
     public Sprite GetDisabledPattern() {
         return disabledPattern;
     }
-
-    void Update() {
-        
-    }
 }

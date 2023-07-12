@@ -8,10 +8,10 @@ using static PauseMenuPolaroidShowcaseElement;
 
 public class PauseMenuPolaroidShowcase : MonoBehaviour {
 
-    private float scaleToScreenMultiplier = 1.25f;
+    private float scaleToScreenMultiplier = 1.5f;
     private float lerpValue = 0f;
     private float targetLerp = 0f;
-    private float lerpSpeed = 2f;
+    private float lerpSpeed = 2.5f;
 
     private enum State {
         Idle,
@@ -52,7 +52,7 @@ public class PauseMenuPolaroidShowcase : MonoBehaviour {
             case State.ToPage:
                 var resPage = false;
                 foreach (PauseMenuPolaroidShowcaseElement element in elements) {
-                    resPage = ApproachScaleAndLerp(element, 1f, lerpSpeed);
+                    resPage = ApproachScaleAndLerp(element, scaleToScreenMultiplier - 0.1f, lerpSpeed);
                     ApproachPositionAndColor(element);
                 } UpdateLerpFade();
                 if (resPage) {
@@ -102,14 +102,14 @@ public class PauseMenuPolaroidShowcase : MonoBehaviour {
     private bool ApproachScaleAndLerp(PauseMenuPolaroidShowcaseElement element, float multiplier, float lerpSpeed) {
         if (lerpValue != targetLerp) {
             lerpValue = Mathf.MoveTowards(lerpValue, targetLerp, Time.unscaledDeltaTime * lerpSpeed);
-            element.transform.localScale = Vector3.Lerp(element.AnchorScale, element.AnchorScale * multiplier, targetLerp == 0 ? 1 - lerpValue : lerpValue);
+            element.transform.localScale = Vector3.Lerp(element.AnchorScale, element.AnchorScale * multiplier, lerpValue);
         } else return true;
         return false;
     }
 
     private void ApproachPositionAndColor(PauseMenuPolaroidShowcaseElement element) {
         var rect = element.GetComponent<RectTransform>();
-        var targetPosition = new Vector2(0, element.AnchorPosition.y * scaleToScreenMultiplier);
+        var targetPosition = new Vector2(0, element.AnchorPosition.y * scaleToScreenMultiplier + 10f);
         rect.anchoredPosition = Vector2.Lerp(element.AnchorPosition, targetPosition, lerpValue);
         if (element.GetElementType() == ElementType.Text) {
             element.SetColor(Vector4.Lerp(element.AnchorTextColor, Color.white, lerpValue),

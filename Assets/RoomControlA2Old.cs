@@ -30,7 +30,7 @@ public class RoomControlA2Old : MonoBehaviour
         if (!isClear) {
             canClear = true;
             foreach(Firewood_Script _firewood in firewoods) {
-                if (!_firewood.GetLit()) {
+                if (!_firewood.isLit) {
                     canClear = false;
                     break;
                 }

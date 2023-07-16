@@ -11,7 +11,8 @@ public enum EnemyState {
     ATTACK,
     PUSHED,
     STUNNED,
-    SLOWED
+    SLOWED,
+    DEAD
 }
 
 public class Enemy : MonoBehaviour

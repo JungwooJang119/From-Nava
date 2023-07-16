@@ -8,7 +8,6 @@ public class MeleeMiniBossController : MonoBehaviour
     public float speed;
     public Transform player;
     public float minDistance;
-    public float engageDistance;
     public float maxDistance;
 
     public float attackInterval;
@@ -46,6 +45,9 @@ public class MeleeMiniBossController : MonoBehaviour
     public GameObject upHB;
     public GameObject downHB;
 
+    public GameObject windBlast;
+    public bool isWindBlasting;
+
 
     //Animation States
     const string BIG_GUY_IDLE = "big_guy_idle_down";
@@ -72,6 +74,7 @@ public class MeleeMiniBossController : MonoBehaviour
         animator = GetComponent<Animator>();
         state = GetComponent<Enemy>().currState;
         lastChangeTime = 0f;
+        isWindBlasting = false;
     }
 
     private void NewDirection()
@@ -102,7 +105,7 @@ public class MeleeMiniBossController : MonoBehaviour
                     NewDirection();
                 }
                 transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
-                if (Vector2.Distance(transform.position, player.position) < minDistance) {
+                if (Vector2.Distance(transform.position, player.position) < maxDistance) {
                     state = EnemyState.CHASE;
                 }
                 break;
@@ -118,7 +121,7 @@ public class MeleeMiniBossController : MonoBehaviour
                     NewDirection();
                 }
                 transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
-                if (Vector2.Distance(transform.position, player.position) < minDistance) {
+                if (Vector2.Distance(transform.position, player.position) < maxDistance) {
                     state = EnemyState.CHASE;
                 }
                 break;
@@ -145,7 +148,7 @@ public class MeleeMiniBossController : MonoBehaviour
                 break;
             case EnemyState.ATTACK:
                 if (enemy.GetPushed()) {
-                    enemy.PushTranslate();
+                    enemy.PushTranslate(); 
                 }
                 enemy.ReactToPlayerInRange(true);
                 
@@ -156,6 +159,10 @@ public class MeleeMiniBossController : MonoBehaviour
                         SpawnSmolGuy();
                     } else {
                         BigAttack();
+                        // if (isWindBlasting) {
+
+                        //     isWindBlasting = false;
+                        // }
                     }
                     currTime = 0;
                     //StartCoroutine(AnimationWait());
@@ -166,6 +173,9 @@ public class MeleeMiniBossController : MonoBehaviour
                 if (!attacking && player.gameObject.GetComponent<PlayerController>().playerHealth <= 0) {
                     state = EnemyState.IDLE;
                 }
+                break;
+            case EnemyState.DEAD:
+            //TODO: End BigAttack Animation/Attack/Instantiate Immediately, Play Death Animation (facing forward normal bigguy_15 sprite)
                 break;
         }
     }
@@ -245,59 +255,4 @@ public class MeleeMiniBossController : MonoBehaviour
     IEnumerator AnimationWait() {
         yield return new WaitForSeconds(1.0f);
     }
-
-        // // Update is called once per frame
-    // void Update()
-    // {
-    //     if (transform.eulerAngles.z != 0)
-    //     {
-    //         transform.eulerAngles = new Vector3(0, 0, 0);
-    //     }
-        
-    //     if (idle)
-    //     {
-    //         transform.position = Vector2.Lerp(pos1, pos2, Mathf.PingPong(Time.time * speed * 0.1f, 1.0f));
-    //         // animator.SetFloat("X", .x);
-    //         // animator.SetFloat("Y", movement.y);
-    //         // animator.SetTrigger(doWalking);
-    //     }
-        
-    //     if(!enemy.GetPushed()){
-    //         if (Vector2.Distance(transform.position, player.position) < engageDistance || !idle)
-    //         {
-    //             idle = false;
-    //             currTime += Time.deltaTime;
-    //             if (Vector2.Distance(transform.position, player.position) > minDistance && !attacking)
-    //             {
-    //                 transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-    //             }
-    //             if (currTime >= attackInterval)
-    //             {
-    //                 dir = player.position - transform.position;
-    //                 weapon.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
-    //                 attacking = true;
-    //                 weapon.SetActive(true);
-    //                 currTime = 0;
-    //             }
-    //             if (attacking && (currTime >= attackTime))
-    //             {
-    //                 attacking = false;
-    //                 weapon.SetActive(false);
-    //                 currTime = 0;
-    //             }
-    //         }
-    //     } else {
-    //         //enemy.PushTranslate();
-    //     }
-    // }
-
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if(collision.gameObject == player.gameObject && collision.GetContact(0).collider.gameObject != this.gameObject)
-    //     {
-    //         print("player hit");
-    //         //player.position = player.position + dir;
-    //         player.gameObject.GetComponent<Rigidbody2D>().AddRelativeForce(2000*dir);
-    //     }
-    // }
 }

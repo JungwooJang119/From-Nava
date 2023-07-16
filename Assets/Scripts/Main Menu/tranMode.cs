@@ -29,12 +29,7 @@ public class tranMode : MonoBehaviour {
 
 	void Update() {
 		if (alpha != target) {
-			if (alpha < target) {
-				alpha = Mathf.Min(target, alpha + Time.deltaTime * 1f/currentTransitionTime);
-			}
-			else if (alpha > target) {
-				alpha = Mathf.Max(target, alpha - Time.deltaTime * 1f/currentTransitionTime);
-			}
+			alpha = Mathf.MoveTowards(alpha, target, Time.unscaledDeltaTime * 1f/currentTransitionTime);
 			fadeScreen.alpha = alpha;
 		} else if (target == 0) {
 			fadeScreen.blocksRaycasts = false;
@@ -75,14 +70,14 @@ public class tranMode : MonoBehaviour {
 		return currentTransitionTime;
 	}
 
-	public float DarkenIn() {
-		currentTransitionTime = longTransitionTime;
+	public float DarkenIn(bool fastTransition = false) {
+		currentTransitionTime = fastTransition ? shortTransitionTime / 2f : longTransitionTime;
 		target = 0;
 		return currentTransitionTime;
 	}
 
-	public float DarkenOut() {
-		currentTransitionTime = longTransitionTime;
+	public float DarkenOut(bool fastTransition = false) {
+		currentTransitionTime = fastTransition ? shortTransitionTime / 2f : longTransitionTime;
 		target = 0.5f;
 		return currentTransitionTime;
 	}
@@ -109,7 +104,6 @@ public class tranMode : MonoBehaviour {
 		//Load Scene;
 		SceneManager.LoadScene(2);
 	}
-
 
 	IEnumerator LoadMusic() {
 		var musicSource = AudioControl.Instance.PlayMusic("Exploration Opening", false);

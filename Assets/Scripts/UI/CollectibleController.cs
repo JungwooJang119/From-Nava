@@ -40,11 +40,11 @@ public class CollectibleController : MonoBehaviour {
 
 	private bool busy;
 
-	// Start is called before the first frame update
 	void Start() {
 		callStack = new List<Call>();
 		polaroidsClaimed = new List<string>();
 		tutorialsClaimed = new List<string>();
+		tutorialsClaimed.Add("Melee");
 
 		polaroidManager = GetComponentInChildren<PolaroidManager>();
 		polaroidManager.OnDisplayEnd += CollectibleManager_OnDisplayEnd;
@@ -57,23 +57,31 @@ public class CollectibleController : MonoBehaviour {
 		transition = transform.parent.GetComponentInChildren<tranMode>();
 	}
 
-	// Update is called once per frame
+
 	void Update() {
 		if (callStack.Count > 0 && !busy) {
-			PlayerController.Instance.DeactivateMovement();
+			//PlayerController.Instance.DeactivateMovement();
 			switch (callStack[0].type) {
 				case CollectibleType.Polaroid:
-					DisplayCollectible(polaroidManager, callStack[0].name, callStack[0].firstTime);
+					//DisplayCollectible(polaroidManager, callStack[0].name, callStack[0].firstTime);
 					break;
 				case CollectibleType.Tutorial:
-					DisplayCollectible(tutorialManager, callStack[0].name, callStack[0].firstTime);
+					//DisplayCollectible(tutorialManager, callStack[0].name, callStack[0].firstTime);
 					break;
 				case CollectibleType.Report:
 					DisplayCollectible(reportManager, callStack[0].name, callStack[0].firstTime);
 					break;
 			}
 			callStack.RemoveAt(0);
-			busy = true;
+			//busy = true;
+		} if (Input.GetKeyDown("p")) {
+			for (int i = 1; i <= 3; i++) AddCall(CollectibleType.Polaroid, "A" + i);
+			for (int i = 1; i <= 3; i++) AddCall(CollectibleType.Polaroid, "B" + i);
+			for (int i = 1; i <= 3; i++) AddCall(CollectibleType.Polaroid, "C" + i);
+			AddCall(CollectibleType.Tutorial, "Fireball");
+			AddCall(CollectibleType.Tutorial, "Iceball");
+			AddCall(CollectibleType.Tutorial, "Chair");
+			AddCall(CollectibleType.Tutorial, "Windblast");
 		}
 	}
 
@@ -84,7 +92,6 @@ public class CollectibleController : MonoBehaviour {
 		} else {
 			manager.Display(name);
 		}
-		print("here");
 	}
 
 	public void AddCall(CollectibleType type, string name, bool firstTime = true) {
@@ -136,6 +143,10 @@ public class CollectibleController : MonoBehaviour {
 	public bool GetBusy() {
 		return busy;
 	}
+
+	public List<string> GetTutorialList() {
+		return tutorialsClaimed;
+    }
 }
 
 public interface ICollectibleManager {

@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firewoodController: {fileID: 0}
+  revealRoomCode: 0
   A2Chest: {fileID: 0}
   cheat: 0
   door: {fileID: 0}
@@ -451,11 +452,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressurePlateController: {fileID: 0}
+  revealRoomCode: 0
   B3Chest: {fileID: 0}
   cheat: 0
-  virtualCameraName: CM vcam1
-  _cameraTarget: {fileID: 0}
-  _returnToPlayer: {fileID: 0}
+  cameraTarget: {fileID: 0}
+  returnToPlayer: {fileID: 0}
   door: {fileID: 0}
   isClear: 0
 --- !u!1 &966732056
@@ -504,6 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firewoodController: {fileID: 0}
+  revealRoomCode: 0
   A2Chest: {fileID: 0}
   cheat: 0
   door: {fileID: 0}
@@ -573,7 +575,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1245335157}
   - component: {fileID: 1245335158}
-  - component: {fileID: 1245335159}
   m_Layer: 0
   m_Name: A2 - 3
   m_TagString: Untagged
@@ -609,23 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firewoodController: {fileID: 0}
-  A2Chest: {fileID: 0}
-  cheat: 1
-  door: {fileID: 0}
---- !u!114 &1245335159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245335156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8850ce320e038584494734560d183b56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firewoodController: {fileID: 0}
-  isClear: 0
+  revealRoomCode: 0
   A2Chest: {fileID: 0}
   cheat: 1
   door: {fileID: 0}
@@ -814,6 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firewoodController: {fileID: 0}
+  revealRoomCode: 0
   A2Chest: {fileID: 0}
   cheat: 0
   door: {fileID: 0}
@@ -862,6 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firewoodController: {fileID: 0}
+  revealRoomCode: 0
   A2Chest: {fileID: 0}
   cheat: 0
   door: {fileID: 0}
@@ -943,11 +930,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressurePlateController: {fileID: 0}
+  revealRoomCode: 0
   B3Chest: {fileID: 0}
   cheat: 0
-  virtualCameraName: CM vcam1
-  _cameraTarget: {fileID: 0}
-  _returnToPlayer: {fileID: 0}
+  cameraTarget: {fileID: 0}
+  returnToPlayer: {fileID: 0}
   door: {fileID: 0}
   isClear: 0
 --- !u!1 &2463856277162178070

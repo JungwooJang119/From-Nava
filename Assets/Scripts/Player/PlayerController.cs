@@ -13,7 +13,6 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] bool isDark;
     public int playerHealth;
     [SerializeField] private int maxHealth;
-    [SerializeField] private Text healthText;
     [SerializeField] private float speed = 7f;
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dissolveShader;
@@ -117,9 +116,6 @@ public class PlayerController : Singleton<PlayerController>
             animator.SetFloat("X", movement.x);
             animator.SetFloat("Y", movement.y);
             animator.SetBool("isWalking", true);
-
-            //C: There might be a better way to do this but i could not think of/find one
-
         } 
         else 
             animator.SetBool("isWalking", false);
@@ -127,18 +123,17 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("EnemyProjectile")) {
-            // **FIX**
-            //Damage taken when melee on enemy
             TakeDamage(1);
-            if (playerHealth <= 0) {
-                playerHealth = 0;
-                StartCoroutine(Die());
-            }
         }
     }
 
     public void TakeDamage(int damage) {
         playerHealth -= damage;
+        if (playerHealth <= 0) {
+            playerHealth = 0;
+            StartCoroutine(Die());
+        }
+        GetComponent<HealthBar>().ChangeHealth(playerHealth);
         if (damageFlash != null)
         {
             damageFlash.Flash();

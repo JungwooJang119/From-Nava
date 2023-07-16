@@ -4,6 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum EnemyState {
+    IDLE,
+    WANDER,
+    CHASE,
+    ATTACK,
+    PUSHED,
+    STUNNED,
+    SLOWED,
+    DEAD
+}
+
 public class Enemy : MonoBehaviour
 {
     public event Action<int> OnDamageTaken;
@@ -28,6 +39,8 @@ public class Enemy : MonoBehaviour
     private Animator animator;
 
     private SpriteRenderer sr;
+
+    public EnemyState currState;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -102,12 +115,6 @@ public class Enemy : MonoBehaviour
         dealthShader.DissolveOut();
         yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Melee") {
-            //OnMeleeHit(3);
-        }
     }
 
     public void ReactToPlayerInRange(bool playerInRange) {

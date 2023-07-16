@@ -17,12 +17,13 @@ public class PanCamera : MonoBehaviour
 	private Transform _player;
 	private float _currentDistance;
 
-    private bool isActive = false;
+    private bool isActive;
 
     void Start() {
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		_virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
 		_returnToPlayer = _virtualCamera.Follow;
+		isActive = false;
 	}
 
     // Utilizes Grace's Text Pop Script to check if the player is in range for interaction;

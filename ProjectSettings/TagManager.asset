@@ -19,6 +19,7 @@ TagManager:
   - EnemyProjectile
   - DarkRoom
   - Pit
+  - WindBlast
   layers:
   - Default
   - TransparentFX

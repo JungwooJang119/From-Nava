@@ -93,6 +93,9 @@ public class Spell : MonoBehaviour
         }
 
         if (isWind) {
+            if (other.gameObject.CompareTag("WindBlast")) {
+                return;
+            }
             if (other.gameObject.CompareTag("Walls")) {
                 OnSpellDestroy?.Invoke(other.gameObject);
             } return;

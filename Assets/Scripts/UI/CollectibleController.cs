@@ -60,28 +60,20 @@ public class CollectibleController : MonoBehaviour {
 
 	void Update() {
 		if (callStack.Count > 0 && !busy) {
-			//PlayerController.Instance.DeactivateMovement();
+			PlayerController.Instance.DeactivateMovement();
 			switch (callStack[0].type) {
 				case CollectibleType.Polaroid:
-					//DisplayCollectible(polaroidManager, callStack[0].name, callStack[0].firstTime);
+					DisplayCollectible(polaroidManager, callStack[0].name, callStack[0].firstTime);
 					break;
 				case CollectibleType.Tutorial:
-					//DisplayCollectible(tutorialManager, callStack[0].name, callStack[0].firstTime);
+					DisplayCollectible(tutorialManager, callStack[0].name, callStack[0].firstTime);
 					break;
 				case CollectibleType.Report:
 					DisplayCollectible(reportManager, callStack[0].name, callStack[0].firstTime);
 					break;
 			}
 			callStack.RemoveAt(0);
-			//busy = true;
-		} if (Input.GetKeyDown("p")) {
-			for (int i = 1; i <= 3; i++) AddCall(CollectibleType.Polaroid, "A" + i);
-			for (int i = 1; i <= 3; i++) AddCall(CollectibleType.Polaroid, "B" + i);
-			for (int i = 1; i <= 3; i++) AddCall(CollectibleType.Polaroid, "C" + i);
-			AddCall(CollectibleType.Tutorial, "Fireball");
-			AddCall(CollectibleType.Tutorial, "Iceball");
-			AddCall(CollectibleType.Tutorial, "Chair");
-			AddCall(CollectibleType.Tutorial, "Windblast");
+			busy = true;
 		}
 	}
 
@@ -113,8 +105,6 @@ public class CollectibleController : MonoBehaviour {
 				}
 			}
 		}
-		//print("here");
-		//if (type == CollectibleType.Polaroid && firstTime) AudioControl.Instance.FadeMusic();
 		callStack.Add(new Call(type, name, firstTime));
 	}
 

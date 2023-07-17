@@ -115,13 +115,15 @@ public class Firewood_Script : MonoBehaviour
         } adjFirewoods = validGOs.ToArray();
     }
 
+    #if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         foreach (GameObject firewood in adjFirewoods) {
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(transform.position, firewood.transform.position);
         }
     }
+    #endif
 
-	public void SetLit(bool isLit) { this.isLit = isLit; }
+    public void SetLit(bool isLit) { this.isLit = isLit; }
 	public bool GetLit() { return isLit; }
 }

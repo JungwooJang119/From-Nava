@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RoomLights;
 using Cinemachine;
 
-public class RoomControlA2Old : MonoBehaviour
+public class RoomControlA2 : MonoBehaviour
 {
     [SerializeField] GameObject firewoodController;
+	[SerializeField] RoomCode revealRoomCode;
     private Firewood_Script[] firewoods;
-    private bool canClear = true;
-
-    public bool isClear = false;
+	private int firewoodCount = 0;
 
     public GameObject A2Chest = null;
     public bool cheat = false;
@@ -21,24 +21,24 @@ public class RoomControlA2Old : MonoBehaviour
     
     // Start is called before the first frame update
     void Start() {
+		cameraTarget = A2Chest ? A2Chest : door;
+		virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
+		returnToPlayer = PlayerController.Instance.transform;
+
 		firewoods = firewoodController.GetComponentsInChildren<Firewood_Script>();
-        virtualCamera = GameObject.Find("Main Camera").transform.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
-        returnToPlayer = virtualCamera.Follow;
+		foreach (Firewood_Script firewood in firewoods) {
+			firewood.OnLitStatusChange += RoomControlA2_OnLitStatusChange;
+			if (firewood.GetLit()) firewoodCount++;
+		}
 	}
 
-    private void Update() {
-        if (!isClear) {
-            canClear = true;
-            foreach(Firewood_Script _firewood in firewoods) {
-                if (!_firewood.GetLit()) {
-                    canClear = false;
-                    break;
-                }
-            }
-            if (canClear) {
-                    CompleteRoom();
-            }
-        }
+    private void RoomControlA2_OnLitStatusChange(int change) {
+		firewoodCount += change;
+        if (firewoodCount == firewoods.Length) {
+			foreach (Firewood_Script firewood in firewoods) {
+				firewood.OnLitStatusChange -= RoomControlA2_OnLitStatusChange;
+			} CompleteRoom();
+		}
     }
 
 	IEnumerator CameraTransitionIn() {
@@ -54,9 +54,14 @@ public class RoomControlA2Old : MonoBehaviour
             StartCoroutine(CameraTransitionIn());
 			door.GetComponent<Door>().OpenDoor();
             if (A2Chest != null) A2Chest.SetActive(true);
-        } else {
+			else ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);
+		} else {
 			if (A2Chest != null) A2Chest.SetActive(true);
 			Destroy(this.gameObject);
 		}
 	}
+
+	public void SetRoomCode(RoomCode revealRoomCode) {
+		this.revealRoomCode = revealRoomCode;
+    }
 }

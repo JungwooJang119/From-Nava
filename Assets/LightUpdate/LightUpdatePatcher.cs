@@ -11,7 +11,9 @@ public class LightUpdatePatcher : MonoBehaviour {
         GameObject.Find("Light 2D").gameObject.SetActive(false);
         // Generate Freeform Lights
         PrefabUtility.InstantiatePrefab(Resources.Load("RoomLights"));
-        PrefabUtility.UnpackPrefabInstance(GameObject.Find("RoomLights"), PrefabUnpackMode.Completely, InteractionMode.UserAction);
+        var roomLights = GameObject.Find("RoomLights");
+        roomLights.GetComponent<RoomLights>().SetLightIntensity(0.7f);
+        PrefabUtility.UnpackPrefabInstance(roomLights, PrefabUnpackMode.Completely, InteractionMode.UserAction);
         // Update RoomControl variables
         // A2 Variables
         var roomControl = GameObject.Find("RoomControl").transform;

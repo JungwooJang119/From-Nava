@@ -48,12 +48,14 @@ public class PlayerController : Singleton<PlayerController>
 
     public Animator animator;
 
-    private bool canMove = true;
+    public bool canMove = true;
     private bool canChangeDir = true;
 
     private PlayerInput input;
 
-    
+    [SerializeField] private float iFrameTime;
+    private float currIFrameTime;
+    private bool canBeDamaged;
 
     private void Awake() {
         InitializeSingleton();
@@ -72,6 +74,8 @@ public class PlayerController : Singleton<PlayerController>
         canMove = true;
         canChangeDir = true;
         sr = GetComponent<SpriteRenderer>();
+        canBeDamaged = true;
+        currIFrameTime = iFrameTime;
     }
 
     private void FixedUpdate() {
@@ -84,11 +88,19 @@ public class PlayerController : Singleton<PlayerController>
         if (isPushed) {
             PushTranslate();
         }
+        if (currIFrameTime >= iFrameTime) {
+            canBeDamaged = true;
+        } else {
+            canBeDamaged = false;
+            currIFrameTime += Time.deltaTime;
+        }
     }
 
     private void OnMove(InputValue movementValue) {
-        movement = movementValue.Get<Vector2>();
-        ChooseFacingDir();
+        if (canMove) {
+            movement = movementValue.Get<Vector2>();
+            ChooseFacingDir();
+        }
     }
 
     private void ChooseFacingDir ()
@@ -128,31 +140,37 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     public void TakeDamage(int damage) {
-        playerHealth -= damage;
+        if (canBeDamaged) {
+            playerHealth -= damage;
+            GetComponent<HealthBar>().ChangeHealth(playerHealth);
+            if (damageFlash != null) {
+                damageFlash.Flash();
+            }
+            currIFrameTime = 0f;
+        }
         if (playerHealth <= 0) {
             playerHealth = 0;
             StartCoroutine(Die());
-        }
-        GetComponent<HealthBar>().ChangeHealth(playerHealth);
-        if (damageFlash != null)
-        {
-            damageFlash.Flash();
         }
     }
 
     IEnumerator Die() {
 		canMove = false;
         canChangeDir = false;
+        movement = new Vector2(0, 0);
         dissolveShader.DissolveOut();
 		GetComponent<Collider2D>().enabled = false;
+        animator.SetBool("isWalking", false);
         yield return new WaitForSeconds(3f);
 		transform.position = spawn.transform.position;
 		dissolveShader.DissolveIn();
 		GetComponent<Collider2D>().enabled = true;
+        yield return new WaitForSeconds(2f);
         canMove = true;
         canChangeDir = true;
 		ChooseFacingDir();
         playerHealth = maxHealth;
+        GetComponent<HealthBar>().ChangeHealth(playerHealth);
     }
 
     void OnMelee() {
@@ -173,6 +191,8 @@ public class PlayerController : Singleton<PlayerController>
     public void DeactivateMovement() {
         canMove = false;
         canChangeDir = false;
+        animator.SetBool("isWalking", false);
+        movement = new Vector2(0, 0);
     }
 
     public void ChangeSpawn(Transform newSpawn) {
@@ -198,6 +218,7 @@ public class PlayerController : Singleton<PlayerController>
             canMove = true;
             isPushed = false;
         } else {
+            canMove = false;
             transform.Translate(pushDir * pushSpd * Time.deltaTime);
             pushDist -= (pushDir *  pushSpd * Time.deltaTime).magnitude;
         }
@@ -205,6 +226,16 @@ public class PlayerController : Singleton<PlayerController>
 
     public bool GetPushed() {
         return isPushed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (!other.gameObject.CompareTag("WindBlast")) {
+            if (isPushed) {
+                pushDist = 0;
+                isPushed = false;
+                canMove = true;
+            }
+        }
     }
 }
 

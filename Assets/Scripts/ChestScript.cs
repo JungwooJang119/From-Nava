@@ -21,6 +21,9 @@ public class ChestScript : MonoBehaviour
     private ButtonTutorial _tutScript;
 
     [SerializeField] private bool startsActive;
+    [SerializeField] private PlayerController playerController;
+
+    private Color spriteColor;
 
     // Key to interact
     private string intKey = "space";
@@ -28,8 +31,10 @@ public class ChestScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spriteColor = GetComponent<SpriteRenderer>().color;
         collectible = GetComponent<ClaimCollectible>();
         collectible.OnCollectibleClaimed += ChestScript_OnCollectibleClaimed;
+        playerController = PlayerController.Instance;
 
 		virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
         returnToPlayer = PlayerController.Instance.transform;
@@ -64,10 +69,20 @@ public class ChestScript : MonoBehaviour
 	}
 
     IEnumerator CameraTransitionIn() {
-		yield return new WaitForSeconds(0.0f);
+        spriteColor.a = 0f;
+        GetComponent<SpriteRenderer>().color = spriteColor;
+        playerController.DeactivateMovement();
+        while (spriteColor.a < 1.02f) {
+            //print(spriteColor.a);
+            spriteColor.a += 0.02f;
+            GetComponent<SpriteRenderer>().color = spriteColor;
+            yield return new WaitForSeconds(0.01f);
+        }
+		//yield return new WaitForSeconds(0.5f); //delay before moving camera //maybe dissolve/fade chest in over 0.5f seconds???
 		virtualCamera.Follow = transform;
 		yield return new WaitForSeconds(2f);
         virtualCamera.Follow = returnToPlayer;
+        playerController.ActivateMovement();
 	}
 
     private void OnTriggerEnter2D(Collider2D other) {

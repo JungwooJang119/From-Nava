@@ -16,11 +16,13 @@ public class Door : MonoBehaviour
     public void OpenDoor() {
         animator.SetBool("IsUnlocked", true);
         isOpen = true;
+        AudioControl.Instance.PlaySFX("Door Opening", gameObject, 0.2f, 1f);
     }
 
     public void CloseDoor() {
         animator.SetBool("IsUnlocked", false);
         isOpen = false;
+        AudioControl.Instance.PlaySFX("Door Opening", gameObject, 0.2f, 1f);
     }
 
     public void FlipDoor() {

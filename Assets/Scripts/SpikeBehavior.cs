@@ -22,7 +22,7 @@ public class SpikeBehavior : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {        
-        if (other.gameObject.CompareTag("Enemy")) { 
+        if (other.gameObject.CompareTag("Enemy")) { // and enemy is in pushed state
             Vector2 avgCollision = new Vector2(0, 0);
 
             for (int i = 0; i < other.contactCount; i++) {
@@ -48,7 +48,8 @@ public class SpikeBehavior : MonoBehaviour
             Vector3 pushDir = Vector3.Normalize(other.transform.position - contact);
             Debug.Log(pushDir);
 
-            other.gameObject.GetComponent<PlayerController>().Push(pushDir, knockbackDist, knockbackSpd);
+            //other.gameObject.GetComponent<PlayerController>().Push(pushDir, knockbackDist, knockbackSpd); // if knockbackDist is set to 0, this must be commented or else player
+            // canMove will default to true even when dying in couroutine Die()
             other.gameObject.GetComponent<PlayerController>().TakeDamage(dmg);
 
         }

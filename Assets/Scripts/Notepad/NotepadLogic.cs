@@ -76,11 +76,14 @@ public class NotepadLogic : Singleton<NotepadLogic>
         pattern = new List<int>();
         AddToPattern(startNode);
         //sfx, vfx, etc
+        AudioControl.Instance.PlaySFX("Node1", PlayerController.Instance.gameObject, 0f, 0.25f);
     }
 
     private void AddToPattern(int num) {
         pattern.Add(num);
         OnNodeSelected.Invoke(this, num);
+        string nodeName = "Node" + (num.ToString());
+        AudioControl.Instance.PlaySFX(nodeName, PlayerController.Instance.gameObject, 0f, 0.25f);
         PrintPattern();
     }
 
@@ -113,6 +116,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
     private void OnInvalidPattern()
     {
         print("Invalid Pattern");
+        AudioControl.Instance.PlaySFX("NodeWrong", PlayerController.Instance.gameObject, 0f, 0.25f);
         OnSpellCast?.Invoke(this, new OnSpellCastArgs(SpellType.NONE, pattern));
         BlockClicks();
     }

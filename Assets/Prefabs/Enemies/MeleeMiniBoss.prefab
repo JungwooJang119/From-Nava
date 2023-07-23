@@ -72,6 +72,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  windBlast: {fileID: 0}
+  spell: {fileID: 0}
+  isWindBlasting: 0
+  currTime: 0
+  facingDir: 0
 --- !u!1 &1202584760373933976
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  windBlast: {fileID: 0}
+  spell: {fileID: 0}
+  isWindBlasting: 0
+  currTime: 0
+  facingDir: 0
 --- !u!1 &4158883296006723681
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +365,6 @@ MonoBehaviour:
   speed: 2
   player: {fileID: 0}
   minDistance: 4
-  engageDistance: 6
   maxDistance: 10
   attackInterval: 2
   attackTime: 1
@@ -368,7 +377,8 @@ MonoBehaviour:
   leftHB: {fileID: 5998775701133988874}
   upHB: {fileID: 5387012114118913474}
   downHB: {fileID: 3868134147267922492}
-  spawnEnemyPoint: {fileID: 3708051581357048629}
+  windBlast: {fileID: 0}
+  isWindBlasting: 0
 --- !u!95 &3183967218974388648
 Animator:
   serializedVersion: 4
@@ -490,6 +500,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  windBlast: {fileID: 0}
+  spell: {fileID: 0}
+  isWindBlasting: 0
+  currTime: 0
+  facingDir: 0
 --- !u!1 &5998775701133988874
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,6 +577,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  windBlast: {fileID: 0}
+  spell: {fileID: 0}
+  isWindBlasting: 0
+  currTime: 0
+  facingDir: 0
 --- !u!1 &8465108248987488370
 GameObject:
   m_ObjectHideFlags: 0

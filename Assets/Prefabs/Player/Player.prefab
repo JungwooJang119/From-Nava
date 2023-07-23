@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3841333749613898879}
   m_Layer: 0
   m_Name: UpHB
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   hitboxE: {fileID: 0}
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
-  damage: 10
+  damage: 2
 --- !u!1 &2461991493637316061
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6062890577065012619}
   m_Layer: 0
   m_Name: DownHB
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   hitboxE: {fileID: 0}
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
-  damage: 5
+  damage: 2
 --- !u!1 &2571063176125842610
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 3744735489358376102}
   m_Layer: 0
   m_Name: LeftHB
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   hitboxE: {fileID: 0}
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
-  damage: 10
+  damage: 2
 --- !u!1 &3906375456152486121
 GameObject:
   m_ObjectHideFlags: 0
@@ -5149,7 +5149,7 @@ GameObject:
   - component: {fileID: 5411811488437321766}
   m_Layer: 0
   m_Name: RightHB
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5212,7 +5212,7 @@ MonoBehaviour:
   hitboxE: {fileID: 0}
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
-  damage: 10
+  damage: 2
 --- !u!1 &5948924540263549087
 GameObject:
   m_ObjectHideFlags: 0
@@ -14965,7 +14965,7 @@ GameObject:
   - component: {fileID: 5099975975764230850}
   m_Layer: 0
   m_Name: Melee
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15006,7 +15006,7 @@ MonoBehaviour:
   hitboxE: {fileID: 7364822561145139933}
   hitboxS: {fileID: 6913153627440720359}
   hitboxW: {fileID: 1207398729555764716}
-  damage: 10
+  damage: 2
 --- !u!1 &7257062048071687621
 GameObject:
   m_ObjectHideFlags: 0
@@ -19894,6 +19894,7 @@ GameObject:
   - component: {fileID: 7257062049063242863}
   - component: {fileID: 746650167423377727}
   - component: {fileID: 4693234618195918297}
+  - component: {fileID: 1569467750}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -19939,7 +19940,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20014,9 +20015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDark: 1
-  playerHealth: 0
+  playerHealth: 9
   maxHealth: 9
-  healthText: {fileID: 0}
   speed: 6
   damageFlash: {fileID: 5714560712089473425}
   dissolveShader: {fileID: 4693234618195918297}
@@ -20031,6 +20031,8 @@ MonoBehaviour:
   castPoint: {fileID: 7257062048071687618}
   facingDir: {x: 0, y: 0}
   animator: {fileID: 0}
+  canMove: 1
+  iFrameTime: 1
 --- !u!114 &5714560712089473425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20125,8 +20127,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dissolveAmount: 1
-  dissolveSpeed: 1
+  dissolveSpeed: 0.5
   isDissolving: 0
+--- !u!114 &1569467750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257062049063242862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20500bb8fbbb3b94e8ac5f0cb76cde1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControl: {fileID: 7257062049063242861}
+  healthBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &6058108156622817644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20140,7 +20166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812598531182876165, guid: 327218a9a9e5ba94d8f5613ed5c9aeed, type: 3}
       propertyPath: m_Intensity
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4812598531342414712, guid: 327218a9a9e5ba94d8f5613ed5c9aeed, type: 3}
       propertyPath: m_Intensity
@@ -20156,11 +20182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812598531523419039, guid: 327218a9a9e5ba94d8f5613ed5c9aeed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.041
       objectReference: {fileID: 0}
     - target: {fileID: 4812598531523419039, guid: 327218a9a9e5ba94d8f5613ed5c9aeed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 4812598531523419039, guid: 327218a9a9e5ba94d8f5613ed5c9aeed, type: 3}
       propertyPath: m_LocalPosition.z

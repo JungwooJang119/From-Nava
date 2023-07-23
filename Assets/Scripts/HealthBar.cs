@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private PlayerController playerControl;
     private int health;
     public Image[] healthBars;
-    private bool hasFlashed;
+    //private bool hasFlashed;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +26,9 @@ public class HealthBar : MonoBehaviour
         for (int i = 0; i < 10; i++) {
             healthBars[i].gameObject.SetActive(false);
         }
+        if (newHealth < 0) {
+            newHealth = 0;
+        }
         healthBars[newHealth].gameObject.SetActive(true);
         StartCoroutine(FlashingHealth(newHealth));
     }
@@ -34,6 +37,6 @@ public class HealthBar : MonoBehaviour
         healthBars[newHealth].gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         yield return new WaitForSeconds(0.25f);
         healthBars[newHealth].gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 150);
-        hasFlashed = true;
+        //hasFlashed = true;
     }
 }

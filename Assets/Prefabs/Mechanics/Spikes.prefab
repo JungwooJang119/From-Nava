@@ -125,5 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 1
-  knockbackSpd: 5
-  knockbackDist: 1
+  knockbackSpd: 0
+  knockbackDist: 0

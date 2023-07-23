@@ -162,6 +162,7 @@ MonoBehaviour:
   door: {fileID: 0}
   buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
   startsActive: 0
+  playerController: {fileID: 0}
 --- !u!114 &4020890220151312962
 MonoBehaviour:
   m_ObjectHideFlags: 0

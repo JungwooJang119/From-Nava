@@ -189,6 +189,7 @@ public class MeleeMiniBossController : MonoBehaviour
             if (py > transform.position.y) {
                 if ((px - transform.position.x) > (py - transform.position.y)) {
                     ChangeAnimationState(BIG_GUY_ATTACK_RIGHT);
+                    print("right1");
                     return;
                     //rightHB.SetActive(true);
                 } else {
@@ -199,14 +200,17 @@ public class MeleeMiniBossController : MonoBehaviour
             } else {
                 if ((px - transform.position.x) > (transform.position.y - py)) {
                     ChangeAnimationState(BIG_GUY_ATTACK_RIGHT);
+                    print("right2");
                     return;
                     //rightHB.SetActive(true);
                 } else {
                     ChangeAnimationState(BIG_GUY_ATTACK_DOWN);
+                    print("down1");
                     return;
                     //downHB.SetActive(true);
                 }
             }
+            return;
         } else {
             if (py > transform.position.y) {
                 if ((transform.position.x - px) > (py - transform.position.y)) {
@@ -225,9 +229,9 @@ public class MeleeMiniBossController : MonoBehaviour
                     //leftHB.SetActive(true);
                 } else {
                     ChangeAnimationState(BIG_GUY_ATTACK_DOWN);
+                    print("down2");
                     return;
                     //downHB.SetActive(true);
-                    
                 }
             }
         }

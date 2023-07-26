@@ -126,6 +126,9 @@ public class FireGoombaController : MonoBehaviour
                     currFireballTime = 0;
                     state = EnemyState.CHASE;
                 }
+                if (player.gameObject.GetComponent<PlayerController>().playerHealth <= 0) {
+                    state = EnemyState.IDLE;
+                }
                 break;
 
         }

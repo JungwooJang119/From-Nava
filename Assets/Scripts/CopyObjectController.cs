@@ -6,18 +6,38 @@ public class CopyObjectController : MonoBehaviour
 {
     [SerializeField] private float health;
     [SerializeField] private DamageFlash damageFlash;
+    [SerializeField] private DealthDissolveShader dealthShader;
+
+    public SpellScriptObj spell;
+    private float timer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        dealthShader = GetComponent<DealthDissolveShader>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         if (health <= 0) {
-            Destroy(this.gameObject);
+            StartCoroutine(DeathSequence());
         }
+        if (timer >= spell.lifetime) {
+            StartCoroutine(DeathSequence());
+        }
+    }
+
+    public void DestroyObject() {
+        StartCoroutine(DeathSequence());
+    }
+
+    IEnumerator DeathSequence() {
+        Destroy(this.GetComponent<BoxCollider2D>());
+        dealthShader.DissolveOut();
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

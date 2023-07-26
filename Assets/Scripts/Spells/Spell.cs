@@ -40,10 +40,6 @@ public class Spell : MonoBehaviour
         // Spells no longer get destroyed automatically.
         // They must carry out their own destroy sequence
         // on lifetime and collision. 1/3 Spells Done;
-        //Destroy(this.gameObject, spell.lifetime);
-        if (isChair) {
-            Destroy(this.gameObject, spell.lifetime);
-        }
     }
 
     protected virtual void Update()

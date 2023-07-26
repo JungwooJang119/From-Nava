@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 3465685018912726908}
   - component: {fileID: 3465685018912726911}
   - component: {fileID: 847605889}
+  - component: {fileID: 740885202}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -176,15 +177,15 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.15648445
-    y: 0.15619047
-    width: 0.6859592
-    height: 0.6857143
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -256,8 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
+  m_RefResolutionX: 480
+  m_RefResolutionY: 270
   m_CropFrame: 3
   m_GridSnapping: 2
   m_UpscaleRT: 0
@@ -312,6 +313,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiCam: {fileID: 0}
+--- !u!114 &740885202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465685018912726913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a602c3ac51973c44d93e8421b0956b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ppc: {fileID: 3465685018912726908}
 --- !u!1 &3465685019936852192
 GameObject:
   m_ObjectHideFlags: 0

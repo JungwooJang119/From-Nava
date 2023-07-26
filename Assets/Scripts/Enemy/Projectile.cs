@@ -110,9 +110,10 @@ public class Projectile : MonoBehaviour
         if (col.gameObject.CompareTag("Chest")) {
             return;
         }
-        if (col.gameObject.CompareTag("Player")) {
-            Destroy(this.gameObject);
-        }
+
+        // if (col.gameObject.CompareTag("Player")) {
+        //     Destroy(this.gameObject);
+        // }
         state = State.End;
     }
 

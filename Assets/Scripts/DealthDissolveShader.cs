@@ -11,7 +11,7 @@ public class DealthDissolveShader : MonoBehaviour
     public Color outColor;
     [ColorUsageAttribute(true, true)]
     public Color inColor;*/
-
+ 
     private Material mat;
     private Coroutine dissolveRoutine;
 

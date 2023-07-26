@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3702030663533370546}
   - component: {fileID: 5794971183758856041}
   - component: {fileID: 4448647195134008995}
+  - component: {fileID: 2055351074152771722}
   m_Layer: 0
   m_Name: Chair_Spell
   m_TagString: Chair
@@ -95,7 +96,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,6 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 15
   damageFlash: {fileID: 4448647195134008995}
+  dealthShader: {fileID: 0}
+  spell: {fileID: 11400000, guid: 0b831836399b0754d9f5861a550b1331, type: 2}
 --- !u!114 &4448647195134008995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +206,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: 6e7a5fcd9775fcd40a27cf24bd9f8d93, type: 2}
   duration: 0.125
+--- !u!114 &2055351074152771722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135262842242903108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78d5504e54954640985696cebcc01c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveAmount: 1
+  dissolveSpeed: 1
+  isDissolving: 0

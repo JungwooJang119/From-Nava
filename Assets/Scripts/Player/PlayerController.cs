@@ -17,7 +17,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dissolveShader;
 
-    [SerializeField] private Transform spawn;
+    public Transform spawn;
     [SerializeField] private Transform rightCast;
     [SerializeField] private Transform leftCast;
     [SerializeField] private Transform upCast;
@@ -197,6 +197,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public void ChangeSpawn(Transform newSpawn) {
         spawn = newSpawn;
+        //RoomDisablerControl.Instance.ChangeRoomsState(spawn);
 		if (spawn.gameObject.tag == "DarkRoom") {
 			sr.material = defaultLit;
 		} else {

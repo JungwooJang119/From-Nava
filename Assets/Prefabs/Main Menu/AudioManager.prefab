@@ -226,6 +226,26 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cdd5c7882b70be745a3b32e2cbb67b03, type: 3}
   - name: Button
     clip: {fileID: 8300000, guid: 299938c5f3379464c9c116c2db5ad113, type: 3}
+  - name: Door Opening
+    clip: {fileID: 8300000, guid: cf50882378a5a5a418c4095a663e6731, type: 3}
+  - name: Node1
+    clip: {fileID: 8300000, guid: 6eb241356c12a7e4abec3dc9d1c2387b, type: 3}
+  - name: Node2
+    clip: {fileID: 8300000, guid: 8daa231a544a2564095c3c9536820bbc, type: 3}
+  - name: Node3
+    clip: {fileID: 8300000, guid: f14ca79800da5d1418160bd123b3a0fe, type: 3}
+  - name: Node4
+    clip: {fileID: 8300000, guid: 6542f39da0cf3c04f98039309cc7cf58, type: 3}
+  - name: Node5
+    clip: {fileID: 8300000, guid: 776a66ea032064641bd558fd41c46d06, type: 3}
+  - name: Node6
+    clip: {fileID: 8300000, guid: 7da17ee6420f26d4e8444f148d70a076, type: 3}
+  - name: Node7
+    clip: {fileID: 8300000, guid: 94941070aae8ffe41abc9bde679c51e3, type: 3}
+  - name: Node8
+    clip: {fileID: 8300000, guid: 9ae4b42be16d3f342b743707d041f5b2, type: 3}
+  - name: NodeWrong
+    clip: {fileID: 8300000, guid: d0067210b4dd7b441ba12d48c2f0b14c, type: 3}
 --- !u!1 &8403224658944174706
 GameObject:
   m_ObjectHideFlags: 0

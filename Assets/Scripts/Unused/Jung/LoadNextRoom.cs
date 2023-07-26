@@ -23,6 +23,7 @@ public class LoadNextRoom : MonoBehaviour
 		player.transform.position = spawn.transform.position;
         controller.ChangeSpawn(spawn);
         yield return new WaitForSeconds(wait);
+        RoomDisablerControl.Instance.ChangeRoomsState(spawn);
         tm.FadeIn();
         controller.ActivateMovement();
 	}

@@ -8,7 +8,7 @@ public class Door : MonoBehaviour
 
     public bool isOpen;
 
-    private void Start() {
+    private void Awake() {
         animator = GetComponent<Animator>();
         animator.SetBool("IsUnlocked", isOpen);
     }

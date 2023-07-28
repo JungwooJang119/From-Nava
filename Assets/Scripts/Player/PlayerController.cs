@@ -23,9 +23,6 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private Transform upCast;
     [SerializeField] private Transform downCast;
 
-    [SerializeField] private Material defaultLit;
-    [SerializeField] private Material dissolve;
-
     private Vector2 movement;
     private Rigidbody2D rb;
  
@@ -34,7 +31,6 @@ public class PlayerController : Singleton<PlayerController>
 
     public Vector2 facingDir;
     private GameObject light;
-    private SpriteRenderer sr;
 
     private bool isPushed;
     private float pushDist;
@@ -64,16 +60,16 @@ public class PlayerController : Singleton<PlayerController>
     private void Start()
     {
         input = GetComponent<PlayerInput>();
-        light = this.transform.GetChild(1).gameObject;
+        light = this.transform.GetChild(0).gameObject;
         facingDir = Vector2.down;
         castPoint = downCast;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        isDark = (spawn.gameObject.tag == "DarkRoom");
         light.SetActive(isDark);
         playerHealth = maxHealth;
         canMove = true;
         canChangeDir = true;
-        sr = GetComponent<SpriteRenderer>();
         canBeDamaged = true;
         currIFrameTime = iFrameTime;
     }
@@ -197,12 +193,14 @@ public class PlayerController : Singleton<PlayerController>
 
     public void ChangeSpawn(Transform newSpawn) {
         spawn = newSpawn;
-        //RoomDisablerControl.Instance.ChangeRoomsState(spawn);
 		if (spawn.gameObject.tag == "DarkRoom") {
-			sr.material = defaultLit;
+			isDark = true;
+            light.SetActive(isDark);
 		} else {
-			sr.material = dissolve;
+			isDark = false;
+            light.SetActive(isDark);
 		}
+
 	}
 
     //adding push behavior for spikes

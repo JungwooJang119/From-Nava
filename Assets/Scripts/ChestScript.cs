@@ -24,6 +24,7 @@ public class ChestScript : MonoBehaviour
     [SerializeField] private PlayerController playerController;
 
     private Color spriteColor;
+    private bool hasOpened;
 
     // Key to interact
     private string intKey = "space";
@@ -108,7 +109,10 @@ public class ChestScript : MonoBehaviour
             yield return null;
         } animator.SetBool("OpeningChest", false);
 		AudioControl.Instance.PlaySFX("Chest Close", gameObject);
-		if (door) door.GetComponent<Door>().OpenDoor();
+		if (door && !hasOpened) {
+            door.GetComponent<Door>().OpenDoor();
+            hasOpened = true;
+        }
 	}
 
     private void ChestScript_OnCollectibleClaimed() {

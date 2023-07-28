@@ -24,9 +24,6 @@ public class Enemy : MonoBehaviour
     public bool isIceTower = false;
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dealthShader;
-    [SerializeField] private Material defaultLit;
-    [SerializeField] private Material dissolve;
-    [SerializeField] private bool isInDarkRoom;
     private float currHealth;
 
     private bool isPushed;
@@ -52,11 +49,6 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         dealthShader = GetComponent<DealthDissolveShader>();
         sr = GetComponent<SpriteRenderer>();
-        if (isInDarkRoom) {
-            sr.material = defaultLit;
-        } else {
-            sr.material = dissolve;
-        }
     }
 
     private void Start() {
@@ -102,14 +94,14 @@ public class Enemy : MonoBehaviour
         return isPushed;
     }
 
-    void OnMeleeHit(float meleeDamage) {
-        if (isIceTower) {
-            return;
-        }
-        TakeDamage(meleeDamage);
-        if (!isInDarkRoom) onMeleeHit?.Invoke();
+    // void OnMeleeHit(float meleeDamage) {
+    //     if (isIceTower) {
+    //         return;
+    //     }
+    //     TakeDamage(meleeDamage);
+    //     onMeleeHit?.Invoke();
         
-    }
+    // }
 
     IEnumerator DeathSequence() {
         dealthShader.DissolveOut();

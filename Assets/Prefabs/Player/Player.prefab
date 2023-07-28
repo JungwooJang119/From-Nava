@@ -20025,8 +20025,6 @@ MonoBehaviour:
   leftCast: {fileID: 1348347235528117894}
   upCast: {fileID: 2350260626018253611}
   downCast: {fileID: 7317125658014208788}
-  defaultLit: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  dissolve: {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
   collisionOffset: 0.05
   castPoint: {fileID: 7257062048071687618}
   facingDir: {x: 0, y: 0}

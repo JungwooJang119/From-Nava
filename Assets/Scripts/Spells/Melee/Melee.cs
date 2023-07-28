@@ -68,6 +68,9 @@ public class Melee : MonoBehaviour
             }
             enemyHealth.TakeDamage(damage);
         }
+        if (other.gameObject.CompareTag("EnemyProjectile")) {
+            Destroy(other.gameObject);
+        }
         //Destroy(this.gameObject);
     }
     /*

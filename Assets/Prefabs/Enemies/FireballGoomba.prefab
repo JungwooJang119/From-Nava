@@ -155,14 +155,14 @@ MonoBehaviour:
   player: {fileID: 0}
   spawn: {fileID: 0}
   minDistance: 6
-  maxDistance: 8
+  maxDistance: 10
   spacedDistance: 2
   fireball: {fileID: 5536333251357887935, guid: 35fc593afbb361645b7f2b23f3daec1f, type: 3}
   fireballInterval: 2
   currFireballTime: 2
   hasFired: 0
   idle: 0
-  changeTime: 1
+  changeTime: 2
   currTime: 0
   fixedRotation: 5
 --- !u!50 &7816608974960025993

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5364110474376002024}
   - component: {fileID: 1207147807643693753}
   - component: {fileID: 3841333749613898879}
+  - component: {fileID: 869974189}
   m_Layer: 0
   m_Name: UpHB
   m_TagString: Melee
@@ -77,6 +78,19 @@ MonoBehaviour:
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
   damage: 2
+--- !u!114 &869974189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200776324918951677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ca715b43c1cf1459a41ef61f19f186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 9000
 --- !u!1 &2461991493637316061
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +102,7 @@ GameObject:
   - component: {fileID: 6093683989094645709}
   - component: {fileID: 6913153627440720359}
   - component: {fileID: 6062890577065012619}
+  - component: {fileID: 1758732948}
   m_Layer: 0
   m_Name: DownHB
   m_TagString: Melee
@@ -154,6 +169,19 @@ MonoBehaviour:
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
   damage: 2
+--- !u!114 &1758732948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2461991493637316061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ca715b43c1cf1459a41ef61f19f186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 9000
 --- !u!1 &2571063176125842610
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +193,7 @@ GameObject:
   - component: {fileID: 7690023612431214457}
   - component: {fileID: 1207398729555764716}
   - component: {fileID: 3744735489358376102}
+  - component: {fileID: 1724232231}
   m_Layer: 0
   m_Name: LeftHB
   m_TagString: Melee
@@ -231,6 +260,19 @@ MonoBehaviour:
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
   damage: 2
+--- !u!114 &1724232231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571063176125842610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ca715b43c1cf1459a41ef61f19f186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 9000
 --- !u!1 &3906375456152486121
 GameObject:
   m_ObjectHideFlags: 0
@@ -5147,6 +5189,7 @@ GameObject:
   - component: {fileID: 3272799169087741442}
   - component: {fileID: 7364822561145139933}
   - component: {fileID: 5411811488437321766}
+  - component: {fileID: 755108009}
   m_Layer: 0
   m_Name: RightHB
   m_TagString: Melee
@@ -5213,6 +5256,19 @@ MonoBehaviour:
   hitboxS: {fileID: 0}
   hitboxW: {fileID: 0}
   damage: 2
+--- !u!114 &755108009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556920019658772367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ca715b43c1cf1459a41ef61f19f186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 9000
 --- !u!1 &5948924540263549087
 GameObject:
   m_ObjectHideFlags: 0
@@ -10109,7 +10165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6929717499715701892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.106, y: -0.423, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jung/M3.unity
     guid: 821128f0d8d5ce743a7aad0b3b0766b1
-  - enabled: 0
-    path: Assets/Scenes/EOS Spring Demo/Credits.unity
-    guid: 7335a24bd5c90854b9da537bcab6b8fd
   - enabled: 1
     path: Assets/Scenes/EOS Spring Demo/Credits2.unity
     guid: b4462255ab6e9af4e8e458b9502f7cf0

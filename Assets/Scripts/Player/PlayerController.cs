@@ -157,10 +157,13 @@ public class PlayerController : Singleton<PlayerController>
         dissolveShader.DissolveOut();
 		GetComponent<Collider2D>().enabled = false;
         animator.SetBool("isWalking", false);
-        yield return new WaitForSeconds(3f);
-		transform.position = spawn.transform.position;
+        yield return new WaitForSeconds(1.5f);
+        ReferenceSingleton.Instance.transition.FadeOut();
+        yield return new WaitForSeconds(1.5f);
+        transform.position = spawn.transform.position;
 		dissolveShader.DissolveIn();
-		GetComponent<Collider2D>().enabled = true;
+        ReferenceSingleton.Instance.transition.FadeIn();
+        GetComponent<Collider2D>().enabled = true;
         yield return new WaitForSeconds(2f);
         canMove = true;
         canChangeDir = true;

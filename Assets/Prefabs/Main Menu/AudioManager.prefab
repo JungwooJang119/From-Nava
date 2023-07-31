@@ -246,6 +246,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9ae4b42be16d3f342b743707d041f5b2, type: 3}
   - name: NodeWrong
     clip: {fileID: 8300000, guid: d0067210b4dd7b441ba12d48c2f0b14c, type: 3}
+  - name: PMOpening
+    clip: {fileID: 8300000, guid: 25cd3a98b36969e4b8240d3c44de4698, type: 3}
+  - name: PMPageChange1
+    clip: {fileID: 8300000, guid: 64041e40d74430f44b051d95c256b24e, type: 3}
+  - name: PMPageChange2
+    clip: {fileID: 8300000, guid: 9617bf9e322de724b8f88c271ba168cd, type: 3}
+  - name: PMClosing
+    clip: {fileID: 8300000, guid: 1c15fdd55db98f34a9cb809553e7b752, type: 3}
 --- !u!1 &8403224658944174706
 GameObject:
   m_ObjectHideFlags: 0

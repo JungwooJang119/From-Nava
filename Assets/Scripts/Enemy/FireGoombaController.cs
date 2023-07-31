@@ -64,12 +64,14 @@ public class FireGoombaController : MonoBehaviour
     {
         t.eulerAngles = new Vector3 (t.eulerAngles.x, fixedRotation, t.eulerAngles.z);
         currTime = Time.time - lastChangeTime;
+        if (enemy.GetPushed()) {
+            enemy.PushTranslate();
+            //state = EnemyState.WANDER;
+            // TO DO : When enemy is pushed, set state so that enemy doesn't move when still moving from pushtranslate to prevent jitter against wall
+        }
 
         switch(state) {
             case EnemyState.IDLE:
-                if (enemy.GetPushed()) {
-                    enemy.PushTranslate();
-                }
                 enemy.ReactToPlayerInRange(false);
                 //NewDirection();
                 if (Time.time - lastChangeTime > changeTime) {
@@ -82,24 +84,12 @@ public class FireGoombaController : MonoBehaviour
                 }
                 break;
             case EnemyState.WANDER:
-                if (enemy.GetPushed()) {
-                    enemy.PushTranslate();
-                }
                 enemy.ReactToPlayerInRange(false);
-                //NewDirection();
-                if (Time.time - lastChangeTime > changeTime) {
-                    lastChangeTime = Time.time;
-                    NewDirection();
-                }
-                transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
                 if (Vector2.Distance(transform.position, player.position) < minDistance) {
                     state = EnemyState.CHASE;
                 }
                 break;
             case EnemyState.CHASE:
-                if (enemy.GetPushed()) {
-                    enemy.PushTranslate();
-                }
                 if (Vector2.Distance(transform.position, player.position) > minDistance) {
                     enemy.ReactToPlayerInRange(true);
                     transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
@@ -112,9 +102,6 @@ public class FireGoombaController : MonoBehaviour
                 }
                 break;
             case EnemyState.ATTACK:
-                if (enemy.GetPushed()) {
-                    enemy.PushTranslate();
-                }
                 enemy.ReactToPlayerInRange(true);
                 if (currFireballTime >= fireballInterval) {
                     currFireballTime = 0;
@@ -130,7 +117,6 @@ public class FireGoombaController : MonoBehaviour
                     state = EnemyState.IDLE;
                 }
                 break;
-
         }
     }
 

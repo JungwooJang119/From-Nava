@@ -33,12 +33,12 @@ public class FirewoodFire : MonoBehaviour
 	private float scaleVariance = 0.3f;
 	// Note: Remind me to migrate this configuration to the inspector in the future;
 
-	void Start() {
+	void Awake() {
 		parSystem = transform.parent.GetComponentInChildren<ParticleSystem>(true);
 		parSystem.Stop();
 		targetScale = transform.localScale.x;
 
-		lightParent = transform.parent.GetComponentInChildren<LightController>().gameObject;
+		lightParent = transform.parent.GetComponentInChildren<LightController>(true).gameObject;
 		lightList = transform.parent.GetComponentsInChildren<Light2D>(true);
 		lightBounds = new float[lightList.Length];
 		for (int i = 0; i < lightList.Length; i++) {

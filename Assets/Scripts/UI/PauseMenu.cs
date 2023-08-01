@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour {
 
     /// Resume the game
     public void Resume() {
+        AudioControl.Instance.PlayVoidSFX("PMClosing", 0.25f);
         notebook.SetActive(true);
         ToggleActiveMenu(false);
         pauseMenuUI.SetActive(false);
@@ -59,6 +60,7 @@ public class PauseMenu : MonoBehaviour {
 
     /// Pause the game
     public void Pause() {
+        AudioControl.Instance.PlayVoidSFX("PMOpening", 0.25f);
         notebook.SetActive(false);
         ToggleActiveMenu(true);
         pauseMenuUI.SetActive(true);
@@ -75,6 +77,7 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void ChangeActivePage(MenuPage pageType) {
+        AudioControl.Instance.PlayVoidSFX("PMPageChange" + UnityEngine.Random.Range(1, 3), 0.25f);
         foreach (KeyValuePair<MenuPage, PauseMenuPage> pair in pageDict) {
             if (pair.Value.GetPageType() != pageType) pair.Value.Toggle(false);
         } pageDict[activePage].OnFadeFinished += PauseMenuPage_OnFadeFinished;

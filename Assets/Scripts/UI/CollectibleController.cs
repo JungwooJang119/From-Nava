@@ -90,7 +90,7 @@ public class CollectibleController : MonoBehaviour {
 		if (firstTime) {
 			if (type == CollectibleType.Polaroid) {
 				if (polaroidsClaimed.Contains(name)) {
-					notificationManager.Notify(NotificationType.CollectibleRedundant);
+					notificationManager.AddNotification(NotificationType.CollectibleRedundant);
 					OnCallsEnd?.Invoke();
 					return;
 				} else {
@@ -123,7 +123,7 @@ public class CollectibleController : MonoBehaviour {
 		if (callStack.Count == 0) {
 			OnCallsEnd?.Invoke();
 			transition.DarkenIn();
-			notificationManager.Notify(notificationType);
+			notificationManager.AddNotification(notificationType);
 			notificationType = NotificationType.None;
 			PlayerController.Instance.ActivateMovement();
 			//AudioControl.Instance.ResumeMusic();

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PolaroidC2
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: d5eb7770728646249b869576123ff74b, type: 3}
-  text: '"They''re just a child... I can''t let them be killed like this." \n- Nava
-    Labs: Room B3'
+  text: '"They''re just a child... I can''t let them be killed like this."<br>-Nava
+    Labs: Sector B3'

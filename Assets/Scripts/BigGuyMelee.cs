@@ -38,7 +38,7 @@ public class BigGuyMelee : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Player") {
-            player.TakeDamage(2);
+            player.TakeDamage(2, player.gameObject);
         }
         dir = player.gameObject.GetComponent<Transform>().position - transform.position;
         if (player.playerHealth > 0) {

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: f0ba2001eb704834ea96139687a0cd7b, type: 3}
   text: '"It''s been days, and they still haven''t spoken. Dr. Greene seemed to have
-    some success, so she tries again to get a response." - Nava Labs: Room A1'
+    some success, so she tries again to get a response."<br>-Nava Labs: Sector A1'

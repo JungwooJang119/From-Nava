@@ -22,17 +22,12 @@ public class Melee : MonoBehaviour
     private float valueDir;
 
     //how much damage the melee does
-    public float damage = 5f;
+    public int damage;
     //timer
     private float timeSinceLast;
     // Start is called before the first frame update
     void Start()
     {
-        //loads box collider and makes it a trigger
-        //boxCollider = GetComponent<BoxCollider2D>();
-        //boxCollider.isTrigger = false;
-
-        //loads all four directional melee hitboxes
         hitboxN = GetComponent<BoxCollider2D>();
         hitboxN.isTrigger = true;
         hitboxE = GetComponent<BoxCollider2D>();
@@ -41,9 +36,6 @@ public class Melee : MonoBehaviour
         hitboxS.isTrigger = true;
         hitboxW = GetComponent<BoxCollider2D>();
         hitboxW.isTrigger = true;
-
-        //logicScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<LogicScript>();
-        //valueDir = logicScript.facingDir;
         timeSinceLast = 0f;
     }
 
@@ -66,57 +58,11 @@ public class Melee : MonoBehaviour
             if (enemyHealth.isIceTower) {
                 return;
             }
-            enemyHealth.TakeDamage(damage);
+            enemyHealth.TakeDamage(damage, other.gameObject);
         }
         if (other.gameObject.CompareTag("EnemyProjectile")) {
             Destroy(other.gameObject);
         }
-        //Destroy(this.gameObject);
-    }
-    /*
-    public void melee()
-    {
-        Vector2 meleeVector = transform.position;
-        valueDir = logicScript.facingDir;
-        switch (valueDir)
-        {
-            case 0:
-                meleeVector = meleeVector + Vector2.right;
-                break;
-            case 90:
-                meleeVector = meleeVector + Vector2.up;
-                break;
-            case 180:
-                meleeVector = meleeVector + Vector2.left;
-                break;
-            case 270:
-                meleeVector = meleeVector + Vector2.down;
-                break;
-        }
-        //Instantiate(MeleeCollider, meleeVector, Quaternion.identity);
-    }
-    */
-
-    public void activateMelee() {
-        //get look direction and activate correct hitbox
-        /*
-        switch (facingDir)
-        {
-            case 0:
-                hitboxE.isTrigger = true;
-                break;
-            case 90:
-                hitboxN.isTrigger = true;
-                break;
-            case 180:
-                hitboxW.isTrigger = true;
-                break;
-            case 270:
-                hitboxS.isTrigger = true;
-                break;
-        }
-        timeSinceLast = duration; //start the countdown!
-        */
     }
 
     private void deactivateMelee() {
@@ -127,20 +73,3 @@ public class Melee : MonoBehaviour
         hitboxW.isTrigger = false;
     }
 }
-
-/*
-notes on melee collider:
-
-box collider that ALWAYS follows the player.
-isTrigger = false, by default
-
-Update() {
-  [follow player around, account for vision]
-  [decrement timer]
-}
-
-melee() {
-  isTrigger = true;
-  [start a timer for active hitbox]
-}
-*/

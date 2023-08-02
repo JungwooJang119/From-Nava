@@ -158,7 +158,7 @@ MonoBehaviour:
   maxDistance: 10
   spacedDistance: 2
   fireball: {fileID: 5536333251357887935, guid: 35fc593afbb361645b7f2b23f3daec1f, type: 3}
-  fireballInterval: 2
+  fireballInterval: 3
   currFireballTime: 2
   hasFired: 0
   idle: 0

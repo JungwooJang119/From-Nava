@@ -100,7 +100,7 @@ public class Spell : MonoBehaviour
         //Apply hit particle effects, sfx, spell effects\
         if(other.gameObject.CompareTag("Enemy")) {
             Enemy enemyHealth = other.GetComponent<Enemy>();
-            enemyHealth.TakeDamage(spell.damageAmt);
+            enemyHealth.TakeDamage(spell.damageAmt, other.gameObject);
             Destroy(this.gameObject);
         }
 		OnSpellDestroy?.Invoke(other.gameObject);

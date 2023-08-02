@@ -15,7 +15,7 @@ public enum EnemyState {
     DEAD
 }
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     public event Action<int> OnDamageTaken;
     public event Action<bool> OnPlayerInRange;
@@ -55,9 +55,9 @@ public class Enemy : MonoBehaviour
         healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
     }
 
-    public void TakeDamage(float damage) {
-        currHealth -= damage;
-        OnDamageTaken?.Invoke((int) damage);
+    public void TakeDamage(int dmgAmount, GameObject srcObject) {
+        currHealth -= dmgAmount;
+        OnDamageTaken?.Invoke((int) dmgAmount);
         if (damageFlash != null)
         {
             damageFlash.Flash();

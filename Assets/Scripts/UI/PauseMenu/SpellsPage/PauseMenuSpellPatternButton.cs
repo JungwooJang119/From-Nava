@@ -17,7 +17,7 @@ public class PauseMenuSpellPatternButton : MonoBehaviour {
     private string originalText;
     private PauseMenuSpells masterScript;
     private Sprite disabledPattern;
-    private bool active = true;
+    private bool active;
 
     // Start is called before the first frame update
     void Awake() {
@@ -37,7 +37,9 @@ public class PauseMenuSpellPatternButton : MonoBehaviour {
     }
 
     private void OnEnable() {
-        if (active) {
+        if (tutorialType == TutorialType.Iceball) {
+            active = ReferenceSingleton.Instance.collectibleController.GetTutorialList().Contains(tutorialType.ToString());
+        } if (active) {
             if (image.sprite != originalSprite) image.sprite = originalSprite;
             if (pageScript.UpdateDictionary(image, 1f)) image.color = new Color (image.color.r, image.color.g, image.color.b, 1f);
             if (text.text != originalText) text.text = originalText;

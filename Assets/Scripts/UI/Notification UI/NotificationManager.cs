@@ -36,24 +36,26 @@ public class NotificationManager : MonoBehaviour {
             if (!notificationObject.gameObject.activeSelf) {
                 NotificationCall nextCall = notificationQueue.Dequeue();
                 string message;
-                NotificationText.gameObject.SetActive(true);
-                switch (nextCall.type) {
-                    case NotificationType.PolaroidClaimed:
-                        message = "Polaroid Claimed";
-                        Message = message;
-                        NotificationText.text = message;
-                        break;
-                    case NotificationType.CollectibleRedundant:
-                        message = "The Item Is Already Taken";
-                        Message = message;
-                        NotificationText.text = message;
-                        break;
-                    case NotificationType.RoomCode:
-                        message = "Sector " + nextCall.roomCode;
-                        Message = message;
-                        NotificationText.text = message;
-                        break;
-                } notificationObject.gameObject.SetActive(true);
+                if (nextCall.type > 0) {
+                    NotificationText.gameObject.SetActive(true);
+                    switch (nextCall.type) {
+                        case NotificationType.PolaroidClaimed:
+                            message = "Polaroid Claimed";
+                            Message = message;
+                            NotificationText.text = message;
+                            break;
+                        case NotificationType.CollectibleRedundant:
+                            message = "The Item Is Already Taken";
+                            Message = message;
+                            NotificationText.text = message;
+                            break;
+                        case NotificationType.RoomCode:
+                            message = "Sector " + nextCall.roomCode;
+                            Message = message;
+                            NotificationText.text = message;
+                            break;
+                    } notificationObject.gameObject.SetActive(true);
+                }
             }
         }
     }

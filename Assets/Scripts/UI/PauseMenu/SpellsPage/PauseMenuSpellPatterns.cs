@@ -8,15 +8,13 @@ public class PauseMenuSpellPatterns : MonoBehaviour, ISpellPage {
     private PauseMenuSpellPatternButton[] patternArr;
 
     void Awake() {
-        patternArr = GetComponentsInChildren<PauseMenuSpellPatternButton>();
+        patternArr = GetComponentsInChildren<PauseMenuSpellPatternButton>(true);
     }
 
     void OnEnable() {
         var tutorialsClaimed = ReferenceSingleton.Instance.collectibleController.GetTutorialList();
         foreach (PauseMenuSpellPatternButton button in patternArr) {
-            if (button.GetTutorialType() != TutorialDataBank.TutorialType.Melee) {
-                button.Toggle(tutorialsClaimed.Contains(button.GetTutorialType().ToString()));
-            }
+            button.Toggle(tutorialsClaimed.Contains(button.GetTutorialType().ToString()));
         }
     }
 

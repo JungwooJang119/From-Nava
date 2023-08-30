@@ -4,6 +4,8 @@ using TMPro;
 
 public class NotificationObject : MonoBehaviour {
 
+    public System.Action OnNotificationFinished;
+
     private enum State {
         SetUp,
         Start,
@@ -23,14 +25,17 @@ public class NotificationObject : MonoBehaviour {
         imageWidth = GetComponent<Image>().rectTransform.sizeDelta.x;
     }
 
-    private void OnEnable() {
-        if (text == null) text = NotificationManager.NotificationText;
+    public void Initialize(TextMeshProUGUI notificationText, float scaleConstraint) {
+        if (text == null) text = notificationText;
         timer = duration;
         transform.localScale = new Vector3(0, transform.localScale.y, transform.localScale.z);
         text.color = new Color(1, 1, 1, 0);
         text.ForceMeshUpdate(true);
         maxScale = (text.preferredWidth + 16) / imageWidth;
-        state = State.Start;
+        if (maxScale > scaleConstraint) {
+            text.fontSize *= scaleConstraint / maxScale;
+            maxScale = scaleConstraint;
+        } state = State.Start;
     }
 
     void Update() {
@@ -61,6 +66,7 @@ public class NotificationObject : MonoBehaviour {
                     transform.localScale = Vector3.MoveTowards(transform.localScale,
                                                            new Vector3(0, transform.localScale.y, transform.localScale.z), 0.2f);
                 } else {
+                    OnNotificationFinished?.Invoke();
                     gameObject.SetActive(false);
                 } break;
         }

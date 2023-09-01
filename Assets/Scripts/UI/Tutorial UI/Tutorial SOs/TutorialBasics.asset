@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textHeaderNew: Basic Controls
   textHeader: Basic Controls
-  text: 'Move Around! Use WASD to move.
+  text: 'Move Around! Use [WASD] to move.
 
 
     Use your Spell Pad to cast spells:
@@ -24,11 +24,11 @@ MonoBehaviour:
 
 
     You
-    will acquire spells as you traverse Nava Labs. For now, use [Shift] or [Right
-    Click] to do a swing.
+    will acquire spells as you traverse Nava Labs. For now, use [LEFT CLICK] or [SHIFT]
+    to swing your pen.
 
 
-    Press [Escape] to open the Pause Menu and check the
-    items you have collected.'
+    Press [ESC] to open the Pause Menu and check the items
+    you have collected.'
   inputImage: {fileID: 0}
   videoClip: {fileID: 0}

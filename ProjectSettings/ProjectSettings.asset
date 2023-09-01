@@ -157,7 +157,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.Nava-Labs.From-Nava-Spring-Demo
+    Standalone: com.Nava-Labs.From-Nava
   buildNumber:
     Standalone: 0
     iPhone: 0

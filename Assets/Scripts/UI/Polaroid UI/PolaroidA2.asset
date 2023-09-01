@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: edc6e49d05423f148b94f65a38e333ed, type: 3}
   text: '"We''ve finally come across a breakthrough in research. Hopefully, we can
-    let them go and put this behind us soon." \n- Nava Labs: Room B2'
+    let them go and put this behind us soon."<br>- Nava Labs: Sector B2'

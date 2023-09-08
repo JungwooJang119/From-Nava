@@ -1952,6 +1952,7 @@ GameObject:
   - component: {fileID: 2463856277162178067}
   - component: {fileID: 2463856277162178068}
   - component: {fileID: 2463856277162178069}
+  - component: {fileID: 301244800344885006}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -2031,6 +2032,18 @@ MonoBehaviour:
     spell: {fileID: 8916631681253868026, guid: 7f8bc1551ccff794fa26c98cc515245a, type: 3}
   - spellType: 4
     spell: {fileID: 6389482856583591886, guid: 2ef26001a212b354c8b601ddb0ed7c40, type: 3}
+--- !u!114 &301244800344885006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463856277162178070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9076df2966e1a749910a76174ef92d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4404673040056218080
 GameObject:
   m_ObjectHideFlags: 0

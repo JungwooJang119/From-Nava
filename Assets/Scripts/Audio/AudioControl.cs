@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-// Simple Audio Manager, a sweet relief for sound lovers <3
+/// <summary>
+/// Simple Audio Manager, a sweet relief for sound lovers <3
+/// </summary>
 
 public class AudioControl : Singleton<AudioControl> {
-
-	// Scripts containing calls to Audio Manager:
-	// tranMode.cs (music); SpellCastManager.cs (spell cast); all [Spell]Behavior scripts (spell collision);
-	// LaserTerminal.cs, LaserCaster.cs, Receiver.cs, LabReport.cs, SpellMachine.cs;
 
 	private float musicVolume = 0.5f;
 	private float sfxVolume = 1.0f;
@@ -17,140 +15,185 @@ public class AudioControl : Singleton<AudioControl> {
 	[SerializeField] private float minSFXDistance = 10;
 	[SerializeField] private float maxSFXDistance = 20;
 
+	private const string NULL_CLIP_TEXT = "Invalid clip string passed";
+
 	// Employs Travis and Chase's method;                                    
 	void Awake() {
+		secondaryMusicSource = Instantiate(mainMusicSource.gameObject, transform).GetComponent<AudioSource>();
+		secondaryMusicSource.gameObject.name = "SecondaryMusicSource";
 		DontDestroyOnLoad(gameObject);
 		InitializeSingleton(gameObject);
 	}
 
 	// Declaring Audio Sources for music and sfx;
-	[SerializeField] private AudioSource musicSource, sfxSource;
+	[SerializeField] private AudioSource mainMusicSource, secondaryMusicSource, sfxSource;
 	// Declaring arrays for audio files;
 	// The files must be assigned in the inspector;
 	[SerializeField] private Sound[] musicSounds, sfxSounds;
 
-	// Method to play music tracks;
-	// Takes a string 'name', which corresponds to the name of a track in musicSounds[],
-	// and a boolean 'shouldLoop' to define whether the track shoudl loop;
-	// Plays the track requested if found. This source supports a single music track at a time;
+	private Coroutine activeInterpolation;
+
+	private AudioClip FetchClip(string name, Sound[] sounds) {
+		Sound sn = Array.Find(sounds, item => item.name == name);
+		if (sn == null) throw new Exception(NULL_CLIP_TEXT);
+		return sn.clip;
+	}
+
+	/// <summary>
+	/// Method to play music tracks;
+	/// <br></br> The music source supports a single music track at a time;
+	/// </summary>
+	/// <param name="name"> Name of the clip to play; </param>
+	/// <param name="shouldLoop"> Whether the music should loop; </param>
+	/// <returns> Returns the request track if found track requested if found; </returns>
 	public AudioSource PlayMusic(string name, bool shouldLoop = true) {
-		if (shouldLoop) {
-			musicSource.loop = true;
-		} else {
-			musicSource.loop = false;
-		}
-		musicSource.volume = musicVolume;
-		Sound sn = Array.Find(musicSounds, item => item.name == name);
+		mainMusicSource.loop = shouldLoop;
+		mainMusicSource.volume = musicVolume;
 
-		if (sn != null) {
-			musicSource.clip = sn.clip;
-			musicSource.Play();
-			return musicSource;
-		}
-		else {
-			Debug.LogWarning("Clip string is wrong");
-			return null;
-		}
+		AudioClip clip = FetchClip(name, musicSounds);
+		mainMusicSource.clip = clip;
+		mainMusicSource.Play();
+		return mainMusicSource;
 	}
 
-	// Method to play local sound effects. Drops an object containing the audio source in worldspace; 
-	// Takes a string 'name', which corresponds to the name of a sound in sfxSounds[],
-	// and a 'sender' GameObject reference (the object to which the SFX object will be childed;
-	// May also output a reference to the given audio source if the parameter is provided;
-	// Plays the sound requested if found. May be used several times to call multiple sounds;
-	// This version returns the length of the sound played;
-	public float PlaySFX(string name, GameObject sender, out AudioSource optionalSourceRef, 
+	/// <summary>
+	/// Method to play local sound effects;
+	/// <br></br> Drops an object containing the audio source in worldspace;
+	/// </summary>
+	/// <param name="name"> Name of the clip to play; </param>
+	/// <param name="sender"> GameObject to which the SFX will be childed; </param>
+	/// <param name="optionalSourceRef"> A reference to the Audio Source used, if requested; </param>
+	/// <param name="pitchRChange"> Pitch variance of the clip (additive); </param>
+	/// <param name="volumeMultiplier"> Volume of the clip (between 0 and 1); </param>
+	/// <returns> Returns the length of the clip played if one is found; </returns>
+	public float PlaySFX(string name, GameObject sender, out AudioSource optionalSourceRef,
 						 float pitchRChange = 0, float volumeMultiplier = 1) {
-		Sound sn = Array.Find(sfxSounds, item => item.name == name);
 
-		if (sn != null) {
-			optionalSourceRef = SetUpSFX(sn.clip, sender, pitchRChange, volumeMultiplier);
-			return sn.clip.length;
-		} else {
-			optionalSourceRef = null;
-			Debug.LogWarning("Clip string is wrong");
-			return -1;
-		}
+		AudioClip clip = FetchClip(name, sfxSounds);
+		optionalSourceRef = SetUpSFX(clip, sender, pitchRChange, volumeMultiplier);
+		return clip.length;
 	}
 
-	// Overloaded version of the method above that does not require an out parameter;
+	/// <summary>
+	/// Method to play local sound effects;
+	/// <br></br> Drops an object containing the audio source in worldspace;
+	/// </summary>
+	/// <param name="name"> Name of the clip to play; </param>
+	/// <param name="sender"> GameObject to which the SFX will be childed; </param>
+	/// <param name="pitchRChange"> Pitch variance of the clip (additive); </param>
+	/// <param name="volumeMultiplier"> Volume of the clip (between 0 and 1); </param>
+	/// <returns> Returns the length of the clip played if one is found; </returns>
 	public float PlaySFX(string name, GameObject sender, float pitchRChange = 0, float volumeMultiplier = 1) {
 		Sound sn = Array.Find(sfxSounds, item => item.name == name);
 
-		if (sn != null) {
-			SetUpSFX(sn.clip, sender, pitchRChange, volumeMultiplier);
-			return sn.clip.length;
-		} else {
-			Debug.LogWarning("Clip string is wrong");
-			return -1;
-		}
+		AudioClip clip = FetchClip(name, sfxSounds);
+		SetUpSFX(clip, sender, pitchRChange, volumeMultiplier);
+		return clip.length;
 	}
 
-	// Method to play global sound effects. The sounds are played on the manager's audio source;
-	// Takes a string 'name', which corresponds to the name of a sound in sfxSounds[];
-	// This version returns null and produces a GLOBAL sound;
+	/// <summary>
+	/// Method to play global sound effects;
+	/// <br></br> The sounds are played on the manager's audio source;
+	/// </summary>
+	/// <param name="name"> Name of the clip to play; </param>
+	/// <param name="pitchRChange"> Pitch variance of the clip (additive); </param>
+	/// <param name="volumeMultiplier"> Volume of the clip (between 0 and 1); </param>
+	/// <returns> Returns the length of the clip played if one is found; </returns>
 	public void PlayVoidSFX(string name, float pitchRChange = 0, float volumeMultiplier = 1) {
-		Sound sn = Array.Find(sfxSounds, item => item.name == name);
 
-		if (sn != null) {
-			sfxSource.pitch = 1f + UnityEngine.Random.Range(-pitchRChange, pitchRChange);
-			sfxSource.volume = sfxVolume * volumeMultiplier;
-			sfxSource.PlayOneShot(sn.clip);
-		} else {
-			Debug.LogWarning("Clip string is wrong");
-		}
+		AudioClip clip = FetchClip(name, sfxSounds);
+		sfxSource.pitch = 1f + UnityEngine.Random.Range(-pitchRChange, pitchRChange);
+		sfxSource.volume = sfxVolume * volumeMultiplier;
+		sfxSource.PlayOneShot(clip);
 	}
 
-	// Overloaded version of the method above that requires an out parameter (with clip length info);
+	/// <summary>
+	/// Method to play global sound effects;
+	/// <br></br> The sounds are played on the manager's audio source;
+	/// </summary>
+	/// <param name="name"> Name of the clip to play; </param>
+	/// <param name="optionalLengthReturn"> Optional clip length output; </param>
+	/// <param name="pitchRChange"> Pitch variance of the clip (additive); </param>
+	/// <param name="volumeMultiplier"> Volume of the clip (between 0 and 1); </param>
 	public void PlayVoidSFX(string name, out float optionalLengthReturn,
 							float pitchRChange = 0, float volumeMultiplier = 1) {
-		Sound sn = Array.Find(sfxSounds, item => item.name == name);
 
-		if (sn != null) {
-			sfxSource.pitch = 1f + UnityEngine.Random.Range(-pitchRChange, pitchRChange);
-			sfxSource.volume = sfxVolume * volumeMultiplier;
-			sfxSource.PlayOneShot(sn.clip);
-			optionalLengthReturn = sn.clip.length;
-		}
-		else {
-			optionalLengthReturn = 0;
-			Debug.LogWarning("Clip string is wrong");
-		}
+		AudioClip clip = FetchClip(name, sfxSounds);
+		sfxSource.pitch = 1f + UnityEngine.Random.Range(-pitchRChange, pitchRChange);
+		sfxSource.volume = sfxVolume * volumeMultiplier;
+		sfxSource.PlayOneShot(clip);
+		optionalLengthReturn = clip.length;
 	}
 
-	// Method to fade away the music.
+	/// <summary>
+	/// Method to fade away the music.
+	/// </summary>
+	/// <param name="stopsMusic"> Whether the music should be stopped (true), or paused (false); </param>
+	/// <param name="stopsAbruptly"> Whether the fadeout happens immediately (true), or with linear interpolation (false); </param>
 	public void FadeMusic(bool stopsMusic, bool stopsAbruptly = false) {
-		if (!stopsAbruptly) {
-			StartCoroutine(_FadeMusic(stopsMusic));
-		} else {
-			musicSource.Stop();
-		}
+		if (stopsAbruptly) mainMusicSource.Stop();
+		else StartCoroutine(_FadeMusic(stopsMusic));
 	}
 
-	public void ResumeMusic() {
-		StartCoroutine(_ResumeMusic());
+	public void ResumeMusic() => StartCoroutine(_ResumeMusic());
+
+	public void InterpolateMusicTracks(string name) {
+		AudioClip clip = FetchClip(name, musicSounds);
+		if (activeInterpolation != null) StopCoroutine(activeInterpolation);
+		activeInterpolation = StartCoroutine(_InterpolateMusicTracks(clip));
 	}
+
+	IEnumerator _InterpolateMusicTracks(AudioClip newTrack) {
+		float lerp = 1;
+		SetUpSecondaryMusicClip(newTrack);
+		while (lerp > 0) {
+			mainMusicSource.volume = musicVolume * lerp;
+			secondaryMusicSource.volume = musicVolume * (1 - lerp);
+			lerp = Mathf.MoveTowards(lerp, 0, Time.unscaledDeltaTime);
+			yield return null;
+		} SwapPrimaryMusicSource();
+    }
+
+	private void SetUpSecondaryMusicClip(AudioClip newTrack) {
+		secondaryMusicSource.clip = newTrack;
+		secondaryMusicSource.time = mainMusicSource.time;
+		secondaryMusicSource.Play();
+	}
+
+	private void SwapPrimaryMusicSource() {
+		AudioSource oldSource = mainMusicSource;
+		mainMusicSource = secondaryMusicSource;
+		secondaryMusicSource = oldSource;
+		secondaryMusicSource.Stop();
+    }
 
 	// Coroutine to fade away the music. Hopefully more efficient than running a bool in Update;
 	IEnumerator _FadeMusic(bool stopsMusic) {
-		while (musicSource.volume > 0) {
-			musicSource.volume = Mathf.Max(0, musicSource.volume - musicVolume / (0.5f / Time.deltaTime));
+		while (mainMusicSource.volume > 0) {
+			mainMusicSource.volume = Mathf.Max(0, mainMusicSource.volume - musicVolume / (0.5f / Time.deltaTime));
 			yield return null;
 		}
 		if (stopsMusic) {
-			musicSource.Stop();
+			mainMusicSource.Stop();
 		}
 	}
 
 	IEnumerator _ResumeMusic() {
-		if (musicSource) musicSource.UnPause();
-		while (musicSource.volume < musicVolume) {
-			musicSource.volume = Mathf.Min(musicVolume, musicSource.volume + musicVolume / (0.5f / Time.deltaTime));
+		if (mainMusicSource) mainMusicSource.UnPause();
+		while (mainMusicSource.volume < musicVolume) {
+			mainMusicSource.volume = Mathf.Min(musicVolume, mainMusicSource.volume + musicVolume / (0.5f / Time.deltaTime));
 			yield return null;
-		} 
+		}
 	}
 
-	// Method to spawn an AudioSource in game space to play the sfx;
+	/// <summary>
+	/// Method to spawn an AudioSource in game space to play a SFX;
+	/// </summary>
+	/// <param name="sn"> AudioClip to play; </param>
+	/// <param name="sender"> Object to which the spawned object will be childed; </param>
+	/// <param name="pitchRChange"> Additive pitch variation for the SFX; </param>
+	/// <param name="volumeMultiplier"> Multiplier for the SFX's volume (between 0 and 1); </param>
+	/// <returns> The audio source attached to the GameObject; </returns>
 	private AudioSource SetUpSFX(AudioClip sn, GameObject sender, float pitchRChange, float volumeMultiplier) {
 		GameObject tempObject = new GameObject("TempSFX");
 		tempObject.transform.SetParent(sender.transform);
@@ -169,15 +212,24 @@ public class AudioControl : Singleton<AudioControl> {
 		Destroy(tempObject, sn.length);
 		return tempAudioSource;
 	}
+
+	/// <summary>
+	/// Update the music volume utilized by the manager;
+	/// </summary>
+	/// <param name="value"> New music volume (between 0 and 1); </param>
 	public void SetMusicVolume(float value) {
 		musicVolume = value;
-		musicSource.volume = value;
+		mainMusicSource.volume = value;
 	}
 
 	public float GetMusicVolume() {
 		return musicVolume;
 	}
 
+	/// <summary>
+	/// Update the sfx volume utilized by the manager;
+	/// </summary>
+	/// <param name="value"> New music volume (between 0 and 1); </param>
 	public void SetSFXVolume(float value) {
 		sfxVolume = value;
 		sfxSource.volume = value;

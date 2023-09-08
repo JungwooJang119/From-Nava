@@ -18,7 +18,7 @@ public enum EnemyState {
 public class Enemy : MonoBehaviour
 {
     public event Action<int> OnDamageTaken;
-    public event Action<bool> OnPlayerInRange;
+    public event Action<Enemy, bool> OnPlayerInRange;
     [SerializeField] private float maxHealth = 50f;
     [SerializeField] private GameObject healthBar;
     public bool isIceTower = false;
@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
         currHealth = maxHealth;
         isPushed = false;
         animator = GetComponent<Animator>();
@@ -53,6 +54,10 @@ public class Enemy : MonoBehaviour
 
     private void Start() {
         healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
+    }
+
+    void OnDestroy() {
+        OnPlayerInRange?.Invoke(this, false);
     }
 
     public void TakeDamage(float damage) {
@@ -111,6 +116,6 @@ public class Enemy : MonoBehaviour
 
     public void ReactToPlayerInRange(bool playerInRange) {
         healthBar.SetActive(true);
-        OnPlayerInRange?.Invoke(playerInRange);
+        OnPlayerInRange?.Invoke(this, playerInRange);
     }
 }

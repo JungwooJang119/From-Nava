@@ -39,7 +39,7 @@ public class NotificationManager : MonoBehaviour {
                 NotificationText.gameObject.SetActive(true);
                 switch (nextCall.type) {
                     case NotificationType.PolaroidClaimed:
-                        message = "Polaroid Claimed";
+                        message = "Polaroid and ID Card Claimed";
                         NotificationText.text = message;
                         break;
                     case NotificationType.CollectibleRedundant:

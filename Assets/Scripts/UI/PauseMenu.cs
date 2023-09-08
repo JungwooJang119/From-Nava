@@ -46,6 +46,19 @@ public class PauseMenu : MonoBehaviour {
         }
     }
 
+    public void TogglePause() {
+        if (!controller.GetBusy()) {
+            if (GameIsPaused)
+            {
+                Resume();
+            }
+            else 
+            {
+                Pause();
+            }
+        }
+    }
+
     /// Resume the game
     public void Resume() {
         AudioControl.Instance.PlayVoidSFX("PMClosing", 0.25f);

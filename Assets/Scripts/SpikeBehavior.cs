@@ -50,7 +50,7 @@ public class SpikeBehavior : MonoBehaviour
 
             //other.gameObject.GetComponent<PlayerController>().Push(pushDir, knockbackDist, knockbackSpd); // if knockbackDist is set to 0, this must be commented or else player
             // canMove will default to true even when dying in couroutine Die()
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(dmg);
+            other.gameObject.GetComponent<PlayerController>().Damage(dmg);
 
         }
     }

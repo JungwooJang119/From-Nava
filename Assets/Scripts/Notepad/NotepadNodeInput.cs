@@ -13,4 +13,5 @@ public class NotepadNodeInput : NotepadInput
     public void OnHoverButton() {
         base.InvokeInputPress(this, nodeNum);
     }
+    
 }

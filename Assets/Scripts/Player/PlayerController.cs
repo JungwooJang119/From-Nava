@@ -8,7 +8,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 //Handle input and movement on Player
-public class PlayerController : Singleton<PlayerController>, IDamageable
+public class PlayerController : Singleton<PlayerController>, IDamageable, IPushable
 {
     [SerializeField] bool isDark;
     public int playerHealth;

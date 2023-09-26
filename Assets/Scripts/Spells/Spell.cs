@@ -20,7 +20,7 @@ public class Spell : MonoBehaviour
 
     public Vector2 direction;
 
-    public float damage;
+    public int damage;
 
 
     private void Awake()
@@ -73,6 +73,10 @@ public class Spell : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        if (damageable != null) {
+            print("spellscript");
+        }
         if (other.gameObject.CompareTag("Player")) {
             return;
         }
@@ -100,7 +104,7 @@ public class Spell : MonoBehaviour
         //Apply hit particle effects, sfx, spell effects\
         if(other.gameObject.CompareTag("Enemy")) {
             Enemy enemyHealth = other.GetComponent<Enemy>();
-            enemyHealth.TakeDamage(spell.damageAmt);
+            enemyHealth.Damage(spell.damageAmt);
             Destroy(this.gameObject);
         }
 		OnSpellDestroy?.Invoke(other.gameObject);

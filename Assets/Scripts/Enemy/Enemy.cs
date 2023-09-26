@@ -15,16 +15,17 @@ public enum EnemyState {
     DEAD
 }
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable, IPushable
 {
     public event Action<int> OnDamageTaken;
     public event Action<bool> OnPlayerInRange;
-    [SerializeField] private float maxHealth = 50f;
+    [SerializeField] private int maxHealth = 50;
     [SerializeField] private GameObject healthBar;
     public bool isIceTower = false;
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dealthShader;
-    private float currHealth;
+    [SerializeField] private GameObject tutorialSpellObject;
+    private int currHealth;
 
     private bool isPushed;
     private float pushDist;
@@ -55,14 +56,13 @@ public class Enemy : MonoBehaviour
         healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
     }
 
-    public void TakeDamage(float damage) {
+    public void Damage(int damage) {
         currHealth -= damage;
         OnDamageTaken?.Invoke((int) damage);
         if (damageFlash != null)
         {
             damageFlash.Flash();
         }
-        //Debug.Log(currHealth);
         if (currHealth <= 0) {
             dealthShader.DissolveOut();
             if (!isIceTower) {
@@ -94,23 +94,26 @@ public class Enemy : MonoBehaviour
         return isPushed;
     }
 
-    // void OnMeleeHit(float meleeDamage) {
-    //     if (isIceTower) {
-    //         return;
-    //     }
-    //     TakeDamage(meleeDamage);
-    //     onMeleeHit?.Invoke();
-        
-    // }
-
     IEnumerator DeathSequence() {
         dealthShader.DissolveOut();
         yield return new WaitForSeconds(1f);
+        if (tutorialSpellObject) {
+            Instantiate(tutorialSpellObject, transform.position, Quaternion.identity);
+        }
         Destroy(this.gameObject);
     }
 
     public void ReactToPlayerInRange(bool playerInRange) {
         healthBar.SetActive(true);
         OnPlayerInRange?.Invoke(playerInRange);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (!other.gameObject.CompareTag("WindBlast")) {
+            if (isPushed) {
+                pushDist = 0;
+                isPushed = false;
+            }
+        }
     }
 }

@@ -131,16 +131,10 @@ public class WindblastBehavior : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
-		if (other.gameObject.CompareTag("Player")) {
-			other.gameObject.GetComponent<PlayerController>().Push(spell.direction, pushDist, pushSpd);
+		IPushable pushable = other.gameObject.GetComponent<IPushable>();
+		if (pushable != null) {
+			print(pushDist);
+			pushable.Push(spell.direction, pushDist, pushSpd);
 		}
-        if (other.gameObject.CompareTag("Enemy")) {
-            other.gameObject.GetComponent<Enemy>().Push(spell.direction, pushDist, pushSpd);
-        } else if (other.gameObject.CompareTag("Mirror")) {
-            other.gameObject.GetComponent<Mirror>().Push(spell.direction, pushDist, pushSpd);   //Mirror script will mitigate push values.
-        }
-        if(other.gameObject.CompareTag("Fan")) {
-            other.gameObject.GetComponent<Fan>().Blow();
-        }
     }
 }

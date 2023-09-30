@@ -8,7 +8,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 //Handle input and movement on Player
-public class PlayerController : Singleton<PlayerController>
+public class PlayerController : Singleton<PlayerController>, IDamageable, IPushable
 {
     [SerializeField] bool isDark;
     public int playerHealth;
@@ -131,13 +131,13 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("EnemyProjectile")) {
-            TakeDamage(1);
+            Damage(1);
         }
     }
 
-    public void TakeDamage(int damage) {
+    public void Damage(int damageAmt) {
         if (canBeDamaged) {
-            playerHealth -= damage;
+            playerHealth -= damageAmt;
             GetComponent<HealthBar>().ChangeHealth(playerHealth);
             if (damageFlash != null) {
                 damageFlash.Flash();
@@ -178,6 +178,7 @@ public class PlayerController : Singleton<PlayerController>
 			canMove = false;
 			canChangeDir = false;
 			animator.SetTrigger("doMelee");
+            //ScreenShake.Instance.ShakeScreen(5f, .1f);
 		}
     }
 

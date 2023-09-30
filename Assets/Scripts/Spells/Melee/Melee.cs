@@ -22,7 +22,7 @@ public class Melee : MonoBehaviour
     private float valueDir;
 
     //how much damage the melee does
-    public float damage = 5f;
+    public int damage = 5;
     //timer
     private float timeSinceLast;
     // Start is called before the first frame update
@@ -66,7 +66,7 @@ public class Melee : MonoBehaviour
             if (enemyHealth.isIceTower) {
                 return;
             }
-            enemyHealth.TakeDamage(damage);
+            enemyHealth.Damage(damage);
         }
         if (other.gameObject.CompareTag("EnemyProjectile")) {
             Destroy(other.gameObject);

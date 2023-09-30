@@ -18,6 +18,7 @@ public class RoomControlA2 : MonoBehaviour
 	private GameObject cameraTarget;
 	private Transform returnToPlayer;
     public GameObject door;
+	[SerializeField] private GameObject[] doorList;
     
     // Start is called before the first frame update
     void Start() {
@@ -52,7 +53,10 @@ public class RoomControlA2 : MonoBehaviour
 	private void CompleteRoom() {
 		if (!cheat) {
             StartCoroutine(CameraTransitionIn());
-			door.GetComponent<Door>().OpenDoor();
+			//door.GetComponent<Door>().OpenDoor();
+			foreach (GameObject doorInstance in doorList) {
+				doorInstance.GetComponent<Door>().OpenDoor();
+			}
             if (A2Chest != null) A2Chest.SetActive(true);
 			else ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);
 		} else {

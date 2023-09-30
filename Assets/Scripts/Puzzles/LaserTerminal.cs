@@ -22,9 +22,12 @@ public class LaserTerminal : MonoBehaviour
 	[SerializeField] private Sprite sprComputerRight;
 	[SerializeField] private Sprite sprComputerWrong;
 	[SerializeField] private GameObject buttonTutorial;
+	[SerializeField] private float maxZoom;
+	[SerializeField] private float zoomSpeed;
 
 	// Variables for camera transition
 	private CinemachineVirtualCamera _virtualCamera;
+	private CameraZoomController cameraZoom;
 	private GameObject _cameraTarget;								// The target the camera will move towards.
 
 	// Variables to react to the player in range;
@@ -49,6 +52,7 @@ public class LaserTerminal : MonoBehaviour
 		_player = PlayerController.Instance.transform;
 		_playerController = PlayerController.Instance;
 		_virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
+		cameraZoom = ReferenceSingleton.Instance.mainCamera.GetComponent<CameraZoomController>();
 	}
 
 	// Checks if the player is in range to interact, inspired by Grace's script;
@@ -81,6 +85,7 @@ public class LaserTerminal : MonoBehaviour
 	// Corouting to start the camera transtion;
 	IEnumerator CameraTransitionIn() {
 		yield return new WaitForSeconds(0.5f);
+		cameraZoom.BeginZoom(maxZoom, zoomSpeed);
 		_virtualCamera.Follow = _cameraTarget.transform;
 		yield return new WaitForSeconds(1.25f);
 		laserCaster.GetComponent<LaserCaster>().LoadBeam();
@@ -88,6 +93,7 @@ public class LaserTerminal : MonoBehaviour
 
 	// Coroutine to transition back if the puzzle is successful;
 	IEnumerator CameraTransitionOutGood() {
+		cameraZoom.RestoreZoom(zoomSpeed);
 		yield return new WaitForSeconds(0.5f);
 		_spriteRenderer.sprite = sprComputerRight;
 		AudioControl.Instance.PlaySFX("Computer Right", gameObject);
@@ -112,6 +118,7 @@ public class LaserTerminal : MonoBehaviour
 		_spriteRenderer.sprite = sprComputerWrong;
 		AudioControl.Instance.PlaySFX("Computer Wrong", gameObject);
 		canTrigger = true;
+		cameraZoom.RestoreZoom(zoomSpeed);
 	}
 
 	// Called by the beam if the puzzle attempt succeeds;

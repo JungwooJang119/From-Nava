@@ -164,7 +164,7 @@ public class EnemyHealthBar : MonoBehaviour {
         if (hp == 0) state = State.FadeOut;
     }
 
-    private void EnemyHealthBar_OnPlayerInRange(bool playerInRange) {
+    private void EnemyHealthBar_OnPlayerInRange(Enemy enemy, bool playerInRange) {
         state = playerInRange ? State.FadeIn : State.FadeOut;
     }
 

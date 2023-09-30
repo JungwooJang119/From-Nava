@@ -41,7 +41,6 @@ public class FireGoombaController : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 0;
         animator = GetComponent<Animator>();
         enemy = GetComponent<Enemy>();
-        enemy.ReactToPlayerInRange(!idle);
         animator = GetComponent<Animator>();
         lastChangeTime = 0f;
         NewDirection();
@@ -72,7 +71,6 @@ public class FireGoombaController : MonoBehaviour
 
         switch(state) {
             case EnemyState.IDLE:
-                enemy.ReactToPlayerInRange(false);
                 //NewDirection();
                 if (Time.time - lastChangeTime > changeTime) {
                     lastChangeTime = Time.time;
@@ -80,29 +78,29 @@ public class FireGoombaController : MonoBehaviour
                 }
                 transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
                 if (Vector2.Distance(transform.position, player.position) < minDistance) {
+                    enemy.ReactToPlayerInRange(true);
                     state = EnemyState.CHASE;
                 }
                 break;
             case EnemyState.WANDER:
-                enemy.ReactToPlayerInRange(false);
+                
                 if (Vector2.Distance(transform.position, player.position) < minDistance) {
+                    enemy.ReactToPlayerInRange(true);
                     state = EnemyState.CHASE;
                 }
                 break;
             case EnemyState.CHASE:
                 if (Vector2.Distance(transform.position, player.position) > minDistance) {
-                    enemy.ReactToPlayerInRange(true);
                     transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
                 } else {
-                    enemy.ReactToPlayerInRange(true);
                     state = EnemyState.ATTACK;
                 }
                 if (Vector2.Distance(transform.position, player.position) > maxDistance) {
+                    enemy.ReactToPlayerInRange(false);
                     state = EnemyState.IDLE;
                 }
                 break;
             case EnemyState.ATTACK:
-                enemy.ReactToPlayerInRange(true);
                 if (currFireballTime >= fireballInterval) {
                     currFireballTime = 0;
                     StartCoroutine(Attack());
@@ -114,6 +112,7 @@ public class FireGoombaController : MonoBehaviour
                     state = EnemyState.CHASE;
                 }
                 if (player.gameObject.GetComponent<PlayerController>().playerHealth <= 0) {
+                    enemy.ReactToPlayerInRange(false);
                     state = EnemyState.IDLE;
                 }
                 break;

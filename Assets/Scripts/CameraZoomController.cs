@@ -1,23 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class CameraZoomController : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera ppc;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private float standardZoom;
+    private CinemachineVirtualCamera cam;
+    private PixelPerfectCamera ppc;
+
+    void Awake() {
+        ppc = GetComponent<PixelPerfectCamera>();
+        cam = GetComponentInChildren<CinemachineVirtualCamera>(true);
+        standardZoom = cam.m_Lens.OrthographicSize;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void BeginZoom(float zoom, float zoomSpeed) {
+        ppc.enabled = false;
+        StartCoroutine(Zoom(zoom, zoomSpeed));
     }
 
-    public void ChangeAssetPixels(int num) {
-        ppc.assetsPPU = num;
+    public void RestoreZoom(float zoomSpeed) {
+        StopAllCoroutines();
+        StartCoroutine(Zoom(standardZoom, zoomSpeed, true));
+    }
+
+    private IEnumerator Zoom(float zoom, float zoomSpeed, bool enablePPC = false) {
+        while (cam.m_Lens.OrthographicSize != zoom) {
+            cam.m_Lens.OrthographicSize = Mathf.MoveTowards(cam.m_Lens.OrthographicSize, zoom, zoomSpeed);
+            yield return null;
+        } if (enablePPC) ppc.enabled = true;
     }
 }

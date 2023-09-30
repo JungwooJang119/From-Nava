@@ -18,8 +18,9 @@ public enum EnemyState {
 public class Enemy : MonoBehaviour, IDamageable, IPushable
 {
     public event Action<int> OnDamageTaken;
-    public event Action<bool> OnPlayerInRange;
+    public event Action<Enemy, bool> OnPlayerInRange;
     [SerializeField] private int maxHealth = 50;
+
     [SerializeField] private GameObject healthBar;
     public bool isIceTower = false;
     [SerializeField] private DamageFlash damageFlash;
@@ -45,6 +46,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
     /// </summary>
     private void Awake()
     {
+        OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
         currHealth = maxHealth;
         isPushed = false;
         animator = GetComponent<Animator>();
@@ -56,7 +58,12 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
         healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
     }
 
+    void OnDestroy() {
+        OnPlayerInRange?.Invoke(this, false);
+    }
+
     public void Damage(int damage) {
+
         currHealth -= damage;
         OnDamageTaken?.Invoke((int) damage);
         if (damageFlash != null)
@@ -105,7 +112,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
 
     public void ReactToPlayerInRange(bool playerInRange) {
         healthBar.SetActive(true);
-        OnPlayerInRange?.Invoke(playerInRange);
+        OnPlayerInRange?.Invoke(this, playerInRange);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

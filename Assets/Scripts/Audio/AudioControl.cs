@@ -49,7 +49,6 @@ public class AudioControl : Singleton<AudioControl> {
 	public AudioSource PlayMusic(string name, bool shouldLoop = true) {
 		mainMusicSource.loop = shouldLoop;
 		mainMusicSource.volume = musicVolume;
-
 		AudioClip clip = FetchClip(name, musicSounds);
 		mainMusicSource.clip = clip;
 		mainMusicSource.Play();

@@ -53,6 +53,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     private float currIFrameTime;
     private bool canBeDamaged;
 
+    [SerializeField] private GameObject[] arrows;
+
     private void Awake() {
         InitializeSingleton();
     }
@@ -62,6 +64,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         input = GetComponent<PlayerInput>();
         light = this.transform.GetChild(0).gameObject;
         facingDir = Vector2.down;
+        arrows[3].SetActive(true);
         castPoint = downCast;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -107,18 +110,26 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         if(movement.x > 0) {
             facingDir = Vector2.right;
             castPoint = rightCast;
+            SetAllArrowsFalse();
+            arrows[0].SetActive(true);
         }
         if(movement.x < 0) {
             facingDir = Vector2.left;
             castPoint = leftCast;
+            SetAllArrowsFalse();
+            arrows[1].SetActive(true);
         }
         if(movement.y > 0) {
             facingDir = Vector2.up;
             castPoint = upCast;
+            SetAllArrowsFalse();
+            arrows[2].SetActive(true);
         }
         if(movement.y < 0) {
             facingDir = Vector2.down;
             castPoint = downCast;
+            SetAllArrowsFalse();
+            arrows[3].SetActive(true);
         }
         if (movement.magnitude > 0) {
             animator.SetFloat("X", movement.x);
@@ -127,6 +138,12 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         } 
         else 
             animator.SetBool("isWalking", false);
+    }
+
+    private void SetAllArrowsFalse() {
+        for (int i = 0; i < arrows.Length; i++) {
+            arrows[i].SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

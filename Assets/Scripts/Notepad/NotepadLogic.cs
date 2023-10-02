@@ -67,7 +67,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
         else {
             //invalid input: active node, non-start node on inactive pattern, etc
             //handle at will
-            print("Invalid node Clicked");
+            //print("Invalid node Clicked");
         }
     }
 
@@ -83,8 +83,10 @@ public class NotepadLogic : Singleton<NotepadLogic>
         pattern.Add(num);
         OnNodeSelected.Invoke(this, num);
         string nodeName = "Node" + (num.ToString());
-        AudioControl.Instance.PlaySFX(nodeName, PlayerController.Instance.gameObject, 0f, 0.25f);
-        PrintPattern();
+        if (num != 9) {
+            AudioControl.Instance.PlaySFX(nodeName, PlayerController.Instance.gameObject, 0f, 0.25f);
+        }
+        //PrintPattern();
     }
 
     private void EndPattern() {

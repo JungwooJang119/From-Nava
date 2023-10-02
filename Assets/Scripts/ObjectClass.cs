@@ -9,29 +9,41 @@ public class ObjectClass : MonoBehaviour, IPushable
 
     private SpriteRenderer sr;
     private new GameObject light;
-    private bool defaulLitStatus;
+    private bool defaultLitStatus;
     private enum TriggerType {
         Fire,
         Ice,
         Wind,
+        None,
     }
     
     [SerializeField] private Sprite onFireSprite;
     [SerializeField] private Sprite onFreezedSprite;
-    private bool isLit;
+    public Sprite defaultSprite;
+    private bool isLit = false;
     private bool isFrozen;
     private bool isPushed;
 
     private float pushDist;
     private float pushSpd;
     private Vector3 pushDir;
-    
+    private string elementType;
+    private bool hasSwitched;
 
     // Start is called before the first frame update
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         //light = GetComponentInChildren<LightController>().gameObject;
+    }
+
+    private void Start() {
+        defaultSprite = sr.sprite;
+        elementType = "none";
+        if (defaultLitStatus) {
+            isLit = true;
+        }
+        hasSwitched = false;
     }
 
     void FixedUpdate()
@@ -70,11 +82,40 @@ public class ObjectClass : MonoBehaviour, IPushable
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.GetComponent<IceballBehavior>()) {
-            sr.sprite = onFreezedSprite;
-            return;
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.GetComponent<IceballBehavior>() && !hasSwitched) {
+            if (elementType == "none" && !hasSwitched) {
+                sr.sprite = onFreezedSprite;
+                elementType = "ice";
+                hasSwitched = true;
+                print(elementType);
+            } else if (elementType == "fire" && !hasSwitched) {
+                sr.sprite = defaultSprite;
+                isLit = false;
+                elementType = "none";
+                hasSwitched = true;
+                print(elementType);
+            }
+        } else if (collision.gameObject.GetComponent<FireballBehavior>() && !hasSwitched) {
+            if (elementType == "none" && !hasSwitched) {
+                sr.sprite = onFireSprite;
+                elementType = "fire";
+                isLit = true;
+                hasSwitched = true;
+                print(elementType);
+            } else if (elementType == "ice" && !hasSwitched) {
+                sr.sprite = defaultSprite;
+                elementType = "none";
+                hasSwitched = true;
+                print(hasSwitched);
+            }
         }
+        StartCoroutine(ChangeLag());
+    }
+
+    IEnumerator ChangeLag() {
+        yield return new WaitForSeconds(0.1f);
+        hasSwitched = false;
     }
 
 

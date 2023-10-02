@@ -4827,6 +4827,7 @@ GameObject:
   - component: {fileID: 2030551828}
   - component: {fileID: 2030551833}
   - component: {fileID: 2030551834}
+  - component: {fileID: 9067230663215569742}
   m_Layer: 0
   m_Name: FireballCopyable
   m_TagString: Untagged
@@ -4988,6 +4989,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
+--- !u!60 &9067230663215569742
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424348743349445095}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.18322039, y: 0.5}
+      - {x: -0.49757242, y: 0.23905492}
+      - {x: -0.49757242, y: -0.18322039}
+      - {x: -0.31126547, y: -0.5}
+      - {x: 0.25300312, y: -0.5}
+      - {x: 0.38347578, y: -0.36952746}
+      - {x: 0.43619156, y: -0.12423849}
+      - {x: 0.49609756, y: -0.048698187}
+      - {x: 0.5048549, y: 0.11829257}
+      - {x: 0.2511928, y: 0.5}
 --- !u!1001 &8871133889053891811
 PrefabInstance:
   m_ObjectHideFlags: 0

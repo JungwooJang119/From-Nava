@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4670890785266075958}
   - component: {fileID: 2279952403687720566}
   - component: {fileID: 8370430019012799946}
+  - component: {fileID: 5860747201458848965}
+  - component: {fileID: 4685662499370415536}
   m_Layer: 0
   m_Name: MirrorObelisk
   m_TagString: Untagged
@@ -98,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.013027191}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,5 +111,42 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 4}
+  m_Size: {x: 1.6874313, y: 3.6613846}
   m_EdgeRadius: 0
+--- !u!50 &5860747201458848965
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462490580442181221}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDrag: 30
+  m_AngularDrag: 30
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &4685662499370415536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462490580442181221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7069dbfdc90ba04ca2e925633ba8033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHeavy: 0
+  onFireSprite: {fileID: 0}
+  onFreezedSprite: {fileID: 0}
+  defaultSprite: {fileID: 0}

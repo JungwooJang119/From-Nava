@@ -30,10 +30,13 @@ public class ObjectClass : MonoBehaviour, IPushable
     private string elementType;
     private bool hasSwitched;
 
+    private Vector3 origin;
+
     // Start is called before the first frame update
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        origin = transform.position;
         //light = GetComponentInChildren<LightController>().gameObject;
     }
 
@@ -81,6 +84,10 @@ public class ObjectClass : MonoBehaviour, IPushable
             }
         }
     }
+
+    public void Reset() {
+		transform.position = origin;
+	}
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.GetComponent<IceballBehavior>() && !hasSwitched) {

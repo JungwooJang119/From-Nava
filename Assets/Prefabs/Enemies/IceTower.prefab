@@ -207,12 +207,11 @@ MonoBehaviour:
   isIceTower: 1
   damageFlash: {fileID: 2880031122338850227}
   dealthShader: {fileID: 0}
-  defaultLit: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  dissolve: {fileID: 2100000, guid: 2aa7128bdd2dd9746933cd7f394bd7c7, type: 2}
-  isInDarkRoom: 0
+  tutorialSpellObject: {fileID: 0}
   onMeleeHit:
     m_PersistentCalls:
       m_Calls: []
+  currState: 0
 --- !u!114 &2880031122338850227
 MonoBehaviour:
   m_ObjectHideFlags: 0

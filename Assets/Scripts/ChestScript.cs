@@ -13,7 +13,7 @@ public class ChestScript : MonoBehaviour
     private bool isNear = false;
 
     private Animator animator;
-    [SerializeField] private GameObject door;
+    [SerializeField] private GameObject[] doors;
 
     // Button Tutorial Pop-Up
     [SerializeField] private GameObject buttonTutorial;
@@ -22,6 +22,7 @@ public class ChestScript : MonoBehaviour
 
     [SerializeField] private bool startsActive;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private bool hasDoors;
 
     private Color spriteColor;
     private bool hasOpened;
@@ -109,8 +110,10 @@ public class ChestScript : MonoBehaviour
             yield return null;
         } animator.SetBool("OpeningChest", false);
 		AudioControl.Instance.PlaySFX("Chest Close", gameObject);
-		if (door && !hasOpened) {
-            door.GetComponent<Door>().OpenDoor();
+		if (hasDoors && !hasOpened) {
+            foreach (GameObject door in doors) {
+                door.GetComponent<Door>().OpenDoor();   
+            }
             hasOpened = true;
         }
 	}

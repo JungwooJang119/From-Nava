@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 1764788899401296239}
   - component: {fileID: 6501937713015008925}
   - component: {fileID: 4693708176884164973}
+  - component: {fileID: 9122077249685681649}
+  - component: {fileID: 8454499055148146299}
+  - component: {fileID: 584444634993858782}
   m_Layer: 0
   m_Name: Desk
   m_TagString: Untagged
@@ -26,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5122896276158322483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.14, y: 4.33, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,3 +129,66 @@ PolygonCollider2D:
       - {x: 0.5425005, y: -0.4750111}
       - {x: 0.9149995, y: -1.030004}
       - {x: 1.5625048, y: -1.130002}
+--- !u!114 &9122077249685681649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122896276158322483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7069dbfdc90ba04ca2e925633ba8033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHeavy: 0
+  onFireSprite: {fileID: 0}
+  onFreezedSprite: {fileID: 0}
+  defaultSprite: {fileID: 0}
+--- !u!61 &8454499055148146299
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122896276158322483}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.018053293, y: -0.24552625}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 3}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3572984, y: 1.7579256}
+  m_EdgeRadius: 0
+--- !u!50 &584444634993858782
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122896276158322483}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDrag: 30
+  m_AngularDrag: 30
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

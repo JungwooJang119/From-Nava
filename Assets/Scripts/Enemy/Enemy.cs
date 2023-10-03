@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
                 animator.SetBool("isDead", true);
                 StartCoroutine(DeathSequence());
             } else {
-                Destroy(this.gameObject, 1f);
+                StartCoroutine(IceDeath());
             }
         }
     }
@@ -108,6 +108,14 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
             Instantiate(tutorialSpellObject, transform.position, Quaternion.identity);
         }
         Destroy(this.gameObject);
+    }
+
+    IEnumerator IceDeath() {
+        yield return new WaitForSeconds(1f);
+        if (tutorialSpellObject) {
+            Instantiate(tutorialSpellObject, transform.position, Quaternion.identity);
+        }
+        Destroy(this.gameObject, 1f);
     }
 
     public void ReactToPlayerInRange(bool playerInRange) {

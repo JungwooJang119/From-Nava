@@ -67,8 +67,8 @@ public class ObjectClass : MonoBehaviour, IPushable
         if (pushDist <= 0) {
             isPushed = false;
         } else {
-            transform.Translate(pushDir * pushSpd * Time.deltaTime);
-            pushDist -= (pushDir *  pushSpd * Time.deltaTime).magnitude;
+            transform.Translate(pushDir * pushSpd * Time.deltaTime, relativeTo:Space.World);
+			pushDist -= (pushDir * pushSpd * Time.deltaTime).magnitude;
         }
     }
 

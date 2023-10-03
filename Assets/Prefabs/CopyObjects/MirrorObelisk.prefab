@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8370430019012799946}
   - component: {fileID: 5860747201458848965}
   - component: {fileID: 4685662499370415536}
+  - component: {fileID: 7723165815906470435}
   m_Layer: 0
   m_Name: MirrorObelisk
-  m_TagString: Untagged
+  m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.013027191}
+  m_Offset: {x: 0.003509283, y: -0.032707214}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6874313, y: 3.6613846}
+  m_Size: {x: 1.8781419, y: 3.8179169}
   m_EdgeRadius: 0
 --- !u!50 &5860747201458848965
 Rigidbody2D:
@@ -150,3 +151,16 @@ MonoBehaviour:
   onFireSprite: {fileID: 0}
   onFreezedSprite: {fileID: 0}
   defaultSprite: {fileID: 0}
+--- !u!114 &7723165815906470435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462490580442181221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d627d188c2e0b045805ea4afa3b99fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushMitigation: 0.5

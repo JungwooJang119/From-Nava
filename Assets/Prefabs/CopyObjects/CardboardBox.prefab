@@ -178,4 +178,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHeavy: 0
   onFireSprite: {fileID: 0}
-  onFreezedSprite: {fileID: 0}
+  onFreezedSprite: {fileID: 21300000, guid: 309e8e4c89ece324bb1114e64a34c33d, type: 3}
+  defaultSprite: {fileID: 0}

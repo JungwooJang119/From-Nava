@@ -5,7 +5,7 @@ using UnityEngine;
 // Mirror object off which laser bounce. Displaceable using Elizabeth's wind spell;
 // Mimics most behaviors from 'Basic Enemy' and Elizabeth's script;
 
-public class Mirror : MonoBehaviour
+public class Mirror : MonoBehaviour, IPushable
 {
 	public float pushMitigation; // Mitigates push;
 	private bool isPushed;
@@ -46,5 +46,10 @@ public class Mirror : MonoBehaviour
 			PushTranslate();
 		}
 	}
+
+	public bool GetPushed() {
+        return isPushed;
+    }
+
 	
 }

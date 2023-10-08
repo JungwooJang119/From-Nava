@@ -51,6 +51,7 @@ public class RoomControlA2 : MonoBehaviour
 	}
 
 	private void CompleteRoom() {
+		AudioControl.Instance.PlaySFX("PuzzleComplete", PlayerController.Instance.gameObject, 0.1f, 1f);
 		if (!cheat) {
             StartCoroutine(CameraTransitionIn());
 			//door.GetComponent<Door>().OpenDoor();

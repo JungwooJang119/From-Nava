@@ -13,6 +13,7 @@ public class RoomControlA1Part1 : MonoBehaviour {
 
     private void RoomControlA1Part1_OnReportRead() {
         door.GetComponent<Door>().OpenDoor();
+        AudioControl.Instance.PlaySFX("PuzzleComplete", PlayerController.Instance.gameObject, 0f, 1f);
         ReferenceSingleton.Instance.roomLights.Propagate(RoomLights.RoomCode.A1_2);
         Destroy(this.gameObject);
     }

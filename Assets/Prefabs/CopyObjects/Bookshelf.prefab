@@ -128,7 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHeavy: 1
   onFireSprite: {fileID: 0}
-  onFreezedSprite: {fileID: 21300000, guid: 716b666fdd159574983a52851247f010, type: 3}
+  onFreezedSprite: {fileID: 21300000, guid: a64e8046cd33d3f4cbb0ce90016293d0, type: 3}
+  defaultSprite: {fileID: 0}
 --- !u!60 &3133461272663010126
 PolygonCollider2D:
   m_ObjectHideFlags: 0

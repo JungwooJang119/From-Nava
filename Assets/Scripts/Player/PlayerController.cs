@@ -52,6 +52,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     [SerializeField] private float iFrameTime;
     private float currIFrameTime;
     private bool canBeDamaged;
+    private bool hasDusted;
+    public ParticleSystem dust;
 
     [SerializeField] private GameObject[] arrows;
 
@@ -99,6 +101,11 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         if (canMove) {
             movement = movementValue.Get<Vector2>();
             ChooseFacingDir();
+            hasDusted = false;
+        }
+        if (!hasDusted) {
+            hasDusted = true;
+            dust.Play();
         }
     }
 

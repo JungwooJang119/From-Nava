@@ -30,7 +30,9 @@ public class RoomControlB1 : MonoBehaviour
     {
         if (isActive == true) {
             if (enemy1 == null && enemy2 == null && enemy3 == null && enemy4 == null && enemy5 == null && enemy6 == null) {
-                chest.SetActive(true);
+                if (chest != null) {
+                    chest.SetActive(true);
+                }
                 // spellNotif.SetActive(true);
                 // StartCoroutine(DurationTime());
                 isActive = false;

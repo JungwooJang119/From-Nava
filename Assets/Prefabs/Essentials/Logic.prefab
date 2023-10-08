@@ -452,6 +452,7 @@ MonoBehaviour:
   A2Chest: {fileID: 0}
   cheat: 0
   door: {fileID: 0}
+  doorList: []
 --- !u!1 &272689049
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +964,7 @@ MonoBehaviour:
   A2Chest: {fileID: 0}
   cheat: 0
   door: {fileID: 0}
+  doorList: []
 --- !u!114 &966732059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1130,6 +1132,7 @@ MonoBehaviour:
   A2Chest: {fileID: 0}
   cheat: 1
   door: {fileID: 0}
+  doorList: []
 --- !u!1 &1287521556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1142,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1287521557}
-  - component: {fileID: 1287521558}
   m_Layer: 0
   m_Name: C1
   m_TagString: Untagged
@@ -1162,27 +1164,6 @@ Transform:
   m_Father: {fileID: 218554043}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1287521558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287521556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75defe2e6b9efdd4e8e67429f9d841a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy1: {fileID: 0}
-  enemy2: {fileID: 0}
-  enemy3: {fileID: 0}
-  enemy4: {fileID: 0}
-  enemy5: {fileID: 0}
-  enemy6: {fileID: 0}
-  chest: {fileID: 0}
-  isC1: 1
-  door: {fileID: 0}
 --- !u!1 &1313676341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1367,7 @@ MonoBehaviour:
   A2Chest: {fileID: 0}
   cheat: 0
   door: {fileID: 0}
+  doorList: []
 --- !u!1 &1584032940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,6 +1545,7 @@ MonoBehaviour:
   A2Chest: {fileID: 0}
   cheat: 0
   door: {fileID: 0}
+  doorList: []
 --- !u!1 &1796619775
 GameObject:
   m_ObjectHideFlags: 0

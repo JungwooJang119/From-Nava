@@ -29,7 +29,6 @@ public class EndPolaroidDisplay : MonoBehaviour {
 
     IEnumerator FinalFade() {
         while (image.color.a != 0) yield return null;
-        yield return new WaitForSeconds(transition.FadeOut(2));
         Destroy(gameObject);
     }
 }

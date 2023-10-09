@@ -12,7 +12,11 @@ public class EndingLogic : MonoBehaviour {
 	[SerializeField] private tranMode transitionManager;
 	[SerializeField] private Image background;
 	[SerializeField] private float initialFrameWait;
+	[SerializeField] private float finalFadeTime;
+	[SerializeField] private int levelTransitionIndex;
 	[SerializeField] private EndingLogicData data;
+	[SerializeField] private string initialClipName;
+
 	public EndingLogicData Data => data;
 
 	private List<EndingElement> tranElements;
@@ -28,13 +32,18 @@ public class EndingLogic : MonoBehaviour {
     void Update() {
 		if (!transitioning) {
 			if (tranElements.Count > 0) StartCoroutine(Transition(tranElements[0]));
-			else UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+			else StartCoroutine(FinalFade(finalFadeTime));
 		}
     }
 
+	private IEnumerator FinalFade(float finalFadeTime) {
+		yield return new WaitForSeconds(transitionManager.FadeOut(finalFadeTime));
+		UnityEngine.SceneManagement.SceneManager.LoadScene(levelTransitionIndex);
+	}
+
 	private IEnumerator Intro() {
 		yield return new WaitForSeconds(1);
-		//AudioControl.Instance.PlayMusic("");
+		if (!string.IsNullOrWhiteSpace(initialClipName)) AudioControl.Instance.PlayMusic(initialClipName, false);
 		yield return new WaitForSeconds(initialFrameWait);
 		transitioning = false;
     }
@@ -84,7 +93,7 @@ public class EndingLogic : MonoBehaviour {
 	private void TriggerAudio(AudioTrigger at) {
 		if (!at.use) return;
 		if (at.sfx) AudioControl.Instance.PlayVoidSFX(at.clipName);
-		else AudioControl.Instance.PlayMusic(at.clipName);
+		else AudioControl.Instance.PlayMusic(at.clipName, false);
 	}
 }
 

@@ -55,19 +55,23 @@ public class tranMode : MonoBehaviour {
 	}
 
 	// Method to fade the screen back in;
-	public float FadeIn() {
-		currentTransitionTime = shortTransitionTime;
+	public float FadeIn() => FadeIn(shortTransitionTime);
+
+	public float FadeIn(float transitionTime) {
+		currentTransitionTime = transitionTime;
 		target = 0;
-		return currentTransitionTime;
+		return transitionTime;
 	}
 
 	// Method to fade the screen to black;
-	public float FadeOut() {
-		currentTransitionTime = shortTransitionTime;
+	public float FadeOut() => FadeOut(shortTransitionTime);
+
+	public float FadeOut(float transitionTime) {
+		currentTransitionTime = transitionTime;
 		target = 1f;
 		fadeScreen.blocksRaycasts = true;
 		fadeScreen.interactable = true;
-		return currentTransitionTime;
+		return transitionTime;
 	}
 
 	public float DarkenIn(bool fastTransition = false) {
@@ -81,6 +85,17 @@ public class tranMode : MonoBehaviour {
 		target = 0.5f;
 		return currentTransitionTime;
 	}
+
+	public void SetTransitionColor(Color color) {
+		GetComponentInChildren<UnityEngine.UI.Image>().color = color;
+    }
+
+	IEnumerator Ending() {
+		float time;
+		AudioControl.Instance.PlayVoidSFX("", out time);
+		yield return new WaitForSeconds(FadeOut(time));
+		SceneManager.LoadScene(4);
+    }
 
 	// Coroutine for scene loading;
 	IEnumerator LoadLevel() {

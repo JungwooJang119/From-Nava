@@ -10,17 +10,16 @@ public class tranMode : MonoBehaviour {
 	// Adjust to length of transition;
 	[SerializeField] private float shortTransitionTime = 0.5f;
 	[SerializeField] private float longTransitionTime = 1f;
+	[SerializeField] private string endingClipName;
+	[SerializeField] private int introIndex = 3;
+	[SerializeField] private int levelIndex = 1;
 	private float currentTransitionTime;
 	private float alpha;
 	private float target;
 	private CanvasGroup fadeScreen;
 
 	void Start() {
-		if (SceneManager.GetActiveScene().buildIndex == 0) { // 0 index corresponds to Main Menu
-			AudioControl.Instance.PlayMusic("Main");
-		} else {
-			StartCoroutine(LoadMusic());
-		}
+		AudioControl.Instance.CheckMusic();
 		fadeScreen = GetComponentInChildren<CanvasGroup>();
 		alpha = 1f;
 		target = 0;
@@ -44,7 +43,12 @@ public class tranMode : MonoBehaviour {
 		AudioControl.Instance.FadeMusic(true);
 		// Note: The music fadeout may stop the Lab Music if the transition happens too fast.
 		// Consider migrating the fadeout to Update() in AudioControl.cs if it becomes an issue.
-		StartCoroutine(LoadLevel());
+		StartCoroutine(LoadLevel(introIndex));
+	}
+
+	public void LoadLevel() {
+		AudioControl.Instance.FadeMusic(true);
+		StartCoroutine(LoadLevel(1));
 	}
 
 	public void Credits() {
@@ -55,19 +59,23 @@ public class tranMode : MonoBehaviour {
 	}
 
 	// Method to fade the screen back in;
-	public float FadeIn() {
-		currentTransitionTime = shortTransitionTime;
+	public float FadeIn() => FadeIn(shortTransitionTime);
+
+	public float FadeIn(float transitionTime) {
+		currentTransitionTime = transitionTime;
 		target = 0;
-		return currentTransitionTime;
+		return transitionTime;
 	}
 
 	// Method to fade the screen to black;
-	public float FadeOut() {
-		currentTransitionTime = shortTransitionTime;
+	public float FadeOut() => FadeOut(shortTransitionTime);
+
+	public float FadeOut(float transitionTime) {
+		currentTransitionTime = transitionTime;
 		target = 1f;
 		fadeScreen.blocksRaycasts = true;
 		fadeScreen.interactable = true;
-		return currentTransitionTime;
+		return transitionTime;
 	}
 
 	public float DarkenIn(bool fastTransition = false) {
@@ -82,8 +90,26 @@ public class tranMode : MonoBehaviour {
 		return currentTransitionTime;
 	}
 
+	public void SetTransitionColor(Color color) {
+		GetComponentInChildren<UnityEngine.UI.Image>().color = color;
+    }
+
+	public void LoadEnding() => StartCoroutine(Ending());
+
+	public IEnumerator Ending() {
+		AudioControl.Instance.FadeMusic(true);
+		float time;
+		if (!string.IsNullOrWhiteSpace(endingClipName)) {
+			AudioControl.Instance.PlayVoidSFX(endingClipName, out time);
+		} else {
+			time = 4;
+		} SetTransitionColor(Color.white);
+		yield return new WaitForSeconds(FadeOut(time));
+		SceneManager.LoadScene(4);
+    }
+
 	// Coroutine for scene loading;
-	IEnumerator LoadLevel() {
+	IEnumerator LoadLevel(int level) {
 		//Play animation;
 		target = 1;
 
@@ -91,7 +117,7 @@ public class tranMode : MonoBehaviour {
 		yield return new WaitForSeconds(currentTransitionTime);
 
 		//Load Scene;
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(level);
 	}
 
 	IEnumerator LoadCredits() {
@@ -103,12 +129,6 @@ public class tranMode : MonoBehaviour {
 
 		//Load Scene;
 		SceneManager.LoadScene(2);
-	}
-
-	IEnumerator LoadMusic() {
-		var musicSource = AudioControl.Instance.PlayMusic("Exploration Opening", false);
-		while (musicSource.isPlaying) yield return null;
-		AudioControl.Instance.PlayMusic("Exploration");
 	}
 
 	// Method to quit the game. Called on Quit button. Exits play mode if testing;

@@ -15,7 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/EOS Spring Demo/Credits2.unity
     guid: b4462255ab6e9af4e8e458b9502f7cf0
   - enabled: 1
-    path: Assets/Scenes/EOS Spring Demo/Thank You.unity
-    guid: fdd44b1fc00871a49b271989c9e72fd7
+    path: Assets/Scenes/Final/IntroScene.unity
+    guid: a5b889f049ae03042a213c452138ac10
+  - enabled: 1
+    path: Assets/Scenes/Final/EndingScene.unity
+    guid: 7964fafc52b43574a92fb6e8ed85b3cd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f7d90a78b7f26184b8a11e6c4a0587b8, type: 2}

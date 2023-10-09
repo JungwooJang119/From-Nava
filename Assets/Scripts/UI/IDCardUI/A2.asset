@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1bb8386b4775243a316649172de287, type: 3}
+  m_Name: A2
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 75bdd1c95a1b1604b8071b41ee71d070, type: 3}
+  text: An ID card for Sector A3 access was attached as well.

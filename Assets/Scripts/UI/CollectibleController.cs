@@ -14,11 +14,15 @@ public class CollectibleController : MonoBehaviour {
 		Polaroid,
 		Tutorial,
 		Report,
+		IDCard,
+		SideRoomKey,
 	}
 
 	private PolaroidManager polaroidManager;
 	private TutorialManager tutorialManager;
 	private ReportManager reportManager;
+	private IDCardManager idCardManager;
+	private SideRoomKeyManager sideRoomKeyManager;
 	private NotificationManager notificationManager;
 	private NotificationType notificationType = NotificationType.None;
 
@@ -37,6 +41,8 @@ public class CollectibleController : MonoBehaviour {
 
 	private List<string> polaroidsClaimed;
 	private List<string> tutorialsClaimed;
+	private List<string> idCardsClaimed;
+	private List<string> sideRoomKeysClaimed;
 
 	private bool busy;
 
@@ -44,6 +50,8 @@ public class CollectibleController : MonoBehaviour {
 		callStack = new List<Call>();
 		polaroidsClaimed = new List<string>();
 		tutorialsClaimed = new List<string>();
+		idCardsClaimed = new List<string>();
+		sideRoomKeysClaimed = new List<string>();
 		tutorialsClaimed.Add("Melee");
 
 		polaroidManager = GetComponentInChildren<PolaroidManager>();
@@ -53,6 +61,10 @@ public class CollectibleController : MonoBehaviour {
 		reportManager = GetComponentInChildren<ReportManager>();
 		reportManager.OnReportEnd += CollectibleManager_OnDisplayEnd;
 		notificationManager = GetComponentInChildren<NotificationManager>();
+		idCardManager = GetComponentInChildren<IDCardManager>();
+		idCardManager.OnDisplayEnd += CollectibleManager_OnDisplayEnd;
+		sideRoomKeyManager = GetComponentInChildren<SideRoomKeyManager>();
+		sideRoomKeyManager.OnDisplayEnd += CollectibleManager_OnDisplayEnd;
 
 		transition = transform.parent.GetComponentInChildren<tranMode>();
 	}
@@ -70,6 +82,12 @@ public class CollectibleController : MonoBehaviour {
 					break;
 				case CollectibleType.Report:
 					DisplayCollectible(reportManager, callStack[0].name, callStack[0].firstTime);
+					break;
+				case CollectibleType.IDCard:
+					DisplayCollectible(idCardManager, callStack[0].name, callStack[0].firstTime);
+					break;
+				case CollectibleType.SideRoomKey:
+					DisplayCollectible(sideRoomKeyManager, callStack[0].name, callStack[0].firstTime);
 					break;
 			}
 			callStack.RemoveAt(0);
@@ -103,6 +121,24 @@ public class CollectibleController : MonoBehaviour {
 				} else {
 					tutorialsClaimed.Add(name);
 				}
+			} else if (type == CollectibleType.IDCard) {
+				if (idCardsClaimed.Contains(name)) {
+					// notificationManager.AddNotification(NotificationType.CollectibleRedundant);
+					// OnCallsEnd?.Invoke();
+					return;
+				} else {
+					// notificationType = NotificationType.IDCardClaimed;
+					idCardsClaimed.Add(name);
+				}
+			} else if (type == CollectibleType.SideRoomKey) {
+				if (sideRoomKeysClaimed.Contains(name)) {
+					notificationManager.AddNotification(NotificationType.CollectibleRedundant);
+					OnCallsEnd?.Invoke();
+					return;
+				} else {
+					notificationType = NotificationType.IDCardClaimed;
+					sideRoomKeysClaimed.Add(name);
+				}
 			}
 		}
 		callStack.Add(new Call(type, name, firstTime));
@@ -114,6 +150,10 @@ public class CollectibleController : MonoBehaviour {
 				return polaroidsClaimed.Contains(name);
 			case CollectibleType.Tutorial:
 				return tutorialsClaimed.Contains(name);
+			case CollectibleType.IDCard:
+				return idCardsClaimed.Contains(name);
+			case CollectibleType.SideRoomKey:
+				return sideRoomKeysClaimed.Contains(name);
 			default:
 				return false;
 		}

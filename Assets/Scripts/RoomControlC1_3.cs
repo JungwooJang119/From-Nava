@@ -39,7 +39,6 @@ public class RoomControlC1_3 : MonoBehaviour
         if (isActive) {
             if (!p1.IsBlowing() && !p2.IsBlowing() && !p3.IsBlowing() && !p4.IsBlowing() && !p5.IsBlowing() && !p6.IsBlowing()) {
                 door1.GetComponent<Door>().OpenDoor();
-                AudioControl.Instance.PlaySFX("PuzzleComplete", PlayerController.Instance.gameObject, 0f, 1f);
                 isActive = false;
             }
         }

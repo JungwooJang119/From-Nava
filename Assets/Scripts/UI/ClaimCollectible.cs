@@ -13,8 +13,8 @@ public class ClaimCollectible : MonoBehaviour
 
     [Serializable]
     private struct CollectibleCall {
-		[Header("Type Key:                 0-Polaroid | 1-Tutorial | 2-Lab Report")]
-		[Range(0, 2)]
+		[Header("Type Key:                 0-Polaroid | 1-Tutorial | 2-Lab Report | 3-ID Card | 4-Side Room Key")]
+		[Range(0, 4)]
         public int collectibleType;
         [Header("String identifier of the collectible to claim and display:")]
         public string name;
@@ -34,8 +34,12 @@ public class ClaimCollectible : MonoBehaviour
                 controller.AddCall(CollectibleController.CollectibleType.Polaroid, call.name);
             } else if (call.collectibleType == 1) {
                 controller.AddCall(CollectibleController.CollectibleType.Tutorial, call.name);
-            } else {
+            } else if (call.collectibleType == 2) {
                 controller.AddCall(CollectibleController.CollectibleType.Report, call.name);
+            } else if (call.collectibleType == 3) {
+                controller.AddCall(CollectibleController.CollectibleType.IDCard, call.name);
+            } else if (call.collectibleType == 4) {
+                controller.AddCall(CollectibleController.CollectibleType.SideRoomKey, call.name);
             }
         }
     }

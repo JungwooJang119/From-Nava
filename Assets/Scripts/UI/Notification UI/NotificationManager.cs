@@ -9,6 +9,8 @@ public class NotificationManager : MonoBehaviour {
     public enum NotificationType {
         None,
         PolaroidClaimed,
+        IDCardClaimed,
+        SideRoomKeyClaimed,
 		CollectibleRedundant,
         RoomCode
     }
@@ -48,6 +50,10 @@ public class NotificationManager : MonoBehaviour {
                         break;
                     case NotificationType.RoomCode:
                         message = "Sector " + nextCall.roomCode;
+                        NotificationText.text = message;
+                        break;
+                    case NotificationType.SideRoomKeyClaimed:
+                        message = "Special Key Claimed";
                         NotificationText.text = message;
                         break;
                 } notificationObject.gameObject.SetActive(true);

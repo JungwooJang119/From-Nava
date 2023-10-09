@@ -31,6 +31,7 @@ public class ObjectClass : MonoBehaviour, IPushable
     private bool hasSwitched;
 
     private Vector3 origin;
+    public ParticleSystem dust;
 
     // Start is called before the first frame update
     void Awake()
@@ -61,6 +62,7 @@ public class ObjectClass : MonoBehaviour, IPushable
         pushDir = new Vector3(dir.x, dir.y, 0);
         pushDist = dist;
         pushSpd = spd;
+        dust.Play();
     }
 
     public void PushTranslate() {
@@ -95,13 +97,11 @@ public class ObjectClass : MonoBehaviour, IPushable
                 sr.sprite = onFreezedSprite;
                 elementType = "ice";
                 hasSwitched = true;
-                print(elementType);
             } else if (elementType == "fire" && !hasSwitched) {
                 sr.sprite = defaultSprite;
                 isLit = false;
                 elementType = "none";
                 hasSwitched = true;
-                print(elementType);
             }
         } else if (collision.gameObject.GetComponent<FireballBehavior>() && !hasSwitched) {
             if (elementType == "none" && !hasSwitched) {
@@ -109,12 +109,10 @@ public class ObjectClass : MonoBehaviour, IPushable
                 elementType = "fire";
                 isLit = true;
                 hasSwitched = true;
-                print(elementType);
             } else if (elementType == "ice" && !hasSwitched) {
                 sr.sprite = defaultSprite;
                 elementType = "none";
                 hasSwitched = true;
-                print(hasSwitched);
             }
         }
         StartCoroutine(ChangeLag());
@@ -126,34 +124,4 @@ public class ObjectClass : MonoBehaviour, IPushable
     }
 
 
-    //     if (collision.gameObject.GetComponent<FireballBehavior>()) {
-    //         SpellReaction(TriggerType.Fire);
-    //         if (isLit) return;
-    //     } else if (collision.gameObject.GetComponent<IceballBehavior>() && isLit) {
-    //         SpellReaction(TriggerType.Ice);
-    //     } else if (collision.gameObject.GetComponent<WindblastBehavior>()) {
-	// 		SpellReaction(TriggerType.Wind, collision.gameObject.GetComponent<Spell>().direction);
-    //         return;
-    //     } else {
-	// 		return;
-    //     }
-    //     ChangeLit();
-    //     var litChange = isLit ? 1 : -1;
-    //     foreach (Firewood_Script firewood in firewoodScripts) {
-    //         litChange += !firewood.GetLit() ? 1 : -1;
-    //     } OnLitStatusChange?.Invoke(litChange);
-    // }
-
-    // public void ChangeLit() {
-    //     isLit = !isLit;
-	// }
-
-    // public void SetDefaultLit() {
-    //     if (isLit == defaulLitStatus) {
-    //         return;
-    //     } else {
-    //         OnLitStatusChange?.Invoke(!isLit ? 1 : -1);
-    //         ChangeLit();
-    //     }
-    // }
 }

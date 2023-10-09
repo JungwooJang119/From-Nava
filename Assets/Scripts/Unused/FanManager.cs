@@ -25,20 +25,20 @@ public class FanManager : MonoBehaviour
         }
         if (check && !allBlown) {
             allBlown = true;
-            FansActivate();
+            // FansActivate();
         } else if (!check && allBlown) {
             allBlown = false;
-            FansDeactivate();
+            // FansDeactivate();
         }
     }
 
-    void FansActivate(){
-        //fill in fan activated behavior here
-        Debug.Log("all fans blowing");
-    }
+    // void FansActivate(){
+    //     //fill in fan activated behavior here
+    //     Debug.Log("all fans blowing");
+    // }
 
-    void FansDeactivate() {
-        //fill in fan deactivated behavior here
-        Debug.Log("not all fans blowing");
-    }
+    // void FansDeactivate() {
+    //     //fill in fan deactivated behavior here
+    //     Debug.Log("not all fans blowing");
+    // }
 }

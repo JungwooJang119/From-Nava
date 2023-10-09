@@ -38,7 +38,7 @@ public class ButtonTutorial : MonoBehaviour
             Debug.Log("Button Tutorial unnassigned or has Sprite-less Parent");
         }
 		transform.position = new Vector3(transform.position.x,
-										 parent.transform.position.y + _parentSpr.bounds.size.y/2 + _arrowSpace,
+										 transform.position.y + _parentSpr.bounds.size.y/2 + _arrowSpace,
 										 transform.position.z);
         transform.rotation = Quaternion.identity;
         _myArrow = Instantiate(arrow, new Vector3(transform.position.x,

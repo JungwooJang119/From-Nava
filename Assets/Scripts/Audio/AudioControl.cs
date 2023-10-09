@@ -25,22 +25,8 @@ public class AudioControl : Singleton<AudioControl> {
 		InitializeSingleton(gameObject);
 	}
 
-    public void CheckMusic() {
-		int buildIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-		StopAllCoroutines();
-
-		switch (buildIndex) {
-			case 0:
-				PlayMusic("Main");
-				break;
-			case 1:
-				StartCoroutine(LoadMusic());
-				break;
-        }
-	}
-
-    // Declaring Audio Sources for music and sfx;
-    [SerializeField] private AudioSource mainMusicSource, secondaryMusicSource, sfxSource;
+	// Declaring Audio Sources for music and sfx;
+	[SerializeField] private AudioSource mainMusicSource, secondaryMusicSource, sfxSource;
 	// Declaring arrays for audio files;
 	// The files must be assigned in the inspector;
 	[SerializeField] private Sound[] musicSounds, sfxSounds;
@@ -144,7 +130,6 @@ public class AudioControl : Singleton<AudioControl> {
 	/// <param name="stopsMusic"> Whether the music should be stopped (true), or paused (false); </param>
 	/// <param name="stopsAbruptly"> Whether the fadeout happens immediately (true), or with linear interpolation (false); </param>
 	public void FadeMusic(bool stopsMusic, bool stopsAbruptly = false) {
-		StopAllCoroutines();
 		if (stopsAbruptly) mainMusicSource.Stop();
 		else StartCoroutine(_FadeMusic(stopsMusic));
 	}
@@ -152,9 +137,8 @@ public class AudioControl : Singleton<AudioControl> {
 	public void ResumeMusic() => StartCoroutine(_ResumeMusic());
 
 	public void InterpolateMusicTracks(string name) {
-		StopAllCoroutines();
 		AudioClip clip = FetchClip(name, musicSounds);
-		//if (activeInterpolation != null) StopCoroutine(activeInterpolation);
+		if (activeInterpolation != null) StopCoroutine(activeInterpolation);
 		activeInterpolation = StartCoroutine(_InterpolateMusicTracks(clip));
 	}
 
@@ -190,7 +174,6 @@ public class AudioControl : Singleton<AudioControl> {
 		}
 		if (stopsMusic) {
 			mainMusicSource.Stop();
-			mainMusicSource.volume = musicVolume;
 		}
 	}
 
@@ -200,12 +183,6 @@ public class AudioControl : Singleton<AudioControl> {
 			mainMusicSource.volume = Mathf.Min(musicVolume, mainMusicSource.volume + musicVolume / (0.5f / Time.deltaTime));
 			yield return null;
 		}
-	}
-
-	IEnumerator LoadMusic() {
-		var musicSource = PlayMusic("Exploration Opening", false);
-		while (musicSource.isPlaying) yield return null;
-		PlayMusic("Exploration");
 	}
 
 	/// <summary>

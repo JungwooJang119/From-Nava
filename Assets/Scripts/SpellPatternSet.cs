@@ -28,7 +28,7 @@ public class SpellPatternSet : MonoBehaviour
     {
         if (isNear) {
             if (_tutInstance == null) {
-                _tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity, transform);
+                _tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
                 _tutScript = _tutInstance.GetComponent<ButtonTutorial>();
                 _tutScript.SetUp(intKey, gameObject);
             } else {

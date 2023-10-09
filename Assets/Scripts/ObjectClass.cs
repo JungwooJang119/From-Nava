@@ -52,7 +52,7 @@ public class ObjectClass : MonoBehaviour, IPushable
 
     void FixedUpdate()
     {
-        if (isPushed) {
+        if (isPushed && !isHeavy) {
             PushTranslate();
         }
     }
@@ -62,7 +62,9 @@ public class ObjectClass : MonoBehaviour, IPushable
         pushDir = new Vector3(dir.x, dir.y, 0);
         pushDist = dist;
         pushSpd = spd;
-        dust.Play();
+        if (!isHeavy) {
+            dust.Play();
+        }
     }
 
     public void PushTranslate() {

@@ -76,7 +76,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
         pattern = new List<int>();
         AddToPattern(startNode);
         //sfx, vfx, etc
-        AudioControl.Instance.PlaySFX("Node1", PlayerController.Instance.gameObject, 0f, 0.25f);
+        AudioControl.Instance.PlaySFX("Node1", PlayerController.Instance.gameObject, 0f, 0.33f);
     }
 
     private void AddToPattern(int num) {
@@ -84,7 +84,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
         OnNodeSelected.Invoke(this, num);
         string nodeName = "Node" + (num.ToString());
         if (num != 9) {
-            AudioControl.Instance.PlaySFX(nodeName, PlayerController.Instance.gameObject, 0f, 0.25f);
+            AudioControl.Instance.PlaySFX(nodeName, PlayerController.Instance.gameObject, 0f, 0.33f);
         }
         //PrintPattern();
     }

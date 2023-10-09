@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7069dbfdc90ba04ca2e925633ba8033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHeavy: 0
+  isHeavy: 1
   onFireSprite: {fileID: 0}
   onFreezedSprite: {fileID: 21300000, guid: 0ada9c8b38dd2744ea836b5fbf674b68, type: 3}
   defaultSprite: {fileID: 0}

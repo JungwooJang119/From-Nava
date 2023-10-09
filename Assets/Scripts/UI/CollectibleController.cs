@@ -51,7 +51,7 @@ public class CollectibleController : MonoBehaviour {
 		polaroidsClaimed = new List<string>();
 		tutorialsClaimed = new List<string>();
 		idCardsClaimed = new List<string>();
-		sideRoomKeysClaimed = new List<string>(); //CONTINUE FROM HERE
+		sideRoomKeysClaimed = new List<string>();
 		tutorialsClaimed.Add("Melee");
 
 		polaroidManager = GetComponentInChildren<PolaroidManager>();
@@ -123,11 +123,11 @@ public class CollectibleController : MonoBehaviour {
 				}
 			} else if (type == CollectibleType.IDCard) {
 				if (idCardsClaimed.Contains(name)) {
-					notificationManager.AddNotification(NotificationType.CollectibleRedundant);
-					OnCallsEnd?.Invoke();
+					// notificationManager.AddNotification(NotificationType.CollectibleRedundant);
+					// OnCallsEnd?.Invoke();
 					return;
 				} else {
-					notificationType = NotificationType.IDCardClaimed;
+					// notificationType = NotificationType.IDCardClaimed;
 					idCardsClaimed.Add(name);
 				}
 			} else if (type == CollectibleType.SideRoomKey) {

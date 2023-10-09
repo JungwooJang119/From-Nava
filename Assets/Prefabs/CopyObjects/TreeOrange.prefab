@@ -102,10 +102,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10347772, y: -0.27673173}
+  m_Offset: {x: -0.06, y: -2.17}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5226568, y: 0.12657234}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3, y: 5.1875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -128,10 +128,10 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1.92}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5226568, y: 0.12657234}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3, y: 5.1875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7069dbfdc90ba04ca2e925633ba8033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHeavy: 0
+  isHeavy: 1
   onFireSprite: {fileID: 0}
   onFreezedSprite: {fileID: 21300000, guid: 0ada9c8b38dd2744ea836b5fbf674b68, type: 3}
   defaultSprite: {fileID: 0}
@@ -189,7 +189,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 100000
   m_LinearDrag: 30
   m_AngularDrag: 30
   m_GravityScale: 0

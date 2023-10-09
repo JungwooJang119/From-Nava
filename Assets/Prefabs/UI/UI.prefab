@@ -17104,9 +17104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995dbff66007fd9438451a665625e3b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectTransform: {fileID: 8982638565734524873}
-  cursorTexture: {fileID: 2800000, guid: a6b1d803ad5043a418afa14f28ac7abd, type: 3}
-  canvas: {fileID: 0}
+  cursorTexture: {fileID: 2800000, guid: 70faf9ffe9a008542b3ad917927c8de1, type: 3}
 --- !u!1 &9058751771570242810
 GameObject:
   m_ObjectHideFlags: 0

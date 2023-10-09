@@ -37,9 +37,9 @@ public class ClaimCollectible : MonoBehaviour
             } else if (call.collectibleType == 2) {
                 controller.AddCall(CollectibleController.CollectibleType.Report, call.name);
             } else if (call.collectibleType == 3) {
-                controller.AddCall(CollectibleController.CollectibleType.Report, call.name);
+                controller.AddCall(CollectibleController.CollectibleType.IDCard, call.name);
             } else if (call.collectibleType == 4) {
-                controller.AddCall(CollectibleController.CollectibleType.Report, call.name);
+                controller.AddCall(CollectibleController.CollectibleType.SideRoomKey, call.name);
             }
         }
     }

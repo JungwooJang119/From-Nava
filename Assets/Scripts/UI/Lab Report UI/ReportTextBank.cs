@@ -23,6 +23,7 @@ public class ReportTextBank : MonoBehaviour
 	}
 
 	public TextContainer GetReportData(string name) {
+		print(name);
 		return reportDict[name];
 	}
 }

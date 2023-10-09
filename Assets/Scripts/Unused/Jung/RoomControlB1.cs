@@ -32,6 +32,7 @@ public class RoomControlB1 : MonoBehaviour
             if (enemy1 == null && enemy2 == null && enemy3 == null && enemy4 == null && enemy5 == null && enemy6 == null) {
                 if (chest != null) {
                     chest.SetActive(true);
+                    AudioControl.Instance.PlaySFX("PuzzleComplete", PlayerController.Instance.gameObject, 0f, 1f);
                 }
                 // spellNotif.SetActive(true);
                 // StartCoroutine(DurationTime());

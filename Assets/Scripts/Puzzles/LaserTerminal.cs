@@ -99,6 +99,7 @@ public class LaserTerminal : MonoBehaviour
 		AudioControl.Instance.PlaySFX("Computer Right", gameObject);
 		yield return new WaitForSeconds(1f);
 		_virtualCamera.Follow = _cameraTarget2.transform;
+		AudioControl.Instance.PlaySFX("PuzzleComplete", PlayerController.Instance.gameObject, 0f, 1f);
 		if (door != null) {
 			door.GetComponent<Door>().OpenDoor();
 			ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);

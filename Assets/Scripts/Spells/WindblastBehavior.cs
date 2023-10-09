@@ -136,5 +136,8 @@ public class WindblastBehavior : MonoBehaviour {
 			print(pushDist);
 			pushable.Push(spell.direction, pushDist, pushSpd);
 		}
+		if (other.gameObject.GetComponent<Fan>() != null) {
+			other.gameObject.GetComponent<Fan>().Blow();
+		} 
     }
 }

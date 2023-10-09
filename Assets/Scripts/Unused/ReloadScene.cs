@@ -9,7 +9,7 @@ public class ReloadScene : MonoBehaviour
     [SerializeField] private GameObject[] _mirrorControllers;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Spell") {
+        if (other.tag == "Spell" || other.tag == "WindBlast") {
             return;
         }
         foreach (GameObject firewoodPar in _firewoodControllers) {

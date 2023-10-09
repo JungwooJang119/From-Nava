@@ -24,6 +24,8 @@ public class RoomControlFanMainRoom : MonoBehaviour
     public GameObject door4;
     public GameObject door5;
 
+    public GameObject door6;
+
     private bool isActive = true;
 
     // Start is called before the first frame update
@@ -47,6 +49,7 @@ public class RoomControlFanMainRoom : MonoBehaviour
                 door3.GetComponent<Door>().OpenDoor();
                 door4.GetComponent<Door>().OpenDoor();
                 door5.GetComponent<Door>().OpenDoor();
+                door6.GetComponent<Door>().OpenDoor();
                 isActive = false;
             }
         }
@@ -57,6 +60,7 @@ public class RoomControlFanMainRoom : MonoBehaviour
                 door3.GetComponent<Door>().CloseDoor();
                 door4.GetComponent<Door>().CloseDoor();
                 door5.GetComponent<Door>().CloseDoor();
+                door6.GetComponent<Door>().CloseDoor();
                 isActive = true;
             }
         }

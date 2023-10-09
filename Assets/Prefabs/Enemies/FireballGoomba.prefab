@@ -135,6 +135,7 @@ MonoBehaviour:
   isIceTower: 0
   damageFlash: {fileID: 6632084955643231022}
   dealthShader: {fileID: 0}
+  tutorialSpellObject: {fileID: 6424348743349445095, guid: c7013ef1e6e529a47aebf7a7a3b7e9be, type: 3}
   onMeleeHit:
     m_PersistentCalls:
       m_Calls: []

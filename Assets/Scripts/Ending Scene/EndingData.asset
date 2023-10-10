@@ -29,10 +29,10 @@ MonoBehaviour:
       type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
       data:
         backgroundSprite: {fileID: 21300000, guid: 4f1576114570d7e4bb5ce41363a618fd, type: 3}
-        transitionUpLength: 0.25
+        transitionUpLength: 1
         intermezzoWait: 0
-        transitionDownLength: 0.25
-        postTransitionWait: 1
+        transitionDownLength: 1
+        postTransitionWait: 5
         transitionColor: {r: 1, g: 1, b: 1, a: 1}
         onUpAudio:
           use: 0
@@ -54,10 +54,10 @@ MonoBehaviour:
       type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
       data:
         backgroundSprite: {fileID: 21300000, guid: 81480305d60423f4c85f760536266c29, type: 3}
-        transitionUpLength: 0.25
+        transitionUpLength: 1
         intermezzoWait: 0
         transitionDownLength: 0.25
-        postTransitionWait: 1
+        postTransitionWait: 5
         transitionColor: {r: 0, g: 0, b: 0, a: 1}
         onUpAudio:
           use: 0

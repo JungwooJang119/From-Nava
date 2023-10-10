@@ -12,6 +12,9 @@ public class RoomLights : MonoBehaviour {
         A2_3,
         B3_2,
         B3_3,
+        C1_2,
+        C1_3,
+        C1_4,
         C2_2,
         C2_3
     }

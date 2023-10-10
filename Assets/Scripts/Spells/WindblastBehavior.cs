@@ -134,6 +134,7 @@ public class WindblastBehavior : MonoBehaviour {
 		IPushable pushable = other.gameObject.GetComponent<IPushable>();
 		if (pushable != null) {
 			pushable.Push(spell.direction, pushDist, pushSpd);
+			state = State.End;
 		}
 		if (other.gameObject.GetComponent<Fan>() != null) {
 			other.gameObject.GetComponent<Fan>().Blow();

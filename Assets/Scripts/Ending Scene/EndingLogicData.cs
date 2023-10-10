@@ -36,5 +36,5 @@ public class AudioTrigger : EndingElement {
 
 [System.Serializable]
 public class PolaroidInteraction : EndingElement {
-	public EndingPolaroid tutorialItem;
+	
 }

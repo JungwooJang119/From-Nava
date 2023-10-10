@@ -18,6 +18,7 @@ public class RoomControlA2 : MonoBehaviour
 	private GameObject cameraTarget;
 	private Transform returnToPlayer;
     public GameObject door;
+	public bool isC1;
 	[SerializeField] private GameObject[] doorList;
     
     // Start is called before the first frame update
@@ -53,6 +54,9 @@ public class RoomControlA2 : MonoBehaviour
 	private void CompleteRoom() {
 		AudioControl.Instance.PlaySFX("PuzzleComplete", PlayerController.Instance.gameObject, 0.1f, 1f);
 		if (!cheat) {
+			if (isC1) {
+				ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);
+			}
             StartCoroutine(CameraTransitionIn());
 			//door.GetComponent<Door>().OpenDoor();
 			foreach (GameObject doorInstance in doorList) {

@@ -63,7 +63,7 @@ public class IDCardManager : MonoBehaviour, ICollectibleManager
 		switch (state) {
 			case State.Start:
 				if (timer <= 0) {
-					AudioControl.Instance.PlayVoidSFX("Woosh", 0, 0.75f);
+					//AudioControl.Instance.PlayVoidSFX("Woosh", 0, 0.75f);
 					state = State.Fade;
 				} break;
 

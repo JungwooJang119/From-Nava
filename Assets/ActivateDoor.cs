@@ -9,7 +9,7 @@ public class ActivateDoor : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player") {
-            door.GetComponent<Door>().OpenDoor();
+            door.GetComponent<BigDoor>().OpenDoor();
             Destroy(this.gameObject);
         }
     }

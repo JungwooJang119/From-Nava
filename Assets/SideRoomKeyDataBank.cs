@@ -12,7 +12,7 @@ public class SideRoomKeyDataBank : MonoBehaviour
 	} [SerializeField] private SideRoomKeyInfo[] sideRoomKeys;
 
 	public enum SideRoomKeyType {
-		SideRoomGeneral
+		SideRoomGeneral, S2, S3, S4
     } 
 
 	private Dictionary<SideRoomKeyType, SideRoomKeyData> sideRoomKeyDict;

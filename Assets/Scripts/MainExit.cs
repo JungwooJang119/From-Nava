@@ -23,6 +23,11 @@ public class MainExit : MonoBehaviour
         controller.DeactivateMovement();
         var wait = tm.FadeOut();
         yield return new WaitForSeconds(wait);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        StartCoroutine(SimulateLoad(other.gameObject));
+    }
 }

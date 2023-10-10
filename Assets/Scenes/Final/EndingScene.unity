@@ -342,6 +342,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 530035446}
+  timeDuration: 15
+  time: 0
 --- !u!4 &433467468
 Transform:
   m_ObjectHideFlags: 0
@@ -366,17 +368,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4581913442954246178, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
-      propertyPath: sfxSounds.Array.size
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581913442954246178, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
-      propertyPath: sfxSounds.Array.data[35].clip
+      propertyPath: musicSounds.Array.data[4].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 71e2a60d538716547899d4d39f55eb16, type: 3}
-    - target: {fileID: 4581913442954246178, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
-      propertyPath: sfxSounds.Array.data[35].name
-      value: EndingPart2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 314b3cfe2a1f26b46a92eb105b4e88b8, type: 3}
     - target: {fileID: 8403224658909475882, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
       propertyPath: m_RootOrder
       value: 3

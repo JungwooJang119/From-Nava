@@ -90,7 +90,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         if (isPushed) {
             PushTranslate();
         }
-        if (currIFrameTime >= iFrameTime) {
+        if (playerHealth > 0 && currIFrameTime >= iFrameTime) {
             canBeDamaged = true;
         } else {
             canBeDamaged = false;
@@ -166,10 +166,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
                 damageFlash.Flash();
             }
             currIFrameTime = 0f;
-        }
-        if (playerHealth <= 0) {
-            playerHealth = 0;
-            StartCoroutine(Die());
+            if (playerHealth <= 0) {
+                playerHealth = 0;
+                StartCoroutine(Die());
+            }
         }
     }
 
@@ -190,8 +190,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         yield return new WaitForSeconds(2f);
         canMove = true;
         canChangeDir = true;
-		ChooseFacingDir();
         playerHealth = maxHealth;
+		ChooseFacingDir();
         GetComponent<HealthBar>().ChangeHealth(playerHealth);
     }
 

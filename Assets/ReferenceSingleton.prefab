@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc84c7444a94d243ac7db07acdc083b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 3465685018912726913, guid: f4e7ab862df369c48814615318ce9889, type: 3}
   transition: {fileID: 0}
-  collectibleController: {fileID: 0}
+  roomLights: {fileID: 4954695835627483065, guid: 3fee2eadfc3a56a4c8776f05e5850c79, type: 3}
+  collectibleController: {fileID: 1843318393735327272, guid: a79ae8754c99815498c03638e88521dd, type: 3}

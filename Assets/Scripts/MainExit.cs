@@ -6,16 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainExit : MonoBehaviour
 {
     private tranMode tm;
-    [SerializeField] private Door door;
 
     void Start() {
         tm = GameObject.Find("Transition").GetComponent<tranMode>();
     }
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")){
-			if (door.isOpen) {
-                StartCoroutine(SimulateLoad(other.gameObject));
-            }
+            StartCoroutine(SimulateLoad(other.gameObject));
         }
     }
     IEnumerator SimulateLoad(GameObject player) {

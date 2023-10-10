@@ -100,17 +100,17 @@ public class ObjectClass : MonoBehaviour, IPushable
                 elementType = "ice";
                 hasSwitched = true;
             } else if (elementType == "fire" && !hasSwitched) {
-                sr.sprite = defaultSprite;
-                isLit = false;
-                elementType = "none";
-                hasSwitched = true;
+                // sr.sprite = defaultSprite;
+                // isLit = false;
+                // elementType = "none";
+                // hasSwitched = true;
             }
         } else if (collision.gameObject.GetComponent<FireballBehavior>() && !hasSwitched) {
             if (elementType == "none" && !hasSwitched) {
-                sr.sprite = onFireSprite;
-                elementType = "fire";
-                isLit = true;
-                hasSwitched = true;
+                // sr.sprite = onFireSprite;
+                // elementType = "fire";
+                // isLit = true;
+                // hasSwitched = true;
             } else if (elementType == "ice" && !hasSwitched) {
                 sr.sprite = defaultSprite;
                 elementType = "none";

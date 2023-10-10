@@ -9,7 +9,7 @@ public class BattleManager : Singleton<BattleManager> {
 
     void Awake() {
         engagedEnemies = new List<Enemy>();
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         InitializeSingleton(gameObject);
     }
 

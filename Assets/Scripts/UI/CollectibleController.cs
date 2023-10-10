@@ -136,7 +136,7 @@ public class CollectibleController : MonoBehaviour {
 					OnCallsEnd?.Invoke();
 					return;
 				} else {
-					notificationType = NotificationType.IDCardClaimed;
+					notificationType = NotificationType.SideRoomKeyClaimed;
 					sideRoomKeysClaimed.Add(name);
 				}
 			}

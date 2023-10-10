@@ -29,7 +29,6 @@ public class RoomControlA3 : MonoBehaviour
     }
 
     void Update() {
-        print(isClear);
         if (!isClear) {
             _canClear = true;
             foreach (PressurePlate_Script plate in _pressurePlates) {

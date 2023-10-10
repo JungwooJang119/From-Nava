@@ -47,6 +47,8 @@ public class MeleeMiniBossController : MonoBehaviour
 
     public GameObject windBlast;
     public bool isWindBlasting;
+    public float stayInIdleTime;
+    public float currentIdleTime;
 
 
     //Animation States
@@ -100,13 +102,17 @@ public class MeleeMiniBossController : MonoBehaviour
                 enemy.ReactToPlayerInRange(false);
                 ChangeAnimationState(BIG_GUY_WALK);
                 //NewDirection();
+                currentIdleTime += Time.deltaTime;
                 if (Time.time - lastChangeTime > changeTime) {
                     lastChangeTime = Time.time;
                     NewDirection();
                 }
                 transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
                 if (Vector2.Distance(transform.position, player.position) < maxDistance) {
-                    state = EnemyState.CHASE;
+                    if (currentIdleTime >= stayInIdleTime) {
+                        state = EnemyState.CHASE;
+                        currentIdleTime = 0;
+                    }
                 }
                 break;
             case EnemyState.WANDER:

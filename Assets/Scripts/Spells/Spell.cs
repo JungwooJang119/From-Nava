@@ -33,7 +33,10 @@ public class Spell : MonoBehaviour
         collider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true;
+        if (!isChair) {
+            rb.isKinematic = true;
+        }
+        
 
         damage = spell.damageAmt;
 

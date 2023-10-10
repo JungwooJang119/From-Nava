@@ -274,7 +274,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8aa73cdbc708acc47813fdd7381947b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32e8bf4034e99e24e8fc364a9c3cd3c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -365,6 +365,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4581913442954246178, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581913442954246178, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
+      propertyPath: sfxSounds.Array.data[35].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 71e2a60d538716547899d4d39f55eb16, type: 3}
+    - target: {fileID: 4581913442954246178, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
+      propertyPath: sfxSounds.Array.data[35].name
+      value: EndingPart2
+      objectReference: {fileID: 0}
     - target: {fileID: 8403224658909475882, guid: b38545d64aaa6e34eb4ecdea063d4198, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -626,11 +638,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionManager: {fileID: 530035446}
   background: {fileID: 321712038}
-  initialFrameWait: 5
+  initialFrameWait: 0
   finalFadeTime: 2
   levelTransitionIndex: 0
   data: {fileID: 11400000, guid: 12b78ddaf0cface48967b1785c28ffa8, type: 2}
   initialClipName: EndingPart1
+  ep: {fileID: 1376651798}
 --- !u!1 &827458182
 GameObject:
   m_ObjectHideFlags: 0

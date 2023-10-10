@@ -19,7 +19,10 @@ public class EndPolaroidDisplay : MonoBehaviour {
 
     void Update() {
         image.color = Vector4.MoveTowards(image.color, new Color(image.color.r, image.color.g, image.color.b, alphaTarget), Time.deltaTime / 1.5f);
-        if (Input.GetKeyDown(KeyCode.Space)) Fade();
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Fade();
+        }
+        //Fade();
     }
 
     public void Fade() {

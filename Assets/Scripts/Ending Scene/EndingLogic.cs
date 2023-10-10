@@ -16,6 +16,7 @@ public class EndingLogic : MonoBehaviour {
 	[SerializeField] private int levelTransitionIndex;
 	[SerializeField] private EndingLogicData data;
 	[SerializeField] private string initialClipName;
+	[SerializeField] private EndingPolaroid ep;
 
 	public EndingLogicData Data => data;
 
@@ -72,14 +73,15 @@ public class EndingLogic : MonoBehaviour {
 				TriggerAudio(element as AudioTrigger);
 				break;
 			case nameof(PolaroidInteraction):
-				PolaroidInteraction pi = element as PolaroidInteraction;
-				if (pi.tutorialItem == null) pi.tutorialItem = FindObjectOfType<EndingPolaroid>(true);
 				await = true;
-				pi.tutorialItem.gameObject.SetActive(true);
-				pi.tutorialItem.OnScriptEnd += TriggerEnd;
+				ep.gameObject.SetActive(true);
+				ep.OnScriptEnd += TriggerEnd;
 				while (await) yield return null;
 				break;
-        } tranElements.RemoveAt(0);
+        }
+		if (tranElements.Count != 0) {
+			tranElements.RemoveAt(0);
+		}
 		transitioning = false;
 		yield return null;
     }
@@ -151,8 +153,7 @@ public class EndingLogicEditor : Editor {
 									at = AudioTriggerField("Cue: ", at);
 									break;
 								case nameof(PolaroidInteraction):
-									PolaroidInteraction pi = element as PolaroidInteraction;
-									pi.tutorialItem = EditorGUILayout.ObjectField(pi.tutorialItem, typeof(EndingPolaroid), true) as EndingPolaroid;
+									EditorGUILayout.TextField("HEllo");
 									break;
 							}
 						} if (GUILayout.Button((Texture2D) EditorGUIUtility.IconContent("TreeEditor.Trash").image, GUILayout.ExpandHeight(true))) {

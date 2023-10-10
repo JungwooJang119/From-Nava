@@ -102,7 +102,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.036718607, y: -0.13671887}
+  m_Offset: {x: -0.036718607, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.51888067, y: 0.10045426}
@@ -128,7 +128,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.12}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.51888067, y: 0.10045426}
@@ -156,11 +156,11 @@ PolygonCollider2D:
       - {x: -0.7677871, y: -0.62967396}
       - {x: -0.20542538, y: -0.5249834}
       - {x: -0.037845135, y: -0.61100197}
-      - {x: 0.40622902, y: -0.23265457}
-      - {x: 0.78007114, y: -0.34950733}
+      - {x: 0.4802332, y: -0.5410061}
+      - {x: 0.8170732, y: -0.47284794}
       - {x: 0.89109135, y: -0.32591248}
       - {x: 1.2220145, y: -0.30583477}
-      - {x: 1.019705, y: 0.030769348}
+      - {x: 1.019705, y: 0.030769356}
 --- !u!50 &1907906259046501415
 Rigidbody2D:
   serializedVersion: 4
@@ -173,7 +173,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 100000
   m_LinearDrag: 30
   m_AngularDrag: 30
   m_GravityScale: 0
@@ -220,7 +220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2529290311604123429, guid: 198590ab0e13ce4438633e9b8c5fe1fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.02
       objectReference: {fileID: 0}
     - target: {fileID: 2529290311604123429, guid: 198590ab0e13ce4438633e9b8c5fe1fd, type: 3}
       propertyPath: m_LocalPosition.z

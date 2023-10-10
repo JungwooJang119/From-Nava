@@ -22,7 +22,9 @@ public class NotificationManager : MonoBehaviour {
             this.type = type;
             this.roomCode = roomCode;
         }
-    } private Queue<NotificationCall> notificationQueue;
+    } 
+    private Queue<NotificationCall> notificationQueue;
+    private NotificationCall currCall;
 
     private NotificationObject notificationObject;
     public TextMeshProUGUI NotificationText { get; private set; }
@@ -30,40 +32,37 @@ public class NotificationManager : MonoBehaviour {
         notificationObject = GetComponentInChildren<NotificationObject>(true);
         notificationObject.OnNotificationFinished += DisplayNotification;
         NotificationText = GetComponentInChildren<TextMeshProUGUI>(true);
-        notificationQueue = new Queue<NotificationCall>();
     }
 
     void DisplayNotification() {
-        if (notificationQueue.Count > 0) {
-            NotificationCall nextCall = notificationQueue.Dequeue();
-            string message;
-            if (nextCall.type > 0) {
-                NotificationText.gameObject.SetActive(true);
-                switch (nextCall.type) {
-                    case NotificationType.PolaroidClaimed:
-                        message = "Polaroid and ID Card Claimed";
-                        NotificationText.text = message;
-                        break;
-                    case NotificationType.CollectibleRedundant:
-                        message = "The Item Is Already Taken";
-                        NotificationText.text = message;
-                        break;
-                    case NotificationType.RoomCode:
-                        message = "Sector " + nextCall.roomCode;
-                        NotificationText.text = message;
-                        break;
-                    case NotificationType.SideRoomKeyClaimed:
-                        message = "Special Key Claimed";
-                        NotificationText.text = message;
-                        break;
-                } notificationObject.gameObject.SetActive(true);
-                notificationObject.Initialize(NotificationText, scaleConstraint);
-            }
+        string message;
+        if (currCall.type > 0) {
+            NotificationText.gameObject.SetActive(true);
+            switch (currCall.type) {
+                case NotificationType.PolaroidClaimed:
+                    message = "Polaroid and ID Card Claimed";
+                    NotificationText.text = message;
+                    break;
+                case NotificationType.CollectibleRedundant:
+                    message = "The Item Is Already Taken";
+                    NotificationText.text = message;
+                    break;
+                case NotificationType.RoomCode:
+                    message = "Sector " + currCall.roomCode;
+                    NotificationText.text = message;
+                    break;
+                case NotificationType.SideRoomKeyClaimed:
+                    message = "Special Key Claimed";
+                    NotificationText.text = message;
+                    break;
+            } 
+            notificationObject.gameObject.SetActive(true);
+            notificationObject.Initialize(NotificationText, scaleConstraint);
         }
     }
 
     public void AddNotification(NotificationType type, string roomCode = null) {
-        notificationQueue.Enqueue(new NotificationCall(type, roomCode));
-        if (!notificationObject.gameObject.activeSelf) DisplayNotification();
+        currCall = new NotificationCall(type, roomCode);
+        DisplayNotification();
 	}
 }

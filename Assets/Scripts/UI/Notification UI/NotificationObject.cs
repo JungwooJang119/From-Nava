@@ -43,7 +43,7 @@ public class NotificationObject : MonoBehaviour {
 			case State.Start:
                 if (transform.localScale.x < maxScale) {
                     transform.localScale = Vector3.MoveTowards(transform.localScale,
-                                                           new Vector3(maxScale, transform.localScale.y, transform.localScale.z), 0.2f);
+                                                           new Vector3(maxScale, transform.localScale.y, transform.localScale.z), 0.05f);
                 } else {
                     state = State.Write;
                 } break;

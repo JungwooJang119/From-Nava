@@ -57,6 +57,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
     [SerializeField] private GameObject[] arrows;
 
+
     private void Awake() {
         InitializeSingleton();
     }
@@ -89,7 +90,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         if (isPushed) {
             PushTranslate();
         }
-        if (currIFrameTime >= iFrameTime) {
+        if (playerHealth > 0 && currIFrameTime >= iFrameTime) {
             canBeDamaged = true;
         } else {
             canBeDamaged = false;
@@ -98,12 +99,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     }
 
     private void OnMove(InputValue movementValue) {
-        if (canMove) {
-            movement = movementValue.Get<Vector2>();
-            ChooseFacingDir();
-            hasDusted = false;
-        }
-        if (!hasDusted) {
+        movement = movementValue.Get<Vector2>();
+        ChooseFacingDir();
+        hasDusted = false;
+        if (!hasDusted) { //constantly playing
             hasDusted = true;
             dust.Play();
         }
@@ -167,10 +166,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
                 damageFlash.Flash();
             }
             currIFrameTime = 0f;
-        }
-        if (playerHealth <= 0) {
-            playerHealth = 0;
-            StartCoroutine(Die());
+            if (playerHealth <= 0) {
+                playerHealth = 0;
+                StartCoroutine(Die());
+            }
         }
     }
 
@@ -191,8 +190,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         yield return new WaitForSeconds(2f);
         canMove = true;
         canChangeDir = true;
-		ChooseFacingDir();
         playerHealth = maxHealth;
+		ChooseFacingDir();
         GetComponent<HealthBar>().ChangeHealth(playerHealth);
     }
 
@@ -216,8 +215,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         canMove = false;
         canChangeDir = false;
         animator.SetBool("isWalking", false);
-        movement = new Vector2(0, 0);
     }
+
 
     public void ChangeSpawn(Transform newSpawn) {
         spawn = newSpawn;

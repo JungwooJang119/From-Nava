@@ -57,6 +57,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
 
     [SerializeField] private GameObject[] arrows;
 
+
     private void Awake() {
         InitializeSingleton();
     }
@@ -98,12 +99,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     }
 
     private void OnMove(InputValue movementValue) {
-        if (canMove) {
-            movement = movementValue.Get<Vector2>();
-            ChooseFacingDir();
-            hasDusted = false;
-        }
-        if (!hasDusted) {
+        movement = movementValue.Get<Vector2>();
+        ChooseFacingDir();
+        hasDusted = false;
+        if (!hasDusted) { //constantly playing
             hasDusted = true;
             dust.Play();
         }
@@ -216,8 +215,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         canMove = false;
         canChangeDir = false;
         animator.SetBool("isWalking", false);
-        movement = new Vector2(0, 0);
     }
+
 
     public void ChangeSpawn(Transform newSpawn) {
         spawn = newSpawn;

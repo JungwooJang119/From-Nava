@@ -45,7 +45,7 @@ public class ButtonTutorial : MonoBehaviour
                                                   transform.position.y - GetComponent<RectTransform>().rect.height*3/4 + 0.05f,
                                                   transform.position.z), Quaternion.identity, transform);
         _topPoint = _myArrow.transform.position.y;
-        _botPoint = parent.transform.position.y + _parentSpr.bounds.size.y/2 + 0.3f;
+        _botPoint = _myArrow.transform.position.y - .25f;
         _arrowSpr = _myArrow.GetComponent<SpriteRenderer>();
 		_textComp.color = new Color32(_r, _g, _b, 0);
 		_arrowSpr.color = new Color32(255, 255, 255, 0);

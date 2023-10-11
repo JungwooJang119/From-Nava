@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -86,7 +87,13 @@ public class PauseMenu : MonoBehaviour {
     /// Quit the game
     public void QuitGame()
     {
-        Application.Quit();
+        StartCoroutine(FinalFade(1f));
+    }
+
+    IEnumerator FinalFade(float finalFadeTime) {
+        Resume();
+        yield return new WaitForSeconds(transition.FadeOut(finalFadeTime));
+		UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void ChangeActivePage(MenuPage pageType) {

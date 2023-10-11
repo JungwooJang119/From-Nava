@@ -34,6 +34,9 @@ public class tranMode : MonoBehaviour {
 			fadeScreen.blocksRaycasts = false;
 			fadeScreen.interactable = false;
 		}
+		if (Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().buildIndex == 3) {
+			SceneManager.LoadScene(1);
+		}
 	}
 
 	// Method that advances to the requested level.
@@ -140,4 +143,6 @@ public class tranMode : MonoBehaviour {
 				UnityEditor.EditorApplication.isPlaying = false;
 		#endif
 	}
+
+
 }

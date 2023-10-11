@@ -30,7 +30,7 @@ MonoBehaviour:
     - rid: 614418295366615040
       type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
       data:
-        backgroundSprite: {fileID: 21300000, guid: 50542b97d17868946b61fb04825c6000, type: 3}
+        backgroundSprite: {fileID: 21300000, guid: b34b074fff83b0f4383d3aa6e817f873, type: 3}
         transitionUpLength: 2
         intermezzoWait: 0
         transitionDownLength: 2
@@ -55,7 +55,7 @@ MonoBehaviour:
     - rid: 614418295366615044
       type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
       data:
-        backgroundSprite: {fileID: 21300000, guid: 417537eb3e222ab41a03f30d26e968f7, type: 3}
+        backgroundSprite: {fileID: 21300000, guid: b82c29aac8ac42046a76b302d905db21, type: 3}
         transitionUpLength: 2
         intermezzoWait: 1
         transitionDownLength: 2
@@ -105,7 +105,7 @@ MonoBehaviour:
     - rid: 614418295366615046
       type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
       data:
-        backgroundSprite: {fileID: 21300000, guid: 264a0fafbfeca26498c8e1e09a793542, type: 3}
+        backgroundSprite: {fileID: 21300000, guid: e8371322ee656794bb64ce464e461cb4, type: 3}
         transitionUpLength: 0
         intermezzoWait: 0
         transitionDownLength: 0

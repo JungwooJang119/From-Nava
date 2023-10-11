@@ -20,6 +20,8 @@ TagManager:
   - DarkRoom
   - Pit
   - WindBlast
+  - Fire
+  - Ice
   layers:
   - Default
   - TransparentFX

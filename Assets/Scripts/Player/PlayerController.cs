@@ -99,8 +99,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     }
 
     private void OnMove(InputValue movementValue) {
-        movement = movementValue.Get<Vector2>();
-        ChooseFacingDir();
+        if (playerHealth > 0) {
+            movement = movementValue.Get<Vector2>();
+            ChooseFacingDir();
+        }
     }
 
     private void ChooseFacingDir ()

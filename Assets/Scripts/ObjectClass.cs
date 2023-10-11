@@ -17,7 +17,7 @@ public class ObjectClass : MonoBehaviour, IPushable
         None,
     }
     
-    [SerializeField] private Sprite onFireSprite;
+    [SerializeField] private GameObject onFire;
     [SerializeField] private Sprite onFreezedSprite;
     public Sprite defaultSprite;
     private bool isLit = false;
@@ -32,21 +32,23 @@ public class ObjectClass : MonoBehaviour, IPushable
 
     private Vector3 origin;
     public ParticleSystem dust;
+    private FirewoodFire firewoodFire;
 
     // Start is called before the first frame update
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         origin = transform.position;
-        //light = GetComponentInChildren<LightController>().gameObject;
+        // light = GetComponentInChildren<LightController>().gameObject;
     }
 
     private void Start() {
+        if (onFire != null) {
+            onFire.SetActive(false);
+            firewoodFire = onFire.GetComponent<FirewoodFire>();
+        }
         defaultSprite = sr.sprite;
         elementType = "none";
-        if (defaultLitStatus) {
-            isLit = true;
-        }
         hasSwitched = false;
     }
 
@@ -94,29 +96,60 @@ public class ObjectClass : MonoBehaviour, IPushable
 	}
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.GetComponent<IceballBehavior>() && !hasSwitched) {
-            if (elementType == "none" && !hasSwitched) {
-                sr.sprite = onFreezedSprite;
-                elementType = "ice";
-                hasSwitched = true;
-            } else if (elementType == "fire" && !hasSwitched) {
-                // sr.sprite = defaultSprite;
-                // isLit = false;
-                // elementType = "none";
-                // hasSwitched = true;
+        PType a = collision.gameObject.GetComponent<PType>();
+        if (a != null && !hasSwitched) {
+            if (a.getType() == "ICE") {
+                if (elementType == "none") {
+                    sr.sprite = onFreezedSprite;
+                    elementType = "ice";
+                    hasSwitched = true;
+                } else if (elementType == "fire") {
+                    onFire.SetActive(false);
+                    firewoodFire.Toggle(true);
+                    isLit = false;
+                    elementType = "none";
+                    hasSwitched = true;
+                }
+            } else if (a.getType() == "FIRE") {
+                if (elementType == "none") {
+                    onFire.SetActive(true);
+                    firewoodFire.Toggle(true);
+                    elementType = "fire";
+                    isLit = true;
+                    hasSwitched = true;
+                } else if (elementType == "ice") {
+                    sr.sprite = defaultSprite;
+                    elementType = "none";
+                    hasSwitched = true;
+                }
             }
-        } else if (collision.gameObject.GetComponent<FireballBehavior>() && !hasSwitched) {
-            if (elementType == "none" && !hasSwitched) {
-                // sr.sprite = onFireSprite;
-                // elementType = "fire";
-                // isLit = true;
-                // hasSwitched = true;
-            } else if (elementType == "ice" && !hasSwitched) {
-                sr.sprite = defaultSprite;
-                elementType = "none";
-                hasSwitched = true;
-            }
+
         }
+        // if (collision.gameObject.GetComponent<Iceball>() && !hasSwitched) {
+        //     if (elementType == "none" && !hasSwitched) {
+        //         sr.sprite = onFreezedSprite;
+        //         elementType = "ice";
+        //         hasSwitched = true;
+        //     } else if (elementType == "fire" && !hasSwitched) {
+        //         onFire.SetActive(false);
+        //         firewoodFire.Toggle(false);
+        //         isLit = false;
+        //         elementType = "none";
+        //         hasSwitched = true;
+        //     }
+        // } else if (collision.gameObject.GetComponent<Fireball>() && !hasSwitched) {
+        //     if (elementType == "none" && !hasSwitched) {
+        //         onFire.SetActive(true);
+        //         firewoodFire.Toggle(true);
+        //         elementType = "fire";
+        //         isLit = true;
+        //         hasSwitched = true;
+        //     } else if (elementType == "ice" && !hasSwitched) {
+        //         sr.sprite = defaultSprite;
+        //         elementType = "none";
+        //         hasSwitched = true;
+        //     }
+        // }
         StartCoroutine(ChangeLag());
     }
 

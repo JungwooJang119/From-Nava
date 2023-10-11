@@ -16,7 +16,7 @@ public class NotificationObject : MonoBehaviour {
 
     private TextMeshProUGUI text;
 
-    private float duration = 2f;
+    private float duration = 1f;
     private float imageWidth;
 	private float maxScale;
     private float timer;
@@ -70,5 +70,9 @@ public class NotificationObject : MonoBehaviour {
                     gameObject.SetActive(false);
                 } break;
         }
+    }
+
+    public void EndNotification() {
+        timer = 0;
     }
 }

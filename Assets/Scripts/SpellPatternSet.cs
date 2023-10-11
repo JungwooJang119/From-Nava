@@ -36,6 +36,7 @@ public class SpellPatternSet : MonoBehaviour
             }
 			if (Input.GetKeyDown(intKey)) {
                 StartCoroutine(AwaitCollectible());
+                Destroy(this.gameObject);
                 if (_tutInstance != null) {
 					_tutScript.Fade();
 				}

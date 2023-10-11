@@ -24,4 +24,10 @@ public class ReferenceSingleton : Singleton<ReferenceSingleton>
 	void Awake() {
 		InitializeSingleton(gameObject);
 	}
+	// //Jung
+	// void Start() {
+	// 	mainCamera = GameObject.Find("Main Camera");
+	// 	transition = GameObject.Find("Transition").GetComponent<tranMode>();
+	// 	collectibleController = GameObject.Find("Collectible Manager").GetComponent<CollectibleController>();
+	// }
 }

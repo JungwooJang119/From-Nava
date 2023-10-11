@@ -11,7 +11,7 @@ public class RoomDisablerControl : Singleton<RoomDisablerControl>
     [SerializeField] private GameObject[] rooms;
 
     void Awake() {
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 		InitializeSingleton(gameObject);
 	}
 

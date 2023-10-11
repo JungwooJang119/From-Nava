@@ -101,11 +101,6 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     private void OnMove(InputValue movementValue) {
         movement = movementValue.Get<Vector2>();
         ChooseFacingDir();
-        hasDusted = false;
-        if (!hasDusted) { //constantly playing
-            hasDusted = true;
-            dust.Play();
-        }
     }
 
     private void ChooseFacingDir ()
@@ -237,6 +232,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         pushDir = new Vector3(dir.x, dir.y, 0);
         pushDist = dist;
         pushSpd = spd;
+        dust.Play();
     }
 
     public void PushTranslate() {

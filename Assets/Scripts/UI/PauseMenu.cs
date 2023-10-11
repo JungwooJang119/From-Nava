@@ -87,7 +87,6 @@ public class PauseMenu : MonoBehaviour {
     /// Quit the game
     public void QuitGame()
     {
-<<<<<<< Updated upstream
         StartCoroutine(FinalFade(1f));
     }
 
@@ -95,9 +94,6 @@ public class PauseMenu : MonoBehaviour {
         Resume();
         yield return new WaitForSeconds(transition.FadeOut(finalFadeTime));
 		UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-=======
-        SceneManager.LoadScene(0);
->>>>>>> Stashed changes
     }
 
     public void ChangeActivePage(MenuPage pageType) {

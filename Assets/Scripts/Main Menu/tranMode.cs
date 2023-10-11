@@ -35,7 +35,7 @@ public class tranMode : MonoBehaviour {
 			fadeScreen.interactable = false;
 		}
 		if (Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().buildIndex == 3) {
-			SceneManager.LoadScene(1);
+			LoadLevel();
 		}
 	}
 

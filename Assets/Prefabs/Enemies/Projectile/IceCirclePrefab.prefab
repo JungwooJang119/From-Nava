@@ -4929,6 +4929,7 @@ GameObject:
   - component: {fileID: 5536333251357887921}
   - component: {fileID: 2504988577467306665}
   - component: {fileID: 2205599073910431893}
+  - component: {fileID: -6061938543451166626}
   m_Layer: 0
   m_Name: IceCirclePrefab
   m_TagString: EnemyProjectile
@@ -5005,3 +5006,16 @@ MonoBehaviour:
   speed: 5
   lifetime: 4
   damage: 1
+--- !u!114 &-6061938543451166626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536333251357887935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b1ee7757ad34040b10d9a45b83e84f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: ICE

@@ -4993,7 +4993,7 @@ GameObject:
   - component: {fileID: 1775138015864475279}
   m_Layer: 0
   m_Name: Iceball_Inner
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5102,6 +5102,7 @@ GameObject:
   - component: {fileID: -2210433279254611879}
   - component: {fileID: 3149705390126071934}
   - component: {fileID: 428484724962094794}
+  - component: {fileID: 8600939817362497881}
   m_Layer: 0
   m_Name: Iceball_Spell
   m_TagString: Spell
@@ -5284,6 +5285,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedReduce: 2
+--- !u!114 &8600939817362497881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866387084450533419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b1ee7757ad34040b10d9a45b83e84f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: ICE
 --- !u!114 &4701790566160024944
 MonoBehaviour:
   m_ObjectHideFlags: 0

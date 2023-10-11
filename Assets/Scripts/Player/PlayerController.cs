@@ -99,15 +99,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     }
 
     private void OnMove(InputValue movementValue) {
-<<<<<<< Updated upstream
-        movement = movementValue.Get<Vector2>();
-        ChooseFacingDir();
-=======
         if (playerHealth > 0) {
             movement = movementValue.Get<Vector2>();
             ChooseFacingDir();
         }
->>>>>>> Stashed changes
     }
 
     private void ChooseFacingDir ()

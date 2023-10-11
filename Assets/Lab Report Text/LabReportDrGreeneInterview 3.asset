@@ -13,13 +13,10 @@ MonoBehaviour:
   m_Name: LabReportDrGreeneInterview 3
   m_EditorClassIdentifier: 
   textEntries:
-  - "INTERVIEW RECORDING - DR. TAYLOR GREENE PART 3\\n[BEGIN LOG: 10:27 AM]\\n\\nDr.
-    Greene: \u201CExcellent. Thank you! And again, if at any point you need anything,
-    just let me know. Before we start, would you like some water?\u201D\\n\\nThe
+  - "Dr. Greene: \u201CExcellent. Thank you! And again, if at any point you need
+    anything, just let me know. Before we start, would you like some water?\u201D\\n\\nThe
     subject is silent.\\n\\nDr. Greene: \u201CAre you sure? No worries. So, before
-    I\u2013\u201D\\n\\nDr. Greene is cut off with a brief fit of coughing."
-  - "She then mutters something inaudible to another scientist in the room, and there
-    is the sound of the door opening and closing.\\n\\nDr. Greene: \u201CAh, sorry
-    about that. Anyways...I wanted to ask, before we get started, do you have a name?
-    You don\u2019t need to say it, just nod yes or no.\u201D\\n\\nThe subject remains
-    silent. "
+    I\u2013\u201D [coughs briefly]\\n\\nDr. Greene: [inaudible 2:40] [Door opens
+    and closes]\\n\\nDr. Greene: \u201CAh, sorry about that. Anyways...I wanted to
+    ask, before we get started, do you have a name? You don\u2019t need to say it,
+    just nod yes or no.\"\\n\\nThe subject remains silent."

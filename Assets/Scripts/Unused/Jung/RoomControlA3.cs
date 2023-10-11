@@ -29,6 +29,10 @@ public class RoomControlA3 : MonoBehaviour
     }
 
     void Update() {
+<<<<<<< Updated upstream
+=======
+        // print(isClear);
+>>>>>>> Stashed changes
         if (!isClear) {
             _canClear = true;
             foreach (PressurePlate_Script plate in _pressurePlates) {

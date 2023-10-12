@@ -62,10 +62,11 @@ public class NotificationObject : MonoBehaviour {
             case State.End:
                 if (text.color.a > 0) {
                     text.color = Vector4.MoveTowards(text.color, new Color(1, 1, 1, 0), Time.deltaTime * 3f);
-                } else if (transform.localScale.x > 0) {
+                } else {
                     transform.localScale = Vector3.MoveTowards(transform.localScale,
                                                            new Vector3(0, transform.localScale.y, transform.localScale.z), 0.2f);
-                } else {
+                }
+                if (transform.localScale.x <= 0) {
                     OnNotificationFinished?.Invoke();
                     gameObject.SetActive(false);
                 } break;

@@ -62,9 +62,6 @@ public class NotificationManager : MonoBehaviour {
     }
 
     public void AddNotification(NotificationType type, string roomCode = null) {
-        if (currCall != null) {
-            notificationObject.EndNotification();
-        }
         currCall = new NotificationCall(type, roomCode);
         DisplayNotification();
 	}

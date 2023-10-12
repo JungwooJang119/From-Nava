@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: S3Right
   m_EditorClassIdentifier: 
   textEntries:
-  - 'Computer Label: S3 Right'
+  - 'There''s a label on this computer: S3 Right'

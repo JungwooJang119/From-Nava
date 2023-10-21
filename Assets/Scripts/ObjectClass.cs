@@ -20,7 +20,6 @@ public class ObjectClass : MonoBehaviour, IPushable
     [SerializeField] private GameObject onFire;
     [SerializeField] private Sprite onFreezedSprite;
     public Sprite defaultSprite;
-    private bool isLit = false;
     private bool isFrozen;
     private bool isPushed;
 
@@ -106,7 +105,6 @@ public class ObjectClass : MonoBehaviour, IPushable
                 } else if (elementType == "fire") {
                     onFire.SetActive(false);
                     firewoodFire.Toggle(true);
-                    isLit = false;
                     elementType = "none";
                     hasSwitched = true;
                 }
@@ -115,7 +113,6 @@ public class ObjectClass : MonoBehaviour, IPushable
                     onFire.SetActive(true);
                     firewoodFire.Toggle(true);
                     elementType = "fire";
-                    isLit = true;
                     hasSwitched = true;
                 } else if (elementType == "ice") {
                     sr.sprite = defaultSprite;
@@ -123,33 +120,7 @@ public class ObjectClass : MonoBehaviour, IPushable
                     hasSwitched = true;
                 }
             }
-
         }
-        // if (collision.gameObject.GetComponent<Iceball>() && !hasSwitched) {
-        //     if (elementType == "none" && !hasSwitched) {
-        //         sr.sprite = onFreezedSprite;
-        //         elementType = "ice";
-        //         hasSwitched = true;
-        //     } else if (elementType == "fire" && !hasSwitched) {
-        //         onFire.SetActive(false);
-        //         firewoodFire.Toggle(false);
-        //         isLit = false;
-        //         elementType = "none";
-        //         hasSwitched = true;
-        //     }
-        // } else if (collision.gameObject.GetComponent<Fireball>() && !hasSwitched) {
-        //     if (elementType == "none" && !hasSwitched) {
-        //         onFire.SetActive(true);
-        //         firewoodFire.Toggle(true);
-        //         elementType = "fire";
-        //         isLit = true;
-        //         hasSwitched = true;
-        //     } else if (elementType == "ice" && !hasSwitched) {
-        //         sr.sprite = defaultSprite;
-        //         elementType = "none";
-        //         hasSwitched = true;
-        //     }
-        // }
         StartCoroutine(ChangeLag());
     }
 

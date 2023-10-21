@@ -6,7 +6,7 @@ using Cinemachine;
 public class ScreenShake : MonoBehaviour
 {
     public static ScreenShake Instance { get; private set;}
-    private CinemachineVirtualCamera camera;
+    private CinemachineVirtualCamera bruhCamera;
     private float timer;
     private float durationTimer;
     private float startingIntensity;
@@ -15,12 +15,12 @@ public class ScreenShake : MonoBehaviour
         {
             Instance = this;
         }
-        camera = GetComponent<CinemachineVirtualCamera>();
+        bruhCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     public void ShakeScreen(float intensity, float timeDuration) {
         CinemachineBasicMultiChannelPerlin cbmp = 
-            camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            bruhCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cbmp.m_AmplitudeGain = intensity;
         timer = timeDuration;
         startingIntensity = intensity;
@@ -31,7 +31,7 @@ public class ScreenShake : MonoBehaviour
         if (timer > 0) {
             timer -= Time.deltaTime;
             CinemachineBasicMultiChannelPerlin cbmp = 
-               camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+               bruhCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             cbmp.m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, 1 - (timer / durationTimer));
         }
         // Less smooth version

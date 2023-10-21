@@ -12,7 +12,7 @@ public class tranMode : MonoBehaviour {
 	[SerializeField] private float longTransitionTime = 1f;
 	[SerializeField] private string endingClipName;
 	[SerializeField] private int introIndex = 3;
-	[SerializeField] private int levelIndex = 1;
+	//[SerializeField] private int levelIndex = 1;
 	private float currentTransitionTime;
 	private float alpha;
 	private float target;

@@ -46,7 +46,8 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
     /// </summary>
     private void Awake()
     {
-        //OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
+        OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
+
         currHealth = maxHealth;
         isPushed = false;
         animator = GetComponent<Animator>();
@@ -59,7 +60,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
     }
 
     void OnDestroy() {
-        //OnPlayerInRange?.Invoke(this, false);
+        OnPlayerInRange?.Invoke(this, false);
     }
 
     public void Damage(int damage) {
@@ -120,7 +121,8 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
 
     public void ReactToPlayerInRange(bool playerInRange) {
         healthBar.SetActive(true);
-        //OnPlayerInRange?.Invoke(this, playerInRange);
+
+        OnPlayerInRange?.Invoke(this, playerInRange);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

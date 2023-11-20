@@ -183,9 +183,9 @@ MonoBehaviour:
   - name: Main
     clip: {fileID: 8300000, guid: 8196983bb7a99dc47a3e17e77a606386, type: 3}
   - name: Exploration
-    clip: {fileID: 8300000, guid: bf5c5de18f87b5b4aaec6b81397ec2b0, type: 3}
+    clip: {fileID: 8300000, guid: 6789b5ae61f9ca649a587095105f1057, type: 3}
   - name: Combat
-    clip: {fileID: 8300000, guid: ba76bea4b395fee4886f53ba50b9a316, type: 3}
+    clip: {fileID: 8300000, guid: 3779b94063137ad48839e686461581b1, type: 3}
   - name: Exploration Opening
     clip: {fileID: 8300000, guid: 21f1c5187ba79864d9f16f0520e227d2, type: 3}
   - name: EndingPart1

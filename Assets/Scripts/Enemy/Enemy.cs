@@ -41,11 +41,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
 
     public EnemyState currState;
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    private void Awake()
-    {
+    private void Start() {
         OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
 
         currHealth = maxHealth;
@@ -53,9 +49,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
         animator = GetComponent<Animator>();
         dealthShader = GetComponent<DealthDissolveShader>();
         sr = GetComponent<SpriteRenderer>();
-    }
 
-    private void Start() {
         healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
     }
 

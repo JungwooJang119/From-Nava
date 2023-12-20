@@ -37,7 +37,7 @@ public class Fan : MonoBehaviour
     }
 
     public void Blow() {
-        rotateTimer += windIncrement;
+        rotateTimer = windIncrement;
     }
 
     public bool IsBlowing() {

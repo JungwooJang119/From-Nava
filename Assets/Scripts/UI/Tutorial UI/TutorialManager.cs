@@ -6,9 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
 
-public class TutorialManager : MonoBehaviour, ICollectibleManager
-{
-	public event Action OnTutorialEnd;
+public class TutorialManager : CollectibleManager {
 
 	private TutorialDataBank tutorialDataBank;
 
@@ -94,7 +92,7 @@ public class TutorialManager : MonoBehaviour, ICollectibleManager
 				if (textAlpha > 0) {
 					ChangeOpacity(-5f);
 				} else {
-					OnTutorialEnd?.Invoke();
+					InvokeOnDisplayEnd();
 					ResetElements();
 					state = State.Idle;
 				} break;

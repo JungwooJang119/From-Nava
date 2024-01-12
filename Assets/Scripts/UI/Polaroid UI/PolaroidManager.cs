@@ -5,9 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PolaroidManager : MonoBehaviour, ICollectibleManager
-{
-    public event Action OnDisplayEnd;
+public class PolaroidManager : CollectibleManager {
 
     private PolaroidDataBank polaroidDataBank;
 
@@ -94,7 +92,7 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 				if (textAlpha > 0) {
 					ChangeOpacity(-4f);
 				} else {
-					OnDisplayEnd?.Invoke();
+					InvokeOnDisplayEnd();
 					ResetElements();
 					state = State.Idle;
 				}
@@ -177,4 +175,18 @@ public class PolaroidManager : MonoBehaviour, ICollectibleManager
 		bottomNote.SetActive(false);
 		currentNote = null;
 	}
+}
+
+public class CollectibleManager : MonoBehaviour {
+
+	public event Action OnDisplayEnd;
+	public void InvokeOnDisplayEnd() => OnDisplayEnd?.Invoke();
+
+	protected enum State {
+		Idle,
+		Start,
+		Fade,
+		Await,
+		End,
+	} protected State state = State.Idle;
 }

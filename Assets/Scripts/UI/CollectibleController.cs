@@ -18,6 +18,8 @@ public class CollectibleController : MonoBehaviour {
 		SideRoomKey,
 	}
 
+	private Dictionary<CollectibleType, CollectibleController> managerDict;
+
 	private PolaroidManager polaroidManager;
 	private TutorialManager tutorialManager;
 	private ReportManager reportManager;

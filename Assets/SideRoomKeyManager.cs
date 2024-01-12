@@ -6,9 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class SideRoomKeyManager : MonoBehaviour, ICollectibleManager
-{
-    public event Action OnDisplayEnd;
+public class SideRoomKeyManager : CollectibleManager {
 
     private SideRoomKeyDataBank sideRoomKeyDataBank;
 
@@ -95,7 +93,7 @@ public class SideRoomKeyManager : MonoBehaviour, ICollectibleManager
 				if (textAlpha > 0) {
 					ChangeOpacity(-4f);
 				} else {
-					OnDisplayEnd?.Invoke();
+					InvokeOnDisplayEnd();
 					ResetElements();
 					state = State.Idle;
 				}

@@ -5,9 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class IDCardManager : MonoBehaviour, ICollectibleManager
-{
-    public event Action OnDisplayEnd;
+public class IDCardManager : CollectibleManager {
 
     private IDCardDataBank idCardDataBank;
 
@@ -94,7 +92,7 @@ public class IDCardManager : MonoBehaviour, ICollectibleManager
 				if (textAlpha > 0) {
 					ChangeOpacity(-4f);
 				} else {
-					OnDisplayEnd?.Invoke();
+					InvokeOnDisplayEnd();
 					ResetElements();
 					state = State.Idle;
 				}

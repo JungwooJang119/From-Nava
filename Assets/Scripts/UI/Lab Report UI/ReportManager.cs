@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ReportManager : MonoBehaviour, ICollectibleManager
-{
-	public event Action OnReportEnd;
+public class ReportManager : CollectibleManager {
 
 	private ReportTextBank reportTextBank;
 	private TextContainer reportSO;
@@ -151,7 +149,7 @@ public class ReportManager : MonoBehaviour, ICollectibleManager
 						} else {
 							state = State.Idle;
 							ResetElements();
-							OnReportEnd?.Invoke();
+							InvokeOnDisplayEnd();
 						}
 					}
 				} break;

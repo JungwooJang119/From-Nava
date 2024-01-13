@@ -18,6 +18,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     [SerializeField] private DealthDissolveShader dissolveShader;
 
     public Transform spawn;
+
     [SerializeField] private Transform rightCast;
     [SerializeField] private Transform leftCast;
     [SerializeField] private Transform upCast;
@@ -56,6 +57,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     public ParticleSystem dust;
 
     [SerializeField] private GameObject[] arrows;
+
+    private bool hasSetDir;
 
 
     private void Awake() {
@@ -110,37 +113,43 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         if (canChangeDir == false) {
             return;
         }
-        if(movement.x > 0) {
+        if(!hasSetDir && movement.x > 0) {
             facingDir = Vector2.right;
             castPoint = rightCast;
             SetAllArrowsFalse();
             arrows[0].SetActive(true);
+            hasSetDir = true;
         }
-        if(movement.x < 0) {
+        if(!hasSetDir && movement.x < 0) {
             facingDir = Vector2.left;
             castPoint = leftCast;
             SetAllArrowsFalse();
             arrows[1].SetActive(true);
+            hasSetDir = true;
         }
-        if(movement.y > 0) {
+        if(!hasSetDir &&movement.y > 0) {
             facingDir = Vector2.up;
             castPoint = upCast;
             SetAllArrowsFalse();
             arrows[2].SetActive(true);
+            hasSetDir = true;
         }
-        if(movement.y < 0) {
+        if(!hasSetDir && movement.y < 0) {
             facingDir = Vector2.down;
             castPoint = downCast;
             SetAllArrowsFalse();
             arrows[3].SetActive(true);
+            hasSetDir = true;
         }
         if (movement.magnitude > 0) {
             animator.SetFloat("X", movement.x);
             animator.SetFloat("Y", movement.y);
             animator.SetBool("isWalking", true);
+            hasSetDir = false;
         } 
         else 
             animator.SetBool("isWalking", false);
+            hasSetDir = false;
     }
 
     private void SetAllArrowsFalse() {

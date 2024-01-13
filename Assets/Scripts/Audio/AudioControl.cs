@@ -16,6 +16,7 @@ public class AudioControl : Singleton<AudioControl> {
 	[SerializeField] private float maxSFXDistance = 20;
 
 	private const string NULL_CLIP_TEXT = "Invalid clip string passed";
+	private readonly float volumeChangeRate = 0.01f;
 
 	// Employs Travis and Chase's method;                                    
 	void Awake() {
@@ -66,6 +67,7 @@ public class AudioControl : Singleton<AudioControl> {
 		AudioClip clip = FetchClip(name, musicSounds);
 		mainMusicSource.clip = clip;
 		mainMusicSource.Play();
+		Debug.Log(mainMusicSource.clip);
 		return mainMusicSource;
 	}
 
@@ -164,7 +166,7 @@ public class AudioControl : Singleton<AudioControl> {
 		while (lerp > 0) {
 			mainMusicSource.volume = musicVolume * lerp;
 			secondaryMusicSource.volume = musicVolume * (1 - lerp);
-			lerp = Mathf.MoveTowards(lerp, 0, Time.unscaledDeltaTime);
+			lerp = Mathf.MoveTowards(lerp, 0, volumeChangeRate);
 			yield return null;
 		} SwapPrimaryMusicSource();
     }
@@ -185,7 +187,7 @@ public class AudioControl : Singleton<AudioControl> {
 	// Coroutine to fade away the music. Hopefully more efficient than running a bool in Update;
 	IEnumerator _FadeMusic(bool stopsMusic) {
 		while (mainMusicSource.volume > 0) {
-			mainMusicSource.volume = Mathf.Max(0, mainMusicSource.volume - musicVolume / (0.5f / Time.deltaTime));
+			mainMusicSource.volume = Mathf.MoveTowards(mainMusicSource.volume, 0, volumeChangeRate);
 			yield return null;
 		}
 		if (stopsMusic) {
@@ -197,14 +199,18 @@ public class AudioControl : Singleton<AudioControl> {
 	IEnumerator _ResumeMusic() {
 		if (mainMusicSource) mainMusicSource.UnPause();
 		while (mainMusicSource.volume < musicVolume) {
-			mainMusicSource.volume = Mathf.Min(musicVolume, mainMusicSource.volume + musicVolume / (0.5f / Time.deltaTime));
+			mainMusicSource.volume = Mathf.MoveTowards(mainMusicSource.volume, musicVolume, volumeChangeRate);
 			yield return null;
 		}
 	}
 
 	IEnumerator LoadMusic() {
+		Debug.Log("BeganPlaying");
 		var musicSource = PlayMusic("Exploration Opening", false);
-		while (musicSource.isPlaying) yield return null;
+		while (musicSource.isPlaying) {
+			Debug.LogWarning("Loop running");
+			yield return null;
+		} Debug.Log("Music Begins");
 		PlayMusic("Exploration");
 	}
 

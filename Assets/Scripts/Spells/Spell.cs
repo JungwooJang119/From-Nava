@@ -9,7 +9,7 @@ public class Spell : MonoBehaviour
     public event Action<GameObject> OnSpellDestroy;
 
     //[SerializeField] private LogicScript logicScript;
-    [SerializeField] private Collider2D collider;
+    [SerializeField] private Collider2D bruhCollider;
     [SerializeField] private Rigidbody2D rb;
 
     [SerializeField] private Vector3 rotate;
@@ -29,8 +29,8 @@ public class Spell : MonoBehaviour
             transform.Rotate(rotate);
         }
 
-        collider = GetComponent<Collider2D>();
-        collider.isTrigger = true;
+        bruhCollider = GetComponent<Collider2D>();
+        bruhCollider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();
         if (!isChair) {

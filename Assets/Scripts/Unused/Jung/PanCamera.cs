@@ -17,13 +17,12 @@ public class PanCamera : MonoBehaviour
 	private Transform _player;
 	private float _currentDistance;
 
-    private bool isActive;
+    //private bool isActive;
 
     void Start() {
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		_virtualCamera = GameObject.Find("Main Camera").transform.Find(virtualCameraName).GetComponent<CinemachineVirtualCamera>();
 		_returnToPlayer = _virtualCamera.Follow;
-		isActive = false;
 	}
 
     // Utilizes Grace's Text Pop Script to check if the player is in range for interaction;
@@ -35,7 +34,6 @@ public class PanCamera : MonoBehaviour
 	// }
 
 	public void startPan() {
-		isActive = true;
 		StartCoroutine(CameraTransitionIn());
 	}
 
@@ -50,6 +48,5 @@ public class PanCamera : MonoBehaviour
 	IEnumerator CameraTransitionOut() {
 		yield return new WaitForSeconds(0.5f);
         _virtualCamera.Follow = _player.transform;
-        isActive = false;
 	}
 }

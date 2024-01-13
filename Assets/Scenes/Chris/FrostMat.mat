@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FrostMat
+  m_Shader: {fileID: -6465566751694194690, guid: 5916b3f09def3c244b933fd736e691dc, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3a7e52bf8d93173408051c60ad66d2b7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Shine_Texture:
+        m_Texture: {fileID: 2800000, guid: 3638efb5255865e4fab768f2827c07fb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _DissolveAmount: 0
+    - _Dissolve_Outline_Width: 0.04
+    - _Frost: 1
+    - _Frost_Ignore_Threshold: 0
+    - _Frost_Outline_Width: 0.08
+    - _Frost_Pattern_Seed: 6.07
+    - _Frost_Spread_Resolution: 19.27
+    - _Max_Pixelate_Level: 100
+    - _Noise_Resolution: 20.27
+    - _Pixelate: 0.404
+    - _Shimmer_Brightness_Clamp: 8.7
+    - _Shimmer_Speed: 3
+    - _Shine_Pass: -1
+    m_Colors:
+    - _DissolveColor: {r: 8.518289, g: 3.4847546, b: 9.24428, a: 1}
+    - _FrostOutlineColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Frost_Color: {r: 0.7137255, g: 1.8745098, b: 1.6156863, a: 0}
+    - _Frost_Spread_Offset: {r: 1.6, g: 0, b: 0, a: 0}
+    - _Frost_Spread_Pattern_Seed: {r: 0, g: 0, b: 0, a: 0}
+    - _Frost_Spread_Tiling: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

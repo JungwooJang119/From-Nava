@@ -20,8 +20,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final/EndingScene.unity
     guid: 7964fafc52b43574a92fb6e8ed85b3cd
+<<<<<<< HEAD
   - enabled: 0
     path: Assets/Scenes/Jung/Trailer Test.unity
     guid: a9f837c90df33c14eaac73556bc81912
+=======
+>>>>>>> b32e7962073ac9ad1533524bd4e0ff2a9a8920ce
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f7d90a78b7f26184b8a11e6c4a0587b8, type: 2}

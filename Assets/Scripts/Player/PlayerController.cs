@@ -31,7 +31,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     public Transform castPoint;
 
     public Vector2 facingDir;
-    private GameObject light;
+    private GameObject bruhLight;
 
     private bool isPushed;
     private float pushDist;
@@ -68,14 +68,14 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     private void Start()
     {
         input = GetComponent<PlayerInput>();
-        light = this.transform.GetChild(0).gameObject;
+        bruhLight = this.transform.GetChild(0).gameObject;
         facingDir = Vector2.down;
         arrows[3].SetActive(true);
         castPoint = downCast;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         isDark = (spawn.gameObject.tag == "DarkRoom");
-        light.SetActive(isDark);
+        bruhLight.SetActive(isDark);
         playerHealth = maxHealth;
         canMove = true;
         canChangeDir = true;
@@ -228,10 +228,10 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         spawn = newSpawn;
 		if (spawn.gameObject.tag == "DarkRoom") {
 			isDark = true;
-            light.SetActive(isDark);
+            bruhLight.SetActive(isDark);
 		} else {
 			isDark = false;
-            light.SetActive(isDark);
+            bruhLight.SetActive(isDark);
 		}
 
 	}

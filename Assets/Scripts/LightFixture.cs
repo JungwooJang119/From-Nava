@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightFixture : MonoBehaviour
 {
-    [SerializeField] private GameObject light;
+    [SerializeField] private GameObject bruhLight;
     public bool turnOff;
     // Start is called before the first frame update
 
@@ -17,10 +17,10 @@ public class LightFixture : MonoBehaviour
     }
 
     public void ToggleLightOn() {
-        light.SetActive(true);
+        bruhLight.SetActive(true);
     }
 
     public void ToggleLightOff() {
-        light.SetActive(false);
+        bruhLight.SetActive(false);
     }
 }

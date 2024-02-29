@@ -12,15 +12,15 @@ public class tranMode : MonoBehaviour {
 	[SerializeField] private float longTransitionTime = 1f;
 	[SerializeField] private string endingClipName;
 	[SerializeField] private int introIndex = 3;
-	[SerializeField] private int levelIndex = 1;
+	//[SerializeField] private int levelIndex = 1;
 	private float currentTransitionTime;
 	private float alpha;
 	private float target;
 	private CanvasGroup fadeScreen;
 
-	void Start() {
-		AudioControl.Instance.CheckMusic();
+    void Start() {
 		fadeScreen = GetComponentInChildren<CanvasGroup>();
+		AudioControl.Instance.CheckMusic();
 		alpha = 1f;
 		target = 0;
 		currentTransitionTime = longTransitionTime;
@@ -28,7 +28,7 @@ public class tranMode : MonoBehaviour {
 
 	void Update() {
 		if (alpha != target) {
-			alpha = Mathf.MoveTowards(alpha, target, Time.unscaledDeltaTime * 1f/currentTransitionTime);
+			alpha = Mathf.MoveTowards(alpha, target, Mathf.Min(0.025f, Time.unscaledDeltaTime) * 1f/currentTransitionTime);
 			fadeScreen.alpha = alpha;
 		} else if (target == 0) {
 			fadeScreen.blocksRaycasts = false;

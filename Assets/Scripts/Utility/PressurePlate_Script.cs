@@ -17,10 +17,14 @@ public class PressurePlate_Script : MonoBehaviour
     [SerializeField] private string resetText;
 
     private Transform playerTransform;
+    private static GameObject auditor;
 
     private void Start() {
         entitiesInsideCollider = new List<GameObject>();
         playerTransform = PlayerController.Instance.transform;
+        if (auditor == null) {
+            auditor = GameObject.Find("Auditor");
+        }
     }
 
     void Update() {
@@ -58,6 +62,9 @@ public class PressurePlate_Script : MonoBehaviour
             entitiesInsideCollider.Add(other.gameObject);
             render.sprite = pressed;
             isPressed = true;
+            if (other.tag != "Player") {
+                auditor.GetComponent<Auditor>().updatePressurePlate(transform.name);
+            }
         }
     }
 

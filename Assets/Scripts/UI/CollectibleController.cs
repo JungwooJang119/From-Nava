@@ -118,6 +118,7 @@ public class CollectibleController : MonoBehaviour {
 				} else {
 					notificationType = NotificationType.PolaroidClaimed;
 					polaroidsClaimed.Add(name);
+					auditor.GetComponent<Auditor>().updatePressurePlate(name);
 				}
 			} else if (type == CollectibleType.Tutorial) {
 				if (tutorialsClaimed.Contains(name)) {

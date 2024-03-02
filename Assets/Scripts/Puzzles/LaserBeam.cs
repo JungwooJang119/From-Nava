@@ -34,6 +34,7 @@ public class LaserBeam : MonoBehaviour
 	} private Stage stage;
 
 	private bool hitReceiver = false;
+	private static GameObject auditor;
 
 	// Grab component references and set the lifetime of the trail;
 	void Awake() {
@@ -44,6 +45,9 @@ public class LaserBeam : MonoBehaviour
 
 	// Initiates the motion of the beam;
 	void Start() {
+		if (auditor == null) {
+			auditor = GameObject.Find("Auditor");
+		}
 		trailRenderer.widthMultiplier = 0;
 		rigidBody.AddForce(transform.right * speed);
 		stage = Stage.Start;
@@ -91,9 +95,16 @@ public class LaserBeam : MonoBehaviour
 	// Creates a particle effect on collision and destroys on alien contact;
 	void OnCollisionEnter2D(Collision2D collider) {
 		if (collider.gameObject.tag == "Mirror") {
+			auditor.GetComponent<Auditor>().updateMirror("Mirror");
 			var particle = Instantiate(laserParticles, transform.position, transform.rotation);
 			particle.GetComponent<LaserParticles>().Subscribe2Parent(this);
 		} else if (collider.gameObject.tag == "Receiver") {
+			if (collider.gameObject.GetComponent<AuditTarget>() != null) {
+				auditor.GetComponent<Auditor>().updateMirror("ReceiverFinal");
+			} else {
+				auditor.GetComponent<Auditor>().updateMirror("Receiver");
+			}
+			
 			collider.gameObject.GetComponent<Receiver>().Feedback(0);
 			rigidBody.velocity = Vector3.zero;
 			hitReceiver = true;
@@ -114,6 +125,7 @@ public class LaserBeam : MonoBehaviour
 
 	// Make the call to the parent terminal to react based on results;
 	void OnDestroy() {
+		auditor.GetComponent<Auditor>().updateMirror("Reset");
 		if (hitReceiver) {
 			parentTerminal.PuzzleSuccess();
 		} else {

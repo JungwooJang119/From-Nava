@@ -8,12 +8,20 @@ public class LoadNextRoom : MonoBehaviour
     private tranMode tm;
 
     [SerializeField] private GameObject[] _objects;
+    private static GameObject auditor;
 
     void Start() {
         tm = GameObject.Find("Transition").GetComponent<tranMode>();
+        if (auditor == null) {
+            auditor = GameObject.Find("Auditor");
+        }
     }
+
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")){
+            if (string.Compare(spawn.name, "B1South") == 0 || string.Compare(spawn.name, "S5South") == 0) {
+                auditor.GetComponent<Auditor>().updateEnterRoom(spawn.name);
+            }
 			StartCoroutine(SimulateLoad(other.gameObject));
         }
     }

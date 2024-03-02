@@ -10,6 +10,8 @@ public class LabReport : MonoBehaviour
 	[SerializeField] private float range = 2;
 	[SerializeField] static GameObject auditor;
 
+	[SerializeField] private bool isCredits;
+
 	// Room Control;
 	public event Action OnReportRead;
 	private ClaimCollectible collectible;
@@ -59,7 +61,9 @@ public class LabReport : MonoBehaviour
 
 	private void LabReport_OnCollectibleClaimed() {
 		OnReportRead?.Invoke();
-		auditor.GetComponent<Auditor>().updateLabReport();
+		if (!isCredits) {
+			auditor.GetComponent<Auditor>().updateLabReport();
+		}
 		Destroy(this);
 	}
 }

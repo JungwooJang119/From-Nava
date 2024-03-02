@@ -8,6 +8,7 @@ using UnityEngine;
 public class LabReport : MonoBehaviour
 {
 	[SerializeField] private float range = 2;
+	[SerializeField] static GameObject auditor;
 
 	// Room Control;
 	public event Action OnReportRead;
@@ -24,6 +25,9 @@ public class LabReport : MonoBehaviour
 
 	// Initialize variable references;
 	void Start() {
+		if (auditor == null) {
+			auditor = GameObject.Find("Auditor");
+		}
 		collectible = GetComponent<ClaimCollectible>();
 		collectible.OnCollectibleClaimed += LabReport_OnCollectibleClaimed;
 		playerTransform = PlayerController.Instance.transform;
@@ -55,6 +59,7 @@ public class LabReport : MonoBehaviour
 
 	private void LabReport_OnCollectibleClaimed() {
 		OnReportRead?.Invoke();
+		auditor.GetComponent<Auditor>().updateLabReport();
 		Destroy(this);
 	}
 }

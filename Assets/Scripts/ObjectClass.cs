@@ -111,7 +111,9 @@ public class ObjectClass : MonoBehaviour, IPushable
                     firewoodFire.Toggle(true);
                     elementType = "none";
                     hasSwitched = true;
-                    auditor.GetComponent<Auditor>().updateLightUp(-1);
+                    if (transform.parent.gameObject.GetComponent<AuditTarget>() != null) {
+                        auditor.GetComponent<Auditor>().updateLightUp(-1);
+                    }
                 }
             } else if (a.getType() == "FIRE") {
                 if (elementType == "none") {
@@ -119,7 +121,9 @@ public class ObjectClass : MonoBehaviour, IPushable
                     firewoodFire.Toggle(true);
                     elementType = "fire";
                     hasSwitched = true;
-                    auditor.GetComponent<Auditor>().updateLightUp(1);
+                    if (transform.parent.gameObject.GetComponent<AuditTarget>() != null) {
+                        auditor.GetComponent<Auditor>().updateLightUp(1);
+                    }
                 } else if (elementType == "ice") {
                     sr.sprite = defaultSprite;
                     elementType = "none";

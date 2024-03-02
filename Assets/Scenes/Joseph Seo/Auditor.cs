@@ -120,7 +120,7 @@ public class Auditor : MonoBehaviour
     public void updateLightUp(int i) {
         litObjectCount += i;
         print(litObjectCount);
-        if (litObjectCount == 2) {
+        if (litObjectCount == 14) {
             quests[7] = true;
             isQuest8Complete = true;
         }

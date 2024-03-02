@@ -113,6 +113,7 @@ public class Auditor : MonoBehaviour
         runTimer = false;
         if (time <= 540) {
             quests[10] = true;
+            isQuest12Complete = true;
         }
     }
 
@@ -121,6 +122,7 @@ public class Auditor : MonoBehaviour
         print(litObjectCount);
         if (litObjectCount == 2) {
             quests[7] = true;
+            isQuest8Complete = true;
         }
     } 
 
@@ -132,6 +134,7 @@ public class Auditor : MonoBehaviour
         if (string.Compare(name, "B3") == 0) {
             if (plateCount <= 6) {
                 quests[8] = true;
+                isQuest9Complete = true;
             }
         } else {
             plateCount++;
@@ -149,6 +152,7 @@ public class Auditor : MonoBehaviour
             finalMirrCount += currMirrCount;
             if (name == "ReceiverFinal" && finalMirrCount <= 6) {
                 quests[9] = true;
+                isQuest10Complete = true;
             }
         }
         if (name == "Reset") {

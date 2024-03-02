@@ -61,7 +61,7 @@ public class LabReport : MonoBehaviour
 
 	private void LabReport_OnCollectibleClaimed() {
 		OnReportRead?.Invoke();
-		if (!isCredits) {
+		if (!isCredits && GetComponent<AuditTarget>() != null) {
 			auditor.GetComponent<Auditor>().updateLabReport();
 		}
 		Destroy(this);

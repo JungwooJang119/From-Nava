@@ -32,6 +32,7 @@ public class ObjectClass : MonoBehaviour, IPushable
     private Vector3 origin;
     public ParticleSystem dust;
     private FirewoodFire firewoodFire;
+    private static GameObject auditor;
 
     // Start is called before the first frame update
     void Awake()
@@ -42,6 +43,9 @@ public class ObjectClass : MonoBehaviour, IPushable
     }
 
     private void Start() {
+        if (auditor == null) {
+            auditor = GameObject.Find("Auditor");
+        }
         if (onFire != null) {
             onFire.SetActive(false);
             firewoodFire = onFire.GetComponent<FirewoodFire>();
@@ -107,6 +111,7 @@ public class ObjectClass : MonoBehaviour, IPushable
                     firewoodFire.Toggle(true);
                     elementType = "none";
                     hasSwitched = true;
+                    auditor.GetComponent<Auditor>().updateLightUp(-1);
                 }
             } else if (a.getType() == "FIRE") {
                 if (elementType == "none") {
@@ -114,6 +119,7 @@ public class ObjectClass : MonoBehaviour, IPushable
                     firewoodFire.Toggle(true);
                     elementType = "fire";
                     hasSwitched = true;
+                    auditor.GetComponent<Auditor>().updateLightUp(1);
                 } else if (elementType == "ice") {
                     sr.sprite = defaultSprite;
                     elementType = "none";

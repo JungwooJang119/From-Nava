@@ -111,6 +111,7 @@ public class CollectibleController : MonoBehaviour {
 	public void AddCall(CollectibleType type, string name, bool firstTime = true) {
 		if (firstTime) {
 			if (type == CollectibleType.Polaroid) {
+				auditor.GetComponent<Auditor>().updatePressurePlate(name);
 				if (polaroidsClaimed.Contains(name)) {
 					notificationManager.AddNotification(NotificationType.CollectibleRedundant);
 					OnCallsEnd?.Invoke();
@@ -118,7 +119,6 @@ public class CollectibleController : MonoBehaviour {
 				} else {
 					notificationType = NotificationType.PolaroidClaimed;
 					polaroidsClaimed.Add(name);
-					auditor.GetComponent<Auditor>().updatePressurePlate(name);
 				}
 			} else if (type == CollectibleType.Tutorial) {
 				if (tutorialsClaimed.Contains(name)) {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Auditor : MonoBehaviour
 {
@@ -25,24 +26,67 @@ public class Auditor : MonoBehaviour
     private float time = 0;
     private bool runTimer = true;
 
+    private bool isOpen;
+    public GameObject AuditPage;
+    public Text timerText;
+
+    public GameObject quest1Complete;
+    private bool isQuest1Complete;
+
+    public GameObject quest2Complete;
+    private bool isQuest2Complete;
+
+    public GameObject quest3Complete;
+    private bool isQuest3Complete;
+
+    public GameObject quest4Complete;
+    private bool isQuest4Complete;
+
+    public GameObject quest5Complete;
+    private bool isQuest5Complete;
+
+    public GameObject quest6Complete;
+    private bool isQuest6Complete;
+
+    public GameObject quest7Complete;
+    private bool isQuest7Complete;
+
     public void updateSideRoom(string name) {
         int yes = int.Parse(name.Substring(1));
         print(yes);
         quests[yes + 1] = true;
+        switch (yes) {
+            case 1:
+                isQuest3Complete = true;
+                break;
+            case 2:
+                isQuest4Complete = true;
+                break;
+            case 3:
+                isQuest5Complete = true;
+                break;
+            case 4:
+                isQuest6Complete = true;
+                break;
+        }
     }
     public void updateLabReport() {
         labReportCount++;
         if (labReportCount == 12) {
             //quests[1] = complete 12 lab reports
             quests[1] = true;
+            isQuest2Complete = true;
         }
     }
 
     public void updateEnterRoom(string name) {
         if (string.Compare(name, "B1South") == 0) {
             quests[0] = true;
+            isQuest1Complete = true;
+
         } else if (string.Compare(name, "S5South") == 0) {
             quests[6] = true;
+            isQuest7Complete = true;
         }
     }
 
@@ -58,6 +102,9 @@ public class Auditor : MonoBehaviour
     {
         if (runTimer) {
             time += Time.deltaTime;
+            int minutes = (int)time / 60;
+            int seconds = (int)time % 60;
+            timerText.text = "Time: " + minutes.ToString() + ":" + ((seconds < 10) ? ("0") : ("")) + seconds.ToString();
         }
         if (Input.GetKeyDown(KeyCode.E)) {
             string res = "";
@@ -68,8 +115,54 @@ public class Auditor : MonoBehaviour
                     res += "N ";
                 }
             }
-            res += Mathf.Round(time);
+            //res += Mathf.Round(time);
+            res += labReportCount;
             Debug.Log(res);
         }   
+    }
+
+    public void ToggleOpen() {
+        if (isOpen) {
+            AuditPage.SetActive(false);
+            isOpen = false;
+            quest1Complete.SetActive(false);
+            quest2Complete.SetActive(false);
+            quest3Complete.SetActive(false);
+            quest4Complete.SetActive(false);
+            quest5Complete.SetActive(false);
+            quest6Complete.SetActive(false);
+            quest7Complete.SetActive(false);
+        } else {
+            AuditPage.SetActive(true);
+            isOpen = true;
+            if (isQuest1Complete) {
+                quest1Complete.SetActive(true);
+                
+            }
+            if (isQuest2Complete) {
+                quest2Complete.SetActive(true);
+                
+            }
+            if (isQuest3Complete) {
+                quest3Complete.SetActive(true);
+                
+            }
+            if (isQuest4Complete) {
+                quest4Complete.SetActive(true);
+                
+            }
+            if (isQuest5Complete) {
+                quest5Complete.SetActive(true);
+                
+            }
+            if (isQuest6Complete) {
+                quest6Complete.SetActive(true);
+                
+            }
+            if (isQuest7Complete) {
+                quest7Complete.SetActive(true);
+                
+            }
+        }
     }
 }

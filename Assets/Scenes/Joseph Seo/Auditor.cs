@@ -29,6 +29,8 @@ public class Auditor : MonoBehaviour
     private bool isOpen;
     public GameObject AuditPage;
     public Text timerText;
+    public GameObject labReportCounter;
+    public Text labReportCounterText;
 
     public GameObject quest1Complete;
     private bool isQuest1Complete;
@@ -50,6 +52,17 @@ public class Auditor : MonoBehaviour
 
     public GameObject quest7Complete;
     private bool isQuest7Complete;
+
+    public GameObject quest8Complete;
+    private bool isQuest8Complete;
+
+    public GameObject quest9Complete;
+    private bool isQuest9Complete;
+
+    public GameObject quest10Complete;
+    private bool isQuest10Complete;
+    public GameObject quest12Complete;
+    private bool isQuest12Complete;
 
     public void updateSideRoom(string name) {
         int yes = int.Parse(name.Substring(1));
@@ -124,6 +137,8 @@ public class Auditor : MonoBehaviour
     public void ToggleOpen() {
         if (isOpen) {
             AuditPage.SetActive(false);
+            labReportCounterText.text = "Reports Read: " + labReportCount;
+            labReportCounter.SetActive(false);
             isOpen = false;
             quest1Complete.SetActive(false);
             quest2Complete.SetActive(false);
@@ -132,8 +147,14 @@ public class Auditor : MonoBehaviour
             quest5Complete.SetActive(false);
             quest6Complete.SetActive(false);
             quest7Complete.SetActive(false);
+            quest8Complete.SetActive(false);
+            quest9Complete.SetActive(false);
+            quest10Complete.SetActive(false);
+            quest12Complete.SetActive(false);
         } else {
             AuditPage.SetActive(true);
+            labReportCounterText.text = "Reports Read: " + labReportCount;
+            labReportCounter.SetActive(true);
             isOpen = true;
             if (isQuest1Complete) {
                 quest1Complete.SetActive(true);
@@ -161,6 +182,23 @@ public class Auditor : MonoBehaviour
             }
             if (isQuest7Complete) {
                 quest7Complete.SetActive(true);
+                
+            }
+
+            if (isQuest8Complete) {
+                quest8Complete.SetActive(true);
+                
+            }
+            if (isQuest9Complete) {
+                quest9Complete.SetActive(true);
+                
+            }
+            if (isQuest10Complete) {
+                quest10Complete.SetActive(true);
+                
+            }
+            if (isQuest12Complete) {
+                quest12Complete.SetActive(true);
                 
             }
         }

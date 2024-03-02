@@ -32,7 +32,7 @@ public class Auditor : MonoBehaviour
     }
     public void updateLabReport() {
         labReportCount++;
-        if (labReportCount == 1) {
+        if (labReportCount == 12) {
             //quests[1] = complete 12 lab reports
             quests[1] = true;
         }

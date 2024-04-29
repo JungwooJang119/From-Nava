@@ -27,6 +27,7 @@ public class CollectibleController : MonoBehaviour {
 	private SideRoomKeyManager sideRoomKeyManager;
 	private NotificationManager notificationManager;
 	private NotificationType notificationType = NotificationType.None;
+	private static GameObject auditor; 
 
 	private tranMode transition;
 
@@ -49,6 +50,9 @@ public class CollectibleController : MonoBehaviour {
 	private bool busy;
 
 	void Start() {
+		if (auditor == null) {
+			auditor = GameObject.Find("Auditor");
+		}
 		callStack = new List<Call>();
 		polaroidsClaimed = new List<string>();
 		tutorialsClaimed = new List<string>();
@@ -116,6 +120,7 @@ public class CollectibleController : MonoBehaviour {
 				} else {
 					notificationType = NotificationType.PolaroidClaimed;
 					polaroidsClaimed.Add(name);
+					auditor.GetComponent<Auditor>().updatePressurePlate(name);
 				}
 			} else if (type == CollectibleType.Tutorial) {
 				if (tutorialsClaimed.Contains(name)) {
@@ -140,6 +145,7 @@ public class CollectibleController : MonoBehaviour {
 				} else {
 					notificationType = NotificationType.SideRoomKeyClaimed;
 					sideRoomKeysClaimed.Add(name);
+					auditor.GetComponent<Auditor>().updateSideRoom(name);
 				}
 			}
 		}

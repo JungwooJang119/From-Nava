@@ -34,9 +34,7 @@ public class tranMode : MonoBehaviour {
 			fadeScreen.blocksRaycasts = false;
 			fadeScreen.interactable = false;
 		}
-		if (Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().buildIndex == 3) {
-			LoadLevel();
-		}
+		
 	}
 
 	// Method that advances to the requested level.

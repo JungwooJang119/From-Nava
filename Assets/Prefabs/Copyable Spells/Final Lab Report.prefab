@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 2
+  isCredits: 0
   buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
 --- !u!114 &8256046566017255765
 MonoBehaviour:
@@ -63,8 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleCalls:
-  - collectibleType: 2
-    name: FinalMessage
+  - {fileID: 11400000, guid: 3fd88e2a3e85cb3498490b28d5f15f62, type: 2}
 --- !u!212 &6950422144262471359
 SpriteRenderer:
   m_ObjectHideFlags: 0

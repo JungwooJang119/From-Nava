@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class TutorialDataBank : MonoBehaviour {
 	
 	public enum TutorialType {
@@ -40,4 +41,4 @@ public class TutorialDataBank : MonoBehaviour {
 	public Dictionary<TutorialType, TutorialData> GetTutorialDict() {
 		return tutorialDict;
     }
-}
+}*/

@@ -81,12 +81,22 @@ public class tranMode : MonoBehaviour {
 		return transitionTime;
 	}
 
+	/// <summary>
+	/// Remove dark overlay;
+	/// </summary>
+	/// <param name="fastTransition"> Whether the transition should happen fast or slow; </param>
+	/// <returns> Duration of the transition; </returns>
 	public float DarkenIn(bool fastTransition = false) {
 		currentTransitionTime = fastTransition ? shortTransitionTime / 2f : longTransitionTime;
 		target = 0;
 		return currentTransitionTime;
 	}
 
+	/// <summary>
+	/// Generate a dark overlay;
+	/// </summary>
+	/// <param name="fastTransition"> Whether the transition should happen fast or slow; </param>
+	/// <returns> Duration of the transition; </returns>
 	public float DarkenOut(bool fastTransition = false) {
 		currentTransitionTime = fastTransition ? shortTransitionTime / 2f : longTransitionTime;
 		target = 0.5f;

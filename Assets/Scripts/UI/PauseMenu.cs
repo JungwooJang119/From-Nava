@@ -35,7 +35,7 @@ public class PauseMenu : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape) && !controller.GetBusy()) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !controller.IsBusy) {
             if (GameIsPaused)
             {
                 Resume();
@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void TogglePause() {
-        if (!controller.GetBusy()) {
+        if (!controller.IsBusy) {
             if (GameIsPaused)
             {
                 Resume();

@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFix : MonoBehaviour
-{
+public class CameraFix : MonoBehaviour {
     [SerializeField] private Camera uiCam;
-    private void Update() {
-
-        uiCam.pixelRect = GetComponent<Camera>().pixelRect;
-    }
-
+    private Camera cam;
+    void Start() => cam = GetComponent<Camera>();
+    void Update() => uiCam.pixelRect = cam.pixelRect;
 }

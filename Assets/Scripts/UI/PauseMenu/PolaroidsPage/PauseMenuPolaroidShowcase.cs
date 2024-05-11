@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using static PolaroidDataBank;
 using static PauseMenuPolaroidShowcaseElement;
 
 public class PauseMenuPolaroidShowcase : MonoBehaviour {
@@ -23,7 +22,6 @@ public class PauseMenuPolaroidShowcase : MonoBehaviour {
     private Image polaroidImage;
     private TextMeshProUGUI polaroidText;
     private PauseMenuPolaroidShowcaseElement[] elements;
-    private Dictionary<PolaroidType, PolaroidData> polaroidDict;
     private CanvasGroup polaroidFadeToBlack;
 
     void Awake() {
@@ -31,8 +29,7 @@ public class PauseMenuPolaroidShowcase : MonoBehaviour {
         foreach (PauseMenuPolaroidShowcaseElement element in elements) {
             if (element.GetElementType() == ElementType.Polaroid) polaroidImage = element.GetComponent<Image>();
             else if (element.GetElementType() == ElementType.Text) polaroidText = element.GetComponentInChildren<TextMeshProUGUI>();
-        } polaroidDict = ReferenceSingleton.Instance.collectibleController.GetComponentInChildren<PolaroidDataBank>().GetPolaroidDict();
-        polaroidFadeToBlack = GetComponentInChildren<CanvasGroup>();
+        } polaroidFadeToBlack = GetComponentInChildren<CanvasGroup>();
     }
 
     void Update() {
@@ -73,13 +70,13 @@ public class PauseMenuPolaroidShowcase : MonoBehaviour {
         }
     }
 
-    public void Show(PolaroidType polaroidType) {
+    public void Show(PolaroidData polaroidData) {
         if (polaroidImage.gameObject.activeSelf) {
             foreach (PauseMenuPolaroidShowcaseElement element in elements) element.UpdateData();
-            UpdatePolaroidData(polaroidType);
+            UpdatePolaroidData(polaroidData);
         } else {
             foreach (PauseMenuPolaroidShowcaseElement element in elements) element.gameObject.SetActive(true);
-            UpdatePolaroidData(polaroidType);
+            UpdatePolaroidData(polaroidData);
         }
     }
 
@@ -93,8 +90,7 @@ public class PauseMenuPolaroidShowcase : MonoBehaviour {
         targetLerp = 1f;
     }
 
-    private void UpdatePolaroidData(PolaroidType polaroidType) {
-        var polaroidData = polaroidDict[polaroidType];
+    private void UpdatePolaroidData(PolaroidData polaroidData) {
         polaroidImage.sprite = polaroidData.sprite;
         polaroidText.text = polaroidData.text.Replace("\\n", "\n"); // Unity is so beautiful, occassionally ;-;
     }

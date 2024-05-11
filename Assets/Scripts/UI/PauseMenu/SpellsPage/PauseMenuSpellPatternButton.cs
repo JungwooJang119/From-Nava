@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using static TutorialDataBank;
 
 public class PauseMenuSpellPatternButton : MonoBehaviour {
 
-    [SerializeField] private TutorialType tutorialType;
+    [SerializeField] private TutorialData tutorialData;
+    public TutorialData TutorialData => tutorialData;
 
     private PauseMenuPage pageScript;
     private Image image;
@@ -20,23 +20,23 @@ public class PauseMenuSpellPatternButton : MonoBehaviour {
     private bool active;
 
     void Awake() {
-        pageScript = GetComponentInParent<PauseMenuPage>();
+        pageScript = GetComponentInParent<PauseMenuPage>(true);
 
-        image = transform.GetChild(0).GetComponentInChildren<Image>();
+        image = transform.GetChild(0).GetComponentInChildren<Image>(true);
         originalSprite = image.sprite;
 
-        text = GetComponentInChildren<TextMeshProUGUI>();
+        text = GetComponentInChildren<TextMeshProUGUI>(true);
         originalText = text.text;
 
         button = GetComponent<Button>();
         button.onClick.AddListener(ActivatePage);
 
-        patternScript = GetComponentInParent<PauseMenuSpellPatterns>();
-        masterScript = GetComponentInParent<PauseMenuSpells>();
+        patternScript = GetComponentInParent<PauseMenuSpellPatterns>(true);
+        masterScript = GetComponentInParent<PauseMenuSpells>(true);
     }
 
     private void OnEnable() {
-        active = ReferenceSingleton.Instance.collectibleController.GetTutorialList().Contains(tutorialType.ToString());
+        active = ReferenceSingleton.Instance.collectibleController.GetItems<TutorialData>().Contains(tutorialData);
         if (active) {
             if (image.sprite != originalSprite) image.sprite = originalSprite;
             if (pageScript.UpdateDictionary(image, 1f)) image.color = new Color (image.color.r, image.color.g, image.color.b, 1f);
@@ -46,21 +46,15 @@ public class PauseMenuSpellPatternButton : MonoBehaviour {
         } else {
             text.text = "- - -";
             if (pageScript.UpdateDictionary(text, 0.5f)) text.alpha = 0.5f;
-            image.sprite = patternScript.GetDisabledPattern();
+            image.sprite = patternScript.DisabledPattern;
             if (pageScript.UpdateDictionary(image, 0.5f)) image.color = new Color(image.color.r, image.color.g, image.color.b, 0.5f);
             button.enabled = false;
         }
     }
 
     public void ActivatePage() {
-        masterScript.SetActiveSpellPage(typeof(PauseMenuSpellTutorials), tutorialType);
+        masterScript.SetActiveSpellPage(typeof(PauseMenuSpellTutorials), tutorialData);
     }
 
-    public TutorialType GetTutorialType() {
-        return tutorialType;
-    }
-
-    public void Toggle(bool active) {
-        this.active = active;
-    }
+    public void Toggle(bool active) => this.active = active;
 }

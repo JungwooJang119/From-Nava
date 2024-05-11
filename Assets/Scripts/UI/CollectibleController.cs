@@ -1,190 +1,107 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using static NotificationManager;
 using UnityEngine;
 
+/// <summary>
+/// Inventory Manager. Handles interactions with collectible (Lab Reports, Tutorials, Polaroid, etc);
+/// <br></br> Responsible for fading in and out of the showcases and communicating success to the caller.
+/// </summary>
 public class CollectibleController : MonoBehaviour {
-	// Responsibilites. Receive calls from objects and initialize Lab Reports, Tutorials, and Polaroid showcases.
-	// Responsible for fading in and out of the showcases and communicating success to the caller.
 
-	public event Action OnCallsEnd;
+	/// <summary> Signal a collectible interaction;
+	/// <br></br> Listeners: All Collectible Managers; </summary>
+	public event System.EventHandler<ItemCall> OnClaimCollectible;
+	/// <summary> Follow-up signal with the result of a collectible interaction;
+	/// <br></br> Listener: Notification Manager; </summary>
+	public event System.Action<ItemCall> OnClaimResult;
+	/// <summary> Request a check on the posession of an item;
+	/// <br></br> Listeners: All Collectible Managers; </summary>
+	public event System.EventHandler<ItemCall> OnInventoryRequest;
+	/// <summary> Signal all collectible interactions have ended;
+	/// <br></br> Listeners: All Collectible Managers, Notification Manager; </summary>
+	public event System.Action OnCallsEnd;
 
-	public enum CollectibleType {
-		Polaroid,
-		Tutorial,
-		Report,
-		IDCard,
-		SideRoomKey,
+	public tranMode Transition { get; private set; }
+	private readonly Queue<ItemData> callQueue = new();
+
+	/// <summary> Whether a collectible interaction is currently being displayed; </summary>
+	public bool IsBusy { get; private set; }
+	/// <summary> Whether a sequence of interactions is taking place; </summary>
+	public bool InSequence { get; private set; }
+
+	void Awake() {
+		Transition = FindObjectOfType<tranMode>(true);
+		foreach (CollectibleManager cm in GetComponentsInChildren<CollectibleManager>(true)) { cm.Init(this); };
+		GetComponentInChildren<NotificationManager>(true).Init(this);
 	}
 
-	private PolaroidManager polaroidManager;
-	private TutorialManager tutorialManager;
-	private ReportManager reportManager;
-	private IDCardManager idCardManager;
-	private SideRoomKeyManager sideRoomKeyManager;
-	private NotificationManager notificationManager;
-	private NotificationType notificationType = NotificationType.None;
-	private static GameObject auditor; 
-
-	private tranMode transition;
-
-	private struct Call {
-		public CollectibleType type;
-		public string name;
-		public bool firstTime;
-		public Call(CollectibleType type, string name, bool firstTime) {
-			this.type = type;
-			this.name = name;
-			this.firstTime = firstTime;
-		}
-	} private List<Call> callStack;
-
-	private List<string> polaroidsClaimed;
-	private List<string> tutorialsClaimed;
-	private List<string> idCardsClaimed;
-	private List<string> sideRoomKeysClaimed;
-
-	private bool busy;
-
-	void Start() {
-		if (auditor == null) {
-			auditor = GameObject.Find("Auditor");
-		}
-		callStack = new List<Call>();
-		polaroidsClaimed = new List<string>();
-		tutorialsClaimed = new List<string>();
-		idCardsClaimed = new List<string>();
-		sideRoomKeysClaimed = new List<string>();
-		tutorialsClaimed.Add("Melee");
-
-		polaroidManager = GetComponentInChildren<PolaroidManager>();
-		polaroidManager.OnDisplayEnd += CollectibleManager_OnDisplayEnd;
-		tutorialManager = GetComponentInChildren<TutorialManager>();
-		tutorialManager.OnTutorialEnd += CollectibleManager_OnDisplayEnd;
-		reportManager = GetComponentInChildren<ReportManager>();
-		reportManager.OnReportEnd += CollectibleManager_OnDisplayEnd;
-		notificationManager = GetComponentInChildren<NotificationManager>();
-		idCardManager = GetComponentInChildren<IDCardManager>();
-		idCardManager.OnDisplayEnd += CollectibleManager_OnDisplayEnd;
-		sideRoomKeyManager = GetComponentInChildren<SideRoomKeyManager>();
-		sideRoomKeyManager.OnDisplayEnd += CollectibleManager_OnDisplayEnd;
-
-		transition = transform.parent.GetComponentInChildren<tranMode>();
+	/// <summary>
+	/// Add a collectible call to the queue, followed by a dequeue attempt;
+	/// </summary>
+	/// <param name="data"> ItemData to enqueue; </param>
+	public void AddCall(ItemData data) {
+		callQueue.Enqueue(data);
+		TryDequeue();
 	}
 
-
-	void Update() {
-		if (callStack.Count > 0 && !busy) {
-			PlayerController.Instance.DeactivateMovement();
-			switch (callStack[0].type) {
-				case CollectibleType.Polaroid:
-					DisplayCollectible(polaroidManager, callStack[0].name, callStack[0].firstTime);
-					break;
-				case CollectibleType.Tutorial:
-					DisplayCollectible(tutorialManager, callStack[0].name, callStack[0].firstTime);
-					break;
-				case CollectibleType.Report:
-					DisplayCollectible(reportManager, callStack[0].name, callStack[0].firstTime);
-					break;
-				case CollectibleType.IDCard:
-					DisplayCollectible(idCardManager, callStack[0].name, callStack[0].firstTime);
-					break;
-				case CollectibleType.SideRoomKey:
-					DisplayCollectible(sideRoomKeyManager, callStack[0].name, callStack[0].firstTime);
-					break;
-			}
-			callStack.RemoveAt(0);
-			busy = true;
+	/// <summary>
+	/// Attempt to process a call from the queue, if applicable;
+	/// </summary>
+	private void TryDequeue() {
+		if (!IsBusy && callQueue.Count > 0) {
+			ItemCall call = new(callQueue.Dequeue());
+			OnClaimCollectible?.Invoke(this, call);
+			OnClaimResult?.Invoke(call);
+			if (call.output != null) {
+				PlayerController.Instance.DeactivateMovement();
+				Transition.DarkenOut();
+				IsBusy = true;
+				InSequence = true;
+			} else Poke();
 		}
+    }
+
+	public bool CheckClaimedStatus(ItemData itemData) {
+		ItemCall call = new(itemData);
+		OnInventoryRequest?.Invoke(this, call);
+		return call.output.Contains(itemData);
 	}
 
-	private void DisplayCollectible<T>(T manager, string name, bool firstTime = true) where T : ICollectibleManager {
-		var transitionTime = transition.DarkenOut();
-		if (firstTime) {
-			manager.Display(name, transitionTime);
-		} else {
-			manager.Display(name);
-		}
-	}
-
-	public void AddCall(CollectibleType type, string name, bool firstTime = true) {
-		if (firstTime) {
-			if (type == CollectibleType.Polaroid) {
-				if (polaroidsClaimed.Contains(name)) {
-					notificationManager.AddNotification(NotificationType.CollectibleRedundant);
-					OnCallsEnd?.Invoke();
-					return;
-				} else {
-					notificationType = NotificationType.PolaroidClaimed;
-					polaroidsClaimed.Add(name);
-					auditor.GetComponent<Auditor>().updatePressurePlate(name);
-				}
-			} else if (type == CollectibleType.Tutorial) {
-				if (tutorialsClaimed.Contains(name)) {
-					return;
-				} else {
-					tutorialsClaimed.Add(name);
-				}
-			} else if (type == CollectibleType.IDCard) {
-				if (idCardsClaimed.Contains(name)) {
-					// notificationManager.AddNotification(NotificationType.CollectibleRedundant);
-					// OnCallsEnd?.Invoke();
-					return;
-				} else {
-					// notificationType = NotificationType.IDCardClaimed;
-					idCardsClaimed.Add(name);
-				}
-			} else if (type == CollectibleType.SideRoomKey) {
-				if (sideRoomKeysClaimed.Contains(name)) {
-					notificationManager.AddNotification(NotificationType.CollectibleRedundant);
-					OnCallsEnd?.Invoke();
-					return;
-				} else {
-					notificationType = NotificationType.SideRoomKeyClaimed;
-					sideRoomKeysClaimed.Add(name);
-					auditor.GetComponent<Auditor>().updateSideRoom(name);
-				}
-			}
-		}
-		callStack.Add(new Call(type, name, firstTime));
-	}
-
-	public bool CheckClaimedStatus(CollectibleType type, string name) {
-		switch (type) {
-			case CollectibleType.Polaroid:
-				return polaroidsClaimed.Contains(name);
-			case CollectibleType.Tutorial:
-				return tutorialsClaimed.Contains(name);
-			case CollectibleType.IDCard:
-				return idCardsClaimed.Contains(name);
-			case CollectibleType.SideRoomKey:
-				return sideRoomKeysClaimed.Contains(name);
-			default:
-				return false;
-		}
-	}
-
-	private void CollectibleManager_OnDisplayEnd() {
-		if (callStack.Count == 0) {
+	/// <summary>
+	/// Interrupt the controller when a manager finishes their display;
+	/// </summary>
+	public void Poke() {
+		if (callQueue.Count == 0) {
+			InSequence = false;
 			OnCallsEnd?.Invoke();
-			transition.DarkenIn();
-			notificationManager.AddNotification(notificationType);
-			notificationType = NotificationType.None;
+			Transition.DarkenIn();
 			PlayerController.Instance.ActivateMovement();
-			//AudioControl.Instance.ResumeMusic();
-		} busy = false;
+		} IsBusy = false;
+		TryDequeue();
 	}
 
-	public bool GetBusy() {
-		return busy;
-	}
-
-	public List<string> GetTutorialList() {
-		return tutorialsClaimed;
+	/// <summary>
+	/// Fetch a reference to the inventory set of a given ItemData type;
+	/// </summary>
+	/// <typeparam name="T"> Type of items of interest; </typeparam>
+	/// <returns> A reference to the current set of items; </returns>
+	public HashSet<ItemData> GetItems<T>() where T : ItemData {
+		ItemCall call = new(typeof(T));
+		OnInventoryRequest?.Invoke(this, call);
+		return call.output;
     }
 }
 
-public interface ICollectibleManager {
-	void Display(string name, float transitionTime = 0);
+/// <summary>
+/// Argument for one-sided Controller-Manager communication;
+/// </summary>
+public class ItemCall : System.EventArgs {
+	public ItemData input;
+	public System.Type inputType;
+	public HashSet<ItemData> output;
+	public ItemCall(ItemData input) {
+		this.input = input;
+		inputType = input.GetType();
+	}
+	public ItemCall(System.Type inputType) => this.inputType = inputType;
 }

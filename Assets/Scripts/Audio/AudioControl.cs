@@ -152,14 +152,14 @@ public class AudioControl : Singleton<AudioControl> {
 
 	public void ResumeMusic() => StartCoroutine(_ResumeMusic());
 
-	public void InterpolateMusicTracks(string name) {
+	public void InterpolateMusicTracks(string name, bool shouldLoop = true) {
 		StopAllCoroutines();
 		AudioClip clip = FetchClip(name, musicSounds);
 		//if (activeInterpolation != null) StopCoroutine(activeInterpolation);
-		activeInterpolation = StartCoroutine(_InterpolateMusicTracks(clip));
+		activeInterpolation = StartCoroutine(_InterpolateMusicTracks(clip, shouldLoop));
 	}
 
-	IEnumerator _InterpolateMusicTracks(AudioClip newTrack) {
+	IEnumerator _InterpolateMusicTracks(AudioClip newTrack, bool nextLoop) {
 		float lerp = 1;
 		SetUpSecondaryMusicClip(newTrack);
 		while (lerp > 0) {
@@ -167,7 +167,7 @@ public class AudioControl : Singleton<AudioControl> {
 			secondaryMusicSource.volume = musicVolume * (1 - lerp);
 			lerp = Mathf.MoveTowards(lerp, 0, volumeChangeRate);
 			yield return null;
-		} SwapPrimaryMusicSource();
+		} SwapPrimaryMusicSource(nextLoop);
     }
 
 	private void SetUpSecondaryMusicClip(AudioClip newTrack) {
@@ -176,9 +176,10 @@ public class AudioControl : Singleton<AudioControl> {
 		secondaryMusicSource.Play();
 	}
 
-	private void SwapPrimaryMusicSource() {
+	private void SwapPrimaryMusicSource(bool shouldLoop) {
 		AudioSource oldSource = mainMusicSource;
 		mainMusicSource = secondaryMusicSource;
+		mainMusicSource.loop = shouldLoop;
 		secondaryMusicSource = oldSource;
 		secondaryMusicSource.Stop();
     }

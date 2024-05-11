@@ -1,37 +1,25 @@
-using System;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Video;
 using UnityEngine.UI;
-using static TutorialDataBank;
 
 public class PauseMenuSpellTutorials : MonoBehaviour, ISpellPage {
 
-    public event Action OnTutorialChanged;
+    public event System.Action OnTutorialChanged;
 
     [SerializeField] private TextMeshProUGUI header, description, patternText;
     [SerializeField] private VideoPlayer video;
     [SerializeField] private Image pattern;
 
-    private Dictionary<TutorialType, TutorialData> tutorialDict;
-    public LinkedList<TutorialType> tutorialSequence;
-    public LinkedListNode<TutorialType> head;
-
-    void Awake() {
-        tutorialDict = ReferenceSingleton.Instance.collectibleController.GetComponentInChildren<TutorialDataBank>().GetTutorialDict();
-    }
+    [SerializeField] private TutorialData[] tutorialOrder;
+    public LinkedList<TutorialData> tutorialSequence;
+    public LinkedListNode<TutorialData> head;
 
     public void OnEnable() {
-        tutorialSequence = new LinkedList<TutorialType>();
-        var tutorialsClaimed = ReferenceSingleton.Instance.collectibleController.GetTutorialList();
-        TutorialType parsedType = 0;
-        foreach (string typeName in Enum.GetNames(typeof(TutorialType))) {
-            if (typeName != "Basics" && tutorialsClaimed.Contains(typeName)) {
-                if (Enum.TryParse(typeName, out parsedType)) tutorialSequence.AddLast(parsedType);
-            }
-        }
+        HashSet<ItemData> tutorialsClaimed = ReferenceSingleton.Instance.collectibleController.GetItems<TutorialData>();
+        tutorialSequence = new LinkedList<TutorialData>(tutorialOrder.Where(tutorial => tutorialsClaimed.Contains(tutorial)));
     }
 
     public bool GetPreviousTutorial(bool set = false) {
@@ -54,14 +42,13 @@ public class PauseMenuSpellTutorials : MonoBehaviour, ISpellPage {
         } return hasNext;
     }
 
-    public void SetActiveTutorial(TutorialType type) {
-        var tutorial = tutorialDict[type];
+    public void SetActiveTutorial(TutorialData tutorial) {
         header.text = tutorial.textHeader;
         description.text = tutorial.text;
         video.clip = tutorial.videoClip;
         pattern.sprite = tutorial.inputImage;
-        patternText.text = type == TutorialType.Melee ? "Input" : "Pattern";
-        head = tutorialSequence.Find(type);
+        patternText.text = tutorial.name == "Melee" ? "Input" : "Pattern";
+        head = tutorialSequence.Find(tutorial);
         OnTutorialChanged?.Invoke();
     }
 }

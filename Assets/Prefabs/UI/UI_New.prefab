@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 1
+  polaroidData: {fileID: 11400000, guid: fd39e2149d3f7354dba91f571c4388cc, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &6367817386189769424
@@ -922,7 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e47605234e9a241a3346f1d8c0ff25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialType: 5
+  tutorialData: {fileID: 11400000, guid: e76cfd62cb5620d4aa070e166ef4c28d, type: 2}
 --- !u!114 &4949286525604568877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 8
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689649270709734
@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 0
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689649445252986
@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 7
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689649472240132
@@ -2412,7 +2412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 4
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689649629470897
@@ -2716,7 +2716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 1
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689649867543812
@@ -2853,7 +2853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 3
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689649882892290
@@ -3916,7 +3916,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &676689650680076180
 MonoBehaviour:
@@ -4171,7 +4171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 5
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689650773460053
@@ -4308,7 +4308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 6
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689650878329620
@@ -4822,7 +4822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 2
+  polaroidData: {fileID: 0}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &676689651006898997
@@ -4959,7 +4959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 0
+  polaroidData: {fileID: 11400000, guid: 9204d3c3003a8754b9fb369a8b7d2a36, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &1527735476312691878
@@ -5187,7 +5187,6 @@ MonoBehaviour:
   longTransitionTime: 1
   endingClipName: 
   introIndex: 3
-  levelIndex: 1
 --- !u!1 &737858131304174463
 GameObject:
   m_ObjectHideFlags: 0
@@ -5775,7 +5774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e47605234e9a241a3346f1d8c0ff25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialType: 4
+  tutorialData: {fileID: 11400000, guid: cc435cc1ae5652d4dbfaf5c774e7f9a7, type: 2}
 --- !u!114 &3311854058578847937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6260,7 +6259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3112539995581765539}
-  - component: {fileID: 8875067460526098781}
+  - component: {fileID: 8835878237517934226}
   m_Layer: 0
   m_Name: PolaroidInventory
   m_TagString: Untagged
@@ -6292,7 +6291,7 @@ Transform:
   m_Father: {fileID: 1448407623234522229}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8875067460526098781
+--- !u!114 &8835878237517934226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6688,7 +6687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 3
+  polaroidData: {fileID: 11400000, guid: 7ee90f534bcb1fe4091c4e4e16883fe2, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &1883000789037728601
@@ -11743,6 +11742,12 @@ MonoBehaviour:
   patternText: {fileID: 6071482925299639995}
   video: {fileID: 1799278080991053718}
   pattern: {fileID: 1922844355989383024}
+  tutorialOrder:
+  - {fileID: 11400000, guid: 9c738d2263cece14ca09849246c29796, type: 2}
+  - {fileID: 11400000, guid: 7981fd2cce324e847b6e75b2e07f13d4, type: 2}
+  - {fileID: 11400000, guid: c81885376a728eb44bc69ab2ca8d4dc9, type: 2}
+  - {fileID: 11400000, guid: cc435cc1ae5652d4dbfaf5c774e7f9a7, type: 2}
+  - {fileID: 11400000, guid: e76cfd62cb5620d4aa070e166ef4c28d, type: 2}
 --- !u!1 &4416223216675659842
 GameObject:
   m_ObjectHideFlags: 0
@@ -12608,7 +12613,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6069278595827168821}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12954,7 +12959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 7
+  polaroidData: {fileID: 11400000, guid: 3862c2e7b40ef20449a6722ddbe9f550, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &7028135201954455174
@@ -14423,7 +14428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 8
+  polaroidData: {fileID: 11400000, guid: f672841d1fd0d2147a7bb4597a139d8d, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &1559181959333903329
@@ -14910,7 +14915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6069278595827168821
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14926,8 +14931,8 @@ RectTransform:
   - {fileID: 2940472797302624107}
   - {fileID: 4522237354227452051}
   - {fileID: 1666763713564984794}
-  - {fileID: 5963841733054888667}
   - {fileID: 8400278287003865210}
+  - {fileID: 5963841733054888667}
   - {fileID: 8488347999474516117}
   - {fileID: 8488347999665670260}
   - {fileID: 6470069600286596847}
@@ -15261,7 +15266,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6069278595827168821}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16074,7 +16079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 5
+  polaroidData: {fileID: 11400000, guid: da5904c384c4d39408edd5459a1bad27, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &8180805222259521138
@@ -16355,7 +16360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e47605234e9a241a3346f1d8c0ff25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialType: 3
+  tutorialData: {fileID: 11400000, guid: c81885376a728eb44bc69ab2ca8d4dc9, type: 2}
 --- !u!114 &3118950916604427278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17407,7 +17412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 4
+  polaroidData: {fileID: 11400000, guid: ac993f2c1be95634bb9548a351588556, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &5464857537005513202
@@ -18402,7 +18407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1448407623234522229
 Transform:
   m_ObjectHideFlags: 0
@@ -19314,7 +19319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 6
+  polaroidData: {fileID: 11400000, guid: e11ff551f9725614ca41d04dcad34cbd, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &1987563171850734634
@@ -20110,7 +20115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e47605234e9a241a3346f1d8c0ff25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialType: 2
+  tutorialData: {fileID: 11400000, guid: 7981fd2cce324e847b6e75b2e07f13d4, type: 2}
 --- !u!114 &4653464635136288245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24097,7 +24102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc29f9c8455091144ba05cbf493b1f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  polaroidType: 2
+  polaroidData: {fileID: 11400000, guid: 8fbc2b731070b2b45b1affb210127638, type: 2}
   scaleMultiplier: 1.05
   scaleSpeed: 1.5
 --- !u!222 &7060995795092955043
@@ -24243,7 +24248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e47605234e9a241a3346f1d8c0ff25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialType: 1
+  tutorialData: {fileID: 11400000, guid: 9c738d2263cece14ca09849246c29796, type: 2}
 --- !u!114 &6385371810763658960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24715,7 +24720,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6879919720445637987, guid: a79ae8754c99815498c03638e88521dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a79ae8754c99815498c03638e88521dd, type: 3}
 --- !u!224 &4072093210699100044 stripped
 RectTransform:

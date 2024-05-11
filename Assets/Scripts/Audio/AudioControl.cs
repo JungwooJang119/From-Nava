@@ -67,7 +67,6 @@ public class AudioControl : Singleton<AudioControl> {
 		AudioClip clip = FetchClip(name, musicSounds);
 		mainMusicSource.clip = clip;
 		mainMusicSource.Play();
-		Debug.Log(mainMusicSource.clip);
 		return mainMusicSource;
 	}
 
@@ -206,12 +205,11 @@ public class AudioControl : Singleton<AudioControl> {
 	}
 
 	IEnumerator LoadMusic() {
-		Debug.Log("BeganPlaying");
 		var musicSource = PlayMusic("Exploration Opening", false);
 		while (musicSource.isPlaying) {
-			Debug.LogWarning("Loop running");
+			// Debug.LogWarning("Loop running");
 			yield return null;
-		} Debug.Log("Music Begins");
+		}
 		PlayMusic("Exploration");
 	}
 

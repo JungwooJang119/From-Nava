@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using static PolaroidDataBank;
 
 public class PauseMenuPolaroidButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
-    [SerializeField] private PolaroidType polaroidType;
+    [SerializeField] private PolaroidData polaroidData;
+    public PolaroidData PolaroidData => polaroidData;
     [SerializeField] private float scaleMultiplier = 1.05f;
     [SerializeField] private float scaleSpeed = 1.5f;
     private Vector3 anchorScale;
@@ -26,8 +26,8 @@ public class PauseMenuPolaroidButton : MonoBehaviour, IPointerEnterHandler, IPoi
 
     void Awake() {
         anchorScale = transform.localScale;
-        masterScript = GetComponentInParent<PauseMenuPage>();
-        showScript = masterScript.GetComponentInChildren<PauseMenuPolaroidShowcase>();
+        masterScript = GetComponentInParent<PauseMenuPage>(true);
+        showScript = masterScript.GetComponentInChildren<PauseMenuPolaroidShowcase>(true);
         GetComponent<Button>().onClick.AddListener(OnClick);
     }
 
@@ -38,7 +38,7 @@ public class PauseMenuPolaroidButton : MonoBehaviour, IPointerEnterHandler, IPoi
     public void OnPointerEnter(PointerEventData data) {
         if (state == State.Normal) {
             state = State.HoverOverthrow;
-            showScript.Show(polaroidType);
+            showScript.Show(polaroidData);
         }
     }
 

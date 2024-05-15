@@ -3,24 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClaimCollectible : MonoBehaviour
-{
+public class ClaimCollectible : MonoBehaviour {
+
     public event Action OnCollectibleClaimed;
-
     private CollectibleController controller;
-
     private bool awaitingCallback;
 
-    [Serializable]
-    private struct CollectibleCall {
-		[Header("Type Key:                 0-Polaroid | 1-Tutorial | 2-Lab Report | 3-ID Card | 4-Side Room Key")]
-		[Range(0, 4)]
-        public int collectibleType;
-        [Header("String identifier of the collectible to claim and display:")]
-        public string name;
-    }
-    [Header("Calls to the Collectible Controller. Executed in order (first to last):")]
-    [SerializeField] private CollectibleCall[] collectibleCalls;
+    [Header("Items to claim. Claimed in order (first to last):")]
+    [SerializeReference] private ScriptableItem[] collectibleCalls;
 
     void Start() {
         controller = ReferenceSingleton.Instance.collectibleController;
@@ -29,19 +19,7 @@ public class ClaimCollectible : MonoBehaviour
     
     public void Collect() {
 		awaitingCallback = true;
-		foreach (CollectibleCall call in collectibleCalls) {
-            if (call.collectibleType == 0) {
-                controller.AddCall(CollectibleController.CollectibleType.Polaroid, call.name);
-            } else if (call.collectibleType == 1) {
-                controller.AddCall(CollectibleController.CollectibleType.Tutorial, call.name);
-            } else if (call.collectibleType == 2) {
-                controller.AddCall(CollectibleController.CollectibleType.Report, call.name);
-            } else if (call.collectibleType == 3) {
-                controller.AddCall(CollectibleController.CollectibleType.IDCard, call.name);
-            } else if (call.collectibleType == 4) {
-                controller.AddCall(CollectibleController.CollectibleType.SideRoomKey, call.name);
-            }
-        }
+        foreach (ItemData data in collectibleCalls) controller.AddCall(data);
     }
 
     void CollectibleCall_OnCallsEnd() {

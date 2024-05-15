@@ -50,7 +50,7 @@ public class RoomDisablerControl : Singleton<RoomDisablerControl>
                         rooms[j].SetActive(true);
                         ReferenceSingleton.Instance.collectibleController
                           .GetComponentInChildren<NotificationManager>(true)?
-                          .AddNotification(NotificationManager.NotificationType.RoomCode, roomCode);
+                          .AddNotification(NotificationType.RoomCode, roomCode);
                         break;
                     }
                 }

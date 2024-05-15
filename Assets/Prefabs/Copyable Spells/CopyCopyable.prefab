@@ -306,5 +306,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleCalls:
-  - collectibleType: 1
-    name: Chair
+  - {fileID: 11400000, guid: cc435cc1ae5652d4dbfaf5c774e7f9a7, type: 2}

@@ -6,19 +6,15 @@ using static CollectibleController;
 public class PauseMenuPolaroidInventory : MonoBehaviour {
 
 	private CollectibleController controller;
-	private Dictionary<string, GameObject> polaroidDict;
+	private PauseMenuPolaroidButton[] polaroidButtons;
 
 	void Awake() {
 		controller = ReferenceSingleton.Instance.collectibleController;
-		polaroidDict = new Dictionary<string, GameObject>();
-		foreach (Transform t in transform) {
-			polaroidDict[t.gameObject.name] = t.gameObject;
-		}
+		polaroidButtons = GetComponentsInChildren<PauseMenuPolaroidButton>(true);
 	}
 
 	void OnEnable() {
-		foreach (Transform t in transform) {
-			t.gameObject.SetActive(controller.CheckClaimedStatus(CollectibleType.Polaroid, t.gameObject.name));
-		}
+		HashSet<ItemData> polaroidInventory = controller.GetItems<PolaroidData>();
+		foreach (PauseMenuPolaroidButton pb in polaroidButtons) pb.gameObject.SetActive(polaroidInventory.Contains(pb.PolaroidData));
 	}
 }

@@ -296,8 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleCalls:
-  - collectibleType: 1
-    name: Windblast
+  - {fileID: 11400000, guid: e76cfd62cb5620d4aa070e166ef4c28d, type: 2}
 --- !u!114 &8541027418435675548
 MonoBehaviour:
   m_ObjectHideFlags: 0

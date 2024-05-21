@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EndPolaroidDisplay : MonoBehaviour {
 
-    [SerializeField] private tranMode transition;
+    [SerializeField] private TransitionManager transition;
     [SerializeField] private float timeDuration;
     public float time;
     private bool hasNotPlayed;

@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainExit : MonoBehaviour
 {
-    private tranMode tm;
+    private TransitionManager tm;
 
     void Start() {
-        tm = GameObject.Find("Transition").GetComponent<tranMode>();
+        tm = GameObject.Find("Transition").GetComponent<TransitionManager>();
     }
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")){

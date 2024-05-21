@@ -6,7 +6,7 @@ public class PitCollider : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<ObjectClass>() != null) {
+        if (other.gameObject.GetComponent<BaseObject>() != null) {
             other.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         }
     }

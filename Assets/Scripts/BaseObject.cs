@@ -1,15 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class ObjectClass : MonoBehaviour, IPushable
-{
-    [SerializeField] private bool isHeavy;
-    //public event Action<int> OnLitStatusChange;
+public enum ObjectState { Default, Burning, Frozen }
+
+public class BaseObject : MonoBehaviour {
+
+    [System.Serializable] public class ObjectAttributes {
+        public bool isHeavy;
+        public bool isPushable;
+        public bool isFlammable;
+        public bool isFreezable;
+        public bool isCopyable;
+    } [SerializeField] private ObjectAttributes attributes;
+    public ObjectAttributes Attributes => attributes;
+    [SerializeField] private ObjectState defaultState;
+    public ObjectState State { get; private set; }
+
+    public event System.Action<Vector2, float> OnBlow;
+    public event System.Action<bool> OnHeatToggle;
+    public event System.Action OnCopy;
+    public event System.Action<ObjectState> OnObjectReset;
+
+    private Vector2 origin;
+
+    void Awake() => origin = transform.position;
+
+    public void Ignite() => OnHeatToggle?.Invoke(true);
+    public void Freeze() => OnHeatToggle?.Invoke(false);
+    public void Blow(Vector2 dir, float strength) => OnBlow?.Invoke(dir, strength);
+    public void SignalCopy() => OnCopy?.Invoke();
+
+    public virtual void ObjectReset() {
+        transform.position = origin;
+        State = defaultState;
+        OnObjectReset?.Invoke(State);
+    }
 
     private SpriteRenderer sr;
-    private new GameObject light;
-    private bool defaultLitStatus;
     private enum TriggerType {
         Fire,
         Ice,
@@ -29,18 +58,18 @@ public class ObjectClass : MonoBehaviour, IPushable
     private string elementType;
     private bool hasSwitched;
 
-    private Vector3 origin;
     public ParticleSystem dust;
     private FirewoodFire firewoodFire;
     private static GameObject auditor;
 
+    /*
     // Start is called before the first frame update
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         origin = transform.position;
         // light = GetComponentInChildren<LightController>().gameObject;
-    }
+    }*/
 
     private void Start() {
         if (auditor == null) {
@@ -57,7 +86,7 @@ public class ObjectClass : MonoBehaviour, IPushable
 
     void FixedUpdate()
     {
-        if (isPushed && !isHeavy) {
+        if (isPushed /*&& !isHeavy*/) {
             PushTranslate();
         }
     }
@@ -67,9 +96,9 @@ public class ObjectClass : MonoBehaviour, IPushable
         pushDir = new Vector3(dir.x, dir.y, 0);
         pushDist = dist;
         pushSpd = spd;
-        if (!isHeavy) {
+        //if (!isHeavy) {
             dust.Play();
-        }
+        //}
     }
 
     public void PushTranslate() {
@@ -93,10 +122,6 @@ public class ObjectClass : MonoBehaviour, IPushable
             }
         }
     }
-
-    public void Reset() {
-		transform.position = origin;
-	}
 
     private void OnTriggerEnter2D(Collider2D collision) {
         PType a = collision.gameObject.GetComponent<PType>();
@@ -140,4 +165,80 @@ public class ObjectClass : MonoBehaviour, IPushable
     }
 
 
+}
+
+public abstract class ObjectModule : MonoBehaviour {
+    protected BaseObject baseObject;
+    protected virtual void Awake() => baseObject = GetComponent<BaseObject>();
+}
+
+public class FlammableModule : ObjectModule {
+    [SerializeField] private FirewoodFire[] flames;
+    void Start() => baseObject.OnHeatToggle += BaseObject_OnFireToggle;
+
+    private void BaseObject_OnFireToggle(bool heatSignal) {
+        switch (baseObject.State) {
+            case ObjectState.Default:
+                if (heatSignal) {
+                    foreach (FirewoodFire fire in flames) fire.Toggle(heatSignal);
+                } break;
+            case ObjectState.Burning:
+                foreach (FirewoodFire fire in flames) fire.Toggle(heatSignal);
+                break;
+        }
+    }
+}
+
+[RequireComponent(typeof(SpriteRenderer))]
+public class FreezableModule : ObjectModule {
+    [SerializeField] private SpriteRenderer sr;
+    void Start() => baseObject.OnHeatToggle += BaseObject_OnFireToggle;
+
+    private void BaseObject_OnFireToggle(bool heatSignal) {
+        switch (baseObject.State) {
+            case ObjectState.Default:
+                if (!heatSignal) {
+
+                }
+                break;
+            case ObjectState.Frozen:
+                if (heatSignal) {
+
+                }
+                break;
+        }
+    }
+
+    private IEnumerator FreezeAsync() {
+        while (baseObject.State == ObjectState.Frozen) {
+
+            yield return null;
+        }
+    }
+}
+
+public class PushableModule : ObjectModule {
+    [SerializeField] private ParticleSystem dust;
+    void Start() => baseObject.OnBlow += BaseObject_OnBlow;
+
+    private void BaseObject_OnBlow(Vector2 dir, float strength) {
+        throw new System.NotImplementedException();
+    }
+}
+
+public class CopyableModule : ObjectModule {
+
+    void Start() => baseObject.OnCopy += BaseObject_OnCopy;
+
+    private void BaseObject_OnCopy() {
+        throw new System.NotImplementedException();
+    }
+}
+
+[CustomEditor(typeof(BaseObject))]
+public class BaseObjectEditor : Editor {
+
+    public override void OnInspectorGUI() {
+        
+    }
 }

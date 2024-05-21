@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour {
     private Dictionary<MenuPage, PauseMenuPage> pageDict;
 
     private CollectibleController controller;
-    private tranMode transition;
+    private TransitionManager transition;
     
     public GameObject pauseMenuUI;
     [SerializeField] private GameObject notebook;

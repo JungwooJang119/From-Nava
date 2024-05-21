@@ -96,9 +96,9 @@ public class TutorialManager : CollectibleManager<TutorialData> {
 						yield return new WaitForSeconds(transitionTime);
 						AudioControl.Instance.PlayVoidSFX("Woosh", 0, 0.75f);
 					}
-					state = State.Fade;
+					state = State.Reveal;
 					break;
-				case State.Fade:
+				case State.Reveal:
 					alpha = MoveOpacity(1, fadeRate);
 					if (alpha >= 1) state = State.Await;
 					yield return null;

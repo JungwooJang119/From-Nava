@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 // Basic transition manager. For use in Main Menu buttons and transitions.
 
-public class tranMode : MonoBehaviour {
+public class TransitionManager : MonoBehaviour {
 
 	// Adjust to length of transition;
 	[SerializeField] private float shortTransitionTime = 0.5f;

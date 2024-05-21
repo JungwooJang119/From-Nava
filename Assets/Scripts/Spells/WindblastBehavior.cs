@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class WindblastBehavior : MonoBehaviour {
 
-	[SerializeField] private SpellScriptObj spellData;  // Windspell data from the SO;
+	[SerializeField] private SpellSO spellData;  // Windspell data from the SO;
 
     [SerializeField] public float pushDist = 0f;
     [SerializeField] public float pushSpd = 1f;
@@ -129,15 +129,11 @@ public class WindblastBehavior : MonoBehaviour {
 		Destroy(this.gameObject, parSystems[1].main.startLifetime.constant);
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
-    {
-		IPushable pushable = other.gameObject.GetComponent<IPushable>();
-		if (pushable != null) {
-			pushable.Push(spell.direction, pushDist, pushSpd);
-			state = State.End;
+	private void OnTriggerEnter2D(Collider2D other) {
+		BaseObject baseObject;
+		if (TryGetComponent(out baseObject)) {
+			baseObject.Blow(spell.direction, pushDist);
+			if (baseObject.Attributes.isHeavy) state = State.End;
 		}
-		if (other.gameObject.GetComponent<Fan>() != null) {
-			other.gameObject.GetComponent<Fan>().Blow();
-		} 
     }
 }

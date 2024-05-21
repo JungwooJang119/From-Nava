@@ -8,7 +8,7 @@ using UnityEngine;
 public class ReferenceSingleton : Singleton<ReferenceSingleton>
 {
 	public GameObject mainCamera;
-	public tranMode transition;
+	public TransitionManager transition;
 	public RoomLights roomLights;
 
 	[Header("Collectible References (separated by commas):")]

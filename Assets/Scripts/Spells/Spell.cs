@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    public SpellScriptObj spell;
+    public SpellSO spell;
     public event Action<GameObject> OnSpellDestroy;
 
     //[SerializeField] private LogicScript logicScript;

@@ -5,13 +5,13 @@ using UnityEngine;
 public class LoadNextRoom : MonoBehaviour
 {
     [SerializeField] private Transform spawn;
-    private tranMode tm;
+    private TransitionManager tm;
 
     [SerializeField] private GameObject[] _objects;
     private static GameObject auditor;
 
     void Start() {
-        tm = GameObject.Find("Transition").GetComponent<tranMode>();
+        tm = GameObject.Find("Transition").GetComponent<TransitionManager>();
         if (auditor == null) {
             auditor = GameObject.Find("Auditor");
         }

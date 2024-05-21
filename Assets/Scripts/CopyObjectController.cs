@@ -8,7 +8,7 @@ public class CopyObjectController : MonoBehaviour
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dealthShader;
 
-    public SpellScriptObj spell;
+    public SpellSO spell;
     private float timer;
 
     // Start is called before the first frame update

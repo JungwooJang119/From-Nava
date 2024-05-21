@@ -22,11 +22,10 @@ public abstract class CollectibleManager<T> : CollectibleManager where T : Scrip
 	protected enum State {
 		Idle,
 		Start,
-		Fade,
+		Reveal,
 		Await,
 		End,
-	}
-	protected State state = State.Idle;
+	} protected State state = State.Idle;
 
 	public override void Init(CollectibleController controller) {
 		base.Init(controller);

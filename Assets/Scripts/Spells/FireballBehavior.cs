@@ -9,7 +9,7 @@ using UnityEngine.Rendering.Universal;
 // some methods may be similar/identical to other spell's.
 
 public class FireballBehavior : MonoBehaviour {
-    [SerializeField] private SpellScriptObj spellData;  // Fireball spell data from the SO;
+    [SerializeField] private SpellSO spellData;  // Fireball spell data from the SO;
 
     // Simple state machine;
     private enum State {

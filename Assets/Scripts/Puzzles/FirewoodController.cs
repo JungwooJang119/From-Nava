@@ -5,7 +5,7 @@ using UnityEngine;
 public class FirewoodController : MonoBehaviour {
 	private float wait;
 	private Firewood_Script[] firewoods;
-	private tranMode transition;
+	private TransitionManager transition;
 
 	void Awake() {
 		firewoods = GetComponentsInChildren<Firewood_Script>();

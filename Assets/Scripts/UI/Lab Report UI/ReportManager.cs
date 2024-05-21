@@ -44,7 +44,7 @@ public class ReportManager : CollectibleManager<ReportData> {
 	/// Won't be necessary with New Input System;
 	/// </summary>
 	void Update() {
-		if (state == State.Fade && Input.GetKeyDown(intKey)) {
+		if (state == State.Reveal && Input.GetKeyDown(intKey)) {
 			state = State.Await;
 			AudioControl.Instance.PlayVoidSFX(soundStrings[UnityEngine.Random.Range(0, 2)], 0.2f);
 			currentText.text = BuildStr(string2Report, "<color=#00000000>|</color>");
@@ -54,7 +54,7 @@ public class ReportManager : CollectibleManager<ReportData> {
 		}
 		if (state == State.Await && Input.GetKeyUp(intKey)) {
 			if (currentIndex < string2Report.Length) {
-				state = State.Fade;
+				state = State.Reveal;
 				string2Report = string2Report.Substring(0, currentIndex) + "<color=#00000000>|</color>"
 								 + string2Report.Substring(currentIndex);
 				currentIndex += 31; /// Skip length of tag + length of escape sequence;
@@ -98,7 +98,7 @@ public class ReportManager : CollectibleManager<ReportData> {
 		float cycleTarget = 0;
 		bool dotted = false;
 		while (state != State.Idle) {
-			if (state == State.Fade || state == State.Await) {
+			if (state == State.Reveal || state == State.Await) {
 				currentNote.alpha = Mathf.MoveTowards(currentNote.alpha, cycleTarget,
 									  Time.deltaTime * flashRate * (cycleTarget == 0 ? 1 : 2));
 				if (Mathf.Approximately(currentNote.alpha, cycleTarget)) cycleTarget = cycleTarget == 0 ? 1 : 0;
@@ -108,9 +108,9 @@ public class ReportManager : CollectibleManager<ReportData> {
 					while (transitionTime > 0) {
 						transitionTime = Mathf.MoveTowards(transitionTime, 0, Time.deltaTime);
 						yield return null;
-					} state = State.Fade;
+					} state = State.Reveal;
 					break;
-				case State.Fade:
+				case State.Reveal:
 					if (CanWrite) {
 						/// Move the start of the invisible color tag toward the end, thus showing more characters;
 						if (currentIndex < string2Report.Length && string2Report[currentIndex] != '\\') {
@@ -149,7 +149,7 @@ public class ReportManager : CollectibleManager<ReportData> {
 							NextPage();
 							currentIndex = 0;
 							writeTimer = 0.5f;
-							state = State.Fade;
+							state = State.Reveal;
 						} else {
 							ResetElements();
 							controller.Poke();

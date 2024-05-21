@@ -8,7 +8,7 @@ using UnityEngine;
 // some methods may be similar/identical to other spell's.
 
 public class IceballBehavior : MonoBehaviour {
-	[SerializeField] private SpellScriptObj spellData;	// Iceball spell data from the SO;
+	[SerializeField] private SpellSO spellData;	// Iceball spell data from the SO;
 
 	// Simple state machine;
 	private enum State {

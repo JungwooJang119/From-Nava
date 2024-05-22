@@ -3,8 +3,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Video;
 
-[CreateAssetMenu(fileName = "TutorialData", menuName = "Tutorial Data")]
-public class TutorialData : ScriptableObject {
+[CreateAssetMenu(fileName = "TutorialData", menuName = "Item Data/Tutorial Data")]
+public class TutorialData : ScriptableItem {
 	[Tooltip("Header line for the first time the tutorial is shown.")]
 	public string textHeaderNew;
 

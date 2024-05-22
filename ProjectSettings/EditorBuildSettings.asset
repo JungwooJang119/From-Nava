@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Esther/Main Menu Final 1.unity
     guid: 356cc64547cd2004aae10bcd06c053ae
+  - enabled: 0
+    path: Assets/Scenes/Final/Main Menu.unity
+    guid: 4e7dce0caeb4a6a4e8b9a7c4c2ca8e11
   - enabled: 1
     path: Assets/Scenes/Jung/M3.unity
     guid: 821128f0d8d5ce743a7aad0b3b0766b1

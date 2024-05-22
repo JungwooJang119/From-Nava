@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using static TutorialDataBank;
 
 public class PauseMenuSpellTutorialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 

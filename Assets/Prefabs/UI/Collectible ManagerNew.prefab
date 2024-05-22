@@ -144,8 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3778372626313437287}
-  - component: {fileID: 6879919720445637987}
-  - component: {fileID: 4191224266179446089}
+  - component: {fileID: 8971722237220962709}
   m_Layer: 0
   m_Name: Polaroid Manager
   m_TagString: Untagged
@@ -171,7 +170,7 @@ Transform:
   m_Father: {fileID: 2959846023027650918}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6879919720445637987
+--- !u!114 &8971722237220962709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,40 +179,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 15627336842835149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f577adc9a71d4846a23133034471190, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c77694e51e128e4bbf38eacd7cbd973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4191224266179446089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15627336842835149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160d808d6f311c049a123c461d6f932c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  polaroids:
-  - room: 0
-    data: {fileID: 11400000, guid: 9204d3c3003a8754b9fb369a8b7d2a36, type: 2}
-  - room: 1
-    data: {fileID: 11400000, guid: fd39e2149d3f7354dba91f571c4388cc, type: 2}
-  - room: 2
-    data: {fileID: 11400000, guid: 8fbc2b731070b2b45b1affb210127638, type: 2}
-  - room: 3
-    data: {fileID: 11400000, guid: 7ee90f534bcb1fe4091c4e4e16883fe2, type: 2}
-  - room: 4
-    data: {fileID: 11400000, guid: ac993f2c1be95634bb9548a351588556, type: 2}
-  - room: 5
-    data: {fileID: 11400000, guid: da5904c384c4d39408edd5459a1bad27, type: 2}
-  - room: 6
-    data: {fileID: 11400000, guid: e11ff551f9725614ca41d04dcad34cbd, type: 2}
-  - room: 7
-    data: {fileID: 11400000, guid: 3862c2e7b40ef20449a6722ddbe9f550, type: 2}
-  - room: 8
-    data: {fileID: 11400000, guid: f672841d1fd0d2147a7bb4597a139d8d, type: 2}
+  fadeRate: 2.5
+  flashRate: 1
+  itemImage: {fileID: 5663184694406859724}
+  itemText: {fileID: 9071102878426011898}
+  bottomNote: {fileID: 4674050245563863645}
 --- !u!1 &489328141878919651
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +218,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2332715470735310376}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -290,7 +263,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4293717228
-  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:
@@ -380,7 +353,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2332715470735310376}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -425,7 +398,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -494,7 +467,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1798505061551942230}
   - component: {fileID: 1798505061551942228}
-  - component: {fileID: 1798505061551942231}
   m_Layer: 0
   m_Name: IDCardManager
   m_TagString: Untagged
@@ -532,37 +504,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c56fa022c2a3cf48903305b63a239ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1798505061551942231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798505061551942225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3b4c5415c1e34b46ab733c01a879dab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idCards:
-  - room: 0
-    data: {fileID: 11400000, guid: a9be2359cf6af3a44bdf8efcb828223e, type: 2}
-  - room: 1
-    data: {fileID: 11400000, guid: 16468bf6005acb1499ab2c5a45259721, type: 2}
-  - room: 2
-    data: {fileID: 11400000, guid: d4e0784a3a0b11549aec50f82900f153, type: 2}
-  - room: 3
-    data: {fileID: 11400000, guid: b6e2527267e42574dbe0b6bec22edfe1, type: 2}
-  - room: 4
-    data: {fileID: 11400000, guid: 458bd50dcd5fd8b4a998dd3cacce9cf4, type: 2}
-  - room: 5
-    data: {fileID: 11400000, guid: 872463f97e418d14da2c34eb24639f4f, type: 2}
-  - room: 6
-    data: {fileID: 11400000, guid: 8b85233cd222d974ca93d6d4e1e110e1, type: 2}
-  - room: 7
-    data: {fileID: 11400000, guid: b8159fa0aee775d4397e197e25dde9a4, type: 2}
-  - room: 8
-    data: {fileID: 11400000, guid: 042e1d4f0cf83234fb8b32618e451ab6, type: 2}
+  fadeRate: 2.5
+  flashRate: 1
+  itemImage: {fileID: 1798505062780185776}
+  itemText: {fileID: 1798505061797690742}
+  bottomNote: {fileID: 1798505063038713021}
 --- !u!1 &1798505061632717759
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -649,7 +595,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1798505061749154061}
   - component: {fileID: 1798505061749154051}
-  - component: {fileID: 1798505061749154050}
   m_Layer: 0
   m_Name: SideRoomKeyManager
   m_TagString: Untagged
@@ -687,27 +632,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d86aae360c20a04bb2ad0b0cbf49f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1798505061749154050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798505061749154060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e59222b319dd74498aacbe560a47a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sideRoomKeys:
-  - room: 0
-    data: {fileID: 11400000, guid: 5ecc386679bcc334ea7855121867a403, type: 2}
-  - room: 1
-    data: {fileID: 11400000, guid: 0679e6ed1a598f44cb6c36e6a5f80490, type: 2}
-  - room: 2
-    data: {fileID: 11400000, guid: 339aa2ed1c6d3dd468d9f266a1109b62, type: 2}
-  - room: 3
-    data: {fileID: 11400000, guid: ea594a98f950b094d82c6681915ef83e, type: 2}
+  fadeRate: 2.5
+  flashRate: 1
+  itemImage: {fileID: 1798505061632717759}
+  itemText: {fileID: 1798505063072915779}
+  bottomNote: {fileID: 1798505061878888957}
 --- !u!1 &1798505061797690742
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +713,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4293717228
-  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:
@@ -919,7 +848,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1037,7 +966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1130,7 +1059,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1265,7 +1194,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4293717228
-  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:
@@ -1636,7 +1565,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2332715470735310376}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1664,7 +1593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1736,7 +1665,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2332715470735310376}
   - component: {fileID: 5726557141750103353}
-  - component: {fileID: 5283611541785340311}
   m_Layer: 5
   m_Name: Tutorial Manager
   m_TagString: Untagged
@@ -1756,10 +1684,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1755866888813117608}
   - {fileID: 8910032212912267620}
   - {fileID: 2755993855876779763}
   - {fileID: 2277844029323891172}
+  - {fileID: 1755866888813117608}
   m_Father: {fileID: 2959846023027650918}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1780,31 +1708,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acdf448b682d3a4bafb92f090332083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5283611541785340311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3312895918605639540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eb23c1ad5b4ca744800d6c8e69df00d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tutorials:
-  - type: 0
-    data: {fileID: 11400000, guid: 7600fe9648ef7a5408161b4ea831b35e, type: 2}
-  - type: 1
-    data: {fileID: 11400000, guid: 9c738d2263cece14ca09849246c29796, type: 2}
-  - type: 2
-    data: {fileID: 11400000, guid: 7981fd2cce324e847b6e75b2e07f13d4, type: 2}
-  - type: 3
-    data: {fileID: 11400000, guid: c81885376a728eb44bc69ab2ca8d4dc9, type: 2}
-  - type: 4
-    data: {fileID: 11400000, guid: cc435cc1ae5652d4dbfaf5c774e7f9a7, type: 2}
-  - type: 5
-    data: {fileID: 11400000, guid: e76cfd62cb5620d4aa070e166ef4c28d, type: 2}
+  fadeRate: 2.5
+  flashRate: 1
+  itemImage: {fileID: 4775723398057775856}
+  itemText: {fileID: 489328141878919651}
+  bottomNote: {fileID: 1493402335438685096}
+  tutorialVideo: {fileID: 3033300940234500636}
 --- !u!1 &3913956078421345664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,7 +1842,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2023,7 +1932,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2332715470735310376}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2051,7 +1960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2078,7 +1987,6 @@ GameObject:
   m_Component:
   - component: {fileID: 437850070226605083}
   - component: {fileID: 3671041831282376458}
-  - component: {fileID: 6168060900536888849}
   m_Layer: 5
   m_Name: Report Manager
   m_TagString: Untagged
@@ -2120,51 +2028,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee5002dc6fe22343a177c7c0af6b286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6168060900536888849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5412672730721948532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870a3f913a0bf5b4ebb7e487aaf58775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reports:
-  - name: Ice Tower
-    data: {fileID: 11400000, guid: 41e10e1f5c7c1724895b8fed2917584d, type: 2}
-  - name: B2Room
-    data: {fileID: 11400000, guid: 212b6b36f1ffef24abf5b9eedcb63a37, type: 2}
-  - name: FirewoodRoom
-    data: {fileID: 11400000, guid: 3e5ffd5787b5bc34092bad440ccc4535, type: 2}
-  - name: Greene1
-    data: {fileID: 11400000, guid: a04e149f735c750419f4b909ef61f78f, type: 2}
-  - name: Greene2
-    data: {fileID: 11400000, guid: d8ee5f8caa05d46488fe3cc79ceadf62, type: 2}
-  - name: Greene3
-    data: {fileID: 11400000, guid: 5ea75c3642ce24f439dba8ef23553840, type: 2}
-  - name: Greene4
-    data: {fileID: 11400000, guid: 476d52b34560c9d4782b72a30f81bfac, type: 2}
-  - name: Greene5
-    data: {fileID: 11400000, guid: 0fdfab0804f44ac479e040c338ef72be, type: 2}
-  - name: Greene6
-    data: {fileID: 11400000, guid: 407634864fa2252409ac9dbc2ef2a0b1, type: 2}
-  - name: DarkRoom
-    data: {fileID: 11400000, guid: 0aa5981489b087e4f9268e943936b1cf, type: 2}
-  - name: ChairRoom
-    data: {fileID: 11400000, guid: 360f44a8aa3b4ae49b9647716e74dd52, type: 2}
-  - name: FanRoom
-    data: {fileID: 11400000, guid: 872b4d4161e78aa4eb68c061797098af, type: 2}
-  - name: LaserRoom
-    data: {fileID: 11400000, guid: 4d7377c2f1c094642ae4c068c78fdcdb, type: 2}
-  - name: SOS
-    data: {fileID: 11400000, guid: 10a261d1f3095184cafd703c5a967203, type: 2}
-  - name: FinalMessage
-    data: {fileID: 11400000, guid: 3fd88e2a3e85cb3498490b28d5f15f62, type: 2}
-  - name: Credits
-    data: {fileID: 11400000, guid: df5307923a0122c4c9cdb685a3c34183, type: 2}
+  fadeRate: 2.5
+  flashRate: 1
+  reportText: {fileID: 8495688054617843527}
+  bottomNote: {fileID: 11642982398653081}
 --- !u!1 &5663184694406859724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2452,7 +2319,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4293717228
-  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:

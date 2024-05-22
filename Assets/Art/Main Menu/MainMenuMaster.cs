@@ -5,8 +5,12 @@ using UnityEngine;
 public class MainMenuMaster : MonoBehaviour {
 
     public enum MenuSection {
+        Play,
         Buttons,
-        Options
+        Options,
+        FileMenuContinue,
+        FileMenuDelete,
+        FileMenuNew
     }
 
     [SerializeField] private MainMenuSection activeSection;

@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleCalls:
-  - {fileID: 11400000, guid: 3fd88e2a3e85cb3498490b28d5f15f62, type: 2}
+  - {fileID: 11400000, guid: 6f62ce6da7f2ad846ada8f4ead1854ab, type: 2}
 --- !u!212 &6950422144262471359
 SpriteRenderer:
   m_ObjectHideFlags: 0

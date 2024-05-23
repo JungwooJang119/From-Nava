@@ -12,13 +12,13 @@ public class CollectibleController : MonoBehaviour {
 	/// <br></br> Listeners: All Collectible Managers; </summary>
 	public event System.EventHandler<ItemCall> OnClaimCollectible;
 	/// <summary> Follow-up signal with the result of a collectible interaction;
-	/// <br></br> Listener: Notification Manager; </summary>
+	/// <br></br> Listener: Notification Manager, PauseMenu; </summary>
 	public event System.Action<ItemCall> OnClaimResult;
 	/// <summary> Request a check on the posession of an item;
 	/// <br></br> Listeners: All Collectible Managers; </summary>
 	public event System.EventHandler<ItemCall> OnInventoryRequest;
 	/// <summary> Signal all collectible interactions have ended;
-	/// <br></br> Listeners: All Collectible Managers, Notification Manager; </summary>
+	/// <br></br> Listeners: All Collectible Managers, Notification Manager, PauseMenu; </summary>
 	public event System.Action OnCallsEnd;
 
 	public tranMode Transition { get; private set; }

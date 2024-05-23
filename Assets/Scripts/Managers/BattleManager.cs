@@ -6,6 +6,7 @@ public class BattleManager : Singleton<BattleManager> {
 
     private List<Enemy> engagedEnemies;
     private bool combatStance;
+    private bool bossEngaged;
 
     void Awake() {
         engagedEnemies = new List<Enemy>();
@@ -19,8 +20,17 @@ public class BattleManager : Singleton<BattleManager> {
     /// <param name="enemy"> The enemy registering for combat; </param>
     /// <param name="engaged"> Whether the enemy engaged in combat (true), or disengaged (false); </param>
     public void RegisterEnemy(Enemy enemy, bool engaged) {
-        if (engaged && !engagedEnemies.Contains(enemy)) engagedEnemies.Add(enemy);
-        else engagedEnemies.Remove(enemy);
+        if (engaged && !engagedEnemies.Contains(enemy))  {
+            engagedEnemies.Add(enemy);
+            if (!bossEngaged && enemy.gameObject.GetComponent<MeleeMiniBossController>() != null) { //Check if boss is entering the radius
+                bossEngaged = true;
+            } 
+        } else {
+            engagedEnemies.Remove(enemy); 
+            if (bossEngaged && enemy.gameObject.GetComponent<MeleeMiniBossController>() != null) { //Check if boss is leaving the radius
+                bossEngaged = false;
+            }
+        }
         ValidateCombatStance();
     }
 
@@ -33,6 +43,7 @@ public class BattleManager : Singleton<BattleManager> {
         if (AudioControl.Instance == null) return;
         combatStance = embattle;
         string bgClipName = combatStance ? "Combat" : "Exploration";
+        if (bossEngaged && combatStance) bgClipName = "Main";  //Fix this later
         AudioControl.Instance.InterpolateMusicTracks(bgClipName);
     }
 }

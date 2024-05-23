@@ -117,7 +117,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
 
     private void OnInvalidPattern()
     {
-        print("Invalid Pattern");
+        // print("Invalid Pattern");
         AudioControl.Instance.PlaySFX("NodeWrong", PlayerController.Instance.gameObject, 0f, 0.25f);
         OnSpellCast?.Invoke(this, new OnSpellCastArgs(SpellType.NONE, pattern));
         BlockClicks();

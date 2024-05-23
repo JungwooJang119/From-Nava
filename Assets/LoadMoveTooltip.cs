@@ -42,7 +42,7 @@ public class LoadMoveTooltip : MonoBehaviour
     IEnumerator DestroyMoveTooltip(float opacity) {
         Color textCurrColor = moveTooltipText.color;
         Color spriteCurrColor = moveTooltipBG.color;
-        print(spriteCurrColor.a);
+        // print(spriteCurrColor.a);
         while (textCurrColor.a != opacity) {
             textCurrColor.a = Mathf.MoveTowards(textCurrColor.a, opacity, 0.02f);
             spriteCurrColor.a = Mathf.MoveTowards(spriteCurrColor.a, opacity, 0.02f);

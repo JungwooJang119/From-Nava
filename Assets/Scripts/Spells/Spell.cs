@@ -76,7 +76,7 @@ public class Spell : MonoBehaviour
     {
         IDamageable damageable = other.GetComponent<IDamageable>();
         if (damageable != null) {
-            print("spellscript");
+            // print("spellscript");
         }
         if (other.gameObject.CompareTag("Player")) {
             return;

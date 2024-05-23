@@ -188,4 +188,10 @@ public class IceballBehavior : MonoBehaviour {
         parSystem.Play();
         Destroy(this.gameObject, parMainSystem.startLifetime.constant);
     }
+
+	private void OnTriggerEnter2D(Collider2D collision) {
+		if (collision.TryGetComponent(out BaseObject baseObject)) {
+			baseObject.Freeze(this);
+		}
+	}
 }

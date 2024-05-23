@@ -184,6 +184,12 @@ public class FireballBehavior : MonoBehaviour {
         parSystem.emission.SetBursts(new ParticleSystem.Burst[] { new ParticleSystem.Burst(0f, 60) });
         parSystem.Stop();
         parSystem.Play();
-        Destroy(this.gameObject, parSystem.main.startLifetime.constant);
+        Destroy(gameObject, parSystem.main.startLifetime.constant);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.TryGetComponent(out BaseObject baseObject)) {
+            baseObject.Ignite(this);
+        }
     }
 }

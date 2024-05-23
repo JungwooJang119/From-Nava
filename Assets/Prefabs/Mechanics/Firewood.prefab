@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7500840900014958929}
   - component: {fileID: 7500840900014958928}
-  - component: {fileID: 7500840900014958931}
   - component: {fileID: 7500840900014958930}
+  - component: {fileID: 3997945589101051492}
   - component: {fileID: 7500840900014958934}
+  - component: {fileID: 7500840900014958931}
   - component: {fileID: 7500840900014958935}
   m_Layer: 0
   m_Name: Firewood
@@ -89,22 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7500840900014958931
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7500840900014958941}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.015205383, y: -0.16228676}
-  serializedVersion: 2
-  m_Radius: 0.81251335
 --- !u!114 &7500840900014958930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,9 +102,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119f0d9181c631d4898f413bb33cfff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLit: 0
+  attributes:
+    isHeavy: 0
+    isPushable: 0
+    isFlammable: 0
+    isFreezable: 0
+    isCopyable: 0
+  defaultState: 0
+  linkedFirewoods: []
   lineMaterial: {fileID: 2100000, guid: 0b31fe150f64f22459f48ac3975c7342, type: 2}
-  adjFirewoods: []
+--- !u!114 &3997945589101051492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500840900014958941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3547abdb2a0a7a94cb1ab472b5754a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flames:
+  - {fileID: 7928760050178362422}
 --- !u!50 &7500840900014958934
 Rigidbody2D:
   serializedVersion: 4
@@ -141,6 +146,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &7500840900014958931
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500840900014958941}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.015205383, y: -0.16228676}
+  serializedVersion: 2
+  m_Radius: 0.81251335
 --- !u!58 &7500840900014958935
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -212,8 +233,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5457309141670211769, guid: e6283506ffee066499dee904319ccb3e, type: 3}
+      propertyPath: m_Name
+      value: FireSprite
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6283506ffee066499dee904319ccb3e, type: 3}
+--- !u!114 &7928760050178362422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3634461125372525250, guid: e6283506ffee066499dee904319ccb3e, type: 3}
+  m_PrefabInstance: {fileID: 6663267388852221684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8276877d34f24f54fb258f83a7e59aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9142723312734446103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2493257013992297699, guid: e6283506ffee066499dee904319ccb3e, type: 3}

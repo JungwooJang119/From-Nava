@@ -129,10 +129,9 @@ public class WindblastBehavior : MonoBehaviour {
 		Destroy(this.gameObject, parSystems[1].main.startLifetime.constant);
 	}
 
-	private void OnTriggerEnter2D(Collider2D other) {
-		BaseObject baseObject;
-		if (TryGetComponent(out baseObject)) {
-			baseObject.Blow(spell.direction, pushDist);
+	private void OnTriggerEnter2D(Collider2D collision) {
+		if (collision.TryGetComponent(out BaseObject baseObject)) {
+			baseObject.Blow(this, spell.direction, pushDist);
 			if (baseObject.Attributes.isHeavy) state = State.End;
 		}
     }

@@ -6,7 +6,7 @@ using Cinemachine;
 public class RoomControlA2Old : MonoBehaviour
 {
     [SerializeField] GameObject firewoodController;
-    private Firewood_Script[] firewoods;
+    private Firewood[] firewoods;
     private bool canClear = true;
 
     public bool isClear = false;
@@ -21,7 +21,7 @@ public class RoomControlA2Old : MonoBehaviour
     
     // Start is called before the first frame update
     void Start() {
-		firewoods = firewoodController.GetComponentsInChildren<Firewood_Script>();
+		firewoods = firewoodController.GetComponentsInChildren<Firewood>();
         virtualCamera = GameObject.Find("Main Camera").transform.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         returnToPlayer = virtualCamera.Follow;
 	}
@@ -29,8 +29,8 @@ public class RoomControlA2Old : MonoBehaviour
     private void Update() {
         if (!isClear) {
             canClear = true;
-            foreach(Firewood_Script _firewood in firewoods) {
-                if (!_firewood.GetLit()) {
+            foreach(Firewood _firewood in firewoods) {
+                if (!_firewood.IsPuzzleLit) {
                     canClear = false;
                     break;
                 }

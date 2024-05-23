@@ -9,7 +9,7 @@ public class FreezableModule : ObjectModule {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float freezeSpeed = 2.5f;
     [SerializeField] private float shineSpeed = 3.5f;
-    [SerializeField] private Vector2 shineWaitRange;
+    [SerializeField] private Vector2 shineWaitRange = new Vector2(6, 8);
     [SerializeField] private Material freezeMaterial;
 
     private float patternSeed;

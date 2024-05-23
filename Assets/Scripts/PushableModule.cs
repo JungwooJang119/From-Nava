@@ -3,6 +3,7 @@
 public class PushableModule : ObjectModule {
 
     [SerializeField] private ParticleSystem dust;
+    [SerializeField] private float pushMultiplier = 1f;
 
     private float pushDist;
     private float pushSpeed;
@@ -14,8 +15,8 @@ public class PushableModule : ObjectModule {
     private void BaseObject_OnBlow(Vector2 dir, float strength) {
         isPushed = true;
         pushDir = new Vector3(dir.x, dir.y, 0);
-        pushDist = strength;
-        pushSpeed = strength;
+        pushDist = strength * pushMultiplier;
+        pushSpeed = strength * pushMultiplier;
         if (!baseObject.Attributes.isHeavy) dust.Play();
     }
 

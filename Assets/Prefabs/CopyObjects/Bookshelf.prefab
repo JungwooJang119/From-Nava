@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8035756421795713157}
   - component: {fileID: 3222068249808865767}
   - component: {fileID: 3555511944327306216}
-  - component: {fileID: 1879717614967529872}
   - component: {fileID: 8930979487585603433}
+  - component: {fileID: 1879717614967529872}
   - component: {fileID: 5314903090662639377}
   - component: {fileID: 4950397746868637230}
   - component: {fileID: 3133461272663010126}
@@ -54,10 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributes:
-    isHeavy: 0
-    isPushable: 0
-    isFlammable: 0
-    isFreezable: 0
+    isHeavy: 1
     isCopyable: 0
   defaultState: 0
 --- !u!114 &3555511944327306216
@@ -74,19 +71,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flames:
   - {fileID: 5864975365372829702}
---- !u!114 &1879717614967529872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 298502486899946839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95bc2f934e874f141805ccabced163cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dust: {fileID: 1006737300058186955}
 --- !u!114 &8930979487585603433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +88,19 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
+--- !u!114 &1879717614967529872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298502486899946839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bc2f934e874f141805ccabced163cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dust: {fileID: 1006737300058186955}
 --- !u!212 &5314903090662639377
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -327,12 +324,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2493257013992297699, guid: e6283506ffee066499dee904319ccb3e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493257013992297699, guid: e6283506ffee066499dee904319ccb3e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493257013992297699, guid: e6283506ffee066499dee904319ccb3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 2493257013992297699, guid: e6283506ffee066499dee904319ccb3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2493257013992297699, guid: e6283506ffee066499dee904319ccb3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -370,9 +375,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6891811020265005330, guid: e6283506ffee066499dee904319ccb3e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 4045097264158813704, guid: e6283506ffee066499dee904319ccb3e, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 3.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045097264334818165, guid: e6283506ffee066499dee904319ccb3e, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 3.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6283506ffee066499dee904319ccb3e, type: 3}

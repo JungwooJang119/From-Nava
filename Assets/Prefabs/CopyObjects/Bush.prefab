@@ -55,9 +55,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributes:
     isHeavy: 0
-    isPushable: 0
-    isFlammable: 0
-    isFreezable: 0
     isCopyable: 0
   defaultState: 0
 --- !u!114 &534121138561750464
@@ -107,6 +104,7 @@ MonoBehaviour:
   baseRotation: 35
   swipeRates: {x: 300, y: 2.25}
   scaleVariance: 0.3
+  windParticles: {fileID: 0}
 --- !u!212 &5693930533815305302
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -193,7 +191,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693930533815305305}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -324,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 2491992088615447381, guid: 198590ab0e13ce4438633e9b8c5fe1fd, type: 3}
       propertyPath: m_Name
       value: Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491992088615447381, guid: 198590ab0e13ce4438633e9b8c5fe1fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2529290311604123429, guid: 198590ab0e13ce4438633e9b8c5fe1fd, type: 3}
       propertyPath: m_RootOrder

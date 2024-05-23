@@ -43,6 +43,9 @@ public class WindblastBehavior : BaseSpellBehavior {
 		if (collision.TryGetComponent(out BaseObject baseObject)) {
 			baseObject.Blow(this, spellScript.direction, pushStrength);
 			if (baseObject.Attributes.isHeavy) state = State.End;
+		} else if (collision.TryGetComponent(out IPushable pushable)) {
+			pushable.Push(spellScript.direction, pushStrength, pushStrength);
+			state = State.End;
 		}
     }
 }

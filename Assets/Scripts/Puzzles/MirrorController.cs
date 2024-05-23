@@ -35,7 +35,7 @@ public class MirrorController : MonoBehaviour
 			_wait -= Time.deltaTime;
 			if (_wait <= 0) {
 				foreach (Mirror _mirror in _allMirrors) {
-					_mirror.reset();
+					_mirror.ObjectReset();
 				}
 				_transition.FadeIn();
 			}

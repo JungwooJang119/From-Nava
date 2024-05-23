@@ -3,7 +3,9 @@ guid: 93c19b0edd5e2924d82ba0ed3b8b77be
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spriteRenderer: {instanceID: 0}
+  - freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

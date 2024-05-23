@@ -142,7 +142,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -5060,9 +5060,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributes:
     isHeavy: 0
-    isPushable: 0
-    isFlammable: 0
-    isFreezable: 0
     isCopyable: 0
   defaultState: 0
   baseOscillation: 0.6
@@ -5085,6 +5082,7 @@ MonoBehaviour:
   baseRotation: 35
   swipeRates: {x: 300, y: 2.25}
   scaleVariance: 0.3
+  windParticles: {fileID: 0}
 --- !u!61 &9144647496311695930
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5219,7 +5217,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -10049,7 +10047,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -14778,6 +14776,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2493257013992297699}
     m_Modifications:
+    - target: {fileID: 4812598531182876162, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812598531342414713, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4812598531523419038, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
       propertyPath: m_Name
       value: Firelight

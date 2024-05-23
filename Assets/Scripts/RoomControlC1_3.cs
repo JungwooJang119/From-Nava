@@ -31,13 +31,13 @@ public class RoomControlC1_3 : MonoBehaviour
     void Update()
     {
         if (isActive) {
-            if (!p1.IsBlowing() && !p2.IsBlowing() && !p3.IsBlowing() && !p4.IsBlowing()) {
+            if (!p1.IsRotating && !p2.IsRotating && !p3.IsRotating && !p4.IsRotating) {
                 door1.GetComponent<Door>().OpenDoor();
                 isActive = false;
             }
         }
         if (!isActive) {
-            if (p1.IsBlowing() || p2.IsBlowing() || p3.IsBlowing() || p4.IsBlowing()) {
+            if (p1.IsRotating || p2.IsRotating || p3.IsRotating || p4.IsRotating) {
                 door1.GetComponent<Door>().CloseDoor();
                 isActive = true;
             }

@@ -27,7 +27,7 @@ public class Spell : MonoBehaviour
             transform.Rotate(rotate);
         }
 
-        bruhCollider = GetComponent<Collider2D>();
+        if (bruhCollider == null) bruhCollider = GetComponent<Collider2D>();
         bruhCollider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();

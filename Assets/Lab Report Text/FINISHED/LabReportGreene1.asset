@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db1bda11ffd0cf4ba6f10d0c02ef4a0, type: 3}
+  m_Name: LabReportGreene1
+  m_EditorClassIdentifier: 
+  textEntries:
+  - "Dr. Greene: [clears her throat] \u201CHello! How have you been holding up?\"\\n\\nThe
+    subject is silent.\\n\\n[Dr. Greene scribbles something down on her clipboard]\\n\\nDr.
+    Greene: \u201CThat\u2019s quite alright, you don\u2019t have to say anything.
+    I know you\u2019ve been through a lot recently. It\u2019s been so hectic and
+    uncomfortable for you since we found you, and I can imagine how tired you must
+    be. Does that sound right?\u201D\\n\\nThe subject remains silent. "

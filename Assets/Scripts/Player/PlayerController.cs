@@ -24,6 +24,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     [SerializeField] private Transform upCast;
     [SerializeField] private Transform downCast;
 
+    [SerializeField] private Transform[] castDirTransforms;
+
     private Vector2 movement;
     private Rigidbody2D rb;
  
@@ -56,9 +58,9 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     private bool hasDusted;
     public ParticleSystem dust;
 
-    [SerializeField] private GameObject[] arrows;
-
     private bool hasSetDir;
+
+    public bool hasDoneMoveTooltip = false;
 
 
     private void Awake() {
@@ -69,9 +71,8 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     {
         input = GetComponent<PlayerInput>();
         bruhLight = this.transform.GetChild(0).gameObject;
-        facingDir = Vector2.down;
-        arrows[3].SetActive(true);
-        castPoint = downCast;
+        facingDir = Vector2.up;
+        castPoint = upCast;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         isDark = (spawn.gameObject.tag == "DarkRoom");
@@ -116,32 +117,27 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         if(!hasSetDir && movement.x > 0) {
             facingDir = Vector2.right;
             castPoint = rightCast;
-            SetAllArrowsFalse();
-            arrows[0].SetActive(true);
             hasSetDir = true;
         }
         if(!hasSetDir && movement.x < 0) {
             facingDir = Vector2.left;
             castPoint = leftCast;
-            SetAllArrowsFalse();
-            arrows[1].SetActive(true);
             hasSetDir = true;
         }
-        if(!hasSetDir &&movement.y > 0) {
+        if(!hasSetDir && movement.y > 0) {
             facingDir = Vector2.up;
             castPoint = upCast;
-            SetAllArrowsFalse();
-            arrows[2].SetActive(true);
             hasSetDir = true;
         }
         if(!hasSetDir && movement.y < 0) {
             facingDir = Vector2.down;
             castPoint = downCast;
-            SetAllArrowsFalse();
-            arrows[3].SetActive(true);
             hasSetDir = true;
         }
         if (movement.magnitude > 0) {
+            if (!hasDoneMoveTooltip) {
+                hasDoneMoveTooltip = true;
+            }
             animator.SetFloat("X", movement.x);
             animator.SetFloat("Y", movement.y);
             animator.SetBool("isWalking", true);
@@ -150,12 +146,6 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         else 
             animator.SetBool("isWalking", false);
             hasSetDir = false;
-    }
-
-    private void SetAllArrowsFalse() {
-        for (int i = 0; i < arrows.Length; i++) {
-            arrows[i].SetActive(false);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -186,10 +176,12 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         dissolveShader.DissolveOut();
 		GetComponent<Collider2D>().enabled = false;
         animator.SetBool("isWalking", false);
+        animator.SetBool("isHurt", true);
         yield return new WaitForSeconds(1.5f);
         ReferenceSingleton.Instance.transition.FadeOut();
         yield return new WaitForSeconds(1.5f);
         transform.position = spawn.transform.position;
+        animator.SetBool("isHurt", false);
 		dissolveShader.DissolveIn();
         ReferenceSingleton.Instance.transition.FadeIn();
         GetComponent<Collider2D>().enabled = true;

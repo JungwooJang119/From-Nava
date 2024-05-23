@@ -26,6 +26,12 @@ public class AudioControl : Singleton<AudioControl> {
 		InitializeSingleton(gameObject);
 	}
 
+	//Sets the MainMusicSource time to 0. For some reason this fixes the Audio issue at the ending.
+	//The issue was with Swap, where time was set to the time of the other track. For some reason this breaks things. 
+	public void ResetTime() {
+		mainMusicSource.time = 0;
+	}
+
     public void CheckMusic() {
 		int buildIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
 		StopAllCoroutines();

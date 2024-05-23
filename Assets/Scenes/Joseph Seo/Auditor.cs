@@ -72,7 +72,7 @@ public class Auditor : MonoBehaviour
 
     public void updateSideRoom(string name) {
         int yes = int.Parse(name.Substring(1));
-        print(yes);
+        // print(yes);
         quests[yes + 1] = true;
         switch (yes) {
             case 1:
@@ -119,7 +119,7 @@ public class Auditor : MonoBehaviour
 
     public void updateLightUp(int i) {
         litObjectCount += i;
-        print(litObjectCount);
+        // print(litObjectCount);
         if (litObjectCount == 14) {
             quests[7] = true;
             isQuest8Complete = true;
@@ -138,7 +138,7 @@ public class Auditor : MonoBehaviour
             }
         } else {
             plateCount++;
-            print(plateCount);
+            // print(plateCount);
         }
     }
 
@@ -172,20 +172,20 @@ public class Auditor : MonoBehaviour
             int seconds = (int)time % 60;
             timerText.text = "Time: " + minutes.ToString() + ":" + ((seconds < 10) ? ("0") : ("")) + seconds.ToString();
         }
-        if (Input.GetKeyDown(KeyCode.E)) {
-            string res = "";
-            for (int i = 0; i < quests.Length; i++) {
-                if (quests[i]) {
-                    res += "D ";
-                } else {
-                    res += "N ";
-                }
-            }
-            res += finalMirrCount;
-            //res += Mathf.Round(time);
-            res += labReportCount;
-            Debug.Log(res);
-        }   
+        // if (Input.GetKeyDown(KeyCode.E)) {
+        //     string res = "";
+        //     for (int i = 0; i < quests.Length; i++) {
+        //         if (quests[i]) {
+        //             res += "D ";
+        //         } else {
+        //             res += "N ";
+        //         }
+        //     }
+        //     res += finalMirrCount;
+        //     //res += Mathf.Round(time);
+        //     res += labReportCount;
+        //     Debug.Log(res);
+        // }   
     }
 
     public void ToggleOpen() {

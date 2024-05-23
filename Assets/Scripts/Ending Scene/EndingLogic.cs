@@ -44,7 +44,10 @@ public class EndingLogic : MonoBehaviour {
 
 	private IEnumerator Intro() {
 		yield return new WaitForSeconds(1);
-		if (!string.IsNullOrWhiteSpace(initialClipName)) AudioControl.Instance.PlayMusic(initialClipName, false);
+		if (!string.IsNullOrWhiteSpace(initialClipName)) {
+			AudioControl.Instance.ResetTime();
+			AudioControl.Instance.PlayMusic(initialClipName, false);
+		}
 		yield return new WaitForSeconds(initialFrameWait);
 		transitioning = false;
     }

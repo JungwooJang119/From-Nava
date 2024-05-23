@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour {
     [SerializeField] private GameObject notebook;
 
     public static bool GameIsPaused = false;
+    private bool notebookUnlocked = false;
 
     void Start() {
         pageDict = new Dictionary<MenuPage, PauseMenuPage>();
@@ -31,6 +32,24 @@ public class PauseMenu : MonoBehaviour {
 
         controller = ReferenceSingleton.Instance.collectibleController;
         transition = ReferenceSingleton.Instance.transition;
+        controller.OnClaimCollectible += Controller_OnClaimCollectible;
+        controller.OnCallsEnd += Controller_OnCallsEnd;
+    }
+
+    private void Controller_OnClaimCollectible(object sender, ItemCall call) {
+        if (call.input.GetType() == typeof(TutorialData)) {
+            TutorialData fireballData = (TutorialData) call.input;
+            if (fireballData.name == "TutorialFireball") {
+                notebookUnlocked = true;
+            }
+        }
+    }
+    private void Controller_OnCallsEnd() {
+        if (notebookUnlocked) {
+            notebook.SetActive(true);
+            controller.OnClaimCollectible -= Controller_OnClaimCollectible;
+            controller.OnCallsEnd -= Controller_OnCallsEnd;
+        }
     }
 
     // Update is called once per frame
@@ -59,11 +78,12 @@ public class PauseMenu : MonoBehaviour {
             }
         }
     }
-
     /// Resume the game
     public void Resume() {
         AudioControl.Instance.PlayVoidSFX("PMClosing", 0.25f);
-        notebook.SetActive(true);
+        if (notebookUnlocked) {
+            notebook.SetActive(true);
+        }
         ToggleActiveMenu(false);
         pauseMenuUI.SetActive(false);
 		PlayerController.Instance.ActivateMovement();

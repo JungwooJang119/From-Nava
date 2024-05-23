@@ -48,6 +48,15 @@ public class NotepadLogic : Singleton<NotepadLogic>
 
     private void OnEnable() {
         NotepadInput.OnInputPress += OnInputPress;
+        PlayerController.OnClearNotepad += OnClearNotepad; //Subscribes to OnClearNotepad found in the PlayerController.
+        
+    }
+
+    //Handles the event by ending the spellcast if a spell is currently being drawn.
+    private void OnClearNotepad(object sender, int input) {
+        if (activePattern) {
+            EndPattern();
+        }
     }
 
     private void OnDisable() {
@@ -91,7 +100,6 @@ public class NotepadLogic : Singleton<NotepadLogic>
 
     private void EndPattern() {
         AddToPattern(endNode);
-        activePattern = false;
         CompareSpellCast();
         ResetPattern();
         //sfx, vfx, etc
@@ -99,6 +107,7 @@ public class NotepadLogic : Singleton<NotepadLogic>
 
     private void ResetPattern() {
         pattern = new List<int>();
+        activePattern = false;
     }
 
     private void CompareSpellCast()

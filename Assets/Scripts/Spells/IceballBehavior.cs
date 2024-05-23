@@ -1,192 +1,73 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-// Modifies the default behavior of Iceball. Most spells follow the same pattern:
-// Initialization, Lifetime, Death (just like your average cat), hence,
-// some methods may be similar/identical to other spell's.
+public class IceballBehavior : BaseSpellBehavior {
 
-public class IceballBehavior : MonoBehaviour {
-	[SerializeField] private SpellSO spellData;	// Iceball spell data from the SO;
+	[Header("Iceball Behavior")]
 
-	// Simple state machine;
-	private enum State {
-		Start,
-		Lifetime,
-		End,
-		Done,
-	}
-	private State state;
+	[SerializeField] private SpriteRenderer[] spriteRenderers;
+	[SerializeField] private Transform innerTransform, outerTransform1, outerTransform2;
+	[SerializeField] private float innerRotationSpeed = 25f;
+	[SerializeField] private Vector2 outerRotationSpeed = new Vector2(-3.75f, 2.5f);
 
-	private Spell spellScript;          // Reference for Spell.cs;
-	private Transform castPoint;        // Transform the spell will be glued to until brrrrr;
-
-	private float deathTimer;           // Timer to account for the spell lifetime;
-
-	private float scaleFactor;          // Variables to control size;
-	private SpriteRenderer[] sprRenderers; // Variable to control transparency;
-
-	private ParticleSystem parSystem;   // Reference to the particle system (child);
-
-    private Transform[] sprTransforms;  // Array of references to the transforms of children;
-
-	// In today's news, start is called before the first frame update! O.O
-	void Start() {
-		// Suscribe to the OnDestroy event from Spell.cs
-		spellScript = GetComponent<Spell>();
-        spellScript.OnSpellDestroy += Spell_OnSpellDestroy;
-
-        // Variables to manage the particle system;
-        parSystem = GetComponentInChildren<ParticleSystem>();
-		var ps = parSystem.emission;
-		ps.enabled = false;
-
-		// Variables to manage the scale and alpha;
-		scaleFactor = transform.localScale.x;
-		sprRenderers = GetComponentsInChildren<SpriteRenderer>();
-		ChangeOpacity(-1f);
-
-        // Variables to manage sprite rotation;
-        sprTransforms = new Transform[transform.childCount];
-        for (int i = 0; i < transform.childCount; i++) {
-            sprTransforms[i] = transform.GetChild(i);
-        }
-
-		// ALERT: Change if castPoint is no longer public in PlayerController.cs;
-		castPoint = PlayerController.Instance.castPoint;
+	protected override void Awake() {
+		base.Awake();
+		foreach (SpriteRenderer sr in spriteRenderers) {
+			Color color = sr.color;
+			color.a = 0;
+			sr.color = color;
+		} ShiftState(State.Start);
 	}
 
-	// Wait until the spell's life runs out. If it didn't collide, reduce the scale of the iceball sprites.
-	// Then, yeet all the unnecesary components and set up a small particle burst for visual flavor.
-	// The spell shall die when all particles run out ;-;
 	void Update() {
-		// Continously rotate sprites;
-		RotateSprites(-3.75f, 2.5f, 25f);
+		RotateSprites(outerRotationSpeed.x, outerRotationSpeed.y, innerRotationSpeed);
 		switch (state) {
-
 			case State.Start:
-				// Stay on cast point until release;
+				/// Stay on cast point until release;
 				transform.position = castPoint.position;
-				// Deactivate spell on start;
+				/// Deactivate spell on start;
 				if (spellScript != null && spellScript.enabled) {
 					ToggleComponents();
-				}
-				// Increase the opacity of the sprite;
-				if (sprRenderers[0].color.a < 1f) {
-					ChangeOpacity(Time.deltaTime * 7.5f);
-				} else {
-					// Enable emissions;
-					var ps = parSystem.emission;
-					ps.enabled = true;
-					// Reactivate components;
+				} float avgOpacity = MoveOpacity(1f, 7.5f);
+				if (Mathf.Approximately(avgOpacity, 1f)) {
+					trailParticles.Play();
+					/// Reactivate components;
 					if (spellScript != null) ToggleComponents();
-					state = State.Lifetime;
-				}
-				break;
-
-			case State.Lifetime:
-				if (deathTimer < spellData.lifetime) {
-					// Wait for lifetime;
-					deathTimer += Time.deltaTime;
-					break;
-				}
-				else {
-					state = State.End;
-				}
-				break;
-
+					LifetimeCountownAsync(spellData.lifetime);
+					ShiftState(State.Lifetime);
+				} break;
 			case State.End:
-				// Scale down the sprite;
-				if (scaleFactor > 0) {
-					ReduceSize(900f);
-				} else {
-					// Stop spell and generate particles;
+				transform.localScale = Vector2.MoveTowards(transform.localScale, Vector2.zero, Time.deltaTime * 20f);
+				if (Mathf.Approximately(Vector2.Distance(transform.localScale, Vector2.zero), 0)) {
 					if (spellScript != null) {
 						CleanUp();
 						GenerateBurst(1f, 40f);
-					}
-					else {
+					} else {
 						GenerateBurst(0.75f, 60f);
-					}
-					state = State.Done;
-				}
-				break;
-			case State.Done:
-				// Stop emissions;
-				parSystem.Stop();
-				break;
+					} state = State.Done;
+				} break;
 		}
 	}
 
-	// Method to "disable" functionality at the start;
-	private void ToggleComponents() {
-		spellScript.enabled = !spellScript.enabled;
-		var rb = GetComponent<Rigidbody2D>();
-		rb.simulated = !rb.simulated;
-		var coll = GetComponent<Collider2D>();
-		coll.enabled = !coll.enabled;
-	}
-
-	// Method to take away functionality after the lifetime has been exhausted;
-	private void CleanUp() {
-        Destroy(spellScript);
-        Destroy(GetComponent<Rigidbody2D>());
-        Destroy(GetComponent<Collider2D>());
-    }
-
-    // Method called when the Spell script fires the destroy event! YEET!
-    private void Spell_OnSpellDestroy(GameObject o) {
+    protected override void Spell_OnSpellDestroy(GameObject o) {
 		AudioControl.Instance.PlaySFX("Iceball Collision", gameObject, 0.1f);
-		deathTimer = spellData.lifetime;
-        CleanUp();
+		base.Spell_OnSpellDestroy(o);
     }
 
-	// Method to change the size of the spell sprite;
-	private void ReduceSize(float rate) {
-		rate *= Time.deltaTime;
-		scaleFactor = Mathf.Max(0, scaleFactor - rate);
-		transform.localScale = new Vector2(scaleFactor, scaleFactor);
+	private float MoveOpacity(float target, float rate) {
+		float avgAlpha = 0;
+		foreach (SpriteRenderer sr in spriteRenderers) {
+			Color color = sr.color;
+			color.a = Mathf.MoveTowards(color.a, target, Time.deltaTime * rate);
+			sr.color = color;
+			avgAlpha += color.a;
+		} return avgAlpha / spriteRenderers.Length;
 	}
 
-	// Method to change the opacity of the spell sprite;
-	private void ChangeOpacity(float alphaChange) {
-		foreach (SpriteRenderer spR in sprRenderers) {
-			var color = spR.color;
-			color.a += alphaChange;
-			spR.color = color;
-		}
-	}
-
-	// Method to rotate the sprites;
 	private void RotateSprites(float rotationRateOuter1, float rotationRateOuter2, float rotationRateInner) {
-        int tranNumber = 0;
-		rotationRateOuter1 *= Time.deltaTime * 60;
-		rotationRateOuter2 *= Time.deltaTime * 60;
-		rotationRateInner *= Time.deltaTime * 60;
-		foreach (Transform transform in sprTransforms) {
-            if (tranNumber == 0) {
-				transform.Rotate(0, 0, rotationRateInner);
-				tranNumber = 1;
-            } else if (tranNumber == 1) {
-				transform.Rotate(0, 0, rotationRateOuter1);
-				tranNumber = 2;
-			} else {
-				transform.Rotate(0, 0, rotationRateOuter2);
-                tranNumber = 0;
-			}
-        }
-    }
-
-	// Method to generate a particle burst;
-	private void GenerateBurst(float particleLifetime, float particleSpeed) {
-        var parMainSystem = parSystem.main;
-        parMainSystem.startLifetime = particleLifetime;
-        parMainSystem.startSpeed = particleSpeed;
-        parSystem.emission.SetBursts(new ParticleSystem.Burst[] { new ParticleSystem.Burst(0f, 60) });
-        parSystem.Stop();
-        parSystem.Play();
-        Destroy(this.gameObject, parMainSystem.startLifetime.constant);
+		float deltaTime = Time.deltaTime * 60;
+		innerTransform.Rotate(0, 0, rotationRateInner * deltaTime);
+		outerTransform1.Rotate(0, 0, rotationRateOuter1 * deltaTime);
+		outerTransform2.Rotate(0, 0, rotationRateOuter2 * deltaTime);
     }
 
 	private void OnTriggerEnter2D(Collider2D collision) {

@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 1017403310449866912}
   - component: {fileID: 2415284094826425306}
   m_Layer: 0
-  m_Name: Particle Trail
+  m_Name: TrailParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5063,10 +5063,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6134455576275678666}
-  - component: {fileID: 7410404838220746693}
-  - component: {fileID: 8916631681253868026}
-  - component: {fileID: 9097417068368567135}
   - component: {fileID: 7995059032508458879}
+  - component: {fileID: 8916631681253868026}
+  - component: {fileID: 7410404838220746693}
+  - component: {fileID: 9097417068368567135}
   m_Layer: 0
   m_Name: Windblast_Spell
   m_TagString: WindBlast
@@ -5094,6 +5094,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7995059032508458879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866387084450533419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d18f69718f15234baed2a488d248b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellData: {fileID: 11400000, guid: cb799c27f5fb04949a73f3d9c4bbd993, type: 2}
+  spellScript: {fileID: 8916631681253868026}
+  trailParticles: {fileID: 1017403310449866912}
+  burstAmount: 120
+  rb: {fileID: 7410404838220746693}
+  coll: {fileID: 9097417068368567135}
+  centerTrail: {fileID: 7139212332319980320}
+  pushStrength: 5
+--- !u!114 &8916631681253868026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866387084450533419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1589a7279c508458069371fc0e02fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 11400000, guid: cb799c27f5fb04949a73f3d9c4bbd993, type: 2}
+  bruhCollider: {fileID: 0}
+  rb: {fileID: 7410404838220746693}
+  rotate: {x: 0, y: 0, z: 90}
+  spellActive: 1
+  isChair: 0
+  isWind: 1
+  isPiplup: 0
+  direction: {x: -1, y: 0}
+  damage: 0
 --- !u!50 &7410404838220746693
 Rigidbody2D:
   serializedVersion: 4
@@ -5115,28 +5157,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8916631681253868026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd1589a7279c508458069371fc0e02fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spell: {fileID: 11400000, guid: cb799c27f5fb04949a73f3d9c4bbd993, type: 2}
-  bruhCollider: {fileID: 0}
-  rb: {fileID: 7410404838220746693}
-  rotate: {x: 0, y: 0, z: -90}
-  spellActive: 1
-  isChair: 0
-  isWind: 1
-  isPiplup: 0
-  direction: {x: 1, y: 0}
-  damage: 0
 --- !u!61 &9097417068368567135
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5163,21 +5183,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.2}
   m_EdgeRadius: 0
---- !u!114 &7995059032508458879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d18f69718f15234baed2a488d248b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellData: {fileID: 11400000, guid: cb799c27f5fb04949a73f3d9c4bbd993, type: 2}
-  pushDist: 5
-  pushSpd: 5
 --- !u!1 &8361443646270678974
 GameObject:
   m_ObjectHideFlags: 0
@@ -5348,7 +5353,7 @@ GameObject:
   - component: {fileID: 7139212332319980320}
   - component: {fileID: 6139470923805571055}
   m_Layer: 0
-  m_Name: Particle Reverb
+  m_Name: CenterTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

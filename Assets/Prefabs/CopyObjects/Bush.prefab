@@ -88,6 +88,7 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
+  alternateSprite: {fileID: 21300000, guid: bdc992072bcfec84eb3f9623106a01af, type: 3}
 --- !u!114 &4137070751988683371
 MonoBehaviour:
   m_ObjectHideFlags: 0

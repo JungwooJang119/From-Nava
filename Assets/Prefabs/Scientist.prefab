@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3540596825122561885}
+  - component: {fileID: 313230819767971587}
+  - component: {fileID: 827608582892340332}
   - component: {fileID: 3540596825122561884}
   - component: {fileID: 3540596825122561887}
-  - component: {fileID: 313230819767971587}
   - component: {fileID: 2580548336516971343}
   - component: {fileID: 4359817717055833088}
   m_Layer: 0
@@ -37,6 +38,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &313230819767971587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540596825122561886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7069dbfdc90ba04ca2e925633ba8033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributes:
+    isHeavy: 0
+    isCopyable: 0
+  defaultState: 0
+--- !u!114 &827608582892340332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540596825122561886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c19b0edd5e2924d82ba0ed3b8b77be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3540596825122561884}
+  freezeSpeed: 2.5
+  shineSpeed: 3.5
+  shineWaitRange: {x: 6, y: 8}
+  freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
+  alternateSprite: {fileID: 21300000, guid: a1a14991110d8d44ea33caf41cacff70, type: 3}
 --- !u!212 &3540596825122561884
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -115,23 +150,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.035553, y: 0.6549568}
   m_EdgeRadius: 0
---- !u!114 &313230819767971587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3540596825122561886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7069dbfdc90ba04ca2e925633ba8033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isHeavy: 0
-  onFireSprite: {fileID: 0}
-  onFreezedSprite: {fileID: 21300000, guid: a1a14991110d8d44ea33caf41cacff70, type: 3}
-  defaultSprite: {fileID: 0}
-  dust: {fileID: 1562322629206622504}
 --- !u!60 &2580548336516971343
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -263,10 +281,5 @@ PrefabInstance:
 --- !u!4 &217914980374604844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2529290311604123429, guid: 198590ab0e13ce4438633e9b8c5fe1fd, type: 3}
-  m_PrefabInstance: {fileID: 2314824533581159177}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1562322629206622504 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3869036837785606689, guid: 198590ab0e13ce4438633e9b8c5fe1fd, type: 3}
   m_PrefabInstance: {fileID: 2314824533581159177}
   m_PrefabAsset: {fileID: 0}

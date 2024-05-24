@@ -21,7 +21,8 @@ public class CollectibleController : MonoBehaviour {
 	/// <br></br> Listeners: All Collectible Managers, Notification Manager, PauseMenu; </summary>
 	public event System.Action OnCallsEnd;
 
-	public TransitionManager Transition { get; private set; }
+	[SerializeField] private TransitionManager transition;
+	public TransitionManager Transition => transition;
 	private readonly Queue<ItemData> callQueue = new();
 
 	/// <summary> Whether a collectible interaction is currently being displayed; </summary>
@@ -30,7 +31,6 @@ public class CollectibleController : MonoBehaviour {
 	public bool InSequence { get; private set; }
 
 	void Awake() {
-		Transition = FindObjectOfType<TransitionManager>(true);
 		foreach (CollectibleManager cm in GetComponentsInChildren<CollectibleManager>(true)) { cm.Init(this); };
 		GetComponentInChildren<NotificationManager>(true).Init(this);
 	}
@@ -61,7 +61,7 @@ public class CollectibleController : MonoBehaviour {
 		}
     }
 
-	public bool CheckClaimedStatus(ItemData itemData) {
+    public bool CheckClaimedStatus(ItemData itemData) {
 		ItemCall call = new(itemData);
 		OnInventoryRequest?.Invoke(this, call);
 		return call.output.Contains(itemData);

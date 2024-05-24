@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributes:
-    isHeavy: 0
+    isHeavy: 1
     isCopyable: 0
   defaultState: 0
 --- !u!114 &1715249207882019669

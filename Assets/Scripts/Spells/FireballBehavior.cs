@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class FireballBehavior : BaseSpellBehavior {
@@ -66,6 +67,8 @@ public class FireballBehavior : BaseSpellBehavior {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        if (spellScript.CasterColliders != null
+            && spellScript.CasterColliders.Contains(collision)) return;
         if (collision.TryGetComponent(out BaseObject baseObject)) {
             baseObject.Ignite(this);
         }

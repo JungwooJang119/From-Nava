@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
+    public event Action OnGameResumed;
     public event Action<MenuPage> OnPageChanged;
 
     public enum MenuPage {
@@ -57,6 +58,7 @@ public class PauseMenu : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape) && !controller.IsBusy) {
             if (GameIsPaused)
             {
+                OnGameResumed?.Invoke();
                 Resume();
             }
             else 
@@ -70,6 +72,7 @@ public class PauseMenu : MonoBehaviour {
         if (!controller.IsBusy) {
             if (GameIsPaused)
             {
+
                 Resume();
             }
             else 
@@ -83,8 +86,7 @@ public class PauseMenu : MonoBehaviour {
         AudioControl.Instance.PlayVoidSFX("PMClosing", 0.25f);
         if (notebookUnlocked) {
             notebook.SetActive(true);
-        }
-        ToggleActiveMenu(false);
+        } ToggleActiveMenu(false);
         pauseMenuUI.SetActive(false);
 		PlayerController.Instance.ActivateMovement();
 		Time.timeScale = 1f;

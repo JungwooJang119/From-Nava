@@ -25,7 +25,10 @@ public class Firewood : BaseObject {
     }
 
     private void BaseObject_OnHeatToggle(ObjectState prevState, bool active) {
-        if (State == ObjectState.Frozen) return;
+        if (prevState == ObjectState.Frozen) {
+            if (active) Ignite();
+            return;
+        } if (State == ObjectState.Frozen) return;
         SetState(IsPuzzleLit && !active ? ObjectState.Default 
                : !IsPuzzleLit && active ? ObjectState.Burning : State);
         bool wasDefault = prevState == ObjectState.Default;

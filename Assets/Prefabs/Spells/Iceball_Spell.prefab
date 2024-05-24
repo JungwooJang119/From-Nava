@@ -5100,8 +5100,6 @@ GameObject:
   - component: {fileID: 5179540904966012317}
   - component: {fileID: 7410404838220746693}
   - component: {fileID: 3149705390126071934}
-  - component: {fileID: 428484724962094794}
-  - component: {fileID: 8600939817362497881}
   m_Layer: 0
   m_Name: Iceball_Spell
   m_TagString: Spell
@@ -5169,12 +5167,12 @@ MonoBehaviour:
   spell: {fileID: 11400000, guid: bd51ffc9071f17a4eaf37dd650d2ecfb, type: 2}
   bruhCollider: {fileID: 0}
   rb: {fileID: 7410404838220746693}
-  rotate: {x: 0, y: 0, z: 90}
+  rotate: {x: 0, y: 0, z: 0}
   spellActive: 1
   isChair: 0
   isWind: 0
   isPiplup: 0
-  direction: {x: -1, y: 0}
+  direction: {x: 0, y: 1}
   damage: 0
 --- !u!58 &5179540904966012317
 CircleCollider2D:
@@ -5233,32 +5231,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &428484724962094794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576cecbb2a863294ca0332dde34d8f23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedReduce: 2
---- !u!114 &8600939817362497881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b1ee7757ad34040b10d9a45b83e84f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: ICE
 --- !u!114 &4701790566160024944
 MonoBehaviour:
   m_ObjectHideFlags: 0

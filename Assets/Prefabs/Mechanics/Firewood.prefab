@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7500840900014958929}
-  - component: {fileID: 7500840900014958928}
   - component: {fileID: 7500840900014958930}
   - component: {fileID: 3997945589101051492}
+  - component: {fileID: 2913904610289908590}
+  - component: {fileID: 7500840900014958928}
   - component: {fileID: 7500840900014958934}
   - component: {fileID: 7500840900014958931}
   - component: {fileID: 7500840900014958935}
@@ -38,6 +39,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7500840900014958930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500840900014958941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119f0d9181c631d4898f413bb33cfff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributes:
+    isHeavy: 0
+    isCopyable: 0
+  defaultState: 0
+  linkedFirewoods: []
+  lineMaterial: {fileID: 2100000, guid: 0b31fe150f64f22459f48ac3975c7342, type: 2}
+--- !u!114 &3997945589101051492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500840900014958941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3547abdb2a0a7a94cb1ab472b5754a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flames:
+  - {fileID: 7928760050178362422}
+--- !u!114 &2913904610289908590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500840900014958941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c19b0edd5e2924d82ba0ed3b8b77be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7500840900014958928}
+  freezeSpeed: 2.5
+  shineSpeed: 3.5
+  shineWaitRange: {x: 6, y: 8}
+  freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
 --- !u!212 &7500840900014958928
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90,41 +140,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7500840900014958930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7500840900014958941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119f0d9181c631d4898f413bb33cfff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attributes:
-    isHeavy: 0
-    isPushable: 0
-    isFlammable: 0
-    isFreezable: 0
-    isCopyable: 0
-  defaultState: 0
-  linkedFirewoods: []
-  lineMaterial: {fileID: 2100000, guid: 0b31fe150f64f22459f48ac3975c7342, type: 2}
---- !u!114 &3997945589101051492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7500840900014958941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3547abdb2a0a7a94cb1ab472b5754a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flames:
-  - {fileID: 7928760050178362422}
 --- !u!50 &7500840900014958934
 Rigidbody2D:
   serializedVersion: 4

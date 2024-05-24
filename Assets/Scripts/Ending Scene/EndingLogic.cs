@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class EndingLogic : MonoBehaviour {
 
-	[SerializeField] private tranMode transitionManager;
+	[SerializeField] private TransitionManager transitionManager;
 	[SerializeField] private Image background;
 	[SerializeField] private float initialFrameWait;
 	[SerializeField] private float finalFadeTime;

@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    public SpellScriptObj spell;
+    public SpellSO spell;
     public event Action<GameObject> OnSpellDestroy;
 
     //[SerializeField] private LogicScript logicScript;
@@ -29,7 +27,7 @@ public class Spell : MonoBehaviour
             transform.Rotate(rotate);
         }
 
-        bruhCollider = GetComponent<Collider2D>();
+        if (bruhCollider == null) bruhCollider = GetComponent<Collider2D>();
         bruhCollider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();

@@ -1,25 +1,41 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class LightVariance : MonoBehaviour
-{
-    [SerializeField] float baseLight;
-    private UnityEngine.Rendering.Universal.Light2D bruhLight;
-    private float offset;
-    // Start is called before the first frame update
-    void Start()
-    {
+public class LightVariance : MonoBehaviour {
 
-        bruhLight = GetComponent<UnityEngine.Rendering.Universal.Light2D>();
+    [SerializeField] private float baseIntensity;
+    [SerializeField] private float radiusOffset;
+
+    private Light2D bruhLight;
+    public Light2D BruhLight {
+        get {
+            if (bruhLight == null) bruhLight = GetComponent<Light2D>();
+            return bruhLight;
+        }
+    } public float BaseRadius { get; private set; }
+    private float currOffset;
+    private float timeOffset;
+    private float intensityOffset;
+
+    void Awake() => bruhLight = GetComponent<Light2D>();
+    void OnEnable() => StartCoroutine(OffsetRandomizer());
+    private void OnDisable() => StopAllCoroutines();
+
+    public void Init(float o) => intensityOffset = o;
+
+    void Update() {
+        currOffset = Mathf.MoveTowards(currOffset, Mathf.PingPong(Time.time * timeOffset, radiusOffset), Time.deltaTime / 4f);
+        bruhLight.pointLightOuterRadius = currOffset + BaseRadius;
+        bruhLight.intensity = Mathf.PingPong(intensityOffset + Time.time / 4, 0.1f) + baseIntensity;
     }
 
-    public void SetOffset(float o) {
-        offset = o;
+    private IEnumerator OffsetRandomizer() {
+        while (true) {
+            timeOffset = Random.Range(0.8f, 1.2f);
+            yield return new WaitForSeconds(Random.Range(0.8f, 1.2f));
+        }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        bruhLight.intensity = Mathf.PingPong(offset + Time.time / 4, 0.1f) + baseLight;
-    }
+
+    public void AdjustRadius(float radius) => BaseRadius = radius;
 }

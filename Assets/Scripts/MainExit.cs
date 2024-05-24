@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainExit : MonoBehaviour
 {
-    private tranMode tm;
+    private TransitionManager tm;
 
     void Start() {
-        tm = GameObject.Find("Transition").GetComponent<tranMode>();
+        tm = GameObject.Find("Transition").GetComponent<TransitionManager>();
     }
 
     void OnTriggerEnter2D(Collider2D other)

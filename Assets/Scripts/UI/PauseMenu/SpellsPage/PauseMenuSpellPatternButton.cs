@@ -19,6 +19,8 @@ public class PauseMenuSpellPatternButton : MonoBehaviour {
     private PauseMenuSpellPatterns patternScript;
     private bool active;
 
+    private Vector2 ogDelta;
+
     void Awake() {
         pageScript = GetComponentInParent<PauseMenuPage>(true);
 
@@ -33,13 +35,17 @@ public class PauseMenuSpellPatternButton : MonoBehaviour {
 
         patternScript = GetComponentInParent<PauseMenuSpellPatterns>(true);
         masterScript = GetComponentInParent<PauseMenuSpells>(true);
+
+        ogDelta = image.rectTransform.sizeDelta;
     }
 
     private void OnEnable() {
         active = ReferenceSingleton.Instance.collectibleController.GetItems<TutorialData>().Contains(tutorialData);
         if (active) {
-            if (image.sprite != originalSprite) image.sprite = originalSprite;
-            if (pageScript.UpdateDictionary(image, 1f)) image.color = new Color (image.color.r, image.color.g, image.color.b, 1f);
+            if (image.sprite != originalSprite) {
+                image.rectTransform.sizeDelta = ogDelta;
+                image.sprite = originalSprite;
+            } if (pageScript.UpdateDictionary(image, 1f)) image.color = new Color (image.color.r, image.color.g, image.color.b, 1f);
             if (text.text != originalText) text.text = originalText;
             if (pageScript.UpdateDictionary(text, 1f)) text.alpha = 1f;
             if (!button.enabled) button.enabled = true;
@@ -47,6 +53,7 @@ public class PauseMenuSpellPatternButton : MonoBehaviour {
             text.text = "- - -";
             if (pageScript.UpdateDictionary(text, 0.5f)) text.alpha = 0.5f;
             image.sprite = patternScript.DisabledPattern;
+            image.rectTransform.sizeDelta = patternScript.DisabledDelta;
             if (pageScript.UpdateDictionary(image, 0.5f)) image.color = new Color(image.color.r, image.color.g, image.color.b, 0.5f);
             button.enabled = false;
         }

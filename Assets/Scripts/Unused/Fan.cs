@@ -2,45 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fan : MonoBehaviour
-{
-    private bool rotating;
-    [SerializeField] private float windIncrement = 5f;
-    private float rotateTimer;
-    // private Color whenRotate = Color.blue;
-    // private Color notRotate = Color.red;
-    SpriteRenderer sr;
+public class Fan : BaseObject {
 
-    public Animator animator;
+    public event System.Action OnBlowingChange;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rotating = false;
-        rotateTimer = 0;
-        sr = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+    [Header("Fan")]
+
+    [SerializeField] private float windIncrement = 30f;
+    [SerializeField] private Animator animator;
+
+    private const string SPIN_CONDITION = "IsSpinning";
+
+    public bool IsRotating => animator.GetBool(SPIN_CONDITION);
+
+    protected override void Awake() {
+        base.Awake();
+        OnHeatToggle += BaseObject_OnHeatToggle;
+        OnBlow += BaseObject_OnBlow;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // sr.color = rotating ? whenRotate : notRotate;
-        if (rotateTimer > 0) {
-            rotating = true;
-            rotateTimer -= Time.deltaTime;
-            animator.SetBool("IsSpinning", true);
-        } else {
-            rotating = false;
-            animator.SetBool("IsSpinning", false);
+    private void BaseObject_OnHeatToggle(ObjectState prevState, bool active) {
+        if (!active) {
+            StopAllCoroutines();
+            animator.SetBool(SPIN_CONDITION, false);
+            OnBlowingChange?.Invoke();
         }
     }
 
-    public void Blow() {
-        rotateTimer = windIncrement;
+    private void BaseObject_OnBlow(Vector2 dir, float strength) {
+        if (State == ObjectState.Frozen) return;
+        animator.SetBool(SPIN_CONDITION, true);
+        OnBlowingChange?.Invoke();
+        StopAllCoroutines();
+        StartCoroutine(AwaitStopAsync(windIncrement));
     }
 
-    public bool IsBlowing() {
-        return rotating;
+    private IEnumerator AwaitStopAsync(float spinTime) {
+        yield return new WaitForSeconds(spinTime);
+        animator.SetBool(SPIN_CONDITION, false);
+        OnBlowingChange?.Invoke();
     }
 }

@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -601,7 +601,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 200
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -4822,6 +4822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2919341313617727967}
   - component: {fileID: 6589716991874205528}
+  - component: {fileID: 4390905518601338471}
   m_Layer: 0
   m_Name: FireballSprite
   m_TagString: Fire
@@ -4838,7 +4839,7 @@ Transform:
   m_GameObject: {fileID: 4341016507123695404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1111112, y: 1.1111112, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6134455576275678666}
@@ -4896,6 +4897,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4390905518601338471
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341016507123695404}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b01b6d442c1f6134f979d50eec43f288, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6866387084450533419
 GameObject:
   m_ObjectHideFlags: 0
@@ -4905,12 +4926,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6134455576275678666}
-  - component: {fileID: 5179540904966012317}
-  - component: {fileID: 7410404838220746693}
   - component: {fileID: 6306566217149547471}
   - component: {fileID: 8916631681253868026}
-  - component: {fileID: -5366328541601197726}
-  - component: {fileID: 7889418849244326250}
+  - component: {fileID: 5179540904966012317}
+  - component: {fileID: 7410404838220746693}
   m_Layer: 0
   m_Name: Fireball_Spell
   m_TagString: Spell
@@ -4927,7 +4946,7 @@ Transform:
   m_GameObject: {fileID: 6866387084450533419}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2919341313617727967}
@@ -4936,6 +4955,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6306566217149547471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866387084450533419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bdc98862bce0440b92768b1ac16484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellData: {fileID: 11400000, guid: a027ff46ade83dc43aee18da74e625c1, type: 2}
+  spellScript: {fileID: 8916631681253868026}
+  trailParticles: {fileID: 6562827897056217952}
+  burstAmount: 60
+  rb: {fileID: 7410404838220746693}
+  coll: {fileID: 5179540904966012317}
+  lightController: {fileID: 3295488785256067574}
+  scaleOscillation: 0.01
+--- !u!114 &8916631681253868026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866387084450533419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1589a7279c508458069371fc0e02fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 11400000, guid: a027ff46ade83dc43aee18da74e625c1, type: 2}
+  bruhCollider: {fileID: 0}
+  rb: {fileID: 7410404838220746693}
+  rotate: {x: 0, y: 0, z: 180}
+  spellActive: 1
+  isChair: 0
+  isWind: 0
+  isPiplup: 0
+  direction: {x: 0, y: -1}
+  damage: 5
 --- !u!58 &5179540904966012317
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4973,74 +5034,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6306566217149547471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6bdc98862bce0440b92768b1ac16484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellData: {fileID: 11400000, guid: a027ff46ade83dc43aee18da74e625c1, type: 2}
---- !u!114 &8916631681253868026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd1589a7279c508458069371fc0e02fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spell: {fileID: 11400000, guid: a027ff46ade83dc43aee18da74e625c1, type: 2}
-  collider: {fileID: 0}
-  rb: {fileID: 7410404838220746693}
-  rotate: {x: 0, y: 0, z: 180}
-  spellActive: 1
-  isChair: 0
-  isWind: 0
-  isPiplup: 0
-  direction: {x: 0, y: -1}
-  damage: 5
---- !u!95 &-5366328541601197726
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b01b6d442c1f6134f979d50eec43f288, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7889418849244326250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866387084450533419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b1ee7757ad34040b10d9a45b83e84f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: FIRE
 --- !u!1001 &2684854819490734227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5050,7 +5043,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4812598531523419038, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
       propertyPath: m_Name
-      value: firelight
+      value: Firelight
       objectReference: {fileID: 0}
     - target: {fileID: 4812598531523419039, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
       propertyPath: m_RootOrder
@@ -5098,6 +5091,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
+--- !u!114 &3295488785256067574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 646663112589906277, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
+  m_PrefabInstance: {fileID: 2684854819490734227}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618804e98cb1f054dbc5da96668fe32a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7461142857961224972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4812598531523419039, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}

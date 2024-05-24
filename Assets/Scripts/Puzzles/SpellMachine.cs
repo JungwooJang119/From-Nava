@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpellMachine : MonoBehaviour
 {
     [SerializeField] GameObject spell;
-	[SerializeField] SpellScriptObj spellData;
+	[SerializeField] SpellSO spellData;
 	[SerializeField] float timeBetweenCasts = 5;
 	[SerializeField] bool active;
 	[SerializeField] float time;

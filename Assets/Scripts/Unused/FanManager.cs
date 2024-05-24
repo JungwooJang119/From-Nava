@@ -19,7 +19,7 @@ public class FanManager : MonoBehaviour
     {
         bool check = true;
         foreach(Fan f in fans){
-            if (!f.IsBlowing()) {
+            if (!f.IsRotating) {
                 check = false;
             }
         }
@@ -31,14 +31,4 @@ public class FanManager : MonoBehaviour
             // FansDeactivate();
         }
     }
-
-    // void FansActivate(){
-    //     //fill in fan activated behavior here
-    //     Debug.Log("all fans blowing");
-    // }
-
-    // void FansDeactivate() {
-    //     //fill in fan deactivated behavior here
-    //     Debug.Log("not all fans blowing");
-    // }
 }

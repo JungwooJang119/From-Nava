@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class IntroSkipLogic : MonoBehaviour
 {
 
-    [SerializeField] private tranMode transitionManager;
+    [SerializeField] private TransitionManager transitionManager;
     [SerializeField] private GameObject skipText;
     bool AtConfirmationToSkip = false;
 

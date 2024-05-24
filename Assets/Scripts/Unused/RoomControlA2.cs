@@ -8,8 +8,7 @@ public class RoomControlA2 : MonoBehaviour
 {
     [SerializeField] GameObject firewoodController;
 	[SerializeField] RoomCode revealRoomCode;
-    private Firewood_Script[] firewoods;
-	private int firewoodCount = 0;
+    private Firewood[] firewoods;
 
     public GameObject A2Chest = null;
     public bool cheat = false;
@@ -27,17 +26,17 @@ public class RoomControlA2 : MonoBehaviour
 		virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
 		returnToPlayer = PlayerController.Instance.transform;
 
-		firewoods = firewoodController.GetComponentsInChildren<Firewood_Script>();
-		foreach (Firewood_Script firewood in firewoods) {
+		firewoods = firewoodController.GetComponentsInChildren<Firewood>();
+		foreach (Firewood firewood in firewoods) {
 			firewood.OnLitStatusChange += RoomControlA2_OnLitStatusChange;
-			if (firewood.GetLit()) firewoodCount++;
 		}
 	}
 
-    private void RoomControlA2_OnLitStatusChange(int change) {
-		firewoodCount += change;
-        if (firewoodCount == firewoods.Length) {
-			foreach (Firewood_Script firewood in firewoods) {
+    private void RoomControlA2_OnLitStatusChange() {
+		int firewoodCount = 0;
+		foreach (Firewood firewood in firewoods) firewoodCount += firewood.IsPuzzleLit ? 1 : 0;
+		if (firewoodCount == firewoods.Length) {
+			foreach (Firewood firewood in firewoods) {
 				firewood.OnLitStatusChange -= RoomControlA2_OnLitStatusChange;
 			} CompleteRoom();
 		}

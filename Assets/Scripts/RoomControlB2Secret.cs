@@ -5,23 +5,22 @@ using UnityEngine;
 public class RoomControlB2Secret : MonoBehaviour
 {
     [SerializeField] GameObject firewoodController;
-    private Firewood_Script[] firewoods;
-	private int firewoodCount = 0;
+    private Firewood[] firewoods;
 	[SerializeField] private GameObject[] doorList;
     
     // Start is called before the first frame update
     void Start() {
-		firewoods = firewoodController.GetComponentsInChildren<Firewood_Script>();
-		foreach (Firewood_Script firewood in firewoods) {
+		firewoods = firewoodController.GetComponentsInChildren<Firewood>();
+		foreach (Firewood firewood in firewoods) {
 			firewood.OnLitStatusChange += RoomControlA2_OnLitStatusChange;
-			if (firewood.GetLit()) firewoodCount++;
 		}
 	}
 
-    private void RoomControlA2_OnLitStatusChange(int change) {
-		firewoodCount += change;
+    private void RoomControlA2_OnLitStatusChange() {
+		int firewoodCount = 0;
+		foreach (Firewood firewood in firewoods) firewoodCount += firewood.IsPuzzleLit ? 1 : 0;
         if (firewoodCount == firewoods.Length) {
-			foreach (Firewood_Script firewood in firewoods) {
+			foreach (Firewood firewood in firewoods) {
 				firewood.OnLitStatusChange -= RoomControlA2_OnLitStatusChange;
 			} CompleteRoom();
 		}

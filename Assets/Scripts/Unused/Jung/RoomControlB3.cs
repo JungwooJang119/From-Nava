@@ -20,13 +20,13 @@ public class RoomControlB3 : MonoBehaviour
     void Update()
     {
         if (isActive) {
-            if (p1.IsBlowing()) {
+            if (p1.IsRotating) {
                 door.GetComponent<Door>().OpenDoor();
                 isActive = false;
             }
         }
         if (!isActive) {
-            if (!p1.IsBlowing()) {
+            if (!p1.IsRotating) {
                 door.GetComponent<Door>().CloseDoor();
                 isActive = true;
             }

@@ -2,27 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomDisablerControl : Singleton<RoomDisablerControl>
-{
-    private PlayerController pc;
-    private GameObject player;
+public class RoomDisablerControl : Singleton<RoomDisablerControl> {
 
+    [SerializeField] private PlayerController pc;
     [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private GameObject[] rooms;
 
     void Awake() {
-		//DontDestroyOnLoad(gameObject);
 		InitializeSingleton(gameObject);
-	}
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.Find("Player");
-        pc = player.GetComponent<PlayerController>();
-        string roomCode = "";
+        string roomCode;
         for (int i = 0; i < spawnPoints.Length; i++) {
-            if (spawnPoints[i].name.Substring(0, 2) != pc.spawn.name.Substring(0,2)) {
+            if (spawnPoints[i].name.Substring(0, 2) != pc.spawn.name.Substring(0, 2)) {
                 roomCode = spawnPoints[i].name.Substring(0, 2);
                 for (int j = 0; j < rooms.Length; j++) {
                     if (rooms[j].name == roomCode) {

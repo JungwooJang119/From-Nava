@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class RoomDisablerControl : Singleton<RoomDisablerControl> {
 
+    [SerializeField] private PlayerController pc;
     [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private GameObject[] rooms;
 
     void Awake() {
 		InitializeSingleton(gameObject);
-        PlayerController pc = PlayerController.Instance;
         string roomCode;
         for (int i = 0; i < spawnPoints.Length; i++) {
             if (spawnPoints[i].name.Substring(0, 2) != pc.spawn.name.Substring(0, 2)) {

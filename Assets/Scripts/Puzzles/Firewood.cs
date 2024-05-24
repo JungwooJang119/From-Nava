@@ -23,7 +23,7 @@ public class Firewood : BaseObject {
 			firewoodLines[i].Init(transform, firewoodScripts[i].transform, lineMaterial);
 		} OnHeatToggle += BaseObject_OnHeatToggle;
     }
-
+ 
     private void BaseObject_OnHeatToggle(ObjectState prevState, bool active) {
         if (prevState == ObjectState.Frozen) {
             if (active) Ignite();

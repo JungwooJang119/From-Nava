@@ -10829,6 +10829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabledPattern: {fileID: 21300000, guid: a72dfafe81f6219499fd56bdf62ddc88, type: 3}
+  disabledDelta: {x: 182, y: 182}
 --- !u!1 &3687925350285578617
 GameObject:
   m_ObjectHideFlags: 0

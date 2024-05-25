@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8411920470653146606}
   - component: {fileID: 1157913302458378134}
   - component: {fileID: 8833644641803840437}
+  - component: {fileID: 6984650754877947901}
   - component: {fileID: 8912138827202111066}
   - component: {fileID: 6735685028640528636}
   - component: {fileID: 8995578421938640857}
@@ -155,6 +156,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &6984650754877947901
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575101082676132795}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
 --- !u!61 &8912138827202111066
 BoxCollider2D:
   m_ObjectHideFlags: 0

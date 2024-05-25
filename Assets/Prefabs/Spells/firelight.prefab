@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 4812598531523419039}
   - component: {fileID: 646663112589906277}
   m_Layer: 0
-  m_Name: firelight
+  m_Name: Firelight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

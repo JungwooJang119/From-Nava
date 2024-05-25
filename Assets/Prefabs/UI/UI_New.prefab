@@ -25965,6 +25965,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 676689650680076178}
     m_Modifications:
+    - target: {fileID: 1843318393735327272, guid: a79ae8754c99815498c03638e88521dd, type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 4968473044436410179}
     - target: {fileID: 2073974258979064554, guid: a79ae8754c99815498c03638e88521dd, type: 3}
       propertyPath: m_Name
       value: Collectible Manager

@@ -13,7 +13,7 @@ public class Fan : BaseObject {
 
     private const string SPIN_CONDITION = "IsSpinning";
 
-    public bool IsRotating => animator.GetBool(SPIN_CONDITION);
+    public bool IsRotating => gameObject.activeSelf ? animator.GetBool(SPIN_CONDITION) : false;
 
     protected override void Awake() {
         base.Awake();

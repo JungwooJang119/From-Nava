@@ -88,6 +88,7 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
+  alternateSprite: {fileID: 21300000, guid: 309e8e4c89ece324bb1114e64a34c33d, type: 3}
 --- !u!114 &6265735411727060476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dust: {fileID: 7238717874534984791}
+  pushMultiplier: 1
 --- !u!212 &2886184989351054560
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class WindblastBehavior : BaseSpellBehavior {
@@ -40,10 +41,13 @@ public class WindblastBehavior : BaseSpellBehavior {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
+		if (spellScript.CasterColliders != null 
+			&& spellScript.CasterColliders.Contains(collision)) return;
 		if (collision.TryGetComponent(out BaseObject baseObject)) {
 			baseObject.Blow(this, spellScript.direction, pushStrength);
 			if (baseObject.Attributes.isHeavy) state = State.End;
 		} else if (collision.TryGetComponent(out IPushable pushable)) {
+			Debug.Log($"{this}\n{spellScript.CasterColliders}");
 			pushable.Push(spellScript.direction, pushStrength, pushStrength);
 			state = State.End;
 		}

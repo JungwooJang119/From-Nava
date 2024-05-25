@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributes:
-    isHeavy: 0
+    isHeavy: 1
     isCopyable: 0
   defaultState: 0
 --- !u!114 &8899674046016632883
@@ -71,6 +71,7 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
+  alternateSprite: {fileID: 21300000, guid: e902128f4092cd441b8a50587ca6558c, type: 3}
 --- !u!114 &2656265587042397633
 MonoBehaviour:
   m_ObjectHideFlags: 0

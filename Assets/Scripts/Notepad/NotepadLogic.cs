@@ -52,10 +52,14 @@ public class NotepadLogic : Singleton<NotepadLogic>
         
     }
 
+     public static event System.EventHandler OnClear;
+
     //Handles the event by ending the spellcast if a spell is currently being drawn.
-    private void OnClearNotepad(object sender, int input) {
+    private void OnClearNotepad(object sender, object n) {
         if (activePattern) {
-            EndPattern();
+            // EndPattern();
+            ResetPattern();
+            OnClear?.Invoke(this, null);
         }
     }
 

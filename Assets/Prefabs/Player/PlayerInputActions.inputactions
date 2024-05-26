@@ -328,7 +328,7 @@
                 {
                     "name": "",
                     "id": "826e08b9-b0f8-43f1-8abd-1aaa52ae9835",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/#(C)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

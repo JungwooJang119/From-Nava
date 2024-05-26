@@ -71,6 +71,7 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
+  alternateSprite: {fileID: 0}
 --- !u!114 &4320485783800380265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 200
+  m_Mass: 5000
   m_LinearDrag: 30
   m_AngularDrag: 30
   m_GravityScale: 0

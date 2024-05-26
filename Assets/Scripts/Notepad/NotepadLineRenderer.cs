@@ -37,6 +37,7 @@ public class NotepadLineRenderer : MonoBehaviour
     private void OnDisable() {
         NotepadLogic.OnNodeSelected -= OnNodeSelected;
         NotepadLogic.OnSpellCast -= OnSpellCast;
+        NotepadLogic.OnClear -= OnClear;
     }
 
     private void OnNodeSelected(object sender, int num)

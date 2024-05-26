@@ -271,7 +271,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     //Then send this event out to its listeners, being in NotepadLogic.
     public static event System.EventHandler OnClearNotepad;
     private void OnClear() {
-        OnClearNotepad?.Invoke(this, null);
+        // OnClearNotepad?.Invoke(this, null);
     }
 }
 

@@ -7,6 +7,7 @@ public class ReloadScene : MonoBehaviour
 {
     [SerializeField] private GameObject[] _firewoodControllers;
     [SerializeField] private GameObject[] _mirrorControllers;
+    [SerializeField] private GameObject[] _objects;
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Spell" || other.tag == "WindBlast") {
@@ -21,6 +22,9 @@ public class ReloadScene : MonoBehaviour
 			if (mirrorPar != null) {
 				mirrorPar.GetComponent<MirrorController>().PressPlate();
 			}
+		}
+        foreach (GameObject objList in _objects) {
+			objList.GetComponent<ControllerObject>().StartReset();
 		}
 	}
 }

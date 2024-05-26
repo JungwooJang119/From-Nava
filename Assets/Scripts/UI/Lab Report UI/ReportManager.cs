@@ -146,6 +146,7 @@ public class ReportManager : CollectibleManager<ReportData> {
 					alpha = MoveOpacity(0, fadeRate * 1.75f);
 					if (alpha == 0) {
 						if (FetchString()) {
+							SetOpacity(1, currentNote.alpha);
 							NextPage();
 							currentIndex = 0;
 							writeTimer = 0.5f;

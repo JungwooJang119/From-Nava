@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5789348377685552951}
   - component: {fileID: 4137070751988683371}
   - component: {fileID: 5693930533815305302}
+  - component: {fileID: -8400733945548566892}
   - component: {fileID: 5693930533815305300}
   - component: {fileID: 979451760}
   - component: {fileID: 979451759}
@@ -158,6 +159,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!210 &-8400733945548566892
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693930533815305305}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
 --- !u!61 &5693930533815305300
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -257,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2493257013992297699, guid: e6283506ffee066499dee904319ccb3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2493257013992297699, guid: e6283506ffee066499dee904319ccb3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -291,9 +303,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6891811020265005330, guid: e6283506ffee066499dee904319ccb3e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 5745027768293496292, guid: e6283506ffee066499dee904319ccb3e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.574
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6283506ffee066499dee904319ccb3e, type: 3}

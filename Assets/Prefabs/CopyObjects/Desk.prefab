@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 9122077249685681649}
   - component: {fileID: 742108244219781380}
   - component: {fileID: 3935947489047018557}
+  - component: {fileID: 1635892818595401304}
   - component: {fileID: 6501937713015008925}
   - component: {fileID: 9035775906177036204}
-  - component: {fileID: 4693708176884164973}
   - component: {fileID: 8454499055148146299}
+  - component: {fileID: 4693708176884164973}
   - component: {fileID: 584444634993858782}
   m_Layer: 0
   m_Name: Desk
@@ -94,7 +95,21 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
-  alternateSprite: {fileID: 21300000, guid: 3a549339231035c43804898f1d5f0108, type: 3}
+  spriteSwapper: {fileID: 1635892818595401304}
+--- !u!114 &1635892818595401304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122896276158322483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e899bbdaf066f4ca9f6ea65fb4fdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6501937713015008925}
+  frozenSprite: {fileID: 21300000, guid: 3a549339231035c43804898f1d5f0108, type: 3}
 --- !u!212 &6501937713015008925
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -158,47 +173,6 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
---- !u!60 &4693708176884164973
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5122896276158322483}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 3}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.6225028, y: -0.23749924}
-      - {x: 0.74750805, y: 0.6400018}
-      - {x: -0.80250025, y: 0.5800028}
-      - {x: -1.632503, y: -0.23249722}
-      - {x: -1.6625028, y: -0.7325015}
-      - {x: -1.5175028, y: -0.74000883}
-      - {x: -1.520397, y: -0.7424309}
-      - {x: -1.503737, y: -0.714936}
-      - {x: -1.4961078, y: -1.108114}
-      - {x: -1.0081661, y: -1.109936}
-      - {x: -0.88639736, y: -0.7580323}
-      - {x: -0.48158526, y: -0.46074414}
-      - {x: 0.10249472, y: -0.4600134}
-      - {x: 0.5425005, y: -0.4750111}
-      - {x: 0.9149995, y: -1.030004}
-      - {x: 1.5625048, y: -1.130002}
 --- !u!61 &8454499055148146299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -212,10 +186,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018053293, y: -0.24552625}
+  m_Offset: {x: 0, y: -0.55}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.6}
     oldSize: {x: 4, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -223,8 +197,47 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.3572984, y: 1.7579256}
+  m_Size: {x: 3.35, y: 1.75}
   m_EdgeRadius: 0
+--- !u!60 &4693708176884164973
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122896276158322483}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.6}
+    oldSize: {x: 4, y: 3}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.6755219, y: -0.7560813}
+      - {x: 1.6716824, y: -0.28152108}
+      - {x: 0.78425306, y: 0.5939188}
+      - {x: -0.78969204, y: 0.611357}
+      - {x: -1.6701217, y: -0.25744247}
+      - {x: -1.6809806, y: -0.7336876}
+      - {x: -1.4859076, y: -1.1290503}
+      - {x: -1.0122542, y: -1.1272321}
+      - {x: -0.87323284, y: -0.6949518}
+      - {x: -0.35451835, y: -0.15077496}
+      - {x: 0.35692078, y: -0.14802456}
+      - {x: 0.88352937, y: -0.68926287}
+      - {x: 1.0172606, y: -1.1160243}
+      - {x: 1.4986372, y: -1.1199226}
 --- !u!50 &584444634993858782
 Rigidbody2D:
   serializedVersion: 4

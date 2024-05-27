@@ -11,15 +11,12 @@ public class FreezableModule : ObjectModule {
     [SerializeField] private float shineSpeed = 3.5f;
     [SerializeField] private Vector2 shineWaitRange = new Vector2(6, 8);
     [SerializeField] private Material freezeMaterial;
-    [SerializeField] private Sprite alternateSprite;
-    private Sprite defaultSprite;
+    [SerializeField] private SpriteSwapper spriteSwapper;
 
     private float patternSeed;
 
     protected override void Awake() {
         base.Awake();
-        defaultSprite = spriteRenderer.sprite;
-        alternateSprite = alternateSprite ? alternateSprite : defaultSprite;
         patternSeed = Random.Range(1.5f, 10f);
         baseObject.OnHeatToggle += BaseObject_OnFireToggle;
     }
@@ -29,14 +26,14 @@ public class FreezableModule : ObjectModule {
             case ObjectState.Default:
                 if (!heatSignal) {
                     baseObject.SetState(ObjectState.Frozen);
-                    spriteRenderer.sprite = alternateSprite;
+                    if (spriteSwapper) spriteRenderer.sprite = spriteSwapper.Frozen;
                     StopAllCoroutines();
                     StartCoroutine(FreezeAsync(1));
                 } break;
             case ObjectState.Frozen:
                 if (heatSignal) {
                     baseObject.SetState(ObjectState.Default);
-                    spriteRenderer.sprite = defaultSprite;
+                    if (spriteSwapper) spriteRenderer.sprite = spriteSwapper.Default;
                     StopAllCoroutines();
                     StartCoroutine(FreezeAsync(0));
                 } break;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7723165815906470435}
   - component: {fileID: 8899674046016632883}
   - component: {fileID: 2656265587042397633}
+  - component: {fileID: -2201074481741795669}
   - component: {fileID: 2279952403687720566}
   - component: {fileID: 1764932937738134911}
   - component: {fileID: 8370430019012799946}
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributes:
-    isHeavy: 1
+    isHeavy: 0
     isCopyable: 0
   defaultState: 0
 --- !u!114 &8899674046016632883
@@ -72,7 +73,7 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
-  alternateSprite: {fileID: 21300000, guid: e902128f4092cd441b8a50587ca6558c, type: 3}
+  spriteSwapper: {fileID: -2201074481741795669}
 --- !u!114 &2656265587042397633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +88,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dust: {fileID: 2606681401177223795}
   pushMultiplier: 0.5
+--- !u!114 &-2201074481741795669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462490580442181221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e899bbdaf066f4ca9f6ea65fb4fdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2279952403687720566}
+  frozenSprite: {fileID: 21300000, guid: e902128f4092cd441b8a50587ca6558c, type: 3}
 --- !u!212 &2279952403687720566
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -127,7 +142,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f3f823687f61faf449a0322b2b236921, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

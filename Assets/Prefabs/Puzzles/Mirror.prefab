@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4115633190818265596}
   - component: {fileID: 8696059702228883687}
   - component: {fileID: 4320485783800380265}
+  - component: {fileID: -8382674424355194378}
   - component: {fileID: 562756101649583581}
   - component: {fileID: 562756101649583582}
   - component: {fileID: 604461991457858494}
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attributes:
-    isHeavy: 1
+    isHeavy: 0
     isCopyable: 0
   defaultState: 0
 --- !u!114 &8696059702228883687
@@ -71,6 +72,7 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
+  spriteSwapper: {fileID: -8382674424355194378}
 --- !u!114 &4320485783800380265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +87,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dust: {fileID: 2320272274120246989}
   pushMultiplier: 0.5
+--- !u!114 &-8382674424355194378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562756101649583583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e899bbdaf066f4ca9f6ea65fb4fdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 562756101649583581}
+  frozenSprite: {fileID: 21300000, guid: e902128f4092cd441b8a50587ca6558c, type: 3}
 --- !u!212 &562756101649583581
 SpriteRenderer:
   m_ObjectHideFlags: 0

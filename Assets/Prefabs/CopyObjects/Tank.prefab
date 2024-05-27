@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 4368645215559145566}
   - component: {fileID: 8411920470653146606}
   - component: {fileID: 1157913302458378134}
+  - component: {fileID: 3737446311395320793}
   - component: {fileID: 8833644641803840437}
   - component: {fileID: 6984650754877947901}
+  - component: {fileID: 5793335173005467904}
   - component: {fileID: 8912138827202111066}
   - component: {fileID: 6735685028640528636}
-  - component: {fileID: 8995578421938640857}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -89,7 +90,7 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
-  alternateSprite: {fileID: 21300000, guid: a6a9d328e3e75cc46a8b5d0bba7b2c6c, type: 3}
+  spriteSwapper: {fileID: 3737446311395320793}
 --- !u!114 &1157913302458378134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +104,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dust: {fileID: 1113357962131686508}
-  pushMultiplier: 1
+  pushMultiplier: 0.25
+--- !u!114 &3737446311395320793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575101082676132795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e899bbdaf066f4ca9f6ea65fb4fdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8833644641803840437}
+  frozenSprite: {fileID: 21300000, guid: a6a9d328e3e75cc46a8b5d0bba7b2c6c, type: 3}
 --- !u!212 &8833644641803840437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -167,6 +182,32 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
+--- !u!61 &5793335173005467904
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575101082676132795}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 3}
+    newSize: {x: 1, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3}
+  m_EdgeRadius: 0
 --- !u!61 &8912138827202111066
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -214,36 +255,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &8995578421938640857
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6575101082676132795}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 3}
-    newSize: {x: 1, y: 3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: 1.5}
-      - {x: -0.5, y: -1.5}
-      - {x: 0.4375, y: -1.5}
-      - {x: 0.5, y: -1.4375}
-      - {x: 0.5, y: 1.5}
 --- !u!1001 &4234199125298175565
 PrefabInstance:
   m_ObjectHideFlags: 0

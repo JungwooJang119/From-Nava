@@ -21,11 +21,13 @@ public class NotepadNodeVisuals : MonoBehaviour
     private void OnEnable() {
         NotepadLogic.OnNodeSelected += OnNodeSelected;
         NotepadLogic.OnSpellCast += OnSpellCast;
+        NotepadLogic.OnClear += OnClear;
     }
 
     private void OnDisable() {
         NotepadLogic.OnNodeSelected -= OnNodeSelected;
         NotepadLogic.OnSpellCast -= OnSpellCast;
+        NotepadLogic.OnClear -= OnClear;
     }
 
     private void OnNodeSelected(object sender, int num)
@@ -58,6 +60,10 @@ public class NotepadNodeVisuals : MonoBehaviour
         badOutline?.SetActive(true);
         yield return new WaitForSeconds(nodeHighlightTime);
         badOutline?.SetActive(false);
+        DeselectNode();
+    }
+
+    private void OnClear(object sender, object n) {
         DeselectNode();
     }
 

@@ -269,9 +269,9 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     //Create an event that will be called when the player presses the right mouse button
     //This is done through Unity NewInput system
     //Then send this event out to its listeners, being in NotepadLogic.
-    public static event System.EventHandler<int> OnClearNotepad;
+    public static event System.EventHandler OnClearNotepad;
     private void OnClear() {
-        OnClearNotepad?.Invoke(this, 1);
+        // OnClearNotepad?.Invoke(this, null);
     }
 }
 

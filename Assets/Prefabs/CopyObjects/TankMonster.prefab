@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 419961240449073279}
   - component: {fileID: 310478092718190100}
   - component: {fileID: 8312764789070482206}
+  - component: {fileID: 3139453148882632922}
   - component: {fileID: 5667109648531998369}
   - component: {fileID: -3533530362622013393}
   - component: {fileID: -4464488717735557677}
-  - component: {fileID: 9102721501369219416}
+  - component: {fileID: 7891430564743928620}
   - component: {fileID: 2753406762520237701}
   m_Layer: 0
   m_Name: TankMonster
@@ -89,7 +90,7 @@ MonoBehaviour:
   shineSpeed: 3.5
   shineWaitRange: {x: 6, y: 8}
   freezeMaterial: {fileID: 2100000, guid: 9eab87c4428710a4dbb58454862a67b3, type: 2}
-  alternateSprite: {fileID: 21300000, guid: 217bed7c5e10edc4bb19d33400fa0b3a, type: 3}
+  spriteSwapper: {fileID: 3139453148882632922}
 --- !u!114 &8312764789070482206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +104,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dust: {fileID: 2937377277580454330}
-  pushMultiplier: 1
+  pushMultiplier: 0.25
+--- !u!114 &3139453148882632922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416926237029588227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e899bbdaf066f4ca9f6ea65fb4fdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5667109648531998369}
+  frozenSprite: {fileID: 21300000, guid: 217bed7c5e10edc4bb19d33400fa0b3a, type: 3}
 --- !u!212 &5667109648531998369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -188,8 +203,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &9102721501369219416
-PolygonCollider2D:
+--- !u!61 &7891430564743928620
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -211,13 +226,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: 1.5}
-      - {x: -0.5, y: -1.5}
-      - {x: 0.4375, y: -1.5}
-      - {x: 0.5, y: -1.4375}
-      - {x: 0.5, y: 1.5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3}
+  m_EdgeRadius: 0
 --- !u!61 &2753406762520237701
 BoxCollider2D:
   m_ObjectHideFlags: 0

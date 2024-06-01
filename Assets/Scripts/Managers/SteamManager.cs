@@ -31,9 +31,11 @@ public class SteamManager : Singleton<SteamManager>
     }
 
     private void Awake() {
-        // Singleton behavior as employed by Travis and Chase
+        // Singleton behavior as employed by Travis and Chase\
         DontDestroyOnLoad(gameObject);
-        InitializeSingleton(gameObject);
+        if (InitializeSingleton(gameObject)) {
+            return;
+        }
 
         if (_everInitialized) {
             // THIS IS ALMOST ALWAYS AN ERROR

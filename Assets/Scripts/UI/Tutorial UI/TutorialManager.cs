@@ -6,194 +6,150 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
 
-public class TutorialManager : MonoBehaviour, ICollectibleManager
-{
-	public event Action OnTutorialEnd;
+public class TutorialManager : CollectibleManager<TutorialData> {
 
-	private TutorialDataBank tutorialDataBank;
+	[SerializeField] private float fadeRate;
+	[SerializeField] private float flashRate;
+	[SerializeField] private GameObject itemImage;
+	[SerializeField] private GameObject itemText;
+	[SerializeField] private GameObject bottomNote;
+	[SerializeField] private GameObject tutorialVideo;
 
-	private enum State {
-		Idle,
-		Start,
-		Fade,
-		Await,
-		End,
-	} private State state = State.Idle;
-
-	private GameObject tutorialVideo;
-	private GameObject inputImage;
-	private GameObject tutorialText;
-	private GameObject bottomNote;
-
-	private VideoPlayer videoRenderer;
-	private RawImage videoTexture;
-	private Image inputRenderer;
+	private Image itemRenderer;
 	private TextMeshProUGUI currentText;
 	private TextMeshProUGUI currentNote;
+	private VideoPlayer videoRenderer;
+	private RawImage videoTexture;
 
-	private string intKey = "space";
+	private readonly string intKey = "space";
 
-	private Transform canvasTransform;
-	private tranMode transitionScript;
-
-	private float timer = 0;
-
-	// Text color and opacity;
-	private byte _r = 255, _g = 255, _b = 255; // RGB values for the text color;
-	private float textAlpha = 0;              // Controls alpha fadeout of text;
-	private float noteAlpha = 0;                // Second alpha for the bottom alert text;
-	private bool alertUp;
-
-	// Start is called before the first frame update
-	void Start() {
-		tutorialDataBank = GetComponent<TutorialDataBank>();
-
-		foreach (Transform t in transform) {
-			if (t.gameObject.name == "TutorialVideo") tutorialVideo = t.gameObject;
-			if (t.gameObject.name == "InputImage") inputImage = t.gameObject;
-			if (t.gameObject.name == "TutorialText") tutorialText = t.gameObject;
-			if (t.gameObject.name == "BottomNote") bottomNote = t.gameObject;
-		}
-
-		transitionScript = ReferenceSingleton.Instance.transition;
-		canvasTransform = transitionScript.transform.parent;
+	void Awake() {
+		itemRenderer = itemImage.GetComponent<Image>();
+		currentText = itemText.GetComponent<TextMeshProUGUI>();
+		currentNote = bottomNote.GetComponent<TextMeshProUGUI>();
+		videoRenderer = tutorialVideo.GetComponent<VideoPlayer>();
+		videoTexture = tutorialVideo.GetComponent<RawImage>();
 	}
 
-	// Update is called once per frame
+	/// <summary>
+	/// Won't be necessary with New Input System;
+	/// </summary>
 	void Update() {
-		switch (state) {
-			case State.Start:
-				if (timer <= 0) {
-					state = State.Fade;
-				} break;
-
-			case State.Fade:
-				if (textAlpha < 1) {
-					ChangeOpacity(5f);
-				} else {
-					state = State.Await;
-				} break;
-
-			case State.Await:
-				if (noteAlpha >= 1f) {
-					alertUp = false;
-				} else if (noteAlpha <= 0.1f) {
-					alertUp = true;
-				}
-				if (alertUp) {
-					noteAlpha += Time.deltaTime;
-				} else {
-					noteAlpha -= Time.deltaTime;
-				} currentNote.color = new Color(_r, _g, _b, noteAlpha);
-
-				if (Input.GetKeyDown(intKey)) {
-					state = State.End;
-				} break;
-
-			case State.End:
-				if (textAlpha > 0) {
-					ChangeOpacity(-5f);
-				} else {
-					OnTutorialEnd?.Invoke();
-					ResetElements();
-					state = State.Idle;
-				} break;
-		}
-
-		if (timer > 0) timer -= Time.deltaTime;
+		if (state == State.Await && Input.GetKeyDown(intKey)) state = State.End;
 	}
 
-	public void Display(string name, float transitionTime = 0) {
-		var tutorialData = tutorialDataBank.GetTutorialData(name);
+	public override void Display(TutorialData itemData, float transitionTime = 0) {
 
-		if (tutorialData.videoClip != null) {
-			if (videoRenderer == null) {
-				tutorialVideo.SetActive(true);
-				var tutorialGIFTransform = tutorialVideo.transform;
-				tutorialGIFTransform.SetParent(canvasTransform);
-				tutorialGIFTransform.localScale = Vector3.one * 0.8f;
-				tutorialGIFTransform.rotation = canvasTransform.rotation;
-				tutorialGIFTransform.position = new Vector3(canvasTransform.position.x + 4, canvasTransform.position.y - 3, canvasTransform.position.z);
-				videoRenderer = tutorialVideo.GetComponent<VideoPlayer>();
-				if (!videoTexture) videoTexture = tutorialVideo.GetComponent<RawImage>();
-			} videoRenderer.clip = tutorialData.videoClip;
+		if (itemData.videoClip != null) {
+			tutorialVideo.SetActive(true);
+			var tutorialGIFTransform = tutorialVideo.transform;
+			tutorialGIFTransform.SetParent(canvasTransform);
+			tutorialGIFTransform.localScale = Vector3.one * 0.8f;
+			tutorialGIFTransform.rotation = canvasTransform.rotation;
+			tutorialGIFTransform.position = new Vector3(canvasTransform.position.x + 4, canvasTransform.position.y - 3, canvasTransform.position.z);
+			videoRenderer.clip = itemData.videoClip;
 		}
 
-		if (tutorialData.inputImage != null) {
-			if (inputRenderer == null) {
-				inputImage.SetActive(true);
-				var inputImageTransform = inputImage.transform;
-				inputImageTransform.SetParent(canvasTransform);
-				inputImageTransform.localScale = Vector3.one * 1.2f;
-				inputImageTransform.rotation = canvasTransform.rotation;
-				inputImageTransform.position = new Vector3(canvasTransform.position.x - 6, canvasTransform.position.y - 3, canvasTransform.position.z);
-				inputRenderer = inputImage.GetComponent<Image>();
-			} inputRenderer.sprite = tutorialData.inputImage;
-			inputRenderer.SetNativeSize();
+		if (itemData.inputImage != null) {
+			itemImage.SetActive(true);
+			var inputImageTransform = itemImage.transform;
+			inputImageTransform.SetParent(canvasTransform);
+			inputImageTransform.localScale = Vector3.one * 1.2f;
+			inputImageTransform.rotation = canvasTransform.rotation;
+			inputImageTransform.position = new Vector3(canvasTransform.position.x - 6, canvasTransform.position.y - 3, canvasTransform.position.z);
+			itemRenderer.sprite = itemData.inputImage;
+			itemRenderer.SetNativeSize();
 		}
 
-		if (currentText == null) {
-			tutorialText.SetActive(true);
-			var tutorialTextTransform = tutorialText.transform;
-			tutorialTextTransform.SetParent(canvasTransform);
-			tutorialTextTransform.localScale = Vector3.one;
-			tutorialTextTransform.rotation = canvasTransform.rotation;
-			if (tutorialData.inputImage != null) {
-				tutorialTextTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y + 3, canvasTransform.position.z);
-			} else {
-				tutorialTextTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y + 1, canvasTransform.position.z);
-			}
-			currentText = tutorialText.GetComponent<TextMeshProUGUI>();
-		} currentText.text = (transitionTime > 0 ? tutorialData.textHeaderNew : tutorialData.textHeader) + "\n\n" + tutorialData.text;
+		itemText.SetActive(true);
+		var tutorialTextTransform = itemText.transform;
+		tutorialTextTransform.SetParent(canvasTransform);
+		tutorialTextTransform.localScale = Vector3.one;
+		tutorialTextTransform.rotation = canvasTransform.rotation;
+		if (itemData.inputImage != null) {
+			tutorialTextTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y + 3, canvasTransform.position.z);
+		} else tutorialTextTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y + 1, canvasTransform.position.z);
+		currentText.text = (transitionTime > 0 ? itemData.textHeaderNew : itemData.textHeader) + "\n\n" + itemData.text;
 
-		if (currentNote == null) {
-			bottomNote.SetActive(true);
-			var bottomNoteTransform = bottomNote.transform;
-			bottomNoteTransform.SetParent(canvasTransform);
-			bottomNoteTransform.localScale = Vector3.one;
-			bottomNoteTransform.rotation = canvasTransform.rotation;
-			bottomNoteTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y - 7, canvasTransform.position.z);
-			currentNote = bottomNote.GetComponent<TextMeshProUGUI>();
-			currentNote.text = "Advance [" + intKey.ToUpper() + "]";
-		}
+		bottomNote.SetActive(true);
+		var bottomNoteTransform = bottomNote.transform;
+		bottomNoteTransform.SetParent(canvasTransform);
+		bottomNoteTransform.localScale = Vector3.one;
+		bottomNoteTransform.rotation = canvasTransform.rotation;
+		bottomNoteTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y - 7, canvasTransform.position.z);
+		currentNote.text = "Advance [" + intKey.ToUpper() + "]";
 
-		timer = transitionTime;
-		textAlpha = 0;
-		noteAlpha = 0;
-		ChangeOpacity(0);
+		StopAllCoroutines();
 		state = State.Start;
+		SetOpacity(0);
+		StartCoroutine(DisplayAsync(transitionTime));
 	}
 
-	private void ChangeOpacity(float rate) {
-		rate *= Time.deltaTime;
-		if (rate > 0) {
-			textAlpha = Mathf.Min(1, textAlpha + rate);
-			noteAlpha = Mathf.Min(1, noteAlpha + rate);
-		} else {
-			textAlpha = Mathf.Max(0, textAlpha + rate);
-			noteAlpha = Mathf.Max(0, textAlpha + rate);
+	private IEnumerator DisplayAsync(float transitionTime) {
+
+		float cycleTarget = 0;
+		while (state != State.Idle) {
+			float alpha;
+			switch (state) {
+				case State.Start:
+					if (transitionTime > 0) {
+						yield return new WaitForSeconds(transitionTime);
+						AudioControl.Instance.PlayVoidSFX("Woosh", 0, 0.75f);
+					}
+					state = State.Reveal;
+					break;
+				case State.Reveal:
+					alpha = MoveOpacity(1, fadeRate);
+					if (alpha >= 1) state = State.Await;
+					yield return null;
+					break;
+				case State.Await:
+					currentNote.alpha = Mathf.MoveTowards(currentNote.alpha, cycleTarget,
+														  Time.deltaTime * flashRate * (cycleTarget == 0 ? 1 : 2));
+					if (Mathf.Approximately(currentNote.alpha, cycleTarget)) cycleTarget = cycleTarget == 0 ? 1 : 0;
+					yield return null;
+					break;
+				case State.End:
+					alpha = MoveOpacity(0, fadeRate * 1.5f);
+					if (alpha <= 0) {
+						ResetElements();
+						controller.Poke();
+						state = State.Idle;
+					}
+					yield return null;
+					break;
+			}
 		}
-		currentText.color = new Color(_r, _g, _b, textAlpha);
-		if (videoTexture != null) videoTexture.color = currentText.color;
-		if (inputRenderer != null) inputRenderer.color = currentText.color;
-		currentNote.color = new Color(_r, _g, _b, noteAlpha);
+	}
+
+	private float MoveOpacity(float alpha, float rate) {
+		Color targetColor = itemRenderer.color; targetColor.a = alpha;
+		videoTexture.color = Vector4.MoveTowards(videoTexture.color, targetColor, Time.deltaTime * rate);
+		itemRenderer.color = Vector4.MoveTowards(itemRenderer.color, targetColor, Time.deltaTime * rate);
+		currentText.alpha = Mathf.MoveTowards(currentText.alpha, alpha, Time.deltaTime * rate);
+		currentNote.alpha = Mathf.MoveTowards(currentNote.alpha, alpha, Time.deltaTime * rate);
+		return currentText.alpha;
+	}
+
+	private void SetOpacity(float alpha) {
+		Color color = itemRenderer.color; color.a = alpha;
+		videoTexture.color = color;
+		itemRenderer.color = color;
+		currentText.alpha = alpha;
+		currentNote.alpha = alpha;
 	}
 
 	private void ResetElements() {
 		tutorialVideo.transform.SetParent(transform);
 		tutorialVideo.SetActive(false);
-		videoRenderer = null;
 
-		inputImage.transform.SetParent(transform);
-		inputImage.SetActive(false);
-		inputRenderer = null;
+		itemImage.transform.SetParent(transform);
+		itemImage.SetActive(false);
 
-		tutorialText.transform.SetParent(transform);
-		tutorialText.SetActive(false);
-		currentText = null;
+		itemText.transform.SetParent(transform);
+		itemText.SetActive(false);
 
 		bottomNote.transform.SetParent(transform);
 		bottomNote.SetActive(false);
-		currentNote = null;
 	}
 }

@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class EndingLogic : MonoBehaviour {
 
-	[SerializeField] private tranMode transitionManager;
+	[SerializeField] private TransitionManager transitionManager;
 	[SerializeField] private Image background;
 	[SerializeField] private float initialFrameWait;
 	[SerializeField] private float finalFadeTime;
@@ -44,7 +44,10 @@ public class EndingLogic : MonoBehaviour {
 
 	private IEnumerator Intro() {
 		yield return new WaitForSeconds(1);
-		if (!string.IsNullOrWhiteSpace(initialClipName)) AudioControl.Instance.PlayMusic(initialClipName, false);
+		if (!string.IsNullOrWhiteSpace(initialClipName)) {
+			AudioControl.Instance.ResetTime();
+			AudioControl.Instance.PlayMusic(initialClipName, false);
+		}
 		yield return new WaitForSeconds(initialFrameWait);
 		transitioning = false;
     }

@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    public SpellScriptObj spell;
-    public event Action<GameObject> OnSpellDestroy;
+    public SpellSO spell;
+    public event System.Action<GameObject> OnSpellDestroy;
 
     //[SerializeField] private LogicScript logicScript;
     [SerializeField] private Collider2D bruhCollider;
@@ -19,17 +17,15 @@ public class Spell : MonoBehaviour
     [SerializeField] private bool isPiplup = false;
 
     public Vector2 direction;
+    public Collider2D[] CasterColliders { get; private set; }
 
     public int damage;
 
 
     private void Awake()
     {
-        if (!isChair || !isPiplup) {
-            transform.Rotate(rotate);
-        }
 
-        bruhCollider = GetComponent<Collider2D>();
+        if (bruhCollider == null) bruhCollider = GetComponent<Collider2D>();
         bruhCollider.isTrigger = true;
 
         rb = GetComponent<Rigidbody2D>();
@@ -56,7 +52,7 @@ public class Spell : MonoBehaviour
         transform.Translate(Vector3.up * spell.speed * Time.deltaTime);
     }
 
-    public virtual void CastSpell(Vector2 dir) {
+    public virtual void CastSpell(MonoBehaviour caster, Vector2 dir) {
         direction = dir;
         if(dir.x < 0)
             rotate = new Vector3(0, 0, 90);
@@ -66,7 +62,8 @@ public class Spell : MonoBehaviour
             rotate = new Vector3(0, 0, 0);
         if (dir.y < 0)
             rotate = new Vector3(0, 0, 180);
-
+        if (!isChair || !isPiplup) transform.Rotate(rotate);
+        CasterColliders = caster.GetComponentsInChildren<Collider2D>(true);
         spellActive = true;
     }
 
@@ -74,11 +71,12 @@ public class Spell : MonoBehaviour
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
     /// <param name="other">The other Collider involved in this collision.</param>
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (CasterColliders != null 
+            && CasterColliders.Contains(other)) return;
         IDamageable damageable = other.GetComponent<IDamageable>();
         if (damageable != null) {
-            print("spellscript");
+            // print("spellscript");
         }
         if (other.gameObject.CompareTag("Player")) {
             return;

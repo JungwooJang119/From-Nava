@@ -57,7 +57,7 @@ public class LogicScript : MonoBehaviour
     */
     public void setString(string newNode) {
         patternActive += newNode;
-        if (newNode == "9") {
+        if (newNode == "9") {/*
             if (patternActive == "59") { //Fireball Spell
                 bool hasEnoughMana = ((currMagic - _spell.spell.manaCost) >= 0f);
                 if (!castingMagic && hasEnoughMana) {
@@ -67,7 +67,7 @@ public class LogicScript : MonoBehaviour
                     currMagicRefillTimer = 0;
                     CastSpell();
                 }    
-            }
+            }*/
             if (patternActive == "269") {
                 //demonstrate disabling ice tower
                 iceTower.disableTower = true; 

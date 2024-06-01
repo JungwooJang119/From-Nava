@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5ef67d74729cc489d0cd04d90efcc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseLight: 0.4
+  baseIntensity: 0.4
+  radiusOffset: 0.1
 --- !u!1 &4812598531342414715
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5ef67d74729cc489d0cd04d90efcc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseLight: 0.4
+  baseIntensity: 0.4
+  radiusOffset: 0.1
 --- !u!1 &4812598531523419038
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +263,7 @@ GameObject:
   - component: {fileID: 4812598531523419039}
   - component: {fileID: 646663112589906277}
   m_Layer: 0
-  m_Name: firelight
+  m_Name: Firelight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,3 +298,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618804e98cb1f054dbc5da96668fe32a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightRate: 15

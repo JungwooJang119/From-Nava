@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FirewoodLine : MonoBehaviour
-{
+public class FirewoodLine : MonoBehaviour {
+
 	private new LineRenderer renderer;
 	private float key1 = 0.0f;
 	private float key2 = 0.05f;
@@ -12,13 +10,12 @@ public class FirewoodLine : MonoBehaviour
 	private Color color2;
 	private Color edgeColor;
 	private float alpha = 0f;
-	private Firewood_Script targetFirewood;
+	private Firewood targetFirewood;
 
 	private bool start = true;
 
-    // Like Start() but... no >:(
-    public void SetUpLine(Transform parent, Transform target, Material lineMaterial) {
-		renderer = gameObject.AddComponent<LineRenderer>() as LineRenderer;
+    public void Init(Transform parent, Transform target, Material lineMaterial) {
+		renderer = gameObject.AddComponent<LineRenderer>();
 		transform.SetParent(parent);
 		transform.position = parent.position;
 		renderer.textureMode = LineTextureMode.Tile;
@@ -30,11 +27,12 @@ public class FirewoodLine : MonoBehaviour
 		SetPositionKey(2, key2, parent.position, target.position);
 		renderer.SetPosition(3, target.position);
 		renderer.sortingOrder = -1;
-		targetFirewood = target.GetComponent<Firewood_Script>();
+		targetFirewood = target.GetComponent<Firewood>();
 		gameObject.SetActive(false);
 	}
 
     public void DrawLine(Color color1, Color color2, bool whiteEnd) {
+		gameObject.SetActive(true);
 		start = true;
 		this.color1 = color1;
 		this.color2 = color2;
@@ -49,13 +47,13 @@ public class FirewoodLine : MonoBehaviour
 			ComputeKeys(rate, rate, rate*2f);
 			SetGradient();
 			if (key2 >= 1f) {
-				targetFirewood.ChangeLit();
+				targetFirewood.Toggle();
 				start = false;
 			}
 		} else {
 			ComputeKeys(rate/2f, rate/2f, -rate);
 			SetGradient();
-			if (alpha <= 0) Reset();
+			if (alpha <= 0) ResetLine();
 		}
     }
 
@@ -86,7 +84,7 @@ public class FirewoodLine : MonoBehaviour
 		renderer.colorGradient = gradient;
 	}
 
-	private void Reset() {
+	private void ResetLine() {
 		key1 = 0.0f;
 		key2 = 0.05f;
 		alpha = 0f;

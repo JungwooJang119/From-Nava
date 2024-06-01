@@ -99,7 +99,6 @@ public class MeleeMiniBossController : MonoBehaviour
                     enemy.PushTranslate();
                 }
                 idle = true;
-                enemy.ReactToPlayerInRange(false);
                 ChangeAnimationState(BIG_GUY_WALK);
                 //NewDirection();
                 currentIdleTime += Time.deltaTime;
@@ -110,6 +109,7 @@ public class MeleeMiniBossController : MonoBehaviour
                 transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
                 if (Vector2.Distance(transform.position, player.position) < maxDistance) {
                     if (currentIdleTime >= stayInIdleTime) {
+                        enemy.ReactToPlayerInRange(true);
                         state = EnemyState.CHASE;
                         currentIdleTime = 0;
                     }
@@ -120,7 +120,6 @@ public class MeleeMiniBossController : MonoBehaviour
                     enemy.PushTranslate();
                 }
                 idle = true;
-                enemy.ReactToPlayerInRange(false);
                 //NewDirection();
                 if (Time.time - lastChangeTime > changeTime) {
                     lastChangeTime = Time.time;
@@ -128,6 +127,7 @@ public class MeleeMiniBossController : MonoBehaviour
                 }
                 transform.position = new Vector2(transform.position.x + (movement.x * Time.deltaTime), transform.position.y + (movement.y * Time.deltaTime));
                 if (Vector2.Distance(transform.position, player.position) < maxDistance) {
+                    enemy.ReactToPlayerInRange(true);
                     state = EnemyState.CHASE;
                 }
                 break;
@@ -138,10 +138,8 @@ public class MeleeMiniBossController : MonoBehaviour
                 idle = false;
                 ChangeAnimationState(BIG_GUY_WALK);
                 if (Vector2.Distance(transform.position, player.position) > minDistance) {
-                    enemy.ReactToPlayerInRange(true);
                     transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
                 } else {
-                    enemy.ReactToPlayerInRange(true);
                     if (!attacking && player.gameObject.GetComponent<PlayerController>().playerHealth > 0) {
                         state = EnemyState.ATTACK;
                     } else {
@@ -149,6 +147,7 @@ public class MeleeMiniBossController : MonoBehaviour
                     }
                 }
                 if (Vector2.Distance(transform.position, player.position) > maxDistance) {
+                    enemy.ReactToPlayerInRange(false);
                     state = EnemyState.IDLE;
                 }
                 break;
@@ -156,7 +155,6 @@ public class MeleeMiniBossController : MonoBehaviour
                 if (enemy.GetPushed()) {
                     enemy.PushTranslate(); 
                 }
-                enemy.ReactToPlayerInRange(true);
                 
                 if (!attacking && currTime >= attackInterval)
                 {
@@ -178,6 +176,7 @@ public class MeleeMiniBossController : MonoBehaviour
                 }
                 if (!attacking && player.gameObject.GetComponent<PlayerController>().playerHealth <= 0) {
                     state = EnemyState.IDLE;
+                    enemy.ReactToPlayerInRange(false);
                 }
                 break;
             case EnemyState.DEAD:
@@ -195,7 +194,7 @@ public class MeleeMiniBossController : MonoBehaviour
             if (py > transform.position.y) {
                 if ((px - transform.position.x) > (py - transform.position.y)) {
                     ChangeAnimationState(BIG_GUY_ATTACK_RIGHT);
-                    print("right1");
+                    // print("right1");
                     return;
                     //rightHB.SetActive(true);
                 } else {
@@ -206,13 +205,14 @@ public class MeleeMiniBossController : MonoBehaviour
             } else {
                 if ((px - transform.position.x) > (transform.position.y - py)) {
                     ChangeAnimationState(BIG_GUY_ATTACK_RIGHT);
-                    print("right2");
+                    // print("right2");
                     return;
                     //rightHB.SetActive(true);
                 } else {
                     ChangeAnimationState(BIG_GUY_ATTACK_DOWN);
-                    print("down1");
+                    // print("down1");
                     return;
+
                     //downHB.SetActive(true);
                 }
             }
@@ -235,7 +235,7 @@ public class MeleeMiniBossController : MonoBehaviour
                     //leftHB.SetActive(true);
                 } else {
                     ChangeAnimationState(BIG_GUY_ATTACK_DOWN);
-                    print("down2");
+                    // print("down2");
                     return;
                     //downHB.SetActive(true);
                 }

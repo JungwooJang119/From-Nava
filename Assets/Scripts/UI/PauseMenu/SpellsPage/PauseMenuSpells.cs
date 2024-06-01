@@ -25,12 +25,12 @@ public class PauseMenuSpells : MonoBehaviour {
         SetActiveSpellPageHome();
     }
 
-    public void SetActiveSpellPage(Type type, TutorialDataBank.TutorialType tutorialType) {
+    public void SetActiveSpellPage(Type type, TutorialData tutorialType) {
         SetActiveSpellPage(type);
         StartCoroutine(WaitForActiveTutorial(tutorialType));
     }
 
-    private IEnumerator WaitForActiveTutorial(TutorialDataBank.TutorialType tutorialType) {
+    private IEnumerator WaitForActiveTutorial(TutorialData tutorialType) {
         while (!activePage.activeSelf) yield return null;
         activePage.GetComponent<PauseMenuSpellTutorials>().SetActiveTutorial(tutorialType);
     }

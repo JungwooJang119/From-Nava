@@ -5086,8 +5086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleCalls:
-  - collectibleType: 1
-    name: Fireball
+  - {fileID: 11400000, guid: 7981fd2cce324e847b6e75b2e07f13d4, type: 2}
 --- !u!114 &2030551834
 MonoBehaviour:
   m_ObjectHideFlags: 0

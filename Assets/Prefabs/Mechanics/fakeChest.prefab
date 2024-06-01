@@ -101,11 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087fd96d1cccf4cf995b1d4853e1ea18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCameraName: CM vcam1
+  virtualCameraName: CM Player Cam
   _cameraTarget: {fileID: 0}
   _returnToPlayer: {fileID: 0}
   spellNotif: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 2641451294692747115}
   door: {fileID: 0}
   buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
   enemySpawnPoint: {fileID: 2641451294692747114}

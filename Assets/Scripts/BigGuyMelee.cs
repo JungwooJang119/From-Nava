@@ -30,7 +30,6 @@ public class BigGuyMelee : MonoBehaviour
 
     private void Update() {
         currTime += Time.deltaTime;
-        spell.CastSpell(fireDown);
         if (isWindBlasting) {
             Fire();
         }
@@ -49,50 +48,51 @@ public class BigGuyMelee : MonoBehaviour
     void Fire() {
         if (currTime >= 0) {
             //Instantiate(windBlast, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-            switch(facingDir) {
+            Spell spellGO;
+            switch (facingDir) {
                 case BigGuyDirection.RIGHT:
-                    spell.CastSpell(fireDown);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-                    spell.CastSpell(fireRight);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireDown);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-                    spell.CastSpell(fireUp);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireRight);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireUp);
                     break;
                 case BigGuyDirection.LEFT:
-                    spell.CastSpell(fireDown);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-                    spell.CastSpell(fireLeft);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireDown);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-                    spell.CastSpell(fireUp);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireLeft);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireUp);
                     break;
                 case BigGuyDirection.UP:
-                    spell.CastSpell(fireUp);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-                    spell.CastSpell(fireLeft);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireUp);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-                    spell.CastSpell(fireRight);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireLeft);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireRight);
                     break;
                 case BigGuyDirection.DOWN:
-                    spell.CastSpell(fireDown);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-                    spell.CastSpell(fireLeft);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireDown);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
-                    spell.CastSpell(fireRight);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireLeft);
                     AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
-                    Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO = Instantiate(spell, this.gameObject.GetComponent<Transform>().position, Quaternion.identity);
+                    spellGO.CastSpell(this, fireRight);
                     break;
             }
             currTime = -0.1f;

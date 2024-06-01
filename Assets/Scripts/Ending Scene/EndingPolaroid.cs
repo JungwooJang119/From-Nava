@@ -6,7 +6,7 @@ public class EndingPolaroid : MonoBehaviour {
 
     public event System.Action OnScriptEnd;
     
-    [SerializeField] private tranMode transition;
+    [SerializeField] private TransitionManager transition;
     [SerializeField] private EndTutorial tut;
     [SerializeField] private EndPolaroidDisplay controller;
 

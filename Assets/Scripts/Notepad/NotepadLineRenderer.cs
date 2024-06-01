@@ -31,11 +31,13 @@ public class NotepadLineRenderer : MonoBehaviour
      private void OnEnable() {
         NotepadLogic.OnNodeSelected += OnNodeSelected;
         NotepadLogic.OnSpellCast += OnSpellCast;
+        NotepadLogic.OnClear += OnClear;
     }
 
     private void OnDisable() {
         NotepadLogic.OnNodeSelected -= OnNodeSelected;
         NotepadLogic.OnSpellCast -= OnSpellCast;
+        NotepadLogic.OnClear -= OnClear;
     }
 
     private void OnNodeSelected(object sender, int num)
@@ -52,6 +54,10 @@ public class NotepadLineRenderer : MonoBehaviour
     private void OnSpellCast(object sender, NotepadLogic.OnSpellCastArgs e)
     {
         StartCoroutine(DelayLRReset());
+    }
+
+    private void OnClear(object sender, object e) {
+        ResetLR();
     }
 
     private IEnumerator DelayLRReset()

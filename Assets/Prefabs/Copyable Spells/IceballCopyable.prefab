@@ -5362,8 +5362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleCalls:
-  - collectibleType: 1
-    name: Iceball
+  - {fileID: 11400000, guid: c81885376a728eb44bc69ab2ca8d4dc9, type: 2}
 --- !u!114 &-1177487106009305408
 MonoBehaviour:
   m_ObjectHideFlags: 0

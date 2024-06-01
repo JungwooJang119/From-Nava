@@ -5,8 +5,7 @@ using UnityEngine;
 public class PauseMenuSpellPatterns : MonoBehaviour, ISpellPage {
 
     [SerializeField] private Sprite disabledPattern;
-
-    public Sprite GetDisabledPattern() {
-        return disabledPattern;
-    }
+    [SerializeField] private Vector2 disabledDelta;
+    public Sprite DisabledPattern => disabledPattern;
+    public Vector2 DisabledDelta => disabledDelta;
 }

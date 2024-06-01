@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SpellCastManager : MonoBehaviour
-{
+public class SpellCastManager : MonoBehaviour {
     //Responsible for spawning spells
 
     [SerializeField] private float startLagTime;
@@ -45,18 +44,18 @@ public class SpellCastManager : MonoBehaviour
         }
         Vector2 face = new Vector2(PlayerController.Instance.FacingDir.x, PlayerController.Instance.FacingDir.y);
         Spell spell = spellDict[e.spellType];
-        
-        spell.CastSpell(face);
+
         PlayerController.Instance.animator.SetTrigger("doSpellCast");
         PlayerController.Instance.DeactivateMovement();
-        StartCoroutine(CastSpell(spell));
+        StartCoroutine(CastSpell(spell, face));
     }
 
-    IEnumerator CastSpell(Spell spell) {
+    IEnumerator CastSpell(Spell spell, Vector2 face) {
 		AudioControl.Instance.PlaySFX(spell.spell.sfxString, PlayerController.Instance.gameObject, 0.1f, 0.5f);
 		yield return new WaitForSeconds(startLagTime);
         TriggerParticles(spell);
-        Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
+        Spell spellGO = Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
+        spellGO.CastSpell(PlayerController.Instance, face);
         PlayerController.Instance.ActivateMovement();
 	}
 
@@ -67,7 +66,8 @@ public class SpellCastManager : MonoBehaviour
         col.enabled = true;
 
         Gradient grad = new Gradient();
-        grad.SetKeys( new GradientColorKey[] { new GradientColorKey(c, 0.0f), new GradientColorKey(c, 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 0.0f) } );
+        grad.SetKeys( new GradientColorKey[] { new GradientColorKey(c, 0.0f), new GradientColorKey(c, 1.0f) },
+                                               new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 0.0f) } );
         col.color = grad;
 
         ps.Play();

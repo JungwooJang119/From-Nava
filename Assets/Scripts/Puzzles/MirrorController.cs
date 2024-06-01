@@ -14,14 +14,14 @@ public class MirrorController : MonoBehaviour
 	private Mirror[] _allMirrors;
 
 	// Reference to the transition prefab on the UI Canvas;
-	private tranMode _transition;
+	private TransitionManager _transition;
 
 	void Awake() {
 		_allMirrors = GetComponentsInChildren<Mirror>();
 	}
 	
 	void Start() {
-		_transition = GameObject.Find("Transition").GetComponent<tranMode>();
+		_transition = GameObject.Find("Transition").GetComponent<TransitionManager>();
 	}
 	
 	// Method to call from the pressure plate;
@@ -35,7 +35,7 @@ public class MirrorController : MonoBehaviour
 			_wait -= Time.deltaTime;
 			if (_wait <= 0) {
 				foreach (Mirror _mirror in _allMirrors) {
-					_mirror.reset();
+					_mirror.ObjectReset();
 				}
 				_transition.FadeIn();
 			}

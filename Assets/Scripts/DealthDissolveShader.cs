@@ -60,7 +60,7 @@ public class DealthDissolveShader : MonoBehaviour
 
     public IEnumerator DissolveOutCoroutine()
     {
-        Debug.Log("dissolve routine start");
+        // Debug.Log("dissolve routine start");
         while (dissolveAmount > -0.1)
         {
             dissolveAmount -= Time.deltaTime * dissolveSpeed;
@@ -71,7 +71,7 @@ public class DealthDissolveShader : MonoBehaviour
     }
     public IEnumerator DissolveInCoroutine()
     {
-        Debug.Log("dissolve routine start");
+        // Debug.Log("dissolve routine start");
         while (dissolveAmount <= 1)
         {
             dissolveAmount += Time.deltaTime * dissolveSpeed;

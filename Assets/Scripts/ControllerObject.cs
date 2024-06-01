@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ControllerObject : MonoBehaviour
 {
-    private ObjectClass[] objList;
+    private BaseObject[] objList;
     void Awake() {
-		objList = GetComponentsInChildren<ObjectClass>();
+		objList = GetComponentsInChildren<BaseObject>();
 	}
     public void StartReset() {
-        foreach (ObjectClass obj in objList) {
+        foreach (BaseObject obj in objList) {
             if (obj != null) {
-				obj.Reset();
+				obj.ObjectReset();
 			}
         }
     }

@@ -30,8 +30,37 @@ public class SteamManager : Singleton<SteamManager>
         Debug.LogWarning(pchDebugText);
     }
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+    private static void RestartIfNecessaryPriorToSplash() {
+        // Restart app with Steam if not already launched via Steam
+        try {
+            if (SteamAPI.RestartAppIfNecessary(AppID)) {
+                #if UNITY_STANDALONE
+                Application.Quit();
+                #endif
+
+                #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+                #endif
+                
+                return;
+            }
+        } catch (System.DllNotFoundException e) { // Catch potential issues with DLLs early
+            Debug.LogError("[Steamworks] Could not load [lib]steam_api.dll/so/dylib. It's likely not in the correct location. Refer to the README for more details.\n" + e);
+            #if UNITY_STANDALONE
+            Application.Quit();
+            #endif
+            
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+            
+            return;
+        }
+    }
+
     private void Awake() {
-        // Singleton behavior as employed by Travis and Chase\
+        // Singleton behavior as employed by Travis and Chase
         DontDestroyOnLoad(gameObject);
         if (InitializeSingleton(gameObject)) {
             return;

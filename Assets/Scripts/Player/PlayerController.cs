@@ -62,7 +62,14 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     private bool hasSetDir;
 
     public bool hasDoneMoveTooltip = false;
+    //These two variables are intended for use to fix movement issues where casting a spell would enable the player to move regardless of status
+    //By restoring to if we should be able to move during the current moment, we resolve these issues. 
+    //For further detail, go to SafeActivateMovement.
+    private bool shouldMove = true;
+    private bool shouldChangeDir = true;
 
+    //Boolean used to try to fix the issue of dying while reading
+    private bool inTransition = false;
 
     private void Awake() {
         InitializeSingleton();
@@ -95,7 +102,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         if (isPushed) {
             PushTranslate();
         }
-        if (playerHealth > 0 && currIFrameTime >= iFrameTime) {
+        if (!inTransition && playerHealth > 0 && currIFrameTime >= iFrameTime) {
             canBeDamaged = true;
         } else {
             canBeDamaged = false;
@@ -171,8 +178,9 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     }
 
     IEnumerator Die() {
-		canMove = false;
-        canChangeDir = false;
+		DeactivateMovement();
+        playerHealth = maxHealth;
+        canBeDamaged = false;
         movement = new Vector2(0, 0);
         dissolveShader.DissolveOut();
 		GetComponent<Collider2D>().enabled = false;
@@ -187,33 +195,54 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         ReferenceSingleton.Instance.transition.FadeIn();
         GetComponent<Collider2D>().enabled = true;
         yield return new WaitForSeconds(2f);
-        canMove = true;
-        canChangeDir = true;
-        playerHealth = maxHealth;
-		ChooseFacingDir();
+        ActivateMovement();
+        canBeDamaged = true;
         GetComponent<HealthBar>().ChangeHealth(playerHealth);
     }
 
     void OnMelee() {
         if (canMove) {
 			AudioControl.Instance.PlaySFX("Melee Cast", gameObject, 0.2f, 0.5f);
-			canMove = false;
-			canChangeDir = false;
-			animator.SetTrigger("doMelee");
+			//Doing this next line will trigger the animation on the player.
+            //The trigger will activate the player's melee hitboxes as well disabling the player's movement
+            //through a direct function call to SafeDeactivateMovement in Unity Animator. Once the animation is finished playing, it
+            //will then directly call SafeActivateMovement. Check each individual animation for melee to ensure that everything is
+            //accounted for.
+            animator.SetTrigger("doMelee");
             //ScreenShake.Instance.ShakeScreen(5f, .1f);
 		}
     }
 
-    public void ActivateMovement() {
-        canMove = true;
-        canChangeDir = true;
+    //SafeActivateMovement is an alternate for Activate Movement intended to resolve issues with being able to move during
+    //cutscenes that were intended to be unmovable. There are two different Activate and Deactivate Movements:
+    //Safe will restore to if we should be able to move right now or not - this will be called when the player uses melee, casts a spell, or opens settings.
+    //Regular will be used during cutscenes, camera transitions, and notifications.
+    public void SafeActivateMovement() {
+        canMove = shouldMove;
+        canChangeDir = shouldChangeDir;
         ChooseFacingDir();
     }
-
-    public void DeactivateMovement() {
+    
+    public void SafeDeactivateMovement() {
         canMove = false;
         canChangeDir = false;
         animator.SetBool("isWalking", false);
+    }
+
+    public void ActivateMovement() {
+        shouldMove = true;
+        shouldChangeDir = true;
+        canBeDamaged = true;
+        inTransition = false;
+        SafeActivateMovement();
+    }
+
+    public void DeactivateMovement() {
+        shouldMove = false;
+        shouldChangeDir = false;
+        canBeDamaged = false;
+        inTransition = true;
+        SafeDeactivateMovement();
     }
 
 

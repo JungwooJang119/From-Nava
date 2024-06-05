@@ -88,7 +88,7 @@ public class PauseMenu : MonoBehaviour {
             notebook.SetActive(true);
         } ToggleActiveMenu(false);
         pauseMenuUI.SetActive(false);
-		PlayerController.Instance.ActivateMovement();
+		PlayerController.Instance.SafeActivateMovement();
 		Time.timeScale = 1f;
         transition.DarkenIn(true);
         GameIsPaused = false;
@@ -100,7 +100,7 @@ public class PauseMenu : MonoBehaviour {
         notebook.SetActive(false);
         ToggleActiveMenu(true);
         pauseMenuUI.SetActive(true);
-		PlayerController.Instance.DeactivateMovement();
+		PlayerController.Instance.SafeDeactivateMovement();
         Time.timeScale = 0f;
         transition.DarkenOut(true);
         GameIsPaused = true;

@@ -46,7 +46,7 @@ public class SpellCastManager : MonoBehaviour {
         Spell spell = spellDict[e.spellType];
 
         PlayerController.Instance.animator.SetTrigger("doSpellCast");
-        PlayerController.Instance.DeactivateMovement();
+        PlayerController.Instance.SafeDeactivateMovement();
         StartCoroutine(CastSpell(spell, face));
     }
 
@@ -56,7 +56,7 @@ public class SpellCastManager : MonoBehaviour {
         TriggerParticles(spell);
         Spell spellGO = Instantiate(spell, PlayerController.Instance.castPoint.position, Quaternion.identity);
         spellGO.CastSpell(PlayerController.Instance, face);
-        PlayerController.Instance.ActivateMovement();
+        PlayerController.Instance.SafeActivateMovement();
 	}
 
     public void TriggerParticles(Spell s) {

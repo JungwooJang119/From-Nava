@@ -3,22 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class ChestScript : MonoBehaviour
+public class ChestScript : IInteractable
 {
     private ClaimCollectible collectible;
-    private bool awaitingCollectible;
 
 	private CinemachineVirtualCamera virtualCamera;
 	private Transform returnToPlayer;
-    private bool isNear = false;
 
     private Animator animator;
     [SerializeField] private GameObject[] doors;
-
-    // Button Tutorial Pop-Up
-    [SerializeField] private GameObject buttonTutorial;
-    private GameObject _tutInstance;
-    private ButtonTutorial _tutScript;
 
     [SerializeField] private bool startsActive;
     [SerializeField] private PlayerController playerController;
@@ -26,9 +19,6 @@ public class ChestScript : MonoBehaviour
 
     private Color spriteColor;
     private bool hasOpened;
-
-    // Key to interact
-    private string intKey = "space";
 
     // Start is called before the first frame update
     void Start()
@@ -44,31 +34,11 @@ public class ChestScript : MonoBehaviour
         if (!startsActive) StartCoroutine(CameraTransitionIn());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isNear) {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("ChestIdle")) {
-                if (_tutInstance == null) {
-                    _tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
-                    _tutScript = _tutInstance.GetComponent<ButtonTutorial>();
-                    _tutScript.SetUp(intKey, gameObject);
-                } else {
-                    _tutScript.CancelFade();
-                }
-			}
-			if (Input.GetKeyDown(intKey) 
-                && animator.GetCurrentAnimatorStateInfo(0).IsName("ChestIdle")) {
-                StartCoroutine(AwaitCollectible());
-				
-                if (_tutInstance != null) {
-					_tutScript.Fade();
-				}
-			}
-		} else if (_tutInstance) {
-			_tutScript.Fade();
-		}
-	}
+    //Overrides the method in IInteractable such that the intended behavior for interacting is executed
+    //In this case we will now call AwaitCollectible;
+    protected override void InteractBehavior() {
+        StartCoroutine(AwaitCollectible());
+    }
 
     IEnumerator CameraTransitionIn() {
         spriteColor.a = 0f;
@@ -87,20 +57,9 @@ public class ChestScript : MonoBehaviour
         playerController.ActivateMovement();
 	}
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
-            isNear = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other) {
-        if (other.tag == "Player") {
-            isNear = false;
-        }
-    }
-
     IEnumerator AwaitCollectible() {
 		awaitingCollectible = true;
+        FadeButton();
 		collectible.Collect();
 		animator.SetBool("OpeningChest", true);
 		AudioControl.Instance.PlaySFX("Chest Open", gameObject);
@@ -112,13 +71,15 @@ public class ChestScript : MonoBehaviour
 		AudioControl.Instance.PlaySFX("Chest Close", gameObject);
 		if (hasDoors && !hasOpened) {
             foreach (GameObject door in doors) {
-                door.GetComponent<Door>().OpenDoor();   
+                door.GetComponent<Door>().OpenDoor();
             }
             hasOpened = true;
         }
-	}
+        CreateButtonTutorial(); //check this out later ahhhhh
+    }
 
     private void ChestScript_OnCollectibleClaimed() {
         awaitingCollectible = false;
+        
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine; 
 
-public class Door : MonoBehaviour
+public class Door : IInteractable
 {
     private Animator animator;
 
@@ -11,6 +11,18 @@ public class Door : MonoBehaviour
     private void Awake() {
         animator = GetComponent<Animator>();
         animator.SetBool("IsUnlocked", isOpen);
+        float rotation = transform.rotation.eulerAngles.z;
+        switch (rotation) {
+            case 0:
+                xMod = .8f;
+                break;
+            case 180:
+                xMod = -.8f;
+                break;
+            case 270:
+                yMod = -1.8f;
+                break;
+        }
     }
 
     public void OpenDoor() {
@@ -18,6 +30,7 @@ public class Door : MonoBehaviour
         animator.SetBool("IsUnlocked", true);
         isOpen = true;
         AudioControl.Instance.PlaySFX("Door Opening", gameObject, 0.2f, 1f);
+        canTrigger = false;
     }
 
     public void CloseDoor() {
@@ -35,5 +48,9 @@ public class Door : MonoBehaviour
             OpenDoor();
             isOpen = true;
         }
+    }
+
+    protected override void InteractBehavior() {
+        Debug.Log("Door");
     }
 }

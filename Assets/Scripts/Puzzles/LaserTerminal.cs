@@ -12,16 +12,13 @@ using Cinemachine;
 // duration of the puzzle attempt.
 // NOTE: The camera position object must be placed manually on the Editor;
 
-public class LaserTerminal : MonoBehaviour
+public class LaserTerminal : IInteractable
 {
-	[SerializeField] private float range;               // How far can the player be from the terminal to trigger it;
 	[SerializeField] private RoomCode revealRoomCode;
 	private LaserCaster laserCaster;					// Laser Caster that with which this terminal communicates. Must be set on the inspector;
-	[SerializeField] private bool canTrigger = true;	// Whether the terminal is interactable;
 	[SerializeField] private Sprite sprComputerOn;
 	[SerializeField] private Sprite sprComputerRight;
-	[SerializeField] private Sprite sprComputerWrong;
-	[SerializeField] private GameObject buttonTutorial;
+    [SerializeField] private Sprite sprComputerWrong;
 	[SerializeField] private float maxZoom;
 	[SerializeField] private float zoomSpeed;
 
@@ -33,11 +30,8 @@ public class LaserTerminal : MonoBehaviour
 	// Variables to react to the player in range;
 	private Transform _player;
 	private PlayerController _playerController;
-	private GameObject _tutInstance;
-	private ButtonTutorial _tutScript;
 
 	private SpriteRenderer _spriteRenderer;			// Sprite Renderer reference;
-	private string _intKey = "space";				// Keycode of the key used for interactions;
 
 	public GameObject _cameraTarget2;				// The target the camera will move towards.
     public GameObject door;
@@ -55,35 +49,19 @@ public class LaserTerminal : MonoBehaviour
 		cameraZoom = ReferenceSingleton.Instance.mainCamera.GetComponent<CameraZoomController>();
 	}
 
-	// Checks if the player is in range to interact, inspired by Grace's script;
-	void Update() {
-		if (((Vector2)_player.position - (Vector2)transform.position).magnitude < range && canTrigger) {
-			if (_tutInstance == null && !roomComplete) {
-				_tutInstance = Instantiate(buttonTutorial, transform.position, Quaternion.identity);
-				_tutScript = _tutInstance.GetComponent<ButtonTutorial>();
-				_tutScript.SetUp(_intKey, gameObject);
-			} else {
-				_tutScript.CancelFade();
-			}
-			if (Input.GetKeyDown(_intKey)) {
-				_playerController.DeactivateMovement();
-				if (_tutInstance != null) {
-					_tutScript.Fade();
-				}
-				if (!roomComplete) {
-					_spriteRenderer.sprite = sprComputerOn;
-					AudioControl.Instance.PlaySFX("Computer On", gameObject, 0f, 0.8f);
-					canTrigger = false;
-					StartCoroutine(CameraTransitionIn());
-				}
-			}
-		} else if (_tutInstance) {
-			_tutScript.Fade();
-		}
-	}
+    protected override void InteractBehavior() {
+        _playerController.DeactivateMovement();
+        FadeButton();
+        if (!roomComplete) {
+            _spriteRenderer.sprite = sprComputerOn;
+            AudioControl.Instance.PlaySFX("Computer On", gameObject, 0f, 0.8f);
+            canTrigger = false;
+            StartCoroutine(CameraTransitionIn());
+        }
+    }
 
-	// Corouting to start the camera transtion;
-	IEnumerator CameraTransitionIn() {
+    // Corouting to start the camera transtion;
+    IEnumerator CameraTransitionIn() {
 		yield return new WaitForSeconds(0.5f);
 		cameraZoom.BeginZoom(maxZoom, zoomSpeed);
 		_virtualCamera.Follow = _cameraTarget.transform;

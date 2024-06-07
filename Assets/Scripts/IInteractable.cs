@@ -42,7 +42,7 @@ public abstract class IInteractable : MonoBehaviour
     protected IEnumerator Nearby() {
         CreateButtonTutorial();
         while (isNear) {
-            if (canTrigger && !awaitingCollectible && Input.GetKeyDown(intKey)) { //what if we make it just can trigger instead of awaitingCollectible?
+            if (CanInteract() && Input.GetKeyDown(intKey)) { //what if we make it just can trigger instead of awaitingCollectible?
                 InteractBehavior();
             }
             yield return null;
@@ -50,12 +50,26 @@ public abstract class IInteractable : MonoBehaviour
         _tutScript.Fade();
     }
 
+
+    // Helper function done to check if the player should be able to interact with the object
+    // Time.timeScale != 0 is done to check if the game is paused or not. If pause implementation changes in the future, this will break
+    // canTrigger is done to see if
+    // AwaitingColectible is checked to see if we're in the middle of a collectible popup.
+    private bool CanInteract() {
+        return Time.timeScale != 0 && canTrigger && !awaitingCollectible;
+    }
+
     // Function that creates the tutorial prompt.
     // First destroys the original instance of the tutorial script.
     // Then instantiates a GameObject of the serialized field ButtonTutorial.
     // Finally grabs the ButtonTutorial script and calls SetUp in ButtonTutorial.
     protected void CreateButtonTutorial() {
-        if (_tutInstance != null) return;
+        // If we already have a tutInstance instantiated, then we'll keep using this.
+        // We cancel fade in the instance that the script is fading but not destroyed, and we need to reinstantiate it.
+        if (_tutInstance != null) {
+            _tutScript.CancelFade(); 
+            return;
+        }
         _tutInstance = Instantiate(buttonTutorial, transform.position + new Vector3(xMod, yMod, 0), Quaternion.identity);
         _tutScript = _tutInstance.GetComponent<ButtonTutorial>();
         _tutScript.SetUp(intKey, gameObject);

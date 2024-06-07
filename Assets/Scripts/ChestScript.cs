@@ -37,7 +37,9 @@ public class ChestScript : IInteractable
     //Overrides the method in IInteractable such that the intended behavior for interacting is executed
     //In this case we will now call AwaitCollectible;
     protected override void InteractBehavior() {
-        StartCoroutine(AwaitCollectible());
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("ChestIdle")) { //Scuffed check but necessary (for now) to ensure that chest spam isn't possible
+            StartCoroutine(AwaitCollectible());
+        }
     }
 
     IEnumerator CameraTransitionIn() {
@@ -61,7 +63,7 @@ public class ChestScript : IInteractable
 		awaitingCollectible = true;
         FadeButton();
 		collectible.Collect();
-		animator.SetBool("OpeningChest", true);
+        animator.SetBool("OpeningChest", true);
 		AudioControl.Instance.PlaySFX("Chest Open", gameObject);
         var timer = 2.5f;
         while (awaitingCollectible || timer > 0) {
@@ -75,11 +77,10 @@ public class ChestScript : IInteractable
             }
             hasOpened = true;
         }
-        CreateButtonTutorial(); //check this out later ahhhhh
+        CreateButtonTutorial();
     }
 
     private void ChestScript_OnCollectibleClaimed() {
         awaitingCollectible = false;
-        
     }
 }

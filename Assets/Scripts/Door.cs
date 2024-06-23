@@ -5,9 +5,12 @@ using UnityEngine;
 public class Door : IInteractable
 {
     private Animator animator;
-
+    private ClaimCollectible collectible;
     public bool isOpen;
 
+    // 1) Gets the necessary changes in x and y for specific rotations of doros as necessary
+    // 2) Makes doors listen for CollectibleClaimed so that it can reenable InteractBehavior
+    // 3) Gets ClaimCollectible to get stuff
     private void Awake() {
         animator = GetComponent<Animator>();
         animator.SetBool("IsUnlocked", isOpen);
@@ -23,9 +26,11 @@ public class Door : IInteractable
                 yMod = -1.8f;
                 break;
         }
+        collectible = collectible = GetComponent<ClaimCollectible>();
+        collectible.OnCollectibleClaimed += Door_OnCollectibleClaimed;
     }
 
-    public void OpenDoor() {
+    public virtual void OpenDoor() {
         if (isOpen) return;
         animator.SetBool("IsUnlocked", true);
         isOpen = true;
@@ -51,6 +56,21 @@ public class Door : IInteractable
     }
 
     protected override void InteractBehavior() {
-        Debug.Log("Door");
+        FadeButton();
+        awaitingCollectible = true;
+        collectible.Collect();
+    }
+
+    // When collectible claimed, wait a second and then recreate the button tutorial if necessary
+    // KNOWN ISSUE: Scriptable objects are neccesary, or else when claiming the doors are gonna get weird.
+    private void Door_OnCollectibleClaimed() {
+        StartCoroutine(DelayedWakeup());
+    }
+    
+    // Bug: If no Scriptable Object attached, the  
+    private IEnumerator DelayedWakeup() {
+        yield return new WaitForSeconds(.5f);
+        CreateButtonTutorial();
+        awaitingCollectible = false;
     }
 }

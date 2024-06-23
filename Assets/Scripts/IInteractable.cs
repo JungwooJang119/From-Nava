@@ -47,13 +47,13 @@ public abstract class IInteractable : MonoBehaviour
             }
             yield return null;
         }
-        _tutScript.Fade();
+        FadeButton();
     }
 
 
     // Helper function done to check if the player should be able to interact with the object
     // Time.timeScale != 0 is done to check if the game is paused or not. If pause implementation changes in the future, this will break
-    // canTrigger is done to see if
+    // canTrigger is done for lasers. 
     // AwaitingColectible is checked to see if we're in the middle of a collectible popup.
     private bool CanInteract() {
         return Time.timeScale != 0 && canTrigger && !awaitingCollectible;
@@ -64,6 +64,10 @@ public abstract class IInteractable : MonoBehaviour
     // Then instantiates a GameObject of the serialized field ButtonTutorial.
     // Finally grabs the ButtonTutorial script and calls SetUp in ButtonTutorial.
     protected void CreateButtonTutorial() {
+        // This first line ensures that we are not trying to create a ButtonTutorial when the player is not next to it.
+        // This can happen during Chest, Door, etc.
+        if (!isNear) return;
+
         // If we already have a tutInstance instantiated, then we'll keep using this.
         // We cancel fade in the instance that the script is fading but not destroyed, and we need to reinstantiate it.
         if (_tutInstance != null) {

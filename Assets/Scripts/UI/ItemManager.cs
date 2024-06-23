@@ -56,7 +56,6 @@ public abstract class ItemManager<T> : CollectibleManager<T> where T : Collectib
 		bottomNoteTransform.rotation = canvasTransform.rotation;
 		bottomNoteTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y - 7, canvasTransform.position.z);
 		currentNote.text = "Advance [" + intKey.ToUpper() + "]";
-
 		StopAllCoroutines();
 		state = State.Start;
 		SetOpacity(0);

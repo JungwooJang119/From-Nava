@@ -49,9 +49,14 @@ public class CollectibleController : MonoBehaviour {
 	/// </summary>
 	private void TryDequeue() {
 		if (!IsBusy && callQueue.Count > 0) {
-			ItemCall call = new(callQueue.Dequeue());
-			OnClaimCollectible?.Invoke(this, call);
-			OnClaimResult?.Invoke(call);
+            ItemCall call = new(callQueue.Dequeue());
+            OnClaimCollectible?.Invoke(this, call);
+
+            //Edge case for doors to not send out notifications
+            if (call.inputType != typeof(DoorData)) { 
+                OnClaimResult?.Invoke(call);
+            }
+
 			if (call.output != null) {
 				PlayerController.Instance.DeactivateMovement();
 				Transition.DarkenOut();

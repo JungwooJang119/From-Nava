@@ -70,9 +70,9 @@ GameObject:
   - component: {fileID: 419245056030025314}
   - component: {fileID: 419245056030025317}
   - component: {fileID: 419245056030025316}
-  - component: {fileID: 3791136891036544282}
   - component: {fileID: 4028141886908822672}
   - component: {fileID: 4028141886908822673}
+  - component: {fileID: 8650165244591404301}
   m_Layer: 0
   m_Name: BigLockedDoor
   m_TagString: Untagged
@@ -194,21 +194,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
---- !u!114 &3791136891036544282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419245056030025323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5cc1b01f2d12c545978b10769a1befa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 419245056030025317}
-  buttonTutorial: {fileID: 3273071872446632614, guid: 784d0ccf04d20ef46bc2244ea1cc5580, type: 3}
-  trans: {fileID: 419245056030025323}
 --- !u!58 &4028141886908822672
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -237,4 +222,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0832ba5e97f8623479cb1076ff66c8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonTutorial: {fileID: 0}
   isOpen: 0
+  exitSign: {fileID: 0}
+--- !u!114 &8650165244591404301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419245056030025323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a7493a42aeab3418ae4c33f686e3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibleCalls: []

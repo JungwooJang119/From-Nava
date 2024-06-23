@@ -40,7 +40,7 @@ public class NotificationManager : MonoBehaviour {
             delayedType = itemType == typeof(PolaroidData) ? NotificationType.PolaroidClaimed
                         : itemType == typeof(ReportData) ? NotificationType.ReportClaimed
                         : itemType == typeof(SideRoomKeyData) ? NotificationType.SideRoomKeyClaimed
-                                                              : delayedType;
+                                                                            : delayedType;
         } else if (delayedType == 0) delayedType = NotificationType.CollectibleRedundant;
     }
 
@@ -74,7 +74,8 @@ public class NotificationManager : MonoBehaviour {
                     message = "Sector " + currCall.roomCode;
                     NotificationText.text = message;
                     break;
-            } notificationObject.gameObject.SetActive(true);
+            } 
+            notificationObject.gameObject.SetActive(true);
             notificationObject.Initialize(NotificationText, scaleConstraint);
         }
     }

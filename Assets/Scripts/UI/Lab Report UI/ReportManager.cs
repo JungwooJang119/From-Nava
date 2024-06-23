@@ -71,28 +71,39 @@ public class ReportManager : CollectibleManager<ReportData> {
 		foreach (string report in reportData.textEntries) {
 			strings2Grab.Add(report);
 		} FetchString();
-
-		reportText.SetActive(true);
-		var reportTextTransform = reportText.transform;
-		reportTextTransform.SetParent(canvasTransform);
-		reportTextTransform.localScale = Vector3.one;
-		reportTextTransform.rotation = canvasTransform.rotation;
-		reportTextTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y + 0.75f, canvasTransform.position.z);
-		currentText.text = "<color=#00000000>" + string2Report + "</color>";
-
-		bottomNote.SetActive(true);
-		var bottomNoteTransform = bottomNote.transform;
-		bottomNoteTransform.SetParent(canvasTransform);
-		bottomNoteTransform.localScale = Vector3.one;
-		bottomNoteTransform.rotation = canvasTransform.rotation;
-		bottomNoteTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y - 7, canvasTransform.position.z);
-		currentNote.text = "Advance [" + intKey.ToUpper() + "]";
-
-		StopAllCoroutines();
-		state = State.Start;
-		SetOpacity(1, 0);
-		StartCoroutine(DisplayAsync(transitionTime));
+        DisplayProper(transitionTime);
+		
 	}
+
+    public void DisplayString(string singleText, float transitionTime = 0) {
+        strings2Grab.Clear();
+        strings2Grab.Add(singleText);
+        FetchString();
+        DisplayProper(transitionTime);
+    }
+
+    private void DisplayProper(float transitionTime) {
+        reportText.SetActive(true);
+        var reportTextTransform = reportText.transform;
+        reportTextTransform.SetParent(canvasTransform);
+        reportTextTransform.localScale = Vector3.one;
+        reportTextTransform.rotation = canvasTransform.rotation;
+        reportTextTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y + 0.75f, canvasTransform.position.z);
+        currentText.text = "<color=#00000000>" + string2Report + "</color>";
+
+        bottomNote.SetActive(true);
+        var bottomNoteTransform = bottomNote.transform;
+        bottomNoteTransform.SetParent(canvasTransform);
+        bottomNoteTransform.localScale = Vector3.one;
+        bottomNoteTransform.rotation = canvasTransform.rotation;
+        bottomNoteTransform.position = new Vector3(canvasTransform.position.x, canvasTransform.position.y - 7, canvasTransform.position.z);
+        currentNote.text = "Advance [" + intKey.ToUpper() + "]";
+
+        StopAllCoroutines();
+        state = State.Start;
+        SetOpacity(1, 0);
+        StartCoroutine(DisplayAsync(transitionTime));
+    }
 
 	private IEnumerator DisplayAsync(float transitionTime) {
 		float cycleTarget = 0;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6088861161274278685}
   - component: {fileID: 6088861161274278686}
   - component: {fileID: 7370240206621725161}
+  - component: {fileID: 7944594952156591955}
   m_Layer: 0
   m_Name: LockedDoor
   m_TagString: Untagged
@@ -165,6 +166,19 @@ CircleCollider2D:
   m_Offset: {x: 0.8, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &7944594952156591955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6088861161274278674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a7493a42aeab3418ae4c33f686e3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibleCalls: []
 --- !u!1 &6088861161884912551
 GameObject:
   m_ObjectHideFlags: 0

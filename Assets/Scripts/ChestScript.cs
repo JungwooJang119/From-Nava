@@ -59,6 +59,7 @@ public class ChestScript : IInteractable
         playerController.ActivateMovement();
 	}
 
+    // VISUAL BUG: When exiting and reentering range after having claimed already, the button prompt will show up when it shouldn't.
     IEnumerator AwaitCollectible() {
 		awaitingCollectible = true;
         FadeButton();

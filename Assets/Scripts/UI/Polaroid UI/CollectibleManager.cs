@@ -39,7 +39,7 @@ public abstract class CollectibleManager<T> : CollectibleManager where T : Scrip
 
 	/// <summary> Listener to item claim calls; </summary>
 	private void Controller_OnClaimCollectible(object sender, ItemCall call) {
-		T item = call.input as T;
+		T item = call.input as T; //If proper manager, then will work properly; otherwise null;
 		if (item != null && AddItem(item)) {
 			call.output = inventory;
 			Display(item, controller.InSequence ? 0f : 1f);
@@ -55,5 +55,5 @@ public abstract class CollectibleManager<T> : CollectibleManager where T : Scrip
 	/// <summary> Add an item to the inventory; </summary>
 	/// <param name="item"> Item to receive; </param>
 	/// <returns> True if the item is added, false if it was already present; </returns>
-	private bool AddItem(T item) => inventory.Add(item);
+	protected virtual bool AddItem(T item) => inventory.Add(item);
 }

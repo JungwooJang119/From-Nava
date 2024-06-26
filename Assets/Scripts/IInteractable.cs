@@ -12,13 +12,12 @@ public abstract class IInteractable : MonoBehaviour
     // Then define InteractBehavior using override to determine how the object should respond to the interaction. 
     // Ex. protected override void InteractBehavior() { DoSomething; }
 
-
     private bool isNear = false;                    // Boolean to determine if the player is nearby or not. 
     protected bool awaitingCollectible = false;     // Boolean to check if the interactable object is currently doing something. Protected so that InteractBehavior can change this status.
     private string intKey = "space";                // Key used to trigger interactions.
     [SerializeField] GameObject buttonTutorial;     // Reference to button tutorial pop-up.
     private GameObject _tutInstance;                // Reference to the game object hosting _tutScript.
-    private ButtonTutorial _tutScript;               // Reference to instantiated text script.
+    private ButtonTutorial _tutScript;              // Reference to instantiated text script.
     protected bool canTrigger = true;
      
     protected float xMod = 0, yMod = 0;             // floats used to modify the current position of the text. Primarily for doors. Protected so that the individual type of IInteractable can determine positioning.
@@ -86,6 +85,4 @@ public abstract class IInteractable : MonoBehaviour
 
     // Behavior defined by the individual class extending IInteractable.
     protected abstract void InteractBehavior();
-
-    
 }

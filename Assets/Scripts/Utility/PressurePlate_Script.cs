@@ -19,6 +19,8 @@ public class PressurePlate_Script : MonoBehaviour
     private Transform playerTransform;
     private static GameObject auditor;
 
+    public System.Action OnPressedStatusChange;
+
     private void Start() {
         entitiesInsideCollider = new List<GameObject>();
         playerTransform = PlayerController.Instance.transform;
@@ -62,6 +64,7 @@ public class PressurePlate_Script : MonoBehaviour
             entitiesInsideCollider.Add(other.gameObject);
             render.sprite = pressed;
             isPressed = true;
+            OnPressedStatusChange?.Invoke();
             if (other.tag != "Player") {
                 auditor.GetComponent<Auditor>().updatePressurePlate(transform.name);
             }
@@ -71,6 +74,11 @@ public class PressurePlate_Script : MonoBehaviour
     void OnTriggerExit2D(Collider2D other) {
 		if (entitiesInsideCollider.Contains(other.gameObject)) {
             entitiesInsideCollider.Remove(other.gameObject);
+            // These lines were added to accomodate RoomControl.
+            if (entitiesInsideCollider.Count == 0) {
+                isPressed = false;
+                OnPressedStatusChange?.Invoke();
+            }
         }
     }
 

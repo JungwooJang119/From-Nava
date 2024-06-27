@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BigDoor : Door
 {
-    private Animator animator;
-
     [SerializeField] private GameObject exitSign;
     private GameObject signLight;
 

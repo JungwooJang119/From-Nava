@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
 {
     public event Action<int> OnDamageTaken;
     public event Action<Enemy, bool> OnPlayerInRange;
+    public event Action OnDeath;
     [SerializeField] private int maxHealth = 50;
 
     [SerializeField] private GameObject healthBar;
@@ -55,6 +56,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
 
     void OnDestroy() {
         OnPlayerInRange?.Invoke(this, false);
+        OnDeath?.Invoke();
     }
 
     public void Damage(int damage) {
@@ -66,13 +68,10 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
             damageFlash.Flash();
         }
         if (currHealth <= 0) {
-            dealthShader.DissolveOut();
             if (!isIceTower) {
                 animator.SetBool("isDead", true);
-                StartCoroutine(DeathSequence());
-            } else {
-                StartCoroutine(IceDeath());
             }
+            StartCoroutine(DeathSequence());
         }
     }
 
@@ -100,17 +99,13 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
         dealthShader.DissolveOut();
         yield return new WaitForSeconds(1f);
         if (tutorialSpellObject) {
-            Instantiate(tutorialSpellObject, transform.position, Quaternion.identity);
+            tutorialSpellObject.transform.position = gameObject.transform.position;
         }
         Destroy(this.gameObject);
     }
 
-    IEnumerator IceDeath() {
-        yield return new WaitForSeconds(1f);
-        if (tutorialSpellObject) {
-            Instantiate(tutorialSpellObject, transform.position, Quaternion.identity);
-        }
-        Destroy(this.gameObject, 1f);
+    public bool CheckIsAlive() {
+        return currHealth > 0;
     }
 
     public void ReactToPlayerInRange(bool playerInRange) {

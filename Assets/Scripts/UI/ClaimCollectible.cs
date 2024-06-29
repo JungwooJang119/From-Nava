@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClaimCollectible : MonoBehaviour {
+public class ClaimCollectible : MonoBehaviour, RewardObject {
 
     public event Action OnCollectibleClaimed;
     private CollectibleController controller;
@@ -26,4 +26,8 @@ public class ClaimCollectible : MonoBehaviour {
         if (awaitingCallback) OnCollectibleClaimed?.Invoke();
         awaitingCallback = false;
 	}
+
+    public void DoReward() {
+        gameObject.SetActive(true);
+    }
 }

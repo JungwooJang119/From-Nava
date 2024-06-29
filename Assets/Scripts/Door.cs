@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine; 
 
-public class Door : IInteractable
+public class Door : IInteractable, RewardObject
 {
-    private Animator animator;
+    protected Animator animator;
     private ClaimCollectible collectible;
     public bool isOpen;
 
@@ -73,5 +73,9 @@ public class Door : IInteractable
         yield return new WaitForSeconds(.5f);
         CreateButtonTutorial();
         awaitingCollectible = false;
+    }
+
+    public void DoReward() {
+        OpenDoor();
     }
 }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9031d5d3b2c02488b424603664e6f3, type: 3}
+  m_Name: F4East
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  text: Door under conta_nment lockd_wn.\n\nRadiation at extremely high levels.\n\n_rot_ctive
+    equipme_t recomm_n_ed.\n\nLeave prem_ses immedia_ely.

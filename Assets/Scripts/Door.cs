@@ -43,6 +43,7 @@ public class Door : IInteractable
         animator.SetBool("IsUnlocked", false);
         isOpen = false;
         AudioControl.Instance.PlaySFX("Door Opening", gameObject, 0.2f, 1f);
+        canTrigger = true;
     }
 
     public void FlipDoor() {

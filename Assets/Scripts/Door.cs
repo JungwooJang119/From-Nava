@@ -14,6 +14,7 @@ public class Door : IInteractable, RewardObject
     private void Awake() {
         animator = GetComponent<Animator>();
         animator.SetBool("IsUnlocked", isOpen);
+        canTrigger = !isOpen;
         float rotation = transform.rotation.eulerAngles.z;
         switch (rotation) {
             case 0:

@@ -8,9 +8,18 @@ public class SaveProfile
     private string profileName;
     private float playtime;
     private string sector;
+    private int playerHealth;
 
     // The following dictionary will cover collectibles (Polaroids, Keys, Lab Reports), enemy status (Dead or Alive), spell unlock progress
     private Dictionary<string, bool> bools = new Dictionary<string, bool>(); 
+
+    public SaveProfile(string name) {
+        profileName = name;
+    }
+    
+    public SaveProfile() {
+        profileName = "soreno";
+    }
 
     // Getters and Setters
     public string GetProfileName() {

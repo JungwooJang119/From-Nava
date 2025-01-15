@@ -26,14 +26,22 @@ public class SaveSystem
         return saveProfiles[index];
     }
 
-    public static void SaveGame(string reason = "") {
-        Current.Save();
+    public static void SetProfile(int index, SaveProfile profile) {
+        saveProfiles[index] = profile;
     }
+
+    // public static void SaveGame(string reason = "") {
+    //     Current.Save();
+    //     SetProfile(currentIndex, current);
+    //     string path = GetFilePath(currentIndex);
+    //     SaveToFile(profile, path);
+    // }
+
 
     // public static void LoadSaveProfile(int index) {
     //     SaveSystem.SetCurrentProfile(index);
 
     // }
 
-    
+
 }

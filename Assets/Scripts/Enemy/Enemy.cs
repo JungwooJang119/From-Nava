@@ -15,7 +15,7 @@ public enum EnemyState {
     DEAD
 }
 
-public class Enemy : MonoBehaviour, IDamageable, IPushable
+public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
 {
     public event Action<int> OnDamageTaken;
     public event Action<Enemy, bool> OnPlayerInRange;
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dealthShader;
     [SerializeField] private GameObject tutorialSpellObject;
+    [SerializeField] private string saveString;
     private int currHealth;
 
     private bool isPushed;
@@ -97,6 +98,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
 
     IEnumerator DeathSequence() {
         dealthShader.DissolveOut();
+        Save();
         yield return new WaitForSeconds(1f);
         if (tutorialSpellObject) {
             tutorialSpellObject.transform.position = gameObject.transform.position;
@@ -121,5 +123,17 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
                 isPushed = false;
             }
         }
+    }
+
+    // Save System Functions
+    public void Load(SaveProfile profile) {
+        bool isAlive = profile.GetBool(saveString);
+        if (!isAlive) {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void Save() {
+        SaveSystem.Current.SetBool(saveString, CheckIsAlive());
     }
 }

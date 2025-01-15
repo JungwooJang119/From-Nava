@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MainMenuMaster : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class MainMenuMaster : MonoBehaviour {
 
     [SerializeField] private MainMenuSection activeSection;
     private Dictionary<MenuSection, MainMenuSection> menuDict;
+    private int saveFileIndex;
 
     // Start is called before the first frame update
     void Start() {
@@ -36,4 +38,34 @@ public class MainMenuMaster : MonoBehaviour {
             if (sectionPair.Key != menuSection && sectionPair.Value.enabled) sectionPair.Value.Toggle(false);
         } activeSection = menuDict[menuSection];
     }
+
+
+    // (Joseph 1 / 15 / 25) Attempt at implementing the Save System
+    public void SelectFile(int index) {
+        saveFileIndex = index;
+        // In the instance that the selected profile does not have a save, 
+        if (SaveSystem.GetProfile(index) == null) {
+            MainMenuSection menuSection = menuDict[MenuSection.FileMenuNew];
+            ChangeActiveMenu(menuSection); // :(
+            TextMeshProUGUI fileText = menuSection.transform.Find("FileText").GetComponent<TextMeshProUGUI>();
+            fileText.SetText($"File [{index + 1}]");
+        } else {
+            MainMenuSection menuSection = menuDict[MenuSection.FileMenuContinue];
+            ChangeActiveMenu(menuSection); 
+        }
+    }
+
+    // (Joseph 1 / 15 / 25) Attempt to create a new save file
+    public void StartNewGame() {
+        // Set savefilename of profileindex to the appropriate one
+        // start game
+        SaveSystem.SetProfile(saveFileIndex, new SaveProfile("soreno"));
+        Debug.Log("SAVED AS soreno");
+    }
+
+    public void ContinueGame() {
+
+    }
+
+    
 }

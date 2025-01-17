@@ -127,13 +127,14 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
 
     // Save System Functions
     public void Load(SaveProfile profile) {
-        bool isAlive = profile.GetBool(saveString);
-        if (!isAlive) {
+        bool wasKilled = profile.GetBool(saveString);
+        if (wasKilled) {
             Destroy(this.gameObject);
         }
     }
 
     public void Save() {
-        SaveSystem.Current.SetBool(saveString, CheckIsAlive());
+        SaveSystem.Current.SetBool(saveString, !CheckIsAlive());
+        // SaveSystem.SaveGame();
     }
 }

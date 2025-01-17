@@ -110,6 +110,7 @@ public class PauseMenu : MonoBehaviour {
     public void QuitGame()
     {
         StartCoroutine(FinalFade(1f));
+        SaveSystem.SaveGame();
     }
 
     IEnumerator FinalFade(float finalFadeTime) {

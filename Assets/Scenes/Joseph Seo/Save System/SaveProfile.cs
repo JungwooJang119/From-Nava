@@ -30,12 +30,20 @@ public class SaveProfile
         return bools;
     }
 
+    public void SetBoolsDictionary(Dictionary<string, bool> boolsDict) {
+        bools = boolsDict;
+    }
+
     public bool GetBool(string name, bool defaultVal = false) {
         return bools.GetValueOrDefault(name, defaultVal);
     }
 
     public void SetBool(string name, bool value) {
         bools[name] = value;
+    }
+
+    public void SetName(string name) {
+        profileName = name;
     }
 
     public void Save() {
@@ -54,6 +62,17 @@ public class SaveProfile
             savables.Add(s);
         }
         return savables;
+    }
+
+    public void Load() {
+        LoadSavableData();
+    }
+
+    private void LoadSavableData() {
+        List<ISavable> savables = GetCachedSavables();
+        foreach (ISavable s in savables) {
+            s.Load(this); // Why did they require a SaveProfile like in here?
+        }
     }
 
 }

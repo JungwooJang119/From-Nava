@@ -11,6 +11,7 @@ public class SerializableSaveProfile
     // Dictionaries of saved data
     public string[] boolKeys;
     public bool[] boolValues;
+
     
     // Converts from SaveProfile to SerializableSaveProfile
     public static SerializableSaveProfile FromSaveProfile(SaveProfile saveProfile) {
@@ -27,8 +28,12 @@ public class SerializableSaveProfile
 
     // Done when loading in from data
     public SaveProfile ToSaveProfile() {
-        SaveProfile sp = new SaveProfile();
-        
+        SaveProfile sp = new SaveProfile(profileName);
+        Dictionary<string, bool> bools = new Dictionary<string, bool>(boolKeys.Length);
+        for (int i = 0; i < boolKeys.Length; i++) {
+            bools.Add(boolKeys[i], boolValues[i]);
+        }
+        sp.SetBoolsDictionary(bools);
         return sp;
     }
 }

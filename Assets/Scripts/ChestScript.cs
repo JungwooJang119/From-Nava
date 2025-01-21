@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class ChestScript : IInteractable
+public class ChestScript : IInteractable, ISavable
 {
     private ClaimCollectible collectible;
 
@@ -16,6 +16,7 @@ public class ChestScript : IInteractable
     [SerializeField] private bool startsActive;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private bool hasDoors;
+    [SerializeField] private string saveString;
 
     private Color spriteColor;
     private bool hasOpened;
@@ -83,5 +84,23 @@ public class ChestScript : IInteractable
 
     private void ChestScript_OnCollectibleClaimed() {
         awaitingCollectible = false;
+    }
+
+    public void Save() {
+        SaveSystem.Current.SetCollectibleBool(saveString, hasOpened);
+    }
+
+    public void Load(SaveProfile profile) {
+        // Debug.Log(gameObject.name + " " + saveString);
+        if (profile.GetCollectibleBool(saveString)) {
+            hasOpened = true;
+            // gameObject.SetActive(true);
+            // if (collectible.)
+            if (collectible == null) {
+                collectible = GetComponent<ClaimCollectible>();
+            }
+            collectible.CollectSilent();
+            // gameObject.SetActive(false);
+        }
     }
 }

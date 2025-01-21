@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellPatternSet : IInteractable
+public class SpellPatternSet : IInteractable, ISavable
 {
     private ClaimCollectible collectible;
+    [SerializeField] private string saveString;
+    private bool wasCollected = false;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         collectible = GetComponent<ClaimCollectible>();
         collectible.OnCollectibleClaimed += ChestScript_OnCollectibleClaimed;
@@ -16,6 +18,8 @@ public class SpellPatternSet : IInteractable
 
     protected override void InteractBehavior() {
         StartCoroutine(AwaitCollectible());
+        wasCollected = true;
+        Save();
         FadeButton();
         Destroy(this.gameObject);
     }
@@ -33,5 +37,18 @@ public class SpellPatternSet : IInteractable
 
     private void ChestScript_OnCollectibleClaimed() {
         awaitingCollectible = false;
+    }
+
+    public void Load(SaveProfile profile) {
+        if (profile.GetBool(saveString, false)) {
+            collectible = GetComponent<ClaimCollectible>();
+            collectible.CollectSilent();
+            Destroy(this.gameObject);
+        }
+        
+    }
+
+    public void Save() {
+        SaveSystem.Current.SetBool(saveString, wasCollected);
     }
 }

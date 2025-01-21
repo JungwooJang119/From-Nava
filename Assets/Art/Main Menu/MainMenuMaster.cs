@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+// using UnityEngine.EventSystems;
 
 public class MainMenuMaster : MonoBehaviour {
 
@@ -15,11 +16,10 @@ public class MainMenuMaster : MonoBehaviour {
     }
 
     [SerializeField] private MainMenuSection activeSection;
-    [SerializeField] private TextMeshProUGUI _FileText; // File [] Text for New
-    [SerializeField] private TextMeshProUGUI _NameText; // NameInputText for New
-    [SerializeField] private TextMeshProUGUI _PlayText; // File [] Text for Continue
+    [SerializeField] private TextMeshProUGUI[] _FileTexts; // File [] Text for New, Continue, Delete 
     [SerializeField] private TextMeshProUGUI[] _FileNameTexts; // Array of SaveProfile names in Play
     private Dictionary<MenuSection, MainMenuSection> menuDict;
+    [SerializeField] private TMP_InputField field;
     private int saveFileIndex;
 
     // Start is called before the first frame update
@@ -37,8 +37,6 @@ public class MainMenuMaster : MonoBehaviour {
         for (int i = 0; i <= 2; i++) {
             if (SaveSystem.GetProfile(i) != null) {
                 _FileNameTexts[i].SetText(SaveSystem.GetProfile(i).GetProfileName());
-            } else {
-                Debug.Log($"Profile {i + 1} is null!");
             }
             // _FileNameTexts[i].SetText(SaveSystem.GetProfile(i).GetProfileName());
         }
@@ -62,19 +60,21 @@ public class MainMenuMaster : MonoBehaviour {
     // (Joseph 1 / 15 / 25) Attempt at implementing the Save System
     public void SelectFile(int index) {
         saveFileIndex = index;
-        // In the instance that the selected profile does not have a save, we will create a new ave
-        // Else go through the continue route
-        if (SaveSystem.GetProfile(index) == null) {
-            MainMenuSection menuSection = menuDict[MenuSection.FileMenuNew];
-            ChangeActiveMenu(menuSection);
-            _FileText.SetText($"File [{index + 1}]");
-        } else {
-            // Create appropriate logic for this function next time
-            MainMenuSection menuSection = menuDict[MenuSection.FileMenuContinue];
-            ChangeActiveMenu(menuSection);
-            _PlayText.SetText($"File [{index + 1}]");
-            ShowPreviousFile();
+        // Transition is done within script as it's determined here if they should head to New or Continue
+        // Set each text to 
+        foreach (TextMeshProUGUI fileText in _FileTexts) {
+            fileText.SetText($"File [{index + 1}]");
         }
+
+        // Default as continue as new requires new logic
+        MainMenuSection menuSection = menuDict[MenuSection.FileMenuContinue];
+        if (SaveSystem.GetProfile(index) == null) {
+            menuSection = menuDict[MenuSection.FileMenuNew];
+            field.text = "";
+            // ActivateNameInput();
+        }
+        ChangeActiveMenu(menuSection);
+        ActivateNameInput();
     }
 
     private void ShowPreviousFile() {
@@ -85,24 +85,47 @@ public class MainMenuMaster : MonoBehaviour {
     // For actually starting the game, it's done on the button continue, through the transition manager.
     // This function just sets up the profile. This is done to follow previous implementations.
     public void SetupNewProfile() {
+        // The following checks for empty names does not work
+        Debug.Log(field.text);
+        if (field.text.Length == 0) {
+            return;
+        }
         MainMenuSection menuSection = menuDict[MenuSection.FileMenuNew];
-        name = _NameText.text;
-        // Debug.Log($"Saving to {saveFileIndex}");
+        name = field.text;
         SaveSystem.SetProfile(saveFileIndex, new SaveProfile(name));
         SaveSystem.SetCurrentProfile(saveFileIndex);
-        // Debug.Log($"SAVED AS {name}"); // Comment out later
-        SaveSystem.SaveGame();
+        // SaveSystem.SaveGame();
     }
 
     // (Joseph 1 / 15 / 25) Attempt to continue with the current SaveProfile
     // Similarly to SetupNewProfile, 
     public void ContinueWithProfile() {
-        // SerializableSaveProfile ssp = SaveSystem.LoadFromFile(SaveSystem.GetFilePath(saveFileIndex));
         SaveSystem.LoadSaveProfile(saveFileIndex);
     }
 
     public void DeleteProfile() {
         SaveSystem.DeleteSaveProfile(saveFileIndex);
         _FileNameTexts[saveFileIndex].SetText("[Empty]");
+    }
+
+    public void ActivateNameInput(){
+        // This is really buggy rn in that I need it to autoselect upon entering, but it takes a lot of clicks to register for some reason?
+        // Not sure what's going on in the backend
+        field.Select();
+        // Debug.Log("Selected Triggered");
+        // EventSystem.current.SetSelectedGameObject(field.gameObject);
+        field.ActivateInputField();
+        // StartCoroutine(InputName());
+        // field.Select();
+    }
+
+    public IEnumerator InputName() {
+        yield return new WaitForSeconds(1f);
+        field.Select();
+        field.ActivateInputField();
+    }
+
+    public void DebugSelect() {
+        // Debug.Log("Debug Selected!");
     }
 }

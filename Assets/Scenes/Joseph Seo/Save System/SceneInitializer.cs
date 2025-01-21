@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneInitializer : MonoBehaviour
 {
-    private void Awake() {
+    private void Start() {
         SaveSystem.Current.Load();
     }
 }

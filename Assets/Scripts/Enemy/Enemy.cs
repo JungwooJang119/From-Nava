@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
 
     public EnemyState currState;
 
-    private void Start() {
+    private void Awake() {
         OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
 
         currHealth = maxHealth;
@@ -127,14 +127,18 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
 
     // Save System Functions
     public void Load(SaveProfile profile) {
-        bool wasKilled = profile.GetBool(saveString);
+        bool wasKilled = !profile.GetBool(saveString, true);
+        // Debug.Log(saveString + " is " + (CheckIsAlive()? "Alive" : "Dead"));
+        // wasKilled = !CheckIsAlive();
         if (wasKilled) {
+            Debug.Log("This object has been destroyed");
             Destroy(this.gameObject);
         }
     }
 
     public void Save() {
-        SaveSystem.Current.SetBool(saveString, !CheckIsAlive());
+        SaveSystem.Current.SetBool(saveString, CheckIsAlive());
+
         // SaveSystem.SaveGame();
     }
 }

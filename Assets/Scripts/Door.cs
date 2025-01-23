@@ -85,11 +85,11 @@ public class Door : IInteractable, RewardObject, ISavable
         // THIS IS GONNA CAUSE SO MANY ISSUES LOL LMAO EVEN
         // THIS IS DEFINITELY GOING TO REQUIRE SOME NEW TESTING BEACUSE HOLY SHIT
         // I expect this to cause issues when doing the Toggle Doors in the pressure plate room
-        SaveSystem.Current.SetCollectibleBool(saveString, isOpen);
+        SaveSystem.Current.SetDoor(saveString, isOpen);
     }
 
     public void Load(SaveProfile profile) {
-        if (profile.GetCollectibleBool(saveString)) {
+        if (profile.GetDoor(saveString)) {
             OpenDoor();
         }
     }

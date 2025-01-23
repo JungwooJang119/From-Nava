@@ -43,12 +43,20 @@ public class LabReport : IInteractable, ISavable
     }
 
 	public void Save() {
-		SaveSystem.Current.SetCollectibleBool(saveString, reportRead);
+		SaveSystem.Current.SetCollectibleActive(saveString, gameObject.activeSelf);
+		SaveSystem.Current.SetCollectibleCollected(saveString, reportRead);
 	}
 
 	public void Load(SaveProfile profile) {
-		if (profile.GetCollectibleBool(saveString)) {
+		if (profile.GetCollectibleActive(saveString)) {
+			gameObject.SetActive(true);
+		}
+		if (profile.GetCollectibleCollected(saveString)) {
+			if (collectible == null) {
+				collectible = GetComponent<ClaimCollectible>();
+			} 
 			collectible.CollectSilent();
+			Destroy(this);
 		}
 	}
 }

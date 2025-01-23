@@ -12,7 +12,8 @@ public class RoomDisablerControl : Singleton<RoomDisablerControl> {
 		InitializeSingleton(gameObject);
         string roomCode;
         for (int i = 0; i < spawnPoints.Length; i++) {
-            if (spawnPoints[i].name.Substring(0, 2) != pc.spawn.name.Substring(0, 2)) {
+            // (Joseph 1 / 22 / 25) Modifying this next section in order to use the Profile data and not load into a disabled room
+            if (spawnPoints[i].name.Substring(0, 2) != SaveSystem.Current.GetPlayerLocation("B2Center").Substring(0, 2)) {
                 roomCode = spawnPoints[i].name.Substring(0, 2);
                 for (int j = 0; j < rooms.Length; j++) {
                     if (rooms[j].name == roomCode) {

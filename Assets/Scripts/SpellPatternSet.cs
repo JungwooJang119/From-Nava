@@ -6,6 +6,7 @@ public class SpellPatternSet : IInteractable, ISavable
 {
     private ClaimCollectible collectible;
     [SerializeField] private string saveString;
+    [SerializeField] private GameObject notepad;
     private bool wasCollected = false;
 
 
@@ -39,16 +40,23 @@ public class SpellPatternSet : IInteractable, ISavable
         awaitingCollectible = false;
     }
 
+    public void Save() {
+        SaveSystem.Current.SetCollectibleActive(saveString, gameObject.activeSelf);
+        SaveSystem.Current.SetCollectibleCollected(saveString, wasCollected);
+    }
+
     public void Load(SaveProfile profile) {
-        if (profile.GetBool(saveString, false)) {
+        if (profile.GetCollectibleActive(saveString, false)) {
+            gameObject.SetActive(true);
+        }
+        if (profile.GetCollectibleCollected(saveString, false)) {
             collectible = GetComponent<ClaimCollectible>();
             collectible.CollectSilent();
+            if (notepad != null) {
+                notepad.transform.parent.GetComponent<PauseMenu>().SetNotepadActive();
+            }
             Destroy(this.gameObject);
         }
         
-    }
-
-    public void Save() {
-        SaveSystem.Current.SetBool(saveString, wasCollected);
     }
 }

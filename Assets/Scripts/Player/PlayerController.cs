@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
 //Handle input and movement on Player
-public class PlayerController : Singleton<PlayerController>, IDamageable, IPushable
+public class PlayerController : Singleton<PlayerController>, IDamageable, IPushable, ISavable
 {
     [SerializeField] bool isDark;
     public int playerHealth;
@@ -85,7 +85,7 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
         animator = GetComponent<Animator>();
         isDark = (spawn.gameObject.tag == "DarkRoom");
         bruhLight.SetActive(isDark);
-        playerHealth = maxHealth;
+        // playerHealth = maxHealth; // (Joseph 1 / 22 / 25) Now set in Load()
         canMove = true;
         canChangeDir = true;
         canBeDamaged = true;
@@ -301,6 +301,23 @@ public class PlayerController : Singleton<PlayerController>, IDamageable, IPusha
     public static event System.EventHandler OnClearNotepad;
     private void OnClear() {
         OnClearNotepad?.Invoke(this, null);
+    }
+
+    public void Save() {
+        SaveSystem.Current.SetPlayerHealth(playerHealth);
+        SaveSystem.Current.SetPlayerLocation(spawn.name);
+    }
+    
+    public void Load(SaveProfile profile) {
+        playerHealth = profile.GetPlayerHealth(maxHealth); // Update UI
+        GetComponent<HealthBar>().ChangeHealth(playerHealth);
+        string spawnString = profile.GetPlayerLocation("B2Center");
+        GameObject spawnLocation = GameObject.Find(spawnString);
+        if (spawnLocation != null) {
+            spawn = spawnLocation.transform;
+            transform.position = spawn.position;
+        }
+        
     }
 }
 

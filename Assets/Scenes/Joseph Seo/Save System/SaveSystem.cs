@@ -29,21 +29,21 @@ public class SaveSystem
 
     // I think this converts everything seriazable to regular profiles and sets it for when saveSystem is first initialized
     public SaveSystem() {
-        Debug.Log("Constructor Called");
+        // Debug.Log("Constructor Called");
         SetProfile(0, GetSerializableSaveProfile(0)?.ToSaveProfile());
         SetProfile(1, GetSerializableSaveProfile(1)?.ToSaveProfile());
         SetProfile(2, GetSerializableSaveProfile(2)?.ToSaveProfile());
     }
 
     public static void DeleteSaveProfile(int index) {
-        Debug.Log($"Deleting Save Profile{index}");
+        // Debug.Log($"Deleting Save Profile{index}");
         string path = GetFilePath(index);
         if (File.Exists(path)) {
             File.Delete(path);
             SetProfile(index, null);
-            Debug.Log("Deleted Sucessfully!");
+            // Debug.Log("Deleted Sucessfully!");
         } else {
-            Debug.Log("Couldn't delete: Path does not exist!");
+            // Debug.Log("Couldn't delete: Path does not exist!");
         }
         
 

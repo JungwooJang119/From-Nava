@@ -43,10 +43,10 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
 
     public EnemyState currState;
 
-    private void Awake() {
+    private void Start() {
         OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
 
-        currHealth = maxHealth;
+        // currHealth = maxHealth;
         isPushed = false;
         animator = GetComponent<Animator>();
         dealthShader = GetComponent<DealthDissolveShader>();
@@ -69,9 +69,9 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
             damageFlash.Flash();
         }
         if (currHealth <= 0) {
-            if (!isIceTower) {
-                animator.SetBool("isDead", true);
-            }
+            // if (!isIceTower) {
+            //     animator.SetBool("isDead", true);
+            // }
             StartCoroutine(DeathSequence());
         }
     }
@@ -126,19 +126,16 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
     }
 
     // Save System Functions
-    public void Load(SaveProfile profile) {
-        bool wasKilled = !profile.GetBool(saveString, true);
-        // Debug.Log(saveString + " is " + (CheckIsAlive()? "Alive" : "Dead"));
-        // wasKilled = !CheckIsAlive();
-        if (wasKilled) {
-            Debug.Log("This object has been destroyed");
-            Destroy(this.gameObject);
-        }
-    }
-
     public void Save() {
-        SaveSystem.Current.SetBool(saveString, CheckIsAlive());
-
+        SaveSystem.Current.SetEnemyHealth(saveString, currHealth);
         // SaveSystem.SaveGame();
     }
+
+    public void Load(SaveProfile profile) {
+        // If no value, default to maxHealth
+        currHealth = profile.GetEnemyHealth(saveString, maxHealth);
+        if (!CheckIsAlive()) Destroy(this.gameObject);
+    }
+
+    
 }

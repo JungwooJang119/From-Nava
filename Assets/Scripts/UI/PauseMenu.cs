@@ -47,9 +47,7 @@ public class PauseMenu : MonoBehaviour {
     }
     private void Controller_OnCallsEnd() {
         if (notebookUnlocked) {
-            notebook.SetActive(true);
-            controller.OnClaimCollectible -= Controller_OnClaimCollectible;
-            controller.OnCallsEnd -= Controller_OnCallsEnd;
+            SetNotepadActive();
         }
     }
 
@@ -140,5 +138,12 @@ public class PauseMenu : MonoBehaviour {
 
     public MenuPage GetActivePage() {
         return activePage;
+    }
+
+    public void SetNotepadActive() {
+            notebookUnlocked = true;
+            notebook.SetActive(true);
+            controller.OnClaimCollectible -= Controller_OnClaimCollectible;
+            controller.OnCallsEnd -= Controller_OnCallsEnd;
     }
 }

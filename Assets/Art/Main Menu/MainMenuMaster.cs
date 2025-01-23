@@ -86,7 +86,7 @@ public class MainMenuMaster : MonoBehaviour {
     // This function just sets up the profile. This is done to follow previous implementations.
     public void SetupNewProfile() {
         // The following checks for empty names does not work
-        Debug.Log(field.text);
+        // Debug.Log(field.text);
         if (field.text.Length == 0) {
             return;
         }

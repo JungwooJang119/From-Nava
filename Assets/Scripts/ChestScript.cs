@@ -32,8 +32,12 @@ public class ChestScript : IInteractable, ISavable
 		virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
         returnToPlayer = PlayerController.Instance.transform;
         animator = GetComponent<Animator>();
-        if (!startsActive) StartCoroutine(CameraTransitionIn());
+        // if (!startsActive) StartCoroutine(CameraTransitionIn());
     }
+
+    // void OnEnable() {
+    //     if (!startsActive) StartCoroutine(CameraTransitionIn());
+    // }
 
     //Overrides the method in IInteractable such that the intended behavior for interacting is executed
     //In this case we will now call AwaitCollectible;
@@ -87,20 +91,23 @@ public class ChestScript : IInteractable, ISavable
     }
 
     public void Save() {
-        SaveSystem.Current.SetCollectibleBool(saveString, hasOpened);
+        SaveSystem.Current.SetCollectibleCollected(saveString, hasOpened);
+        SaveSystem.Current.SetCollectibleActive(saveString, gameObject.activeSelf);
     }
 
     public void Load(SaveProfile profile) {
         // Debug.Log(gameObject.name + " " + saveString);
-        if (profile.GetCollectibleBool(saveString)) {
+        if (profile.GetCollectibleActive(saveString)) {
+            gameObject.SetActive(true);
+        }
+        if (profile.GetCollectibleCollected(saveString)) {
             hasOpened = true;
-            // gameObject.SetActive(true);
-            // if (collectible.)
             if (collectible == null) {
                 collectible = GetComponent<ClaimCollectible>();
             }
             collectible.CollectSilent();
-            // gameObject.SetActive(false);
+            gameObject.SetActive(true);
+            // startsActive = true;
         }
     }
 }

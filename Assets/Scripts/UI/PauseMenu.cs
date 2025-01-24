@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour {
     
     public GameObject pauseMenuUI;
     [SerializeField] private GameObject notebook;
+    [SerializeField] private GameObject GameLoader;
 
     public static bool GameIsPaused = false;
     private bool notebookUnlocked = false;
@@ -108,7 +109,7 @@ public class PauseMenu : MonoBehaviour {
     public void QuitGame()
     {
         StartCoroutine(FinalFade(1f));
-        SaveSystem.SaveGame();
+        GameLoader.GetComponent<SceneInitializer>().SaveCurrentGame();
     }
 
     IEnumerator FinalFade(float finalFadeTime) {

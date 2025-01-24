@@ -16,10 +16,15 @@ public class MainMenuMaster : MonoBehaviour {
     }
 
     [SerializeField] private MainMenuSection activeSection;
-    [SerializeField] private TextMeshProUGUI[] _FileTexts; // File [] Text for New, Continue, Delete 
-    [SerializeField] private TextMeshProUGUI[] _FileNameTexts; // Array of SaveProfile names in Play
-    private Dictionary<MenuSection, MainMenuSection> menuDict;
+    [SerializeField] private TextMeshProUGUI[] _FileTexts;      // File [] Text for New, Continue, Delete 
+    [SerializeField] private TextMeshProUGUI[] _FileNameTexts;  // Array of SaveProfile names in Play
+    [SerializeField] private TextMeshProUGUI[] _ContinueDetails; // Arrary for Time, Sector, Polaroid, and Completion%
+    [SerializeField] private TextMeshProUGUI[] _DeleteDetails; // Arrary for Time, Sector, Polaroid, and Completion%
     [SerializeField] private TMP_InputField field;
+    [SerializeField] private List<string> names;
+    private Dictionary<MenuSection, MainMenuSection> menuDict;
+
+
     private int saveFileIndex;
 
     // Start is called before the first frame update
@@ -30,8 +35,7 @@ public class MainMenuMaster : MonoBehaviour {
             menuDict[menuSection.GetSection()] = menuSection;
             menuSection.OnAlphaReached += MenuSection_OnAlphaReached;
         }
-        // Debugging for Save Menu - Immediately adding a save profile for testing purposes
-        // SaveSystem.SetProfile(0, new SaveProfile("Joseph"));
+        
 
         // Done to grab all the save profiles
         for (int i = 0; i <= 2; i++) {
@@ -40,9 +44,6 @@ public class MainMenuMaster : MonoBehaviour {
             }
             // _FileNameTexts[i].SetText(SaveSystem.GetProfile(i).GetProfileName());
         }
-
-        // SaveSystem system = new SaveSystem();
-
     }
 
     private void MenuSection_OnAlphaReached(bool active) {
@@ -67,18 +68,35 @@ public class MainMenuMaster : MonoBehaviour {
         }
 
         // Default as continue as new requires new logic
-        MainMenuSection menuSection = menuDict[MenuSection.FileMenuContinue];
+        MainMenuSection menuSection;
         if (SaveSystem.GetProfile(index) == null) {
+            SetupNewProfileScreen();
             menuSection = menuDict[MenuSection.FileMenuNew];
-            field.text = "";
+            
             // ActivateNameInput();
+        } else {
+            menuSection = menuDict[MenuSection.FileMenuContinue];
+            SetupContinueProfileScreen();
         }
         ChangeActiveMenu(menuSection);
+
+    }
+
+    private void SetupNewProfileScreen() {
+        field.text = "";
         ActivateNameInput();
     }
 
-    private void ShowPreviousFile() {
-
+    // Setup in TopDown, so Time / Sector / Polaroid / %
+    private void SetupContinueProfileScreen() {
+        SaveProfile profile = SaveSystem.GetProfile(saveFileIndex);
+        // _ContinueDetails[0].text = profile.GetPlaytime();
+        _ContinueDetails[1].text = profile.GetPlayerLocation().Substring(0, 2);
+        _ContinueDetails[2].text = $"{profile.GetNumberOfPolaroids()} / 9";
+        _ContinueDetails[3].text = $"{profile.GetPercentage()}%";
+        _DeleteDetails[1].text = profile.GetPlayerLocation().Substring(0, 2);
+        _DeleteDetails[2].text = $"{profile.GetNumberOfPolaroids()} / 9";
+        _DeleteDetails[3].text = $"{profile.GetPercentage()}%";
     }
 
     // (Joseph 1 / 15 / 25) Attempt to create a new save file
@@ -88,13 +106,13 @@ public class MainMenuMaster : MonoBehaviour {
         // The following checks for empty names does not work
         // Debug.Log(field.text);
         if (field.text.Length == 0) {
-            return;
+            GenerateRandomName();
         }
         MainMenuSection menuSection = menuDict[MenuSection.FileMenuNew];
         name = field.text;
         SaveSystem.SetProfile(saveFileIndex, new SaveProfile(name));
         SaveSystem.SetCurrentProfile(saveFileIndex);
-        // SaveSystem.SaveGame();
+        
     }
 
     // (Joseph 1 / 15 / 25) Attempt to continue with the current SaveProfile
@@ -127,5 +145,13 @@ public class MainMenuMaster : MonoBehaviour {
 
     public void DebugSelect() {
         // Debug.Log("Debug Selected!");
+    }
+
+    public void GenerateRandomName() {
+        int randIndex;
+        do {
+            randIndex = Random.Range(0, names.Count);
+        } while (names[randIndex].Equals(field.text));
+        field.text = names[randIndex];
     }
 }

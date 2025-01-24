@@ -54,9 +54,7 @@ public class ChestScript : IInteractable, ISavable
     }
 
     IEnumerator CameraTransitionIn() {
-        Debug.Log("Sprite color is " + spriteColor);
         spriteColor.a = 0f;
-        Debug.Log("SpriteRender says that it's actually " + GetComponent<SpriteRenderer>().color);
         GetComponent<SpriteRenderer>().color = spriteColor;
         playerController.DeactivateMovement();
         while (spriteColor.a < 1.02f) {
@@ -101,6 +99,22 @@ public class ChestScript : IInteractable, ISavable
     public void Save() {
         SaveSystem.Current.SetCollectibleCollected(saveString, hasOpened);
         SaveSystem.Current.SetCollectibleActive(saveString, gameObject.activeSelf);
+        // if (collectible == null) Debug.Log("WOW it's null");
+        // collectible.GetCall();
+        
+        // collectible = GetComponent<ClaimCollectible>();
+        // ScriptableItem[] collectibleData = collectible.GetCollectibleCalls();
+        // Debug.Log("Attempting to find if collectibleData is null");
+        // if (collectibleData != null) return;
+        // Debug.Log("Got past! Must not be then...");
+        // int numOfCollectibles = collectibleData.Length;
+        // if (hasOpened) {
+        //     SaveSystem.Current.IncrementCollectedNumber(numOfCollectibles);
+        // }
+        // SaveSystem.Current.IncrementTotalNumber(numOfCollectibles);
+
+        
+        
     }
 
     public void Load(SaveProfile profile) {
@@ -111,7 +125,7 @@ public class ChestScript : IInteractable, ISavable
         }
         if (profile.GetCollectibleCollected(saveString)) {
             hasOpened = true;
-            collectible = GetComponent<ClaimCollectible>();
+            // collectible = GetComponent<ClaimCollectible>();
             collectible.CollectSilent();
         }
     }

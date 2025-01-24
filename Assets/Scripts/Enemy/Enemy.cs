@@ -130,7 +130,6 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
     // Save System Functions
     public void Save() {
         SaveSystem.Current.SetEnemyHealth(saveString, currHealth);
-        // SaveSystem.SaveGame();
     }
 
     public void Load(SaveProfile profile) {

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Joseph Seo/Save System/SaveMainMenu.unity
+    path: Assets/Scenes/Joseph Seo/SaveMainMenu.unity
     guid: 9fcb8d5dc8175b34cb08d09d15cdeb48
   - enabled: 0
     path: Assets/Scenes/Esther/Main Menu Final 1.unity
@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Final/Main Lab.unity
     guid: c4fbe7e5c868bcd41ad429a2551c7b21
   - enabled: 0
-    path: Assets/Scenes/Joseph Seo/Save System/SaveSceneLoad.unity
+    path: Assets/Scenes/Joseph Seo/SaveSceneLoad.unity
     guid: 318c887fedd432e4da074768d8fe2a12
   - enabled: 0
     path: Assets/Scenes/Jung/M3.unity

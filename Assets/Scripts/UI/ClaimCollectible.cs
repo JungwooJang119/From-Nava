@@ -39,4 +39,14 @@ public class ClaimCollectible : MonoBehaviour, RewardObject {
     public void DoReward() {
         gameObject.SetActive(true);
     }
+
+    // public ScriptableItem[] GetCollectibleCalls() {
+    //     Debug.Log("Grabbing " + collectibleCalls);
+    //     return collectibleCalls;
+    // }
+
+    public int GetCall() {
+        Debug.Log("Lengthsare: " + collectibleCalls.Length);
+        return collectibleCalls.Length;
+    }
 }

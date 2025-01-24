@@ -43,7 +43,7 @@ public class SpellPatternSet : IInteractable, ISavable
     public void Save() {
         SaveSystem.Current.SetCollectibleActive(saveString, gameObject.activeSelf);
         SaveSystem.Current.SetCollectibleCollected(saveString, wasCollected);
-        Debug.Log("Iceball was saved!");
+        // Debug.Log("Iceball was saved!");
     }
 
     public void Load(SaveProfile profile) {

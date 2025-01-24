@@ -7,7 +7,7 @@ using System;
 /// Simple Audio Manager, a sweet relief for sound lovers <3
 /// </summary>
 
-public class AudioControl : Singleton<AudioControl>, ISavable {
+public class AudioControl : Singleton<AudioControl> {
 
 	private float musicVolume = 0.5f;
 	private float sfxVolume = 1.0f;
@@ -24,6 +24,10 @@ public class AudioControl : Singleton<AudioControl>, ISavable {
 		secondaryMusicSource.gameObject.name = "SecondaryMusicSource";
 		DontDestroyOnLoad(gameObject);
 		InitializeSingleton(gameObject);
+	}
+
+	void Start() {
+		Load();
 	}
 
 	//Sets the MainMusicSource time to 0. For some reason this fixes the Audio issue at the ending.
@@ -273,14 +277,13 @@ public class AudioControl : Singleton<AudioControl>, ISavable {
 	}
 
 	public void Save() {
-		// Saved in the order of Main, Music
 		float[] volumeSettings = {AudioListener.volume, musicVolume, sfxVolume};
-		SaveSystem.Current.SetVolumeSettings(volumeSettings);
+		SaveSystem.GetSettings().SetVolumeSettings(volumeSettings);
+		SaveSystem.GetSettings().PrintSettings();
 	}
 
-	public void Load(SaveProfile profile) {
-		float[] volumeSettings = profile.GetVolumeSettings();
-		if (volumeSettings == null) return; // Done to prevent issues from on startup; hopefully the settings will save on quit
+	public void Load() {
+		float[] volumeSettings = SaveSystem.GetSettings().GetVolumeSettings();
 		AudioListener.volume = volumeSettings[0];
 		SetMusicVolume(volumeSettings[1]);
 		SetSFXVolume(volumeSettings[2]);

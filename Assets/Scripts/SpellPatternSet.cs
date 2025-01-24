@@ -43,6 +43,7 @@ public class SpellPatternSet : IInteractable, ISavable
     public void Save() {
         SaveSystem.Current.SetCollectibleActive(saveString, gameObject.activeSelf);
         SaveSystem.Current.SetCollectibleCollected(saveString, wasCollected);
+        Debug.Log("Iceball was saved!");
     }
 
     public void Load(SaveProfile profile) {
@@ -52,6 +53,7 @@ public class SpellPatternSet : IInteractable, ISavable
         if (profile.GetCollectibleCollected(saveString, false)) {
             collectible = GetComponent<ClaimCollectible>();
             collectible.CollectSilent();
+            Debug.Log("Collecting spell " + saveString);
             if (notepad != null) {
                 notepad.transform.parent.GetComponent<PauseMenu>().SetNotepadActive();
             }

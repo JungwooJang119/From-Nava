@@ -52,7 +52,7 @@ public class RoomControl : MonoBehaviour, ISavable {
         }
 
         ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);
-        // Debug.Log(revealRoomCode);
+        // Debug.Log("Puzzle Completition call for the code: " + revealRoomCode);
 
         foreach (Listener listener in puzzleListeners) {
             listener.OnListen -= UpdateStatus;

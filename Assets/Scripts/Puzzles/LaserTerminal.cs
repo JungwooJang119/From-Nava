@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using static RoomLights;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Events;
+using System;
 
 // Entry point for the Laser/Mirror system;
 // Can be activated if the player is close enough,
@@ -37,7 +39,7 @@ public class LaserTerminal : IInteractable
     public GameObject door;
 
 	private bool roomComplete;
-	
+	public event Action OnFinish;
 
 	void Start() {
 		laserCaster = GetComponentInChildren<LaserCaster>();
@@ -104,6 +106,7 @@ public class LaserTerminal : IInteractable
 	public void PuzzleSuccess() {
 		_virtualCamera.Follow = _player;
 		StartCoroutine(CameraTransitionOutGood());
+		OnFinish?.Invoke();
 		_playerController.ActivateMovement();
 	}
 

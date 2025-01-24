@@ -7,7 +7,7 @@ using System;
 /// Simple Audio Manager, a sweet relief for sound lovers <3
 /// </summary>
 
-public class AudioControl : Singleton<AudioControl> {
+public class AudioControl : Singleton<AudioControl>, ISavable {
 
 	private float musicVolume = 0.5f;
 	private float sfxVolume = 1.0f;
@@ -270,6 +270,20 @@ public class AudioControl : Singleton<AudioControl> {
 
 	public float GetSFXVolume() {
 		return sfxVolume;
+	}
+
+	public void Save() {
+		// Saved in the order of Main, Music
+		float[] volumeSettings = {AudioListener.volume, musicVolume, sfxVolume};
+		SaveSystem.Current.SetVolumeSettings(volumeSettings);
+	}
+
+	public void Load(SaveProfile profile) {
+		float[] volumeSettings = profile.GetVolumeSettings();
+		if (volumeSettings == null) return; // Done to prevent issues from on startup; hopefully the settings will save on quit
+		AudioListener.volume = volumeSettings[0];
+		SetMusicVolume(volumeSettings[1]);
+		SetSFXVolume(volumeSettings[2]);
 	}
 }
 

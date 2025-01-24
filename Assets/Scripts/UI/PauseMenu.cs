@@ -143,6 +143,9 @@ public class PauseMenu : MonoBehaviour {
     public void SetNotepadActive() {
             notebookUnlocked = true;
             notebook.SetActive(true);
+            if (controller == null) {
+                controller = ReferenceSingleton.Instance.collectibleController;
+            }
             controller.OnClaimCollectible -= Controller_OnClaimCollectible;
             controller.OnCallsEnd -= Controller_OnCallsEnd;
     }

@@ -9,6 +9,7 @@ public class SaveProfile
     private float playtime;
     private string _playerLocation;
     private int _playerHealth;
+    private float[] _volumeSettings;
 
     // The following dictionary will cover collectibles (Polaroids, Keys, Lab Reports), enemy status (Dead or Alive), spell unlock progress
     private Dictionary<string, int> _enemyHealthDict = new Dictionary<string, int>();
@@ -31,10 +32,13 @@ public class SaveProfile
     }
 
     public void Save() {
+        Debug.Log("Saving all the data!");
         SaveSavableData();
+        Resources.UnloadUnusedAssets();
     }
 
     public void Load() {
+        Debug.Log("Loading all the data!");
         LoadSavableData();
     }
 
@@ -86,6 +90,15 @@ public class SaveProfile
 
     public void SetPlayerLocation(string location) {
         _playerLocation = location;
+    }
+
+    // Volume done via float[] array of Master, Music, Sfx
+    public void SetVolumeSettings(float[] settings) {
+        _volumeSettings = settings;
+    }
+
+    public float[] GetVolumeSettings() {
+        return _volumeSettings;
     }
 
     // For Enemy Health

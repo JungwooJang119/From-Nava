@@ -43,16 +43,18 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
 
     public EnemyState currState;
 
-    private void Start() {
-        OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
-
-        // currHealth = maxHealth;
+    private void Awake() {
+        currHealth = maxHealth;
         isPushed = false;
         animator = GetComponent<Animator>();
         dealthShader = GetComponent<DealthDissolveShader>();
         sr = GetComponent<SpriteRenderer>();
 
-        healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
+        // healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
+    }
+
+    private void Start() {
+        OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
     }
 
     void OnDestroy() {
@@ -134,6 +136,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
     public void Load(SaveProfile profile) {
         // If no value, default to maxHealth
         currHealth = profile.GetEnemyHealth(saveString, maxHealth);
+        healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
         if (!CheckIsAlive()) Destroy(this.gameObject);
     }
 

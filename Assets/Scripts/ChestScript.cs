@@ -21,23 +21,29 @@ public class ChestScript : IInteractable, ISavable
     private Color spriteColor;
     private bool hasOpened;
 
+    void Awake() {
+        spriteColor = GetComponent<SpriteRenderer>().color;
+        collectible = GetComponent<ClaimCollectible>();
+        animator = GetComponent<Animator>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        spriteColor = GetComponent<SpriteRenderer>().color;
-        collectible = GetComponent<ClaimCollectible>();
         collectible.OnCollectibleClaimed += ChestScript_OnCollectibleClaimed;
         playerController = PlayerController.Instance;
 
 		virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
         returnToPlayer = PlayerController.Instance.transform;
-        animator = GetComponent<Animator>();
-        // if (!startsActive) StartCoroutine(CameraTransitionIn());
     }
 
-    // void OnEnable() {
-    //     if (!startsActive) StartCoroutine(CameraTransitionIn());
+    // void Awake() {
+
     // }
+
+    void OnEnable() {
+        if (!startsActive) StartCoroutine(CameraTransitionIn());
+    }
 
     //Overrides the method in IInteractable such that the intended behavior for interacting is executed
     //In this case we will now call AwaitCollectible;
@@ -48,7 +54,9 @@ public class ChestScript : IInteractable, ISavable
     }
 
     IEnumerator CameraTransitionIn() {
+        Debug.Log("Sprite color is " + spriteColor);
         spriteColor.a = 0f;
+        Debug.Log("SpriteRender says that it's actually " + GetComponent<SpriteRenderer>().color);
         GetComponent<SpriteRenderer>().color = spriteColor;
         playerController.DeactivateMovement();
         while (spriteColor.a < 1.02f) {
@@ -98,16 +106,13 @@ public class ChestScript : IInteractable, ISavable
     public void Load(SaveProfile profile) {
         // Debug.Log(gameObject.name + " " + saveString);
         if (profile.GetCollectibleActive(saveString)) {
+            startsActive = true;
             gameObject.SetActive(true);
         }
         if (profile.GetCollectibleCollected(saveString)) {
             hasOpened = true;
-            if (collectible == null) {
-                collectible = GetComponent<ClaimCollectible>();
-            }
+            collectible = GetComponent<ClaimCollectible>();
             collectible.CollectSilent();
-            gameObject.SetActive(true);
-            // startsActive = true;
         }
     }
 }

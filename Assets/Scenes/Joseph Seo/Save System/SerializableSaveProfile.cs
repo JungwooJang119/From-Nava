@@ -6,7 +6,10 @@ using System.Linq;
 [System.Serializable]
 public class SerializableSaveProfile
 {
-    public string profileName;
+    public string _profileName;
+    public string _lastLocation;
+    public int _playerHealth;
+    public float[] _volumeSettings;
 
     // Dictionaries of saved data
     public string[] _enemyHealthKey;
@@ -20,13 +23,17 @@ public class SerializableSaveProfile
     public string[] _roomKey;
     public bool[] _roomValue;
 
+
     // Converts from SaveProfile to SerializableSaveProfile
     public static SerializableSaveProfile FromSaveProfile(SaveProfile saveProfile) {
         if (saveProfile == null) return null;
 
         SerializableSaveProfile ssp = new SerializableSaveProfile();
 
-        ssp.profileName = saveProfile.GetProfileName();
+        ssp._profileName = saveProfile.GetProfileName();
+        ssp._lastLocation = saveProfile.GetPlayerLocation();
+        ssp._playerHealth = saveProfile.GetPlayerHealth();
+        ssp._volumeSettings = saveProfile.GetVolumeSettings();
 
         ssp._enemyHealthKey = saveProfile.GetEnemyHealthDictionary().Keys.ToArray();
         ssp._enemyHealthValue = saveProfile.GetEnemyHealthDictionary().Values.ToArray();
@@ -38,13 +45,17 @@ public class SerializableSaveProfile
         ssp._doorValue = saveProfile.GetDoorDictionary().Values.ToArray();
         ssp._roomKey = saveProfile.GetRoomControlDictionary().Keys.ToArray();
         ssp._roomValue = saveProfile.GetRoomControlDictionary().Values.ToArray();
+        
 
         return ssp;
     }
 
     // Done when loading in from data
     public SaveProfile ToSaveProfile() {
-        SaveProfile sp = new SaveProfile(profileName);
+        SaveProfile sp = new SaveProfile(_profileName);
+        sp.SetPlayerLocation(_lastLocation);
+        sp.SetPlayerHealth(_playerHealth);
+        sp.SetVolumeSettings(_volumeSettings);
 
         Dictionary<string, int> enemyHealth = new Dictionary<string, int>(_enemyHealthKey.Length);
         for (int i = 0; i < _enemyHealthKey.Length; i++) {

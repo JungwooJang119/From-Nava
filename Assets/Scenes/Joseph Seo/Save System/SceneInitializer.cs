@@ -7,4 +7,8 @@ public class SceneInitializer : MonoBehaviour
     private void Start() {
         SaveSystem.Current.Load();
     }
+
+    void OnApplicationQuit() {
+        SaveSystem.SaveGame();
+    }
 }

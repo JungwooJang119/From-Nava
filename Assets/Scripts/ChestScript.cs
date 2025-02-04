@@ -125,7 +125,7 @@ public class ChestScript : IInteractable, ISavable
         }
         if (profile.GetCollectibleCollected(saveString)) {
             hasOpened = true;
-            // collectible = GetComponent<ClaimCollectible>();
+            collectible = GetComponent<ClaimCollectible>();
             collectible.CollectSilent();
         }
     }

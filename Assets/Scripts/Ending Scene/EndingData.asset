@@ -15,18 +15,177 @@ MonoBehaviour:
   tranElements:
   - rid: 8616986156042027008
   - rid: 8616986156042027012
+  - rid: 6169970677722120192
+  - rid: 6169970677722120193
+  - rid: 6169970677722120194
+  - rid: 6169970677722120196
+  - rid: 6169970677722120197
+  - rid: 6169970677722120198
+  - rid: 6169970677722120199
   references:
     version: 2
     RefIds:
+    - rid: 6169970677722120192
+      type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
+      data:
+        backgroundSprite: {fileID: 21300000, guid: 81480305d60423f4c85f760536266c29, type: 3}
+        transitionUpLength: 1
+        intermezzoWait: 0
+        transitionDownLength: 2
+        postTransitionWait: 2.4
+        transitionColor: {r: 0, g: 0, b: 0, a: 1}
+        onUpAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onIntermezzoAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onDownAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        postTransitionAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+    - rid: 6169970677722120193
+      type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
+      data:
+        backgroundSprite: {fileID: 21300000, guid: f0a12530b5bfbf3479953103493c52a1, type: 3}
+        transitionUpLength: 0
+        intermezzoWait: 3
+        transitionDownLength: 0
+        postTransitionWait: 0
+        transitionColor: {r: 0, g: 0, b: 0, a: 1}
+        onUpAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onIntermezzoAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onDownAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        postTransitionAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+    - rid: 6169970677722120194
+      type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
+      data:
+        backgroundSprite: {fileID: 21300000, guid: 034ad4839b009014fb5733c4a750bf18, type: 3}
+        transitionUpLength: 1
+        intermezzoWait: 0
+        transitionDownLength: 2
+        postTransitionWait: 4
+        transitionColor: {r: 1, g: 1, b: 1, a: 1}
+        onUpAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onIntermezzoAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onDownAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        postTransitionAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+    - rid: 6169970677722120196
+      type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
+      data:
+        backgroundSprite: {fileID: 21300000, guid: abda61153eb64204683fa54252d2c98e, type: 3}
+        transitionUpLength: 1
+        intermezzoWait: 0
+        transitionDownLength: 2
+        postTransitionWait: 4
+        transitionColor: {r: 1, g: 1, b: 1, a: 1}
+        onUpAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onIntermezzoAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onDownAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        postTransitionAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+    - rid: 6169970677722120197
+      type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
+      data:
+        backgroundSprite: {fileID: 21300000, guid: 73616d9aa65cb5445bf8bed1b9a00182, type: 3}
+        transitionUpLength: 1
+        intermezzoWait: 0
+        transitionDownLength: 2
+        postTransitionWait: 4
+        transitionColor: {r: 1, g: 1, b: 1, a: 1}
+        onUpAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onIntermezzoAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onDownAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        postTransitionAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+    - rid: 6169970677722120198
+      type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
+      data:
+        backgroundSprite: {fileID: 21300000, guid: 4898d96895eedb9449f347573a9c2e24, type: 3}
+        transitionUpLength: 1
+        intermezzoWait: 0
+        transitionDownLength: 2
+        postTransitionWait: 0
+        transitionColor: {r: 1, g: 1, b: 1, a: 1}
+        onUpAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onIntermezzoAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        onDownAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+        postTransitionAudio:
+          use: 0
+          sfx: 0
+          clipName: 
+    - rid: 6169970677722120199
+      type: {class: PolaroidInteraction, ns: , asm: Assembly-CSharp}
     - rid: 8616986156042027008
       type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
       data:
-        backgroundSprite: {fileID: 21300000, guid: f5eb1440b94f9694687d9ae8f4cb5c35, type: 3}
+        backgroundSprite: {fileID: 21300000, guid: 8aa73cdbc708acc47813fdd7381947b0, type: 3}
         transitionUpLength: 1
-        intermezzoWait: 1
-        transitionDownLength: 1
-        postTransitionWait: 6
-        transitionColor: {r: 0, g: 0, b: 0, a: 1}
+        intermezzoWait: 0
+        transitionDownLength: 2
+        postTransitionWait: 3
+        transitionColor: {r: 1, g: 1, b: 1, a: 1}
         onUpAudio:
           use: 0
           sfx: 0
@@ -46,12 +205,12 @@ MonoBehaviour:
     - rid: 8616986156042027012
       type: {class: EndingTransition, ns: , asm: Assembly-CSharp}
       data:
-        backgroundSprite: {fileID: 21300000, guid: 51e892f2a7ab9794fad57cf776e7f475, type: 3}
-        transitionUpLength: 1
-        intermezzoWait: 0
-        transitionDownLength: 0
-        postTransitionWait: 6
-        transitionColor: {r: 0, g: 0, b: 0, a: 0}
+        backgroundSprite: {fileID: 21300000, guid: 4f1576114570d7e4bb5ce41363a618fd, type: 3}
+        transitionUpLength: 2
+        intermezzoWait: 1
+        transitionDownLength: 2
+        postTransitionWait: 4
+        transitionColor: {r: 1, g: 1, b: 1, a: 1}
         onUpAudio:
           use: 0
           sfx: 0

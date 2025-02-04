@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellPatternSet : IInteractable
+public class SpellPatternSet : IInteractable, ISavable
 {
     private ClaimCollectible collectible;
+    [SerializeField] private string saveString;
+    [SerializeField] private GameObject notepad;
+    private bool wasCollected = false;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         collectible = GetComponent<ClaimCollectible>();
         collectible.OnCollectibleClaimed += ChestScript_OnCollectibleClaimed;
@@ -16,6 +19,8 @@ public class SpellPatternSet : IInteractable
 
     protected override void InteractBehavior() {
         StartCoroutine(AwaitCollectible());
+        wasCollected = true;
+        Save();
         FadeButton();
         Destroy(this.gameObject);
     }
@@ -33,5 +38,27 @@ public class SpellPatternSet : IInteractable
 
     private void ChestScript_OnCollectibleClaimed() {
         awaitingCollectible = false;
+    }
+
+    public void Save() {
+        SaveSystem.Current.SetCollectibleActive(saveString, gameObject.activeSelf);
+        SaveSystem.Current.SetCollectibleCollected(saveString, wasCollected);
+        // Debug.Log("Iceball was saved!");
+    }
+
+    public void Load(SaveProfile profile) {
+        if (profile.GetCollectibleActive(saveString, false)) {
+            gameObject.SetActive(true);
+        }
+        if (profile.GetCollectibleCollected(saveString, false)) {
+            collectible = GetComponent<ClaimCollectible>();
+            collectible.CollectSilent();
+            Debug.Log("Collecting spell " + saveString);
+            if (notepad != null) {
+                notepad.transform.parent.GetComponent<PauseMenu>().SetNotepadActive();
+            }
+            Destroy(this.gameObject);
+        }
+        
     }
 }

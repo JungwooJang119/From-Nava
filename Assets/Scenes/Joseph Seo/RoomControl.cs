@@ -4,16 +4,18 @@ using UnityEngine;
 using static RoomLights;
 using Cinemachine;
 
-public class RoomControl : MonoBehaviour {
+public class RoomControl : MonoBehaviour, ISavable {
     [SerializeField] private List<Listener> puzzleListeners;        // A list of Listeners that RoomControl will receive signals to check.
     [SerializeField] private List<GameObject> rewards;              // A list of rewards that will be given due to the puzzle being solved.
     [SerializeField] private bool PlaySound = true;                 // If a jingle should be played or not on solve. Defaults to true.
     [SerializeField] private GameObject cameraTarget;				// The target the camera will move towards. If null, the camera will not pan.
-    [SerializeField] RoomCode revealRoomCode;                       // Which next room (in the same sector) should be revealed.
+    [SerializeField] private RoomCode revealRoomCode;                       // Which next room (in the same sector) should be revealed.
+    [SerializeField] private string saveString;                     // String the save system saves the puzzle by
 
     private List<RewardObject> rewardObjectComponents = new List<RewardObject>();   // The interface implemented by rewards to call DoReward
     private CinemachineVirtualCamera virtualCamera;                                 // The virtual camera for camera pans
-
+    private bool isFinished = false;
+    
 
     void Start() {
         // Grabs the virtual camera
@@ -41,13 +43,16 @@ public class RoomControl : MonoBehaviour {
 
     private void PuzzleCompletion() {
         if (PlaySound) AudioControl.Instance.PlaySFX("PuzzleComplete", PlayerController.Instance.gameObject, 0f, 1f);
+        isFinished = true;
         foreach (RewardObject obj in rewardObjectComponents) {
             obj.DoReward();
         }
         if (cameraTarget != null) {
             StartCoroutine(CameraTransitionIn());
         }
+
         ReferenceSingleton.Instance.roomLights.Propagate(revealRoomCode);
+        // Debug.Log("Puzzle Completition call for the code: " + revealRoomCode);
 
         foreach (Listener listener in puzzleListeners) {
             listener.OnListen -= UpdateStatus;
@@ -60,6 +65,20 @@ public class RoomControl : MonoBehaviour {
         if (cameraTarget) virtualCamera.Follow = cameraTarget.transform;
         yield return new WaitForSeconds(2f);
         virtualCamera.Follow = PlayerController.Instance.transform;
+    }
+
+    public void Save() {
+        SaveSystem.Current.SetRoomControl(saveString, isFinished);
+    }
+
+    public void Load(SaveProfile profile) {
+        if (profile.GetRoomControl(saveString, false)) {
+            PlaySound = false;
+            isFinished = true;
+            cameraTarget = null;
+            PuzzleCompletion();
+        }
+
     }
 
 }

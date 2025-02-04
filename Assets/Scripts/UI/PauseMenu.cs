@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour {
     
     public GameObject pauseMenuUI;
     [SerializeField] private GameObject notebook;
+    [SerializeField] private GameObject GameLoader;
 
     public static bool GameIsPaused = false;
     private bool notebookUnlocked = false;
@@ -47,9 +48,7 @@ public class PauseMenu : MonoBehaviour {
     }
     private void Controller_OnCallsEnd() {
         if (notebookUnlocked) {
-            notebook.SetActive(true);
-            controller.OnClaimCollectible -= Controller_OnClaimCollectible;
-            controller.OnCallsEnd -= Controller_OnCallsEnd;
+            SetNotepadActive();
         }
     }
 
@@ -110,6 +109,7 @@ public class PauseMenu : MonoBehaviour {
     public void QuitGame()
     {
         StartCoroutine(FinalFade(1f));
+        GameLoader.GetComponent<SceneInitializer>().SaveCurrentGame();
     }
 
     IEnumerator FinalFade(float finalFadeTime) {
@@ -139,5 +139,15 @@ public class PauseMenu : MonoBehaviour {
 
     public MenuPage GetActivePage() {
         return activePage;
+    }
+
+    public void SetNotepadActive() {
+            notebookUnlocked = true;
+            notebook.SetActive(true);
+            if (controller == null) {
+                controller = ReferenceSingleton.Instance.collectibleController;
+            }
+            controller.OnClaimCollectible -= Controller_OnClaimCollectible;
+            controller.OnCallsEnd -= Controller_OnCallsEnd;
     }
 }

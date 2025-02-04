@@ -11,6 +11,7 @@ public class CollectibleController : MonoBehaviour {
 	/// <summary> Signal a collectible interaction;
 	/// <br></br> Listeners: All Collectible Managers; </summary>
 	public event System.EventHandler<ItemCall> OnClaimCollectible;
+	public event System.EventHandler<ItemCall> OnClaimCollectibleSilent;
 	/// <summary> Follow-up signal with the result of a collectible interaction;
 	/// <br></br> Listener: Notification Manager, PauseMenu; </summary>
 	public event System.Action<ItemCall> OnClaimResult;
@@ -42,6 +43,13 @@ public class CollectibleController : MonoBehaviour {
 	public void AddCall(ItemData data) {
 		callQueue.Enqueue(data);
 		TryDequeue();
+	}
+
+	public void AddSilentCall(ItemData data) {
+		// Debug.Log("Got into the silent call!");
+		ItemCall call = new(data);
+		OnClaimCollectibleSilent?.Invoke(this, call);
+		OnCallsEnd?.Invoke();
 	}
 
 	/// <summary>

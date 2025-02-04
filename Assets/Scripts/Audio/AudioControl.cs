@@ -26,6 +26,10 @@ public class AudioControl : Singleton<AudioControl> {
 		InitializeSingleton(gameObject);
 	}
 
+	void Start() {
+		Load();
+	}
+
 	//Sets the MainMusicSource time to 0. For some reason this fixes the Audio issue at the ending.
 	//The issue was with Swap, where time was set to the time of the other track. For some reason this breaks things. 
 	public void ResetTime() {
@@ -270,6 +274,19 @@ public class AudioControl : Singleton<AudioControl> {
 
 	public float GetSFXVolume() {
 		return sfxVolume;
+	}
+
+	public void Save() {
+		float[] volumeSettings = {AudioListener.volume, musicVolume, sfxVolume};
+		SaveSystem.GetSettings().SetVolumeSettings(volumeSettings);
+		SaveSystem.GetSettings().PrintSettings();
+	}
+
+	public void Load() {
+		float[] volumeSettings = SaveSystem.GetSettings().GetVolumeSettings();
+		AudioListener.volume = volumeSettings[0];
+		SetMusicVolume(volumeSettings[1]);
+		SetSFXVolume(volumeSettings[2]);
 	}
 }
 

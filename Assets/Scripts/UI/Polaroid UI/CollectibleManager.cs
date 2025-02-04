@@ -31,6 +31,7 @@ public abstract class CollectibleManager<T> : CollectibleManager where T : Scrip
 		base.Init(controller);
 		controller.OnClaimCollectible += Controller_OnClaimCollectible;
         controller.OnInventoryRequest += Controller_OnInventoryRequest;
+		controller.OnClaimCollectibleSilent += Controller_OnClaimCollectibleSilent;
 	}
 
     /// <summary> Display an item to the screen; </summary>
@@ -50,6 +51,13 @@ public abstract class CollectibleManager<T> : CollectibleManager where T : Scrip
 		if (call.inputType == typeof(T)) {
 			call.output = inventory;
         }
+	}
+
+	private void Controller_OnClaimCollectibleSilent (object sender, ItemCall call) {
+		T item = call.input as T;
+		if (item != null && AddItem(item)) {
+			call.output = inventory;
+		}
 	}
 
 	/// <summary> Add an item to the inventory; </summary>

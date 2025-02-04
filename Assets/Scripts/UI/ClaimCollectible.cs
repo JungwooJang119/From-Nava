@@ -14,20 +14,39 @@ public class ClaimCollectible : MonoBehaviour, RewardObject {
 
     void Start() {
         controller = ReferenceSingleton.Instance.collectibleController;
-        controller.OnCallsEnd += CollectibleCall_OnCallsEnd;
     }
     
     public void Collect() {
 		awaitingCallback = true;
+        controller.OnCallsEnd += CollectibleCall_OnCallsEnd;
         foreach (ItemData data in collectibleCalls) controller.AddCall(data);
+    }
+
+    public void CollectSilent() {
+        controller = ReferenceSingleton.Instance.collectibleController;
+        // Debug.Log("Adding a call now!");
+        // controller.AddSilentCall(collectibleCalls[0]);
+        foreach (ItemData data in collectibleCalls) controller.AddSilentCall(data);
+        // Debug.Log("Adding a call worked! Strange...");
     }
 
     void CollectibleCall_OnCallsEnd() {
         if (awaitingCallback) OnCollectibleClaimed?.Invoke();
         awaitingCallback = false;
+        controller.OnCallsEnd -= CollectibleCall_OnCallsEnd;
 	}
 
     public void DoReward() {
         gameObject.SetActive(true);
+    }
+
+    // public ScriptableItem[] GetCollectibleCalls() {
+    //     Debug.Log("Grabbing " + collectibleCalls);
+    //     return collectibleCalls;
+    // }
+
+    public int GetCall() {
+        Debug.Log("Lengthsare: " + collectibleCalls.Length);
+        return collectibleCalls.Length;
     }
 }

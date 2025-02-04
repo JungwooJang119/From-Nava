@@ -15,7 +15,7 @@ public enum EnemyState {
     DEAD
 }
 
-public class Enemy : MonoBehaviour, IDamageable, IPushable
+public class Enemy : MonoBehaviour, IDamageable, IPushable, ISavable
 {
     public event Action<int> OnDamageTaken;
     public event Action<Enemy, bool> OnPlayerInRange;
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private DealthDissolveShader dealthShader;
     [SerializeField] private GameObject tutorialSpellObject;
+    [SerializeField] private string saveString;
     private int currHealth;
 
     private bool isPushed;
@@ -42,16 +43,18 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
 
     public EnemyState currState;
 
-    private void Start() {
-        OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
-
+    private void Awake() {
         currHealth = maxHealth;
         isPushed = false;
         animator = GetComponent<Animator>();
         dealthShader = GetComponent<DealthDissolveShader>();
         sr = GetComponent<SpriteRenderer>();
 
-        healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
+        // healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
+    }
+
+    private void Start() {
+        OnPlayerInRange += BattleManager.Instance.RegisterEnemy;
     }
 
     void OnDestroy() {
@@ -68,9 +71,9 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
             damageFlash.Flash();
         }
         if (currHealth <= 0) {
-            if (!isIceTower) {
-                animator.SetBool("isDead", true);
-            }
+            // if (!isIceTower) {
+            //     animator.SetBool("isDead", true);
+            // }
             StartCoroutine(DeathSequence());
         }
     }
@@ -97,6 +100,7 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
 
     IEnumerator DeathSequence() {
         dealthShader.DissolveOut();
+        Save();
         yield return new WaitForSeconds(1f);
         if (tutorialSpellObject) {
             tutorialSpellObject.transform.position = gameObject.transform.position;
@@ -122,4 +126,18 @@ public class Enemy : MonoBehaviour, IDamageable, IPushable
             }
         }
     }
+
+    // Save System Functions
+    public void Save() {
+        SaveSystem.Current.SetEnemyHealth(saveString, currHealth);
+    }
+
+    public void Load(SaveProfile profile) {
+        // If no value, default to maxHealth
+        currHealth = profile.GetEnemyHealth(saveString, maxHealth);
+        healthBar.GetComponent<EnemyHealthBar>().SetUp((int) maxHealth, (int) currHealth);
+        if (!CheckIsAlive()) Destroy(this.gameObject);
+    }
+
+    
 }

@@ -8,7 +8,7 @@ public class RecedingLight : RoomLights {
     private float intensity;
     private bool propagate;
 
-    private void Start() {
+    private void Awake() {
         light = GetComponent<Light2D>();
         intensity = light.intensity;
         light.intensity = 0;
@@ -16,6 +16,7 @@ public class RecedingLight : RoomLights {
     }
 
     private void RoomLights_OnPropagate(RoomCode roomCode) {
+        // Debug.Log("Got the propogation message! Checking aginst: " + this.roomCode);
         if (roomCode == this.roomCode) {
             propagate = true;
         }
@@ -24,7 +25,10 @@ public class RecedingLight : RoomLights {
     private void Update() {
         if (propagate) {
             light.intensity = Approach(light.intensity, intensity, Time.deltaTime * propagationSpeed);
-            if (light.intensity == intensity) Destroy(this);
+            if (light.intensity == intensity) {
+                Destroy(this);
+            } 
+            
         }
     }
 

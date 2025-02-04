@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine; 
 
-public class Door : IInteractable, RewardObject
+public class Door : IInteractable, RewardObject, ISavable
 {
     protected Animator animator;
     private ClaimCollectible collectible;
     public bool isOpen;
+    [SerializeField] private string saveString;
 
     // 1) Gets the necessary changes in x and y for specific rotations of doros as necessary
     // 2) Makes doors listen for CollectibleClaimed so that it can reenable InteractBehavior
@@ -78,5 +79,18 @@ public class Door : IInteractable, RewardObject
 
     public void DoReward() {
         OpenDoor();
+    }
+
+    public void Save() {
+        // THIS IS GONNA CAUSE SO MANY ISSUES LOL LMAO EVEN
+        // THIS IS DEFINITELY GOING TO REQUIRE SOME NEW TESTING BEACUSE HOLY SHIT
+        // I expect this to cause issues when doing the Toggle Doors in the pressure plate room
+        SaveSystem.Current.SetDoor(saveString, isOpen);
+    }
+
+    public void Load(SaveProfile profile) {
+        if (profile.GetDoor(saveString)) {
+            OpenDoor();
+        }
     }
 }

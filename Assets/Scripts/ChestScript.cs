@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class ChestScript : IInteractable
+public class ChestScript : IInteractable, ISavable
 {
     private ClaimCollectible collectible;
 
@@ -16,21 +16,32 @@ public class ChestScript : IInteractable
     [SerializeField] private bool startsActive;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private bool hasDoors;
+    [SerializeField] private string saveString;
 
     private Color spriteColor;
     private bool hasOpened;
 
+    void Awake() {
+        spriteColor = GetComponent<SpriteRenderer>().color;
+        collectible = GetComponent<ClaimCollectible>();
+        animator = GetComponent<Animator>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        spriteColor = GetComponent<SpriteRenderer>().color;
-        collectible = GetComponent<ClaimCollectible>();
         collectible.OnCollectibleClaimed += ChestScript_OnCollectibleClaimed;
         playerController = PlayerController.Instance;
 
 		virtualCamera = ReferenceSingleton.Instance.mainCamera.GetComponentInChildren<CinemachineVirtualCamera>();
         returnToPlayer = PlayerController.Instance.transform;
-        animator = GetComponent<Animator>();
+    }
+
+    // void Awake() {
+
+    // }
+
+    void OnEnable() {
         if (!startsActive) StartCoroutine(CameraTransitionIn());
     }
 
@@ -83,5 +94,39 @@ public class ChestScript : IInteractable
 
     private void ChestScript_OnCollectibleClaimed() {
         awaitingCollectible = false;
+    }
+
+    public void Save() {
+        SaveSystem.Current.SetCollectibleCollected(saveString, hasOpened);
+        SaveSystem.Current.SetCollectibleActive(saveString, gameObject.activeSelf);
+        // if (collectible == null) Debug.Log("WOW it's null");
+        // collectible.GetCall();
+        
+        // collectible = GetComponent<ClaimCollectible>();
+        // ScriptableItem[] collectibleData = collectible.GetCollectibleCalls();
+        // Debug.Log("Attempting to find if collectibleData is null");
+        // if (collectibleData != null) return;
+        // Debug.Log("Got past! Must not be then...");
+        // int numOfCollectibles = collectibleData.Length;
+        // if (hasOpened) {
+        //     SaveSystem.Current.IncrementCollectedNumber(numOfCollectibles);
+        // }
+        // SaveSystem.Current.IncrementTotalNumber(numOfCollectibles);
+
+        
+        
+    }
+
+    public void Load(SaveProfile profile) {
+        // Debug.Log(gameObject.name + " " + saveString);
+        if (profile.GetCollectibleActive(saveString)) {
+            startsActive = true;
+            gameObject.SetActive(true);
+        }
+        if (profile.GetCollectibleCollected(saveString)) {
+            hasOpened = true;
+            // collectible = GetComponent<ClaimCollectible>();
+            collectible.CollectSilent();
+        }
     }
 }

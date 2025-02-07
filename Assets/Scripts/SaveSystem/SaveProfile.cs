@@ -62,7 +62,15 @@ public class SaveProfile
             // Debug.Log("Print Dic")
         }
         // totalCollectibles = 
-        // percentageComplete = (float)collectedCollectibles / totalCollectibles;
+        // percentageComplete = (float) collectedCollectibles / totalCollectibles;
+        collectedCollectibles = 0;
+        totalCollectibles = 0;
+        foreach (bool collected in _collectibleCollectedDict.Values) {
+            totalCollectibles++;
+            if (collected) collectedCollectibles++;
+        }
+        percentageComplete = (float) collectedCollectibles / totalCollectibles;
+        if (float.IsNaN(percentageComplete)) percentageComplete = 0;
         // Debug.Log($"Collected: {collectedCollectibles} Total: {totalCollectibles} Percentage Complete: {percentageComplete}");
     }
 
@@ -128,6 +136,7 @@ public class SaveProfile
     }
 
     public void IncrementCollectedNumber(int n = 0) {
+        // Debug.Log("Incremented");
         collectedCollectibles += n;
     }
 

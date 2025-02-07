@@ -93,10 +93,10 @@ public class MainMenuMaster : MonoBehaviour {
         // _ContinueDetails[0].text = profile.GetPlaytime();
         _ContinueDetails[1].text = profile.GetPlayerLocation().Substring(0, 2);
         _ContinueDetails[2].text = $"{profile.GetNumberOfPolaroids()} / 9";
-        _ContinueDetails[3].text = $"{profile.GetPercentage()}%";
+        _ContinueDetails[3].text = $"{Mathf.Round(profile.GetPercentage() * 100) / 100.0}%";
         _DeleteDetails[1].text = profile.GetPlayerLocation().Substring(0, 2);
         _DeleteDetails[2].text = $"{profile.GetNumberOfPolaroids()} / 9";
-        _DeleteDetails[3].text = $"{profile.GetPercentage()}%";
+        _DeleteDetails[3].text = $"{Mathf.Round(profile.GetPercentage() * 100) / 100.0}%";
     }
 
     // (Joseph 1 / 15 / 25) Attempt to create a new save file

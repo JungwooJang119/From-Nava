@@ -176,6 +176,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSFXDistance: 10
   maxSFXDistance: 20
+  sectionData:
+  - sectionType: 0
+    explorationTrack: Exploration
+    combatTrack: Combat
+  - sectionType: 1
+    explorationTrack: FinalAreaEX
+    combatTrack: FinalAreaCB
   mainMusicSource: {fileID: 8403224658944174719}
   secondaryMusicSource: {fileID: 0}
   sfxSource: {fileID: 7736375326346815523}
@@ -194,6 +201,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5c8c43a1e6342914885658146d4fa0f4, type: 3}
   - name: Opening
     clip: {fileID: 8300000, guid: 10cea5e70a51fd94098115f96b4d4545, type: 3}
+  - name: FinalAreaEX
+    clip: {fileID: 8300000, guid: cd17c8d65eb1ef84d88f9cb13ec947df, type: 3}
+  - name: FinalAreaCB
+    clip: {fileID: 8300000, guid: 78c6ab6e8ebc6d34386c4f4d847c7b4c, type: 3}
   sfxSounds:
   - name: Fireball Cast
     clip: {fileID: 8300000, guid: f949953db1f45f44fb6a824454d0a46c, type: 3}

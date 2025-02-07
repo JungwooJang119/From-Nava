@@ -22,6 +22,7 @@ TagManager:
   - WindBlast
   - Fire
   - Ice
+  - CrackedWall
   layers:
   - Default
   - TransparentFX

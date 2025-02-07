@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a2ac4d71f7bfc41b2c76d254041ef2, type: 3}
   m_Name: Icicle
   m_EditorClassIdentifier: 
-  manaCost: 5
-  speed: 7
+  speed: 2
   damageAmt: 1
-  lifetime: 2
+  lifetime: 6
   sfxString: Iceball Cast
   particleColor:
   - 0.58

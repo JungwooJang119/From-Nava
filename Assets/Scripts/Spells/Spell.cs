@@ -89,6 +89,10 @@ public class Spell : MonoBehaviour
             return;
         }
 
+        if (other.gameObject.CompareTag("CrackedWall")) {
+            return;
+        }
+
         if (isChair || isPiplup) {
             return;
         }

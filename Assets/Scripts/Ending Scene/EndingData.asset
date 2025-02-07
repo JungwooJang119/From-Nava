@@ -60,13 +60,13 @@ MonoBehaviour:
         postTransitionWait: 0
         transitionColor: {r: 0, g: 0, b: 0, a: 1}
         onUpAudio:
-          use: 0
-          sfx: 0
-          clipName: 
+          use: 1
+          sfx: 1
+          clipName: PenSnap
         onIntermezzoAudio:
           use: 0
           sfx: 0
-          clipName: 
+          clipName: PenSnap
         onDownAudio:
           use: 0
           sfx: 0

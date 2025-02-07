@@ -205,6 +205,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cd17c8d65eb1ef84d88f9cb13ec947df, type: 3}
   - name: FinalAreaCB
     clip: {fileID: 8300000, guid: 78c6ab6e8ebc6d34386c4f4d847c7b4c, type: 3}
+  - name: FinalAreaStory
+    clip: {fileID: 8300000, guid: a228c30d4b49b154ea7759773908c5a6, type: 3}
+  - name: FinalAreaStory2
+    clip: {fileID: 8300000, guid: a228c30d4b49b154ea7759773908c5a6, type: 3}
   sfxSounds:
   - name: Fireball Cast
     clip: {fileID: 8300000, guid: f949953db1f45f44fb6a824454d0a46c, type: 3}
@@ -278,6 +282,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9d40a2717f2359643a82299711861a13, type: 3}
   - name: EndingPart2
     clip: {fileID: 8300000, guid: 71e2a60d538716547899d4d39f55eb16, type: 3}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: f95f7c9751041244cb1d475ee45e5249, type: 3}
+  - name: IceTowerDie
+    clip: {fileID: 8300000, guid: 5986bf4e59eed594ca0d59ef5a9f8e4e, type: 3}
+  - name: PenSnap
+    clip: {fileID: 8300000, guid: ecb8dfa69e702b045aae0010646a6d5f, type: 3}
+  - name: MagicCast
+    clip: {fileID: 8300000, guid: 24ca97a3105c01648aed7125f181bc15, type: 3}
 --- !u!1 &8403224658944174706
 GameObject:
   m_ObjectHideFlags: 0

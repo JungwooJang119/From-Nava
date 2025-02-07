@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MusicSection { MainLab, FinalArea }
+public enum MusicSection { MainLab, FinalArea, Leave }
 public enum TrackMode { Main, Exploration, Battle }
 
 /// <summary>

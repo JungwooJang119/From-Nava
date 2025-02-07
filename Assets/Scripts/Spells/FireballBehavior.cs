@@ -8,6 +8,8 @@ public class FireballBehavior : BaseSpellBehavior {
     [SerializeField] private LightController lightController;
     [SerializeField] private float scaleOscillation;
 
+    [SerializeField] private GameObject explosion;
+
     private Vector2 baseScale;
 
     protected override void Awake() {
@@ -72,5 +74,9 @@ public class FireballBehavior : BaseSpellBehavior {
         if (collision.TryGetComponent(out BaseObject baseObject)) {
             baseObject.Ignite(this);
         }
+        if (collision.gameObject.GetComponent<IExplodable>() != null) {
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
+        
     }
 }

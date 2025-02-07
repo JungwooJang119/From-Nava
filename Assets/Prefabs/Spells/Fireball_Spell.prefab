@@ -4975,6 +4975,7 @@ MonoBehaviour:
   coll: {fileID: 5179540904966012317}
   lightController: {fileID: 3295488785256067574}
   scaleOscillation: 0.01
+  explosion: {fileID: 8284172107641950108, guid: 56ba0bcc3ab804a45b0ef4bc9b159394, type: 3}
 --- !u!114 &8916631681253868026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,6 +5045,10 @@ PrefabInstance:
     - target: {fileID: 4812598531523419038, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
       propertyPath: m_Name
       value: Firelight
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812598531523419038, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4812598531523419039, guid: 9144e8569d8fa1749bbcad9910ffa9cd, type: 3}
       propertyPath: m_RootOrder

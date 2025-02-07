@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+
+public enum MusicSection { MainLab, FinalArea }
+public enum TrackMode { Main, Exploration, Battle }
 
 /// <summary>
 /// Simple Audio Manager, a sweet relief for sound lovers <3
@@ -9,11 +11,17 @@ using System;
 
 public class AudioControl : Singleton<AudioControl> {
 
+	public event System.Action OnFadeEnd;
+
 	private float musicVolume = 0.5f;
 	private float sfxVolume = 1.0f;
 	// Adjust the spacial distribution of sound in-game;
 	[SerializeField] private float minSFXDistance = 10;
 	[SerializeField] private float maxSFXDistance = 20;
+	[SerializeField] private MusicSectionData[] sectionData;
+
+	private readonly Dictionary<MusicSection, MusicSectionData> sectionDataMap = new();
+	private MusicSectionData activeData;
 
 	private const string NULL_CLIP_TEXT = "Invalid clip string passed";
 	private readonly float volumeChangeRate = 0.01f;
@@ -24,6 +32,12 @@ public class AudioControl : Singleton<AudioControl> {
 		secondaryMusicSource.gameObject.name = "SecondaryMusicSource";
 		DontDestroyOnLoad(gameObject);
 		InitializeSingleton(gameObject);
+
+		foreach (MusicSectionData data in sectionData) {
+			sectionDataMap[data.sectionType] = data;
+        }
+
+		activeData = sectionDataMap[MusicSection.MainLab];
 	}
 
 	void Start() {
@@ -56,11 +70,9 @@ public class AudioControl : Singleton<AudioControl> {
 	// The files must be assigned in the inspector;
 	[SerializeField] private Sound[] musicSounds, sfxSounds;
 
-	private Coroutine activeInterpolation;
-
 	private AudioClip FetchClip(string name, Sound[] sounds) {
-		Sound sn = Array.Find(sounds, item => item.name == name);
-		if (sn == null) throw new Exception(NULL_CLIP_TEXT);
+		Sound sn = System.Array.Find(sounds, item => item.name == name);
+		if (sn == null) throw new System.Exception(NULL_CLIP_TEXT);
 		return sn.clip;
 	}
 
@@ -108,7 +120,7 @@ public class AudioControl : Singleton<AudioControl> {
 	/// <param name="volumeMultiplier"> Volume of the clip (between 0 and 1); </param>
 	/// <returns> Returns the length of the clip played if one is found; </returns>
 	public float PlaySFX(string name, GameObject sender, float pitchRChange = 0, float volumeMultiplier = 1) {
-		Sound sn = Array.Find(sfxSounds, item => item.name == name);
+		Sound sn = System.Array.Find(sfxSounds, item => item.name == name);
 
 		AudioClip clip = FetchClip(name, sfxSounds);
 		SetUpSFX(clip, sender, pitchRChange, volumeMultiplier);
@@ -157,19 +169,28 @@ public class AudioControl : Singleton<AudioControl> {
 	public void FadeMusic(bool stopsMusic, bool stopsAbruptly = false) {
 		StopAllCoroutines();
 		if (stopsAbruptly) mainMusicSource.Stop();
-		else StartCoroutine(_FadeMusic(stopsMusic));
+		else StartCoroutine(IFadeMusic(stopsMusic));
 	}
 
-	public void ResumeMusic() => StartCoroutine(_ResumeMusic());
-
-	public void InterpolateMusicTracks(string name, bool shouldLoop = true) {
+	public void ResumeMusic() {
 		StopAllCoroutines();
-		AudioClip clip = FetchClip(name, musicSounds);
-		//if (activeInterpolation != null) StopCoroutine(activeInterpolation);
-		activeInterpolation = StartCoroutine(_InterpolateMusicTracks(clip, shouldLoop));
+		StartCoroutine(IResumeMusic());
 	}
 
-	IEnumerator _InterpolateMusicTracks(AudioClip newTrack, bool nextLoop) {
+	public void SetMusicSection(MusicSection section) {
+		sectionDataMap.TryGetValue(section, out activeData);
+    }
+
+	public void InterpolateMusicTracks(TrackMode trackMode, bool shouldLoop = true) {
+		StopAllCoroutines();
+		AudioClip clip = FetchClip(trackMode switch { TrackMode.Battle => activeData.combatTrack,
+													  TrackMode.Main => "Main",
+													  _ => activeData.explorationTrack },
+								   musicSounds);
+		StartCoroutine(IInterpolateMusicTracks(clip, shouldLoop));
+	}
+
+	IEnumerator IInterpolateMusicTracks(AudioClip newTrack, bool nextLoop) {
 		float lerp = 1;
 		SetUpSecondaryMusicClip(newTrack);
 		while (lerp > 0) {
@@ -195,18 +216,19 @@ public class AudioControl : Singleton<AudioControl> {
     }
 
 	// Coroutine to fade away the music. Hopefully more efficient than running a bool in Update;
-	IEnumerator _FadeMusic(bool stopsMusic) {
+	IEnumerator IFadeMusic(bool stopsMusic) {
 		while (mainMusicSource.volume > 0) {
 			mainMusicSource.volume = Mathf.MoveTowards(mainMusicSource.volume, 0, volumeChangeRate);
 			yield return null;
 		}
+		OnFadeEnd?.Invoke();
 		if (stopsMusic) {
 			mainMusicSource.Stop();
 			mainMusicSource.volume = musicVolume;
 		}
 	}
 
-	IEnumerator _ResumeMusic() {
+	IEnumerator IResumeMusic() {
 		if (mainMusicSource) mainMusicSource.UnPause();
 		while (mainMusicSource.volume < musicVolume) {
 			mainMusicSource.volume = Mathf.MoveTowards(mainMusicSource.volume, musicVolume, volumeChangeRate);
@@ -294,4 +316,10 @@ public class AudioControl : Singleton<AudioControl> {
 public class Sound {
 	public string name;
 	public AudioClip clip;
+}
+
+[System.Serializable]
+public class MusicSectionData {
+	public MusicSection sectionType;
+	public string explorationTrack, combatTrack;
 }

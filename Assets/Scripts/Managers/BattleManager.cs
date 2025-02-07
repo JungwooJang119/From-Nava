@@ -42,8 +42,8 @@ public class BattleManager : Singleton<BattleManager> {
     private void SwitchStance(bool embattle) {
         if (AudioControl.Instance == null) return;
         combatStance = embattle;
-        string bgClipName = combatStance ? "Combat" : "Exploration";
-        if (bossEngaged && combatStance) bgClipName = "Main";  //Fix this later
-        AudioControl.Instance.InterpolateMusicTracks(bgClipName);
+        TrackMode trackMode = combatStance ? TrackMode.Battle : TrackMode.Exploration;
+        if (bossEngaged && combatStance) trackMode = TrackMode.Main;  //Fix this later
+        AudioControl.Instance.InterpolateMusicTracks(trackMode);
     }
 }

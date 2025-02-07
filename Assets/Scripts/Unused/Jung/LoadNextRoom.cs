@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LoadNextRoom : MonoBehaviour
 {
-    [SerializeField] private Transform spawn;
-    private TransitionManager tm;
+    [SerializeField] protected Transform spawn;
+    protected TransitionManager tm;
 
-    [SerializeField] private GameObject[] _objects;
+    [SerializeField] protected GameObject[] _objects;
     private static GameObject auditor;
 
     void Start() {
@@ -25,7 +25,7 @@ public class LoadNextRoom : MonoBehaviour
 			StartCoroutine(SimulateLoad(other.gameObject));
         }
     }
-    IEnumerator SimulateLoad(GameObject player) {
+    protected virtual IEnumerator SimulateLoad(GameObject player) {
         PlayerController controller = player.GetComponent<PlayerController>();
         controller.DeactivateMovement();
         var wait = tm.FadeOut();

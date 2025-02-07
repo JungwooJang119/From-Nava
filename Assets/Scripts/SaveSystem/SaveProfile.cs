@@ -24,6 +24,8 @@ public class SaveProfile
     private Dictionary<string, bool> _doorDictionary = new Dictionary<string, bool>();
     // The status of all room controls in the scene
     private Dictionary<string, bool> _roomDictionary = new Dictionary<string, bool>();
+    // The status of every cutscene
+    private Dictionary<string, bool> _cutsceneDictionary = new Dictionary<string, bool>();
 
     // This profile should not be called unless something goes horribly wrong.
     public SaveProfile() {
@@ -212,6 +214,23 @@ public class SaveProfile
 
     public void SetRoomControl(string name, bool value) {
         _roomDictionary[name] = value;
+    }
+
+    // For Cutscenes, and their completition status
+    public Dictionary<string, bool> GetCutsceneDictionary() {
+        return _cutsceneDictionary;
+    }
+    
+    public void SetCutsceneDictionary(Dictionary<string, bool> boolsDict) {
+        _cutsceneDictionary = boolsDict;
+    }
+
+    public bool GetCutscene(string name, bool defaultVal = false) {
+        return _cutsceneDictionary.GetValueOrDefault(name, defaultVal);
+    }
+
+    public void SetCutscene(string name, bool value) {
+        _cutsceneDictionary[name] = value;
     }
 
     # endregion

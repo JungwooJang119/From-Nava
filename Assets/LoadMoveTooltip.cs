@@ -40,6 +40,7 @@ public class LoadMoveTooltip : MonoBehaviour
     }
 
     IEnumerator DestroyMoveTooltip(float opacity) {
+        GetComponent<Cutscene>().CutsceneFinished();
         Color textCurrColor = moveTooltipText.color;
         Color spriteCurrColor = moveTooltipBG.color;
         // print(spriteCurrColor.a);

@@ -24,6 +24,8 @@ public class SerializableSaveProfile
     public bool[] _doorValue;
     public string[] _roomKey;
     public bool[] _roomValue;
+    public string[] _cutsceneKey;
+    public bool[] _cutsceneValue;
 
 
     // Converts from SaveProfile to SerializableSaveProfile
@@ -48,6 +50,8 @@ public class SerializableSaveProfile
         ssp._doorValue = saveProfile.GetDoorDictionary().Values.ToArray();
         ssp._roomKey = saveProfile.GetRoomControlDictionary().Keys.ToArray();
         ssp._roomValue = saveProfile.GetRoomControlDictionary().Values.ToArray();
+        ssp._cutsceneKey = saveProfile.GetCutsceneDictionary().Keys.ToArray();
+        ssp._cutsceneValue = saveProfile.GetCutsceneDictionary().Values.ToArray();
         
 
         return ssp;
@@ -90,6 +94,12 @@ public class SerializableSaveProfile
             room.Add(_roomKey[i], _roomValue[i]);
         }
         sp.SetRoomControlDictionary(room);
+
+        Dictionary<string, bool> cutscene = new Dictionary<string, bool>(_cutsceneKey.Length);
+        for (int i = 0; i < _cutsceneKey.Length; i++) {
+            room.Add(_cutsceneKey[i], _cutsceneValue[i]);
+        }
+        sp.SetCutsceneDictionary(cutscene);
 
         return sp;
     }
